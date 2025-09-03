@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Experiencia del usuario y Customer Journey</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "EXPERIENCIA DE USUARIO Y JOURNEY" (VERSIÓN FINAL Y REFORZADA)
+   ==================================================================== */
+
+/* Contenedor de dos columnas para la introducción (sin cambios) */
+.intro-journey-container { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 40px; }
+.intro-journey-text { flex: 1.5; min-width: 300px; }
+.intro-journey-diagram { flex: 1; min-width: 250px; }
+.intro-journey-diagram img { width: 100%; max-width: 350px; display: block; margin: 0 auto; }
+
+/* Lista destacada para los 3 pilares (sin cambios) */
+.pillars-list { list-style: none; padding: 0; margin: 20px 0; }
+.pillars-list li { background-color: #f9f9f9; border-left: 4px solid #00ff8c; padding: 15px 20px; margin-bottom: 10px; font-size: 1.05em; font-weight: 500; }
+
+/* --- TIMELINE INTERACTIVO (DISEÑO FINAL A PRUEBA DE CONFLICTOS) --- */
+.journey-timeline {
+    position: relative; margin-top: 50px; padding: 0;
+}
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #f7981d; /* O el color que prefieras para la línea */
+}
+
+.journey-step {
+    position: relative;
+    padding-left: 50px; /* Espacio para el número */
+    margin-bottom: 20px;
+
+}
+
+
+/* Título del paso (el elemento clicable) */
+.step-header {
+    display: flex; align-items: center;
+    padding: 0 !important; /* Reseteo de padding */
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    margin-left: 0px; /* Más a la derecha, para no pegarse al número */
+}
+/* El círculo numerado */
+.step-header::before {
+    content: attr(data-step);
+    position: absolute; left: 0; transform: translateX(-50%);
+    width: 40px; height: 40px;
+    background-color: #ffffff !important; /* FONDO BLANCO */
+    color: #2f8030  !important; /* NÚMERO VERDE */
+    font-size: 1.2em !important; font-weight: bold !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    border-radius: 50% !important; border: 2px solid #2f8030 !important; /* BORDE VERDE */
+    transition: all 0.3s ease !important;
+    z-index: 2;
+}
+
+/* La caja del título H3 */
+.header-content-wrapper {
+    flex-grow: 1;
+    padding: 10px 20px !important; /* Menos altura */
+    background-color: #2f8030 !important; /* FONDO VERDE */
+    border-radius: 8px !important;
+    transition: background-color 0.3s ease !important;
+}
+.step-header h3 {
+    margin: 0 !important; font-size: 1.3em !important; border: none !important; padding: 0 !important;
+    color: #ffffff !important; /* H3 EN BLANCO */
+    display: flex; align-items: center; gap: 10px;
+}
+
+/* Contenido desplegable */
+.step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* all 0.5s ease-out; */
+    padding: 0 20px !important;
+    margin-top: 2px;
+    border: 2px dotted transparent; /* Borde punteado transparente por defecto */
+    border-radius: 8px !important;
+	background-color: #ffffff !important;
+}
+
+/* --- ESTADO ACTIVO/ABIERTO --- */
+.journey-step.active .step-header::before {
+    background-color: #ffffff !important; /* FONDO BLANCO */
+    border-color: #FF8C00 !important; /* BORDE NARANJA */
+    color: #FF8C00 !important; /* NÚMERO NARANJA */
+}
+.journey-step.active .header-content-wrapper {
+    background-color: #f7981d !important; /* FONDO NARANJA */
+}
+.journey-step.active .step-content {
+    max-height: 4000px;
+    padding-top: 2px !important;
+    padding-bottom: 25px !important;
+    border-color: #f7981d !important; /* BORDE PUNTEADO NARANJA */
+}
+
+/* Layout de 2 columnas dentro del contenido (sin cambios) */
+.step-content-layout { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; }
+.step-text-content { flex: 1.5; min-width: 300px; }
+.step-image-content { flex: 1; min-width: 300px; }
+.step-image-content img {
+    width: 60%; max-width: 400px; height: auto; border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.step-image-content img:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+
+/* Estilo para la clase callout dentro del step-content */
+.step-content .callout {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-left: 4px solid #4caf50;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 2 DEL JOURNEY
+   ==================================================================== */
+
+/* Rejilla para las características del Micro-Site */
+.microsite-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px 30px; /* Menos espacio vertical, más horizontal */
+    margin: 20px 0;
+}
+
+.microsite-features-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.microsite-features-grid li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.microsite-features-grid li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--header-gradient-end);
+    font-weight: bold;
+}
+
+/* Estilo para la llamada a la acción "Clic en ejemplo" */
+.example-cta {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 20px 0;
+}
+
+/* Estilo para el marcador de posición de la tienda online */
+.online-store-placeholder {
+    background-color: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    margin: 20px 0;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    font-size: 1.1em;
+}
+/* ====================================================================
+   ESTILOS PARA EL SIMULACRO DE TIENDA ONLINE Y FICHA DE PRODUCTO
+   ==================================================================== */
+
+/* --- Contenedor Principal de la Tienda --- */
+.online-store-container {
+    background: #1e1e1e; /* Fondo oscuro para la sección */
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin: 20px 0;
+}
+.store-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+.store-header h3 { color: #fff; margin: 0; border: none; padding: 0; }
+.store-header .books-icon { color: #fff; }
+
+/* --- Rejilla de Fichas de Producto --- */
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+/* Forzar 3 columnas en desktop para la tienda de Libros */
+.store-grid.store-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px; /* mantiene tu separación actual */
+}
+
+/* Bajamos a 2 columnas en pantallas medianas */
+@media (max-width: 1100px) {
+  .store-grid.store-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 1 columna en móvil */
+@media (max-width: 680px) {
+  .store-grid.store-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-card {
+    background: #2c2c2c;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid #444;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(0, 255, 140, 0.4);
+}
+.card-cover { position: relative; }
+.card-cover img { width: 100%; display: block; }
+.card-pricing-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    color: white; padding: 15px;
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center;
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.product-card:hover .card-pricing-overlay { opacity: 1; }
+.card-pricing-overlay h4 { margin: 0 0 10px 0; }
+.card-pricing-overlay .tier { font-size: 0.9em; border-top: 1px solid #666; padding-top: 8px; margin-top: 8px; }
+
+.card-info { padding: 20px; }
+.card-info h4 { margin: 0 0 10px 0; color: #fff; display: flex; align-items: center; gap: 8px; }
+.card-info p.description { font-size: 0.9em; color: #b0b0b0; line-height: 1.6; margin-bottom: 15px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+.card-tags span { font-size: 0.75em; padding: 4px 10px; border-radius: 15px; background-color: #82dd77; }
+.card-stats { display: grid; gap: 10px; font-size: 0.9em; }
+.stat-item { display: flex; justify-content: space-between; align-items: center; color: #00ff8c !important;}
+.card-stats span { color: #00ff8 !important; }
+.progress-bar { background: #555; height: 8px; width: 100px; border-radius: 4px; }
+.progress-bar div { height: 100%; background: var(--sidebar-accent-color); border-radius: 4px; }
+
+/* ===== POP FICHA NOVELA: Layout final y estilos modernos (v2) ===== */
+#product-lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  backdrop-filter: blur(8px); display:flex; align-items:center; justify-content:center;
+  opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s; z-index:10000; }
+#product-lightbox.active { opacity:1; visibility:visible; }
+
+#product-lightbox .lightbox-container{
+  position:relative; width:min(95vw,1100px); height:min(90vh,860px);
+  background:#212121; color:#e0e0e0; border:1px solid #555; border-radius:14px;
+  box-shadow:0 0 50px rgba(255,140,0,.18), 0 0 50px rgba(0,255,140,.18);
+  display:grid; grid-template-rows:auto 1fr; overflow:hidden;
+  transform:scale(.96); transition:transform .3s ease;
+}
+#product-lightbox.active .lightbox-container{ transform:scale(1); }
+
+#product-lightbox .lightbox-close{
+  position:absolute; top:14px; right:18px; background:none; border:0; color:#fff;
+  font-size:2rem; cursor:pointer; z-index:5; line-height:1; }
+
+/* ===== HEADER ===== */
+#product-lightbox .lightbox-header{
+  display:grid; 
+
+  gap:10px; 
+  align-items:start;
+  padding:5px 30px; 
+  background:#0c97435e; 
+  border-bottom:1px solid #444; text-align:left;
+}
+
+/* Izquierda del header: imagen grande + título/frase a la derecha */
+#product-lightbox .cover-and-title{
+  display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; align-items: start;
+}
+#product-lightbox .book-mark{
+  width:110px; height:auto; display:block; border-radius:12px;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+#product-lightbox .title-wrap h3{
+  font-size:2rem; color:#fff;
+  margin-top: 10px;
+}
+#product-lightbox .title-wrap p{ margin:0; color:#cfcfcf; }
+
+/* Derecha del header: Ampliaciones + Prestaciones, apilados */
+#product-lightbox .header-stats{
+  display:grid; grid-template-columns:1fr; gap:12px; align-content:start;
+}
+#product-lightbox .header-stats h6{
+  margin:0 0 8px 0; font-size:.85rem; letter-spacing:.02em; text-transform:uppercase;
+  color:#dfe; opacity:.9;
+}
+#product-lightbox .chips{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;
+}
+#product-lightbox .chip{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 10px;
+  border-radius:12px; font-size:.95rem; white-space:nowrap;
+  border:1px solid rgba(255,255,255,.14);
+  background:#1f1f1f;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+#product-lightbox .chip i{ font-size:.95rem; }
+
+/* Colores modernos de chips */
+#product-lightbox .chip-green{
+  background: linear-gradient(180deg, rgba(0,255,153,.18), rgba(0,180,120,.12));
+  border-color: rgba(0,200,135,.45); color:#dfffee;
+}
+#product-lightbox .chip-purple{
+  background: linear-gradient(180deg, rgba(160,120,255,.20), rgba(120,80,220,.12));
+  border-color: rgba(140,100,240,.45); color:#efe8ff;
+}
+#product-lightbox .chip-cyan{
+  background: linear-gradient(180deg, rgba(80,200,255,.20), rgba(40,160,220,.12));
+  border-color: rgba(70,180,240,.45); color:#e7f6ff;
+}
+#product-lightbox .chip-orange{
+  background: linear-gradient(180deg, rgba(255,160,70,.22), rgba(220,120,40,.12));
+  border-color: rgba(255,150,60,.5); color:#fff3e6;
+}
+
+/* ===== BODY ===== */
+#product-lightbox .lightbox-body{ min-height:0; overflow:auto; padding:200px 30px 28px; text-align:left; }
+
+/* Grid superior: izquierda texto (sinopsis/relatos) + derecha video 9:16 */
+#product-lightbox .body-top-grid{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:start; margin-bottom:16px;
+}
+#product-lightbox .body-top-grid .left-col > .section-card + .section-card{ margin-top:16px; }
+
+/* Vídeo 9:16 (derecha) */
+#product-lightbox .book-trailer.vertical{
+  margin:0 auto; width:min(360px,100%); aspect-ratio:9/16;
+  border-radius:14px; overflow:hidden; background:#000;
+  box-shadow:0 10px 28px rgba(0,0,0,.45), 0 0 24px rgba(0,0,0,.25);
+}
+#product-lightbox .book-trailer.vertical video{ width:100%; height:100%; display:block; object-fit:cover; }
+
+/* Tarjetas-sección con glow más visible */
+#product-lightbox .section-card{
+  border:1px dashed rgba(200,200,200,.35);
+  border-radius:16px; padding:18px 18px 16px; margin-bottom:16px;
+  background:
+    radial-gradient(1000px 240px at 0% 0%, rgba(0, 255, 160, .10), transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 0 28px rgba(0,255,180,.10);
+}
+#product-lightbox .h-modern{
+  position:relative; margin:0 0 12px; font-size:1.1rem; color:#fff; padding:8px 12px;
+  border-radius:10px;
+  background: linear-gradient(90deg, rgba(0,255,160,.22), rgba(0,180,120,.10) 60%, rgba(0,0,0,0));
+  border:1px solid rgba(0,255,160,.25);
+  text-shadow:0 0 8px rgba(0,255,160,.25);
+}
+
+/* ===== PROTAGONISTAS ===== */
+#product-lightbox .characters-grid{ display:grid; gap:18px; }
+@media (min-width: 980px){ #product-lightbox .characters-grid{ grid-template-columns:1fr 1fr; } }
+
+#product-lightbox .character-card{
+  position:relative; min-height: 500px; border-radius:18px; overflow:hidden;
+  background: #111 top center/cover no-repeat; background-image: var(--bg);
+  box-shadow:0 8px 26px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.06),
+             0 0 0 0 rgba(255,140,0,.0);
+  transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease;
+}
+#product-lightbox .character-card:hover{
+  transform: translateY(-2px);
+  box-shadow:0 12px 34px rgba(0,0,0,.55), 0 0 28px rgba(255,140,0,.35);
+  filter: saturate(1.08);
+}
+#product-lightbox .character-card .labels{
+  position:absolute; top:12px; left:12px; display:flex; gap:8px; z-index:2;
+}
+#product-lightbox .tag{
+  padding:6px 12px; font-size:.82rem; border-radius:999px;
+  background:rgb(4 58 255 / 38%); border:1px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(2px); color:#f4f4f4;
+}
+#product-lightbox .tag.ghost{
+  background:linear-gradient(180deg, rgb(255 255 255 / 51%), rgb(255 226 0 / 56%));
+  color:#111; border-color:rgba(255,255,255,.6);
+}
+#product-lightbox .tag.danger{
+  background:linear-gradient(180deg, rgba(255,90,70,.50), rgba(180,30,20,.35));
+  border-color:rgba(255,110,90,.8); color:#fff1ee;
+}
+#product-lightbox .tag.neutral{
+  background:linear-gradient(180deg, rgba(110,150,255,.45), rgba(70,100,230,.30));
+  border-color:rgba(110,150,255,.75); color:#eef2ff;
+}
+
+#product-lightbox .character-card .overlay{
+  position:absolute; inset:0; display:flex; align-items:flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 36%, rgba(0,0,0,.68) 100%);
+}
+#product-lightbox .character-card .content{
+  padding:18px; color:#f1f1f1; width:100%;
+  background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35));
+  backdrop-filter: blur(2px);
+}
+#product-lightbox .character-card h5{ margin:0 0 8px; font-size:1.2rem; }
+
+/* Bullets con “arte” */
+#product-lightbox .character-card .bullets{ margin:10px 0 0 0; padding:0; list-style:none; }
+#product-lightbox .character-card .bullets li{
+  position:relative; padding-left:18px; margin:6px 0;
+}
+#product-lightbox .character-card .bullets li::before{
+  content:""; position:absolute; left:0; top:.55em;
+  width:9px; height:9px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff 0, #ffd9b3 30%, #ff8a00 70%, #aa4e00 100%);
+  box-shadow:0 0 8px rgba(255,138,0,.6);
+}
+
+/* CTAs */
+#product-lightbox .cta-row{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:18px;
+}
+#product-lightbox .btn{
+  display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-weight:600;
+  border-radius:12px; cursor:pointer; border:1px solid #3a3a3a; background:#1c1c1c; color:#eaeaea;
+  transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#product-lightbox .btn:hover{ transform: translateY(-1px); box-shadow:0 8px 24px rgba(0,0,0,.25); border-color:#5a5a5a; }
+#product-lightbox .btn.primary{ background:linear-gradient(180deg, #00ff99, #00d27a); color:#0b1c14; border-color:#00d27a; }
+#product-lightbox .btn.ghost{ background:#262626; }
+#product-lightbox .btn.outline{ background:transparent; border-color:#6a6a6a; }
+#product-lightbox .btn i{ font-size:1rem; }
+
+/* Responsive header/body */
+@media (max-width: 1024px){
+  #product-lightbox .lightbox-header{ grid-template-columns:1fr; }
+}
+@media (max-width: 720px){
+  #product-lightbox .cover-and-title{ grid-template-columns:90px 1fr; }
+  #product-lightbox .book-mark{ width:88px; }
+}
+@media (max-width: 980px){
+  #product-lightbox .body-top-grid{ grid-template-columns:1fr; }
+  #product-lightbox .book-trailer.vertical{ margin-top:8px; }
+}
+@media (max-width: 520px){
+  #product-lightbox .chips{ grid-template-columns:1fr; }
+}
+
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 3 DEL JOURNEY (ON-BOARDING)
+   ==================================================================== */
+
+.onboarding-section {
+    margin-bottom: 25px;
+}
+
+.onboarding-section h4 {
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Lista ordenada para las fases de configuración */
+.config-phases-list {
+    list-style: none;
+    counter-reset: phase-counter;
+    padding-left: 0;
+    margin-top: 15px;
+}
+.config-phases-list li {
+    counter-increment: phase-counter;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 20px;
+}
+/* Estilo del número */
+.config-phases-list li::before {
+    content: counter(phase-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    color: var(--text-dark);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.config-phases-list li strong {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 4 DEL JOURNEY (CONFIGURACIÓN)
+   ==================================================================== */
+
+.config-options-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.config-options-list li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    border-left: 3px solid var(--header-gradient-mid);
+}
+
+.config-options-list strong {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 5 DEL JOURNEY (ELECCIÓN PROTAGONISTA)
+   ==================================================================== */
+
+.protagonist-info-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 25px 0;
+}
+
+.protagonist-info-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    font-size: 1em;
+}
+
+.protagonist-info-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--button-color); /* Naranja */
+    font-weight: bold;
+    font-size: 1.2em;
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 6 DEL JOURNEY (NUDO SUBLIMINAL)
+   ==================================================================== */
+
+/* Contenedor para la sección de un tipo de Nudo */
+.nudo-example-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+.nudo-example-section h3 {
+    font-size: 1.5em;
+    color: var(--text-dark);
+}
+
+/* Rejilla para las 3 opciones de decisión de Sely */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+.option-card {
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.option-card h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+.option-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.option-card .info-tag {
+    display: block;
+    font-weight: bold;
+}
+.option-card blockquote {
+    margin: 0;
+    margin-top: auto; /* Empuja la cita al final de la tarjeta */
+    padding: 10px;
+
+    border-left: 3px solid var(--header-gradient-mid);
+    font-style: italic;
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 7 DEL JOURNEY (NUDO INCONSCIENTE)
+   ==================================================================== */
+
+/* Contenedor principal de 2 columnas para este ejemplo */
+.nudo-inconsciente-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+/* Columna de la imagen (40%) */
+.nudo-inconsciente-layout .image-column {
+    flex: 2; /* 2 partes del espacio disponible */
+    min-width: 300px;
+}
+.nudo-inconsciente-layout .image-column img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Columna de las opciones (60%) */
+.nudo-inconsciente-layout .options-column {
+    flex: 3; /* 3 partes del espacio disponible (más grande) */
+    min-width: 300px;
+}
+
+
+
+
+
+
+
+
+
+/* Estilo para cada tarjeta de opción en la columna derecha */
+.decision-option-card {
+    background-color: #2c2c2c; /* Fondo oscuro */
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.decision-option-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: var(--sidebar-accent-color); /* Título en verde */
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+}
+.decision-option-card p {
+    font-size: 0.9em;
+    color: #ebebeb;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 8 (DECISIONES MULTIMEDIA)
+   ==================================================================== */
+
+/* Rejilla para las 3 opciones de elección multimedia */
+.multimedia-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+/* Tarjeta para cada opción (Jugar, Ver, Leer) */
+.choice-card-dark {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    /* Glow inicial */
+    box-shadow: 0 0 15px rgba(0, 255, 140, 0.2);
+}
+.choice-card-dark:hover {
+    transform: translateY(-5px);
+    /* Glow intensificado */
+    box-shadow: 0 0 30px rgba(0, 255, 140, 0.5);
+}
+
+.choice-card-dark img {
+    width: 100%;
+    height: 150px; /* Altura fija para la imagen */
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+.choice-card-dark h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+    color: var(--sidebar-accent-color);
+}
+.choice-card-dark p {
+    font-size: 0.9em;
+    color: #c0c0c0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Contenedor para las etiquetas de formatos multimedia */
+.format-tags-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Estilo para cada etiqueta individual */
+.format-tag {
+    padding: 5px 12px;
+    font-size: 0.9em;
+    font-weight: 600;
+    border-radius: 20px;
+    color: #fff;
+}
+/* Colores para las etiquetas */
+.format-tag.play { background-color: #c0392b; }
+.format-tag.video { background-color: #8e44ad; }
+.format-tag.image { background-color: #2980b9; }
+.format-tag.comic { background-color: #f39c12; }
+.format-tag.story { background-color: #27ae60; }
+.format-tag.etc { background-color: #7f8c8d; }
+
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL PASO 9 (DILEMAS MORALES)
+   ==================================================================== */
+
+/* Estilo para el bloque de narración del dilema */
+.narrative-quote {
+    background-color: #f9f9f9;
+    border-left: 3px solid var(--header-gradient-mid);
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Contenedor para la interfaz de decisión final */
+.decision-interface {
+    background-color: #2c2c2c;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+.decision-interface h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.decision-interface img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 6px;
+}
+  </style>
+</head>
+
+<body data-theme="ux" data-active-section="UX" data-current-page="uxui">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+	<div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Experiencia de Usuario y Journey</div>
+    <h1>La Experiencia de Usuario: Ciclo desde la 1ª compra hasta el reinicio</h1>
+
+    <h2>Introducción:</h2>
+    <div class="intro-journey-container">
+        <div class="intro-journey-text">
+            <p>La experiencia del usuario debe estar perfectamente planificada incluso antes de ser usuario; para ello, todo el proceso debe cimentarse en 3 puntos:</p>
+            <ul class="pillars-list">
+                <li>Generar la emoción de pertenecer a un movimiento increíble (Revolución Selbook)</li>
+                <li>Eliminar las complejidades del producto</li>
+                <li>Incentivar la compra o suscripción</li>
+            </ul>
+            <p>Para ello, debemos crear un espacio de “Puertas Semi/Abiertas”, es decir, no tienes por qué comprar un Selbook para pertenecer a La Comunidad (Red Social), pero si de verdad quieres pertenecer al “Club Selbook”, deberás comprar.</p>
+            <p>Pero al dejarle entrar en La Comunidad, le damos pie a todo lo que puede vivir dentro, no solo de las partes limitadas, sino de la propia experiencia Selbook. Serán los propios usuarios, promociones y campañas quienes terminen animándole a “pertenecer a la Revolución Selbook”.</p>
+            <p>Por otro lado, al ser un producto con cierta complejidad, la información, explicación y exposición debe ser clara, directa y sencilla.</p>
+        </div>
+        <div class="intro-journey-diagram">
+            <img src="assets/img/introduccion.png" alt="Diagrama del embudo de la comunidad Selbook">
+        </div>
+    </div>
+    <p>Una vez que el usuario entra en La Comunidad, comenzará la Ruta o Experiencia del Usuario.</p>
+
+    <!-- AQUÍ EMPIEZA EL TIMELINE INTERACTIVO -->
+    <div class="journey-timeline">
+        <!-- Los siguientes pasos los iremos añadiendo aquí -->
+<!-- ===================================================
+     PASO 1 DEL JOURNEY (ESTRUCTURA HTML CORRECTA)
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="1">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-robot"></i>Sely, la Anfitriona Perfecta</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>Recordemos que La Comunidad (Red Social Selbook) está dividido en varios estadios o niveles: El Parque, Librerías, Cafeterías y Tu-Mesa. Un usuario que se registra en La Comunidad pero no haya adquirido aún ningún Stringbook, <strong>sólo tendrá acceso a El Parque y a las Librerías</strong>.</p>
+                <p>Su perfil será básico, el estándar de una Red Social tradicional, pero tendrá a su <strong>Anfitriona: Sely</strong>.</p>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" style="width:100%;" src="assets/img/sely-la-anfitriona.png" alt="Diagrama de las funciones de Sely como anfitriona">
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <p>Sely (una IA Conversacional) será la <strong>encargada de guiar, ayudar y explicar todo lo que el usuario necesite</strong> saber sobre el Selbook. Pero sobre todo, también será la <strong>primera Promtora de compras</strong>.</p>
+            <div class="callout">
+                <p>Para ello, Sely, aparte de todo el entrenamiento propio para dar servicio a su Huésped, <strong>estará entrenada de forma muy concienzuda, en diferentes técnicas de venta y persuasión</strong>.</p>
+            </div>
+            <p>La Comunidad hará su trabajo en cuanto a que el usuario “tenga ganas de comprar y entrar en el club Selbook”, pero Sely estará entrenada para comprender las Necesidades e Intereses de su huésped para proponerle historias afines.</p>
+            <p style="text-align: center; font-style: italic; margin-top: 30px;">El Siguiente paso será cuando nuestro Usuario decida comprar.</p>
+        </div>
+    </div>
+</div>
+<!-- ===================================================
+     PASO 2 DEL JOURNEY: LA PRIMERA COMPRA
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="2">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-shopping-cart"></i>La Primera Compra</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <h3>📚 La Librería:</h3>
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>Cuando un usuario nuevo llega a la librería, <strong>encontrará una tienda online al uso</strong>, pero dedicada al mundo SelBook. Encontrará los top ventas, por categorías, etc. También encontrará los diferentes dispositivos que podría adquirir y los <strong>Packs de Iniciación, Packs Full Experience, etc.</strong></p>
+                <p>Una vez más, <strong>será Sely quien se encargue de ayudarle y asesorarle en todo lo que necesite</strong>.</p>
+                <p>En la Librería, encontrará también los diferentes StringBook con la información tradicional de una Novela (sinopsis, autor(es), reseñas, etc) y también podrá ver las diferentes “características “Selbook” de cada propuesta.</p>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" style="width:100%;" src="assets/img/nueva-portada-selbook-iniciacion.png" alt="Ejemplo de un pack de iniciación de Selbook">
+            </div>
+        </div>
+
+        <p style="margin-top: 20px;">Para cada Stringbook existirá un Micro-Site con toda la información relacionada con esa historia:</p>
+        
+        <div class="microsite-features-grid">
+            <ul>
+                <li>Sinopsis larga</li>
+                <li>Sobre el autor</li>
+                <li>Opiniones y reseñas</li>
+                <li>Géneros Literarios</li>
+            </ul>
+            <ul>
+                <li>Booktrailers</li>
+                <li>Relatos de Contexto</li>
+                <li>Protagonistas</li>
+                <li>Versiones de usuario</li>
+            </ul>
+            <ul>
+                <li>Fragmentos</li>
+                <li>Cafeterías</li>
+                <li>Ampliaciones</li>
+                <li>Prestaciones</li>
+            </ul>
+        </div>
+
+        <p class="example-cta">Clic en ejemplo 👇🏽</p>
+        
+        <!-- Marcador de posición para el simulacro de tienda -->
+        <!--   <div class="online-store-placeholder">
+          ===================================================
+     BLOQUE DEL SIMULACRO DE TIENDA Y LIGHTBOX
+     =================================================== -->
+
+<!-- 1. El Simulacro de Tienda (reemplaza el placeholder) -->
+<div class="online-store-container">
+    <div class="store-header">
+        <h3><i class="fas fa-book-open books-icon"></i> Libros</h3>
+    </div>
+    <div class="store-grid store-grid--3">
+        <!-- Ficha 1: Palomas y Gorriones (EJEMPLO INTERACTIVO) -->
+        <article class="product-card" id="palomas-trigger">
+            <div class="card-cover">
+                <img src="assets/img/venta-streingbook.webp" alt="Portada de Palomas y Gorriones">
+                <div class="card-pricing-overlay">
+                    <h4>Elige tu Versión:</h4>
+                    <div class="tier"><strong>Basic:</strong> 49'50€</div>
+                    <div class="tier"><strong>Advance:</strong> 59'50€</div>
+                    <div class="tier"><strong>FULL:</strong> 75'50€</div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4><img src="assets/img/gorrin_rojo_grafitti-icono.webp" width="20" alt="Icono"> Palomas y Gorriones <span style="color: yellow; font-size: 12px;">[EJEMPLO]</span></h4>
+                <div class="card-tags">
+                    <span>Novela Negra</span><span>Thriller</span><span>Ficción</span><span>Suspense</span><span>Intriga</span>
+                </div>
+                <p class="description">Un asesino perfecto. Un detective obsesionado.</p>
+                <div class="card-tags">
+                    <span style="background-color: #f9e478;">VideoStory</span><span style="background-color: #f9e478;">Audiolibro</span><span style="background-color: #f9e478;">Clips</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;" >Dimensiones: <strong>3</strong></span><div class="progress-bar"><div style="width: 30%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>28</strong></span><div class="progress-bar"><div style="width: 28%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+        <!-- Ficha 2: Semiya -->
+        <article class="product-card">
+            <div class="card-cover"><img src="assets/img/portada-ficha-semiya.png" alt="Portada de Semiya, Siembra y Revolución"></div>
+            <div class="card-info">
+                <h4>📖 Semiya, Siembra y Revolución</h4>
+                <div class="card-tags"><span>Ciencia Ficción</span><span>Aventura</span><span>Acción</span><span>Intriga</span><span>Suspense</span><span>Romance</span><span>Social</span></div>
+                <p class="description">La revolución está en los libros.</p>
+                <div class="card-tags"><span style="background-color: #f9e478;">Clips</span><span style="background-color: #f9e478">Audiolibro</span><span style="background-color: #4a4a4a;">VideoStory</span><span style="background-color: #4a4a4a;">Imágenes</span><span style="background-color: #f9e478;">Games</span></div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;">Dimensiones: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>58</strong></span><div class="progress-bar"><div style="width: 58%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>12</strong></span><div class="progress-bar"><div style="width: 100%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+        <!-- Ficha 3: POW -->
+        <article class="product-card">
+            <div class="card-cover"><img src="assets/img/portada-libro-3-pow.png" alt="Portada de POW. El Árbol de la Vida"></div>
+            <div class="card-info">
+                <h4>🌳 POW. El Árbol de la Vida</h4>
+                <div class="card-tags"><span>Bélico</span><span>Acción</span><span>Aventura</span><span>Intriga</span><span>Suspense</span><span>Romance</span><span>Ficción</span></div>
+                <p class="description">Una prisión. Un plan. Un final inesperado.</p>
+                <div class="card-tags"><span style="background-color: #f9e478;">Clips</span><span style="background-color: #f9e478;">Audiolibro</span><span style="background-color: #4a4a4a;">VideoStory</span><span style="background-color: #f9e478;">Imágenes</span><span style="background-color: #4a4a4a;">Games</span></div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;">Dimensiones: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>50</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>8</strong></span><div class="progress-bar"><div style="width: 80%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+        <!-- </div> -->
+        
+        <p>Dentro de cada Site, el usuario podrá decidir su compra en los diferentes Packs, Configuraciones o Personalizar su Stringbook.</p>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+        <h3>Compra y Acceso a La Comunidad</h3>
+        <p>Cuando el Usuario se decide y realiza la compra, en ese momento, pasa a formar parte de La Comunidad en todos sus niveles. Recibirá información en un mail de bienvenida.</p>
+        <p>Desde el Acceso Web podrá ir consultando su Perfil y realizando algunas configuraciones.</p>
+        <p>También podrá empezar a interactuar en La Comunidad, sin restricciones. Ya es pertenece al club. Sólo tiene que esperar a que le llegue su Selbook.</p>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 3 DEL JOURNEY: ON-BOARDING
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="3">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-box-open"></i>On-boarding</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <p>Si el usuario ya tiene su Selbook, al realizar su compra, se descargará o habilitará ese Stringbook en su Selbook, pasando directamente al <strong>punto 4</strong>.</p>
+        <p>Pero en esta ruta tratamos de un Usuario Nuevo, por lo que vamos a ver el proceso de on-boarding.</p>
+
+        <!-- Un-boxing -->
+        <div class="onboarding-section">
+            <h4>Un-boxing:</h4>
+            <div class="step-content-layout">
+                <div class="step-text-content">
+                    <p>Desde el primer momento el usuario debe de sentir estar “entrando en algo especial”, por eso también hay que <strong>prestar atención al packaging</strong>.</p>
+                    <p>Debe ser algo muy sencillo y elegante, sin las típicas marcas o numeraciones o referencias de los paquetes tradicionales. La caja debe incluir la Tablet (si es la plataforma elegida), el BIC y algún tipo de detalle de regalo.</p>
+                    <p>El libreto de instrucciones será sustituido por una simple cuartilla en blanco que ponga: “Encienda la tablet”.</p>
+                    <div class="callout">
+                        <p><strong>Al hacerlo, será Sely, su anfitriona, quien le dará la bienvenida y le guiará por el resto del proceso</strong>. Recordemos que el Usuario ya ha entrado en la comunidad al hacer la compra, por lo que Sely ya tiene toda su información.</p>
+                    </div>
+                </div>
+                <div class="step-image-content">
+                    <img class="image-full-width" src="assets/img/unboxing-selbook.jpeg" alt="Packaging elegante del Selbook">
+                </div>
+            </div>
+        </div>
+
+        <!-- Calibración y Configuración -->
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <div class="onboarding-section">
+                    <h4>Calibración del BIC:</h4>
+                    <p>A través de las indicaciones de Sely, el usuario activará el BIC, se lo colocará e <strong>irá realizando las diferentes configuraciones y pruebas para que el BIC quede perfectamente calibrado a su usuario</strong>.</p>
+                    <p>Deberá realizarle preguntas de control, leer textos y ver algún video para que la sensibilidad del BIC se ajuste a las señales neuronales del usuario. Sely le irá explicando cada una de las pruebas y el tiempo que tardará en calibrar el BIC.</p>
+                </div>
+                
+            </div>
+            <div class="step-image-content">
+                 <img  class="image-full-width" style="width:100%" src="assets/img/configuracion-inicial.png" alt="Diagrama de la Configuración Inicial del Selbook">
+            </div>
+        </div>
+		<div class="onboarding-section">
+                    <h4>Configuración Inicial del Selbook:</h4>
+                    <p>Una vez calibrado el BIC, Sely procederá a <strong>configurar el Perfil Estático</strong>. Se realizará en 3 fases:</p>
+                    <ol class="config-phases-list">
+                        <li><strong>Configuración del Perfil Estático Base:</strong> El usuario deberá completar la información de su cuenta creada en la compra, añadiendo información como conexiones con redes, permisos, acceso a historial de búsquedas, etc.</li>
+                        <li><strong>Configuración de gustos e intereses:</strong> Libros, películas, series, personajes históricos, personajes de ficción, épocas de la historia, géneros literarios, etc.</li>
+                        <li><strong>Configuración de Personalidad:</strong> Sely charlará con él haciéndole preguntas de interés emocional y, por último, se le realizará un pequeño test tipo Arquetipos de Jong o Eneagrama.</li>
+                    </ol>
+                    <p>Por último, Sely realizará una pequeña <strong>prueba de control</strong>. Con un relato muy breve, le mostrará las características de un Selbook y le explicará diferentes conceptos como los Nudos, rutas, prestaciones, etc.</p>
+                </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 4 DEL JOURNEY: CONFIGURACIÓN DEL STRINGBOOK
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="4">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-cog"></i>Configuración del Stringbook</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <p>Llega el momento de “abrir” la novela. Antes de ese paso, ya sea con el Stringbook adquirido en el Pack de inicio o en una nueva compra, el usuario <strong>podrá decidir cambiar la configuración por defecto</strong> de ese Stringbook.</p>
+        <p>Esta configuración consiste en, dentro de las ampliaciones y prestaciones elegidas en la compra, definir algunas características, por ejemplo:</p>
+        
+        <ul class="config-options-list">
+            <li>
+                <strong>Definir Rutas Personalizadas:</strong>
+                Esta función es una forma de convertir en “más tradicional” la lectura, el usuario no verá interrumpida su lectura por ningún nudo ni por ningún Ready-To-Play. Si activa esta función, Sely le dará dos opciones: Adaptada o Configurada. En la primera, Sely, en función del perfil del huésped, definirá de forma automática la mejor ruta para el usuario. En la segunda opción, el usuario decidirá en cuantos Nudos visibles o decisiones quiere intervenir.
+            </li>
+            <li>
+                <strong>Desactivar “Ventana Interdimensional”:</strong>
+                Recordemos que esta función le permite “ver” qué está ocurriendo en otra ruta o personaje en ese momento.
+            </li>
+            <li>
+                <strong>Desactivar “Aviso de encrucijadas”:</strong>
+                Con esta función, Sely no informará al usuario de estar llegando a un nudo invisible.
+            </li>
+        </ul>
+
+        <p>Existirán otras configuraciones que el usuario podrá personalizar “para ese Stringbook”.</p>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 5 DEL JOURNEY: ELECCIÓN DEL PROTAGONISTA
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="5">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-user-check"></i>Elección del Protagonista</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>El último paso antes de comenzar a leer será la Elección del Protagonista con el que quiere recorrer la historia.</p>
+                <p>Recordemos que esta es una de las características más importantes de un Selbook, por lo tanto, <strong>deberá estar bien explicado y presentado, ofreciendo información útil al usuario</strong>, como:</p>
+                <ul class="protagonist-info-list">
+                    <li>Géneros Literarios más representativos del protagonista</li>
+                    <li>Una breve descripción sobre la historia y personalidad</li>
+                    <li>Un diagrama de sus rutas</li>
+                    <li>Valores emocionales</li>
+                    <li>Posibles Relatos Paralelos o de Contexto</li>
+                </ul>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" style="width: 100%;" src="assets/img/eleccion-personajes-2.jpg" alt="Interfaz de elección de protagonista en Selbook">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =======================================================================
+     PASO 6: COMIENZA LA HISTORIA: PERSONALIZACIÓN CON NUDO SUBLIMINAL
+     ======================================================================= -->
+<div class="journey-step">
+    <div class="step-header" data-step="6">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-user-secret"></i>Comienza la Historia: Ejemplo de adaptación del relato con Nudos Subliminales (invisibles)</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <p>Una vez elegido el protagonista, comenzará la historia. Recordemos que cada protagonista (dimensión), tiene su propio inicio y perspectiva, aunque parte de la historia la recorra junto a otro protagonista, la narración será diferente en cada dimensión.</p>
+        <p>Imaginemos que el Usuario ha elegido un StringBook basado en un Road Trip de dos amigos, Tom y Sam. Pero entre los personajes elegibles (dimensiones) también está Mary, una chica conflictiva, y John, un camionero con problemas familiares.</p>
+        <p>El usuario ha elegido a Tom como protagonista. Hagamos un ejercicio de simulación.</p>
+        <blockquote class="nudo-example-box">
+            <p><em>La narración comenzaría con Tom yendo a buscar a su amigo Sam. Van a emprender un viaje de amigos. Tras un rato de viaje, deciden hacer una parada en una gasolinera. Allí, mientras están tomando algo, aparece Mary y se pone a hablar con ellos. En apariencia, Mary también está viajando, pero haciendo auto-stop. Le pide a los chicos que le lleven. En ese momento, llega un camión al parking de la gasolinera. Mary parece ponerse nerviosa. Trata de convencerles para ir juntos. Tom y Sam se van a un lado a comentar el tema.</em></p>
+        </blockquote>
+
+        <div class="nudo-example-section">
+            <h3>Ejemplo de Nudo Subliminal</h3>
+            <div class="callout">
+                <p>🪢 <strong>La gasolinera y los acontecimientos desarrollados en ese escenario, son un Nudo Subliminal</strong>, es decir, invisible. El Bic ha estado recogiendo información desde el principio y ha ido completando la información de los Perfiles Estático y Dinámico del usuario, pero en el Nudo Subliminal, presta mayor atención y da más peso a las emociones recogidas. Con esa información recogida, analizará las opciones de ruta, las indicaciones del autor respecto a ellas y tomará la decisión que considere de mayor interés para el usuario, pero el usuario no será consciente de tal decisión, seguirá leyendo de forma natural.</p>
+            </div>
+            <img src="assets/img/line-nudo-subliminal.png" alt="Línea de tiempo de un Nudo Subliminal" class="image-full-width">
+            <p>Imaginemos las opciones que Sely tenía para tomar decisiones.</p>
+            
+            <div class="options-grid">
+                <div class="option-card">
+                    <h4>Opción 1:</h4>
+                    <p><span class="info-tag">Información de Perfil:</span> Al usuario le gustan los libros de viajes y aventuras.</p>
+                    <p><span class="info-tag">Emoción recogida:</span> Al usuario le cae simpática Mary.</p>
+                    <p><span class="info-tag">Decisión de Ruta:</span></p>
+                    <blockquote class="nudo-example-box">Sam y Tom deciden aceptar. Los tres chicos se van juntos. Al salir de la Gasolinera, ven que el Camión también sale tras ellos…</blockquote>
+                </div>
+                <div class="option-card">
+                    <h4>Opción 2:</h4>
+                    <p><span class="info-tag">Información de Perfil:</span> Al usuario le gustan las películas románticas, pero lee muchas novelas de Intriga.</p>
+                    <p><span class="info-tag">Emoción Recogida:</span> Al usuario le parece muy atractiva Mary, pero sospecha de ella.</p>
+                    <p><span class="info-tag">Decisión de Ruta:</span></p>
+                    <blockquote class="nudo-example-box">Sam no quiere que Mary siga con ellos, pero Tom insiste. Sam se marcha de la discusión enfadado. Tom regresa con Mary, pero no está Sam. El camión sale de la gasolinera. Esperan a Sam, pero no aparece. Pasado un tiempo, deciden ir a buscarle. Mary sugiere seguir al camión.</blockquote>
+                </div>
+                <div class="option-card">
+                    <h4>Opción 3:</h4>
+                    <p><span class="info-tag">Información de Perfil:</span> Le gustan las novelas de intriga y misterio.</p>
+                    <p><span class="info-tag">Emoción Recogida:</span> Le gusta Mary, pero sospecha que miente en su historia. Prefiere seguir el viaje sólo con Sam.</p>
+                    <p><span class="info-tag">Decisión de Ruta:</span></p>
+                    <blockquote class="nudo-example-box">Sam quiere que llevar a Mary, pero Tom no. Discuten y Tom se marcha enfadado. Cuando regresa a la mesa, Sam y Mary no están. En ese momento, el camión abandona la gasolinera. Tom comienza a buscar a su amigo por la zona, al no encontrarlo, se sube al coche y empieza a buscarlo por la carretera.</blockquote>
+                </div>
+            </div>
+
+            <img src="assets/img/sely-decide.png" alt="Sely decide la ruta del usuario" class="image-full-width">
+            
+            <div class="callout">
+                <p>🪢 Como vemos, si el autor es hábil, <strong>construirá los nudos para poder ser reutilizados por los otros protagonistas</strong>. Si el usuario hubiera elegido a Mary o a Sam, ese mismo nudo podría “reciclarlo” para cualquiera de ellos y sus rutas podrían ser las mismas, solo cambiando la perspectiva.</p>
+            </div>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <p>El usuario seguiría leyendo. Según la decisión de Sely, llegaría a otros nudos (o a algún nudo compartido). Por ejemplo, si la decisión hubiera sido seguir los tres juntos, podrían ser perseguidos y amenazados por el camionero, encontrando así una historia con mayor dosis de aventura y misterio. En cambio, en la segunda opción, la más “romántica”, el autor podría dar foco a la atracción de ambos chicos al tiempo que siguen al camión a escondidas.</p>
+        <p>En cambio, imaginemos que Sely decide la opción 3. Sabiendo que a Tom le gustaba Mary, podría profundizar en emociones encontradas entre Celos y Lealtad a un amigo, al tiempo que podría crear un clima de intriga y suspense.</p>
+        <p>La historia, ramificada en la opción 3, podría seguir e imaginemos que, tras varias páginas, Tom ve unas luces en un bosque. Se acerca a hurtadillas y ve el camión. Cuando se acerca más, ve como Sam sube al camión. Parece hacerlo de forma voluntaria. Pero no hay rastro de Mary.</p>
+
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 7 DEL JOURNEY: NUDO INCONSCIENTE
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="7">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-question-circle"></i>Ejemplo de Nudo Inconsciente</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="callout">
+            <p>🪢 Llegados a este punto, nos encontramos con un Nudo Inconsciente. Recordemos que un nudo Inconsciente es un punto de la historia donde se detiene la narración y se consulta al lector, pero <strong>esta consulta no es vinculante</strong>, es decir, Sely recoge la información, pero <strong>no tiene por qué obedecer a lo que el usuario podría indicar o sentir</strong>. Por ejemplo:</p>
+        </div>
+
+        <div class="nudo-inconsciente-layout">
+            <!-- Columna Izquierda: Imagen -->
+            <div class="image-column">
+                <img class="image-full-width" src="assets/img/nudo-inconsciente.png" alt="Ejemplo visual de un Nudo Inconsciente">
+            </div>
+
+            <!-- Columna Derecha: Opciones -->
+            <div class="options-column">
+                <div class="decision-option-card">
+                    <h4>Mary Está Dentro:</h4>
+                    <p>Sely podría elegir esta opción si, por ejemplo, el usuario tuviera inclinación a olvidarse del camión y regresar a la gasolinera o seguir buscando a Mary por otro lado. Pero al contrario de lo que haría el usuario, Sely le lleva a seguir buscando a Mary por otro lado. Provoca una confrontación emocional y puede que el desenlace de este pasaje sea de mayor interés para el usuario, pero esto lo sabe Sely, no el usuario.</p>
+                </div>
+                <div class="decision-option-card">
+                    <h4>Creo que es un Secuestro:</h4>
+                    <p>Sely podría elegir esta opción si el usuario tuviera un perfil muy dado a seguir las reglas y quisiera llamar a la policía, en cambio, en vez de eso, esta ruta le llevaría a seguir al camión.</p>
+                </div>
+                <div class="decision-option-card">
+                    <h4>Mary no está con Sam:</h4>
+                    <p>Y esta podría ser la opción elegida si el usuario es poco proclive a seguir las reglas, y por lo tanto, le lleva a esta ruta que terminaría llamando a la policía.</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px;">Imaginemos que Sely decide seguir por la opción “Creo que es un Secuestro”. <b>El usuario, según su perfil, habría querido llamar a la policía, en vez de eso, se ve inmerso en una persecución intensa y peligrosa.</b></p>
+		<div class="callout">
+            <p style="font-size: 1.3rem;">🪢 <b>Porque esa es una de las Esencias "mágicas" del Selbook, base de la 8ª Ley de Sely: Crear la mejor experiencia, contar la mejor historia posible. Y eso no siempre significa "Obedecer" ciegamente al Lector. De ser así, las historias no provocarían tantas emociones.</b></p>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 8 DEL JOURNEY: DECISIONES MULTIMEDIA
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="8">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-photo-video"></i>Decisiones Multimedia: Viviendo la Historia</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <h3>Ejemplo de Elección Multimedia</h3>
+        <div class="callout">
+            <p>🪢 <strong>Decide como vivir el siguiente pasaje:</strong> En esa persecución, el usuario llegaría a un punto de decisión donde puede elegir:</p>
+        </div>
+        
+        <div class="multimedia-choice-grid">
+            <div class="choice-card-dark">
+                <img src="assets/img/eleccion-jugar.png" alt="Opción de jugar la escena">
+                <h4>🚘 Conducir el coche él mismo</h4>
+                <p>Tomará el control del coche y vivirá la persecución en primera persona.</p>
+            </div>
+            <div class="choice-card-dark">
+                <img src="assets/img/eleccion-video.png" alt="Opción de ver un vídeo de la escena">
+                <h4>📺 Ver la persecución en un vídeo</h4>
+                <p>Se generará un vídeo de la persecución de forma emocionante y peligrosa.</p>
+            </div>
+            <div class="choice-card-dark">
+                <img src="assets/img/eleccion-leer.png" alt="Opción de seguir leyendo">
+                <h4>📖 Seguir leyendo</h4>
+                <p>Continuará la lectura de la persecución.</p>
+            </div>
+        </div>
+
+        <p>El usuario decide Conducir el mismo. El texto desaparecería y se vería el coche desde el interior. Con unas indicaciones sencillas y básicas, se explican los controles y empezaría una persecución.</p>
+        <p>Recordemos que esto es otro de los puntos fuertes del Selbook, su capacidad Multimedia y Multi-Formato, que le permite vivir la Historia a través de múltiples canales, como vimos en las Prestaciones:</p>
+        
+        <div class="format-tags-container">
+            <span class="format-tag play">Ready-to-Play</span>
+            <span class="format-tag video">Vídeos</span>
+            <span class="format-tag image">Imágenes</span>
+            <span class="format-tag comic">Comics</span>
+            <span class="format-tag story">Video-story</span>
+            <span class="format-tag etc">Etc</span>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 9 DEL JOURNEY: DILEMAS MORALES
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="9">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-balance-scale"></i>Dilemas Morales: Nudos Conscientes y Visibles</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <h3>Ejemplo de Nudo Consciente</h3>
+        <div class="callout">
+            <p>⚠️ Recordemos que un nudo consciente es aquél donde el usuario tomará la decisión. Sely no interviene, pero si se recoge la información sobre la decisión para completar los Perfiles de usuario. Este tipo de nudos no serán demasiado abundantes y siempre tienen que cumplir una premisa: Debe tener implicaciones éticas o morales. Es decir, debe provocar un dilema en el lector sabiendo que su decisión tendrá consecuencias.</p>
+        </div>
+
+        <blockquote class="nudo-example-box">
+            <p>Por ejemplo, la persecución acaba con el camión llegando a una especie de fábrica. El camionero sale del camión agarrando a Sam. En su mano hay una pistola y le apunta a la cabeza. Mary sale del camión llorando y gritando. El Camionero resulta ser su padre, que está siendo chantajeado por la mafia para que mate a Sam, hijo de un constructor conocido con problemas con la mafia. El Camionero, con lágrimas en los ojos, le explica a Tom que si no mata a Sam, ellos matarán a Mary, su hija. Le dice que hay un francotirador apuntando a Mary. Tom mira a Mary y ve el punto rojo de una mira laser sobre su pecho.</p>
+        </blockquote>
+
+        <p>El usuario, representado como Tom, debe tomar una decisión:</p>
+
+        <div class="decision-interface">
+            <h4>Decisión Visible Consciente: Dilema Moral</h4>
+            <img src="assets/img/nudo-consciente.png" alt="Interfaz de decisión: Salvar a Mary o Salvar a Sam">
+        </div>
+
+        <p>Como vemos, la decisión será dura, pero el lector no conoce las consecuencias reales. El autor del Stringbook ha podido desarrollar las rutas con la libertad de siempre, pero el lector “ha sufrido”, ha tenido sensaciones y emociones a la hora de tomar la decisión.</p>
+        <p>En cualquier caso, la historia siempre llegará al mismo final, pero por caminos diferentes.</p>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 10 DEL JOURNEY: FLUJOS NARRATIVOS
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="10">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-sitemap"></i>Ejemplos de Flujos Narrativos: Mil caminos para la misma Historia</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <h3>Ejemplo del Flujo Narrativo en Diagrama</h3>
+        <p><strong>La Elección de Tom tiene unas características únicas en cuanto a Géneros literarios, nudos subliminales, etc.</strong> Vemos que la elección de ruta le lleva por una trama basada en un Road Trip, pero pronto se convierte en un Thriller con buena dosis de misterio y tensión.</p>
+        <img class="image-full-width" src="assets/img/Ejemplo-flujo-narrativo.png" alt="Diagrama del Flujo Narrativo de Tom">
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <h3>Otro Protagonista. Otras Rutas. Otras decisiones. La Misma Historia.</h3>
+        <p>Si analizamos e imaginamos un poco, <strong>podemos intuir la cantidad de opciones y alternativas que ofrecería el Personaje Tom</strong>. Pero… ¿Cómo podríamos hacer esto compatible con otra de las dimensiones?</p>
+        <p>Veamos un Ejemplo diametralmente opuesto. Digamos que <strong>el usuario decide elegir a el Camionero, llamado John.</strong></p>
+        <img class="image-full-width" src="assets/img/ejemplo-rutas-otros-protagonistas.png" alt="Diagrama de rutas con otro protagonista, el Camionero John">
+        <p>Como podemos ver, se trata de una historia que mantiene su argumento principal (rapto de un chico), pero el enfoque es diferente por completo. Vivimos ahora la angustia y la tensión de un padre que está siendo amenazado con la muerte de su hija. Thriller, misterio, tensión, drama…</p>
+        <p>Y como podemos ver, los nudos y ciertos pasajes son “compartidos”. En la gasolinera, todos los personajes están ahí, pero con su enfoque. Las opciones que salen, son coherentes con las opciones del nudo de Tom. Cuando en la ruta de Tom, Sam y Mary desaparecen y Tom no sabe qué ha pasado, en esta Dimensión el lector descubrirá la verdad oculta en toda esa trama.</p>
+        <p>Es un ejemplo muy sencillo y pequeño, pero sirve para entender y visualizar el potencial Narrativo de un SelBook. Veamos una vista Global de este “micro-Selbook” sólo con las dos dimensiones elegidas y sus rutas:</p>
+        <img class="image-full-width" src="assets/img/ejemplo-global-rutas-narrativas.png" alt="Vista global de las rutas narrativas del micro-Selbook">
+        <p>La Narración acaba, el usuario ha llegado al final de la historia, pero… a lo largo de todo el pasaje ha sido consciente de las diferentes opciones que han podido ocurrir. Entonces, tendrá dos opciones, volver a recorrer la historia con el mismo personaje y tomando decisiones diferentes, con otro personaje o buscar otro stringbook. De cualquier forma, existirá un espacio de recuerdo que de vez en cuando le tentará a volver a recorrer esa historia. El Archivo de Experiencias.</p>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 11 DEL JOURNEY: FUNCIONES DE SELY
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="11">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-cogs"></i>Funciones de Sely en el Stringbook</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <p>Recordemos que Sely tiene múltiples funciones. Ya hemos visto alguna función esencial como la creación del Perfil Emocional del usuario y su función comercial, pero dentro del stringbook, dentro de la lectura propiamente dicha, también tendrá una serie de funciones de mucho interés. Veamos algunas de ellas.</p>
+        <div class="microsite-features-grid">
+            <div class="callout">
+                <p>👩🏽‍🏭 <strong>Constructora de Rutas:</strong> Como sabemos, es Sely quien, en función de las diferentes variables emocionales y opciones de ruta, toma decisiones para construir el mejor relato.</p>
+            </div>
+            <div class="callout">
+                <p>🪝 <strong>Incentivar la compra de ampliaciones y prestaciones:</strong> Funciones como el aviso de encrucijadas o las Ventanas Inter-dimensionales, Sely tentará al usuario a ampliar su experiencia.</p>
+            </div>
+            <div class="callout">
+                <p>👩🏽‍💼 <strong>Consultora y asesora:</strong> El usuario podrá realizar consultas como Recordarle quién es tal personaje, qué ocurrió en aquella escena… Y también podrá establecer un diálogo sobre la propia historia e intercambiar impresiones o dar consejos.</p>
+            </div>
+        </div>
+        <p>Lo más importante es que, <strong>toda esta información también se guardará, filtrará e interpretará con el fin de conocer cada vez mejor al usuario</strong> y así poder brindarle la mejor experiencia de usuario en cada compra, pero también con fines comerciales, Sely debe <strong>fomentar la compra de ampliaciones, packs más completos o suscripciones</strong>, siempre con sutileza y sin abusar de estas funciones, pero no hay que perder de vista el potencial de venta que puede ofrecer un asistente de esta magnitud.</p>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 12 DEL JOURNEY: ARCHIVO DE EXPERIENCIAS
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="12">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-archive"></i>Archivo de Experiencias</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>A lo largo de su recorrido por la historia, <strong>el usuario ha marcado pasajes y hecho anotaciones</strong>. También, en diferentes escenas, ha visionado un vídeo Generado por Sely, ha recreado imágenes de los Protagonistas, se ha generado algún pasaje en Comic, etc.</p>
+                <p>Todas esas experiencias se han ido guardando en el Archivo de Experiencias. <strong>El usuario podrá disfrutar de ellas en cualquier momento</strong> y al finalizar la Historia, llegará hasta el Archivo para vivir un pequeño recordatorio.</p>
+                <p>También estas Experiencias, ya sean en el momento de vivirlas o después, <strong>podrán compartirlas en La Comunidad</strong> (en diferentes niveles y con Control de Spoilers).</p>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" src="assets/img/archivo-de-experiencias.png" alt="Archivo de Experiencias">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 13 DEL JOURNEY: RELATOS PARALELOS
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="13">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-book-reader"></i>Relatos Paralelos</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>Es bastante habitual que, tras acabar una buena historia, <strong>te quedes con ganas de saber “algo más”</strong>. Qué fue de tal personaje, que ocurrió en aquella historia que narró el protagonista…</p>
+                <p>En el Cine también usan estos “extras”, sobre todo en las Historias Basadas en Hechos Reales, donde te dan una pequeña reseña de lo que ocurrió con los protagonistas pasado un tiempo.</p>
+                <p>En un Selbook, ya sea al principio si está habilitado, o al final, que sería un contenido extra que se desbloquea al finalizar la historia, existirán una serie de Relatos Paralelos que completen o den una información de interés sobre algún tipo de personaje o situación. Por ejemplo, en la historia de Tom y Sam, podría existir un relato de cómo el Padre de Sam llegó a tener problemas con la Mafia.</p>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" src="assets/img/relatos-paralelos-imagen.png" alt="Relatos Paralelos">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 14 DEL JOURNEY: LA COMUNIDAD
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="14">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-users"></i>La Comunidad</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-content-layout">
+            <div class="step-text-content">
+                <p>Y también es muy común el querer hablar de una novela con alguien que la ha leído. Contrastar sospechas, ideas, dudas… compartir emociones… El Selbook te brinda el espacio perfecto y 24/7 donde poder hacerlo.</p>
+                <p>Ya sea al Parque o a una Cafetería para comentar su historia, compartir, charlar, etc.</p>
+            </div>
+            <div class="step-image-content">
+                <img class="image-full-width" src="assets/img/la-comunidad.png" alt="La Comunidad Selbook">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================================
+     PASO 15 DEL JOURNEY: REINICIO
+     =================================================== -->
+<div class="journey-step">
+    <div class="step-header" data-step="15">
+        <div class="header-content-wrapper">
+            <h3><i class="fas fa-redo-alt"></i>Reinicio</h3>
+        </div>
+    </div>
+    <div class="step-content">
+        <p>Y llega el momento de tomar otra decisión. Reinicias esa historia con otro personaje o… como te han dicho en la comunidad o has podido ver, <strong>¿adquieres ese Stringbook que es aún mejor que el que acabas de terminar?</strong></p>
+        <h3>Diagrama</h3>
+        <img class="image-full-width" src="assets/img/diagrama-comunidad.png" alt="Diagrama del ciclo de reinicio">
+    </div>
+</div>
+
+
+		
+		
+    </div>
+
+</div> <!-- Cierre del main-section -->
+	
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">Última Sección</h2>
+				<h2 class="next-section-main-title">Incertidumbres y Retos del Selbook 👉🏽</h2>
+				<blockquote>Porque los tiene. El Selbook es un producto revolucionario e innovador y, si bien es cierto que en el Ciclo de Aprendizaje Lean Startup se podrán validar muchos aspectos del producto, aquí profundizamos sobre ellos, planteamos soluciones y presentamos retos que deberán ser superados.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="incertidumbres-retos.html" class="next-section-card">
+				<img src="assets/img/portada-incertidumbres-y-retos.png" alt="Acceso a la sección Otras vías de financiación">
+				<h3>Incertidumbres y Retos</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+
+<!-- 2. La Ventana Lightbox (inicialmente oculta) -->
+<div id="product-lightbox">
+    <div class="lightbox-container">
+        <button class="lightbox-close">&times;</button>
+<header class="lightbox-header">
+  <!-- Columna izquierda del header -->
+  <div class="header-info">
+    <div class="cover-and-title">
+      <img class="book-mark" src="assets/img/Palomas-portada-kdp-OK-ejemplo-selbook.png" alt="Icono novela" />
+      <div class="title-wrap">
+        <h3>Palomas y Gorriones</h3>
+        <p>Blanco y Negro. Locura o Cordura. Amor u Odio. Asesino y Policía: Los polos opuestos se atraen...</p>
+      </div>
+    </div>
+  </div>
+
+  
+</header>
+
+<div class="lightbox-body">
+<div class="body-top-grid">
+  <div class="left-col">
+    <section class="section-card">
+      <h4 class="h-modern">Sinopsis</h4>
+      <p>Un asesino insensible, <strong>mata a todas aquellas mujeres que “le sobran”</strong> en el mundo. Con absoluta naturalidad escribe en su blog cómo y por qué...</p>
+      <p><strong>Samuel Rot, un detective de homicidios</strong>, sumido en una depresión tras el asesinato de su mujer, debe llevar el caso. Por recomendación de su Psicólogo, escribe sus sospechas en su blog... ambos están condenados a encontrarse...</p>
+    </section>
+
+    <section class="section-card">
+      <h4 class="h-modern">Relatos de Contexto</h4>
+      <p>Año y medio antes de los acontecimientos relatados... Una joven aparece muerta en un callejón. <em>¿Quieres leer lo sucedido?</em></p>
+    </section>
+  
+  <!-- Columna derecha del header: Ampliaciones + Prestaciones (apilados) -->
+  <aside class="header-stats">
+    <div class="stats-group">
+      <h6>Ampliaciones</h6>
+      <div class="chips">
+        <span class="chip chip-green"><i class="fas fa-user-friends"></i> 4 protagonistas</span>
+        <span class="chip chip-purple"><i class="fas fa-project-diagram"></i> 10 nudos subliminales</span>
+        <span class="chip chip-cyan"><i class="fas fa-brain"></i> 3 nudos inconscientes</span>
+        <span class="chip chip-orange"><i class="fas fa-lightbulb"></i> 2 nudos conscientes</span>
+      </div>
+    </div>
+
+    <div class="stats-group">
+      <h6>Prestaciones</h6>
+      <div class="chips">
+        <span class="chip chip-green"><i class="fas fa-play-circle"></i> Ready-to-play</span>
+        <span class="chip chip-cyan"><i class="fas fa-comments"></i> Chat con Personajes</span>
+        <span class="chip chip-orange"><i class="fas fa-video"></i> 8 vídeos</span>
+      </div>
+    </div>
+  </aside>
+</div>
+  <div class="right-col">
+    <!-- Vídeo vertical 9:16, contenido y sin solapes -->
+    <div class="book-trailer vertical">
+      <video
+        src="assets/img/booktrailer-selbook.mp4"
+        controls autoplay muted loop playsinline></video>
+    </div>
+  </div>
+</div>
+
+  
+
+  <section class="section-card">
+    <h4 class="h-modern">Ampliaciones y Prestaciones</h4>
+    <p>Explora la historia con <strong>rutas alternativas</strong>, <strong>nudos subliminales</strong> e <strong>interacciones</strong> con los personajes clave. Toma el control en escenas críticas, entra en el crimen y charla con el Detective y el Asesino cuando quieras.</p>
+  </section>
+
+  <!-- Protagonistas con ficha sobre imagen de fondo -->
+  <section class="section-card">
+    <h4 class="h-modern">Protagonistas</h4>
+
+    <div class="characters-grid">
+      <!-- Personaje 1 -->
+      <article class="character-card" style="--bg:url('assets/img/personaje-1-samuel-rot.png')">
+        <div class="labels">
+          <span class="tag">Detective</span>
+          <span class="tag ghost">Héroe herido</span>
+        </div>
+        <div class="overlay">
+          <div class="content">
+            <h5>Samuel Rot</h5>
+            <p>Detective de homicidios. Inteligente, obsesivo, quebrado por la pérdida. Su blog es su refugio y su arma.</p>
+            <ul class="bullets">
+              <li>Motivación: Justicia vs. venganza</li>
+              <li>Debilidad: Culpa y aislamiento</li>
+              <li>Conflicto: Verdad vs. supervivencia</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Personaje 2 -->
+      <article class="character-card" style="--bg:url('assets/img/personaje-2-asesino.png')">
+        <div class="labels">
+          <span class="tag danger">Asesino</span>
+          <span class="tag ghost">Frío y metódico</span>
+        </div>
+        <div class="overlay">
+          <div class="content">
+            <h5>El Asesino</h5>
+            <p>Metódico, narcisista y convencido de su misión “purificadora”. Narra con crudeza cada crimen.</p>
+            <ul class="bullets">
+              <li>Motivación: Control absoluto</li>
+              <li>Debilidad: Soberbia</li>
+              <li>Conflicto: Anonimato vs. Reconocimiento</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      
+    </div>
+  </section>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <button class="btn primary"><i class="fas fa-shopping-cart"></i> Comprar StringBook</button>
+    <button class="btn ghost"><i class="fas fa-info-circle"></i> Más información</button>
+    <button class="btn outline"><i class="fas fa-heart"></i> Añadir a Favoritos</button>
+  </div>
+
+</div> <!-- .lightbox-body -->
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto:Ampliaciones y Prestaciones</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* Contenedor principal para la rejilla de características en mosaico */
+.features-masonry-grid {
+    display: grid;
+    /* Crea columnas flexibles que se adaptan al contenido */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Estilo base para cada tarjeta de característica */
+.feature-item-card, .feature-item-card2 {
+    background: #4b4b4b;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+
+    /* Transición suave para el hover */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-item-card:hover, .feature-item-card2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.feature-item-card{
+	border-left: 8px solid #ff8c00;
+    border-bottom: 1px solid #ff8c00f2;
+}
+
+.feature-item-card2{
+	border-left: 8px solid #d904c3;
+    border-bottom: 1px solid #d904c3;
+}
+
+.feature-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.feature-header img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+.feature-title-group {
+    flex-grow: 1;
+}
+.feature-title-group h3 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.3em;
+    color: #fbc02d !important;
+}
+
+
+/* Etiquetas para "Por defecto" y "Prestación Extra" */
+.feature-tag {
+    display: inline-block;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+.tag-default { background-color: #e3f2fd; color: #1e88e5; }
+.tag-extra { background-color: #fff8e1; color: #fbc02d; }
+
+.feature-body p, .feature-body ul {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #eaeaea;
+}
+
+/* Modificadores para que las tarjetas más importantes ocupen más espacio */
+@media (min-width: 1024px) {
+    .feature-item-card.large,
+    .feature-item-card2.large { 
+        grid-column: span 2;
+    }
+}
+@media (min-width: 1300px) {
+    .feature-item-card.xlarge,
+    .feature-item-card2.xlarge { 
+        grid-column: span 3;
+    }
+}
+
+/* Layout de dos columnas para la introducción */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+/* Lista para los ejemplos de "La Versión del Usuario" */
+.example-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+.example-list li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.example-list li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+}
+/* ====================================================================
+   NUEVOS ESTILOS PARA FILAS DE TARJETAS AL 50%
+   ==================================================================== */
+
+/* 1. Estilos para el contenedor de la fila (el "wrapper")
+   - Lo usamos para crear una sub-rejilla de 2 columnas.
+   - Le quitamos los estilos de tarjeta para que sea invisible. */
+.feature-row-wrapper {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* La magia: crea 2 columnas iguales */
+    gap: 25px; /* Mantiene el mismo espaciado que el grid principal */
+}
+
+/* Le quitamos el efecto hover al contenedor invisible */
+.feature-row-wrapper:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* 2. Ajuste para que las tarjetas DENTRO del wrapper se comporten bien */
+.feature-row-wrapper .feature-item-card,
+.feature-row-wrapper .feature-item-card2 {
+    /* Si en el futuro alguna de estas tarjetas tuviera un grid-column, lo reseteamos */
+    grid-column: auto;
+}
+
+/* 3. Responsive: En pantallas pequeñas, las 2 columnas se apilan a 1 */
+@media (max-width: 768px) {
+    .feature-row-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+/* ====================================================================
+   ESTILOS PARA TARJETA ESPECIAL CON IMAGEN GRANDE A LA DERECHA
+   ==================================================================== */
+
+/* Contenedor principal de la tarjeta especial */
+.special-layout-card {
+    display: flex;
+	flex-direction: row;
+    flex-wrap: wrap; /* Para responsive */
+    gap: 25px;
+    align-items: center;
+}
+
+/* Columna de texto a la izquierda */
+.special-card-text-content {
+    flex: 1.5; /* Damos más espacio al texto */
+    min-width: 300px;
+}
+
+/* Columna de imagen a la derecha */
+.special-card-image-content {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+.special-card-image-content img {
+    width: 100%;
+    max-width: 300px; /* Tamaño máximo de la imagen */
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* En pantallas pequeñas, la imagen se pone arriba */
+@media (max-width: 768px) {
+    .special-layout-card {
+        flex-direction: column-reverse; /* Pone la imagen arriba del texto */
+    }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="ampliaciones">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.webp" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+   <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+
+    <div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Ampliaciones y Prestaciones</div>
+    <h1>Ampliaciones y Prestaciones</h1>
+
+    <h2>Introducción</h2>
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>Las Ampliaciones y Prestaciones llevan la experiencia del usuario y del Selbook a niveles nunca vistos. Potencial la naturaleza innovadora del producto, al mismo tiempo que ofrecen unas muy interesantes estrategias comerciales:
+			<ul><li>Fomenta la adquisición/compra de complementos extras</li>
+				<li>Alargan la vida útil del Selbook</b>
+				<li>Alargan el Beneficio del autor en el tiempo</li>
+				<li>Fomentan la experiencia inmersiva y social del Selbook</li>
+				</ul>
+				<p><strong>Son una parte esencial de la comercialización del Selbook. En la adquisición inicial del producto como en posteriores compras de Stringbook, incluso durante la propia experiencia de la Historia, <span class="sb-note"
+         data-sb-type="key"
+         data-sb-title="Punto Clave"
+         data-sb-content="Y esto, como veremos en la sección de Comercialización y en la de Autores, es otro punto esencial ya que el usuario «comprará esas Ampliaciones» como ocurre en los videojuegos, alargando la vida útil del producto. No solo eso: para los autores supone una vía para ampliar sus historias incluso después de publicadas. Pasado el tiempo, podrían abrir nuevas rutas, nuevos personajes, etc., y sus ventas mejorarían.">
+  el usuario podrá definir y adquirir características extras que completen la experiencia.
+  &nbsp;<i class="fas fa-star sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></strong></p>
+            <p>Para ello, definimos lo que es una Ampliación y lo que es una Prestación:</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/ampliaciones-vs-prestaciones.webp" alt="Diagrama comparativo entre Ampliaciones y Prestaciones">
+        </div>
+    </div>
+
+    <!-- Sección de Ampliaciones -->
+    <h2>Ampliaciones</h2>
+    <div class="callout" style="border-left-color: #e59335; background-color: #ffebee;">
+        <p>Serán aquellas características extras que <strong>Amplíen la experiencia Narrativa del Stringbook</strong> basadas en un contenido ya existente pero "bloqueado".</p>
+		<p>Buscando una analogía, podríamos decir que son las diferentes motorizaciones y configuraciones que podríamos comprar al adquirir un vehículo: 4x4, motor más potente...</p> 
+		<p>Estos extras no cambian la esencia de la historia, pero sí te permiten "vivir" una experiencia narrativa mayor, con acceso a otros argumentos, tramas y personajes</p>
+    </div>
+    <div class="features-masonry-grid">
+		
+		<div class="feature-item-card xlarge feature-row-wrapper">
+	
+			<div class="feature-item-card large">
+				<div class="feature-header">
+					<img src="assets/img/desbloquear-nudos-invisibles.webp" alt="Icono">
+					<div class="feature-title-group"><h3>Desbloquear Nudos Invisibles (Subliminales)</h3></div>
+				</div>
+				<div class="feature-body"><p>Recordemos que estos nudos son una de las claves del Selbook. Los nudos subliminales son los "creadores" de la Personbalización de la historia. De forma "invisible" y según las emociones y reacciones del lector, irán por una ruta u otra.</p>
+				<p>Por esta razón, tener la posibilidad de "Ampliar Nudos Subliminales" es darle al Selbook más capacidad de Personalizar y adaptar la trama para conseguir la mejor historia posible.</p>
+				<p>Los Stringbook estarán definidos por el número de Nudos Subliminales. Se informará al cliente del Potencial (p. ej. hasta 8 nudos), pero lo normal es que en la adquisición inicial no estén habilitados todos. El Usuario podrá ampliar el Nivel Subliminal antes, durante y después de la lectura.</p></div>
+			</div>
+			<div class="feature-item-card large">
+				<div class="feature-header">
+					<img src="assets/img/desbloquear-nudos-visibles.png" alt="Icono">
+					<div class="feature-title-group"><h3>Desbloquear Nudos Visibles</h3></div>
+				</div>
+				<div class="feature-body"><p>Recordemos que los Nudos Visibles son aquellos que el usuario percibe que hay una encrucijada y que existen diferentes rutas narrativas. Los Nudos Conscientes son decisiones directas y vinculantes pero con una toma de decisión que le plantea un dilema ético. Los Nudos Inconscientes no son vinculantes, el usuario dará una respuesta pero Sely decidirá la ruta.</p>
+				<p>La función “Comercial” de Sely en este caso será importante, sugiriendo o animando a desbloquear Nudos para conocer rutas alternativas. Esta acción comercial podría realizarse incluso cuando el usuario llega a un Nudo No Activado: “Te acercas a una encrucijada importante y creo que podría interesarte que desbloquearas ese Nudo”</p></div>
+			</div>
+		</div>
+		
+		<div class="feature-item-card xlarge feature-row-wrapper">
+			<div class="feature-item-card large">
+				<div class="feature-header">
+					<img src="assets/img/desbloquear-dimension.png" alt="Icono">
+					<div class="feature-title-group"><h3>Desbloquear Dimensiones (Protagonistas)</h3></div>
+				</div>
+				<div class="feature-body"><p>Las Dimensiones definen el número de Protagonistas que puedes elegir. Si existen 4 posibles, cuando adquieres el Stringbook (salvo el Pack más completo), sólo dispondrás de algunas. Si quieres desbloquear otra dimensión, deberás pagar por ella.</p>
+				<p>Te ha gustado la historia "vivida" por Frodo Bolsón, pero... ¿No sería muy atractiva, interesante y diferente vivir "El Señor de los Anillos" desde la perspectiva y vivencias de Gandalf?</p></div>
+			</div>
+			<div class="feature-item-card large">
+				<div class="feature-header">
+					<img src="assets/img/Relatos-paralelos.png" alt="Icono">
+					<div class="feature-title-group"><h3>Relatos Paralelos o de Contexto</h3></div>
+				</div>
+				<div class="feature-body"><p>Los Relatos Paralelos son historias que complementan y crean una visión más amplia de una historia. Si seguimos con el ejemplo de El Señor de los Anillos, El Hobbit sería un Relato Paralelo. En el Universo Star Wars, por ejemplo, la película "Rogue One" es todo un Relato Paralelo. O Animales Fantásticos lo sería de la Saga Harry Potter.</p>
+				<p>En principio, no tendrán las funciones de un Selbook, serán relatos tradicionales con elementos multimedia, pero es un complemento perfecto para aquellos lectores que buscan "un poco más" de las historias que les apasionan.</p></div>
+			</div>
+		</div>
+		
+        <div class="feature-item-card xlarge">
+            <div class="feature-header">
+                <img src="assets/img/personajes-tangenciales.png" alt="Icono">
+                <div class="feature-title-group"><h3>Personajes Tangenciales</h3></div>
+            </div>
+            <div class="feature-body"><p>Personajes que generan mucho interés pero que pasan por la historia de forma tangencial (ej. Viuda Negra, Han Solo). En los Selbook, estos <strong>Personajes Tangenciales serán una opción que podrá adquirir el usuario para conocer la historia concreta de ese personaje</strong>. No es una dimensión, sino su propia historia.</p><p>En Starwars, los biopics sobre Han Solo, Buba Feet… En los Selbook, estos Personajes Tangenciales serán una opción que podrá adquirir el usuario para conocer la historia concreta de ese personaje. No es una dimensión, es decir, la historia del Personaje Tangencial no es la visión propia del Stringbook, sino su propia historia. ¿Cómo Natasha Romanov se convirtió en la Viuda Negra? ¿Cuál es la historia de Legolás? Estas Historias no seguirán el formato Stringbook, serán relatos tradicionales.</p></div>
+        </div>
+        
+    </div>
+
+    <!-- Sección de Prestaciones -->
+    <h2>Prestaciones</h2>
+    <div class="callout" style="border-left-color: #d904c3; background-color: #e8f5e9;">
+        <p>Las prestaciones se definen como aquellos <strong>elementos externos a la narrativa</strong> que tienen la capacidad de <strong>potenciar o multiplicar la Experiencia del Usuario</strong>. No modifican el relato, ni las rutas ni las tramas, pero añaden un valor extra.</p>
+		<p>Con la misma analogía del automóvil, las Prestaciones serían aquellos extras que podemos adquirir pero que no cambian la experiencia narrativa. Hablamos de asientos de piel, equipo de sonido envolvente, cámaras 360º, aparcamiento autónomo...</p>
+    </div>
+    
+    <div class="features-masonry-grid">
+        <div class="feature-item-card2 large">
+            <div class="feature-header">
+                <img src="assets/img/diseno-de-ruta.webp" alt="Icono">
+                <div class="feature-title-group"><h3>Diseño de Rutas Predefinidas</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body">
+                <p>Una opción para que los usuarios más tradicionales comiencen. Previa a la lectura, se establece la ruta narrativa, y el usuario no deberá tomar ninguna decisión. <strong>Existirán dos Modalidades:</strong></p>
+                <ul><li><strong>Adaptada:</strong> Sely diseñará una ruta prefijada basada en tu perfil. Ideal para relecturas sorprendentes.</li><li><strong>Configurada:</strong> Será el usuario quien podrá definir esta ruta con antelación, marcando parámetros (géneros, emociones, etc.).</li></ul>
+            </div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/imprime-tu-ruta.webp" alt="Icono">
+                <div class="feature-title-group"><h3>Imprime tu Ruta</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body"><p>Para los amantes del libro físico, podrás solicitar una impresión bajo demanda de la ruta completa que has recorrido. Aunque la función venga por defecto, se cobrará la impresión.</p></div>
+        </div>
+        <div class="feature-item-card2 xlarge">
+            <div class="feature-header">
+                <img src="assets/img/ventana-interdimensional.png" alt="Icono">
+                <div class="feature-title-group"><h3>Ventana Inter-dimensional</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body"><p>Un pequeño “gancho” que se ofrece al usuario para abrir una pequeña ventana y ver lo que está ocurriendo en la ruta de otro personaje en el mismo tiempo narrativo.</p>
+			<p>💡 Por ejemplo:<br>
+			En El Retorno del Rey se relata el Asedio de las huestes de Saurón a la fortaleza de Minas Tirirth. La alianza del anillo flaquea en su defensa y no saben por qué no está con ellos Aragorn, Legolas y Gimli. ¿Dónde están? Para saberlo, debes llegar al capítulo que lo relata (El Sendero de los Muertos), pero… ¿Y si pudieras abrir una pequeña ventana “narrativa” y pudieras ver cómo Aragorn se está enfrentando a los Espectros exigiendo el cumplimiento de su deuda con el heredero de Isildur?<p>
+			<p>Comercialmente es una función muy interesante. Permite ver qué ocurre con otro personaje (dimensión), pero si no tienes ese personaje, no podrás saltar a esa dimensión (prestación extra), deberás comprarla</p>
+			
+			</div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/Notas.png" alt="Icono">
+                <div class="feature-title-group"><h3>Subrayar y Notas</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body"><p>Una función esencial que permite marcar fragmentos, comentarlos, reflexionar e intercambiar con otros usuarios. Las notas se guardarán en el Archivo de Experiencias.</p></div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/archivo-de-experiencias.png" alt="Icono">
+                <div class="feature-title-group"><h3>Archivo de Experiencias</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body"><p>Un espacio donde el usuario podrá guardar pequeñas experiencias: no sólo las notas, también las diferentes generaciones multimedia que realice o los pasajes de Ready-to-Play.</p></div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/time-line.png" alt="Icono">
+                <div class="feature-title-group"><h3>Time Line de usuarios afines</h3><span class="feature-tag tag-default">Por defecto</span></div>
+            </div>
+            <div class="feature-body"><p>Podrás hacer pública tu punto de lectura y ver el de otros usuarios en una línea temporal. Podrás conectar con ellos, charlar o comentar algún pasaje.</p></div>
+        </div>
+        <div class="feature-item-card2 large">
+            <div class="feature-header">
+                <img src="assets/img/ready-to-play.png" alt="Icono">
+                <div class="feature-title-group"><h3>Ready to Play</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body"><p>Te damos los mandos, tienes el control… En situaciones concretas, <b>podrá añadirse este componente “gamer” al SelBook. Hablamos de pilotar una avioneta</b>, conducir un coche, comandar una incursión militar…</p>
+			<p>Pero también podría aplicarse en novelas de detectives, por ejemplo, <b>introduciendo al Protagonista en el escenario para que recopile información y pruebas</b>…<br>
+			<p>Sely se encargará de que todo salga como tiene que salir y que la consistencia de personajes sea correcta. Sería un golpe de efecto que conseguiría atraer a los usuarios más perezosos…</p></div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/charla-con-protagonista.png" alt="Icono">
+                <div class="feature-title-group"><h3>Charla con los personajes</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body"><p>En cualquier momento, podrás abrir una ventana de diálogo con personajes o protagonistas para charlar. Desde realizar un interrogatorio a un sospechoso hasta una charla con tu protagonista al finalizar la historia.</p></div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header">
+                <img src="assets/img/salto-dimension.webp" alt="Icono"> <!-- Asumo que es Salto de Dimensión -->
+                <div class="feature-title-group"><h3>Salto de Dimensión</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body"><p>Es cambiar, en un momento dado, al flujo narrativo de otro protagonista. Por intriga, recomendación de Sely o porque has abierto una Ventana Inter-Dimensional, puede que quieras cambiar de protagonista. Este salto sólo podrás realizarlo si has adquirido esta Prestación.</p></div>
+        </div>
+        <div class="feature-item-card2">
+            <div class="feature-header"><img src="assets/img/dimension-avatar.webp" alt="Icono"> <!-- Placeholder, no hay icono específico -->
+                <div class="feature-title-group"><h3>La Dimensión Avatar (Pte. de estudio)</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body"><p>El SelBook podría proponer un Protagonista “Personalizable”, un personaje que podrías definir con parámetros sugeridos tras el análisis de tu perfil. Podrá ser afín a tu perfil Estático o todo lo contrario. Sely deberá “rediseñar” y editar contenido para adaptar este personaje a la historia.</p></div>
+        </div>
+        <div class="feature-item-card2">
+             <div class="feature-header"><img src="assets/img/control-camara.webp" alt="Icono"> <!-- Placeholder -->
+                <div class="feature-title-group"><h3>Control de Cámara</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body"><p>En las Generaciones de Vídeo se facilitará la posibilidad de controlar la cámara y dirigirla hacia donde quiera, consiguiendo una visión 360 de la escena. ¿Estás huyendo de un asesino? Toma el control de la cámara, adelántate, abre plano, gira, busca tu refugio, enfoca la persecución...</p></div>
+        </div>
+        <div class="feature-item-card2 xlarge">
+             <div class="feature-header"><img src="assets/img/version-usuario.webp" alt="Icono"> <!-- Placeholder -->
+                <div class="feature-title-group"><h3>La Versión del usuario</h3><span class="feature-tag tag-extra">Prestación Extra</span></div>
+            </div>
+            <div class="feature-body">
+                <p>Esta función hace partícipe y co-autor al propio usuario. Se le permitirá hacer un “Cover” y retocar ciertas tramas o subtramas. El Selbook le ofrecerá la opción de realizar su propia versión del Stringbook.</p>
+				<p>Hoy en día, la personalización de productos es un campo en auge: hacen versiones de canciones, modifican a su gusto equipos informáticos, personalizan los coches… El Selbook le ofrecerá la opción de realizar su propia versión del Stringbook.<br>
+				Podrán proponer una época diferente, modificar ciertas características de los protagonistas y crear sub-tramas o rutas alternativas.</p>
+                <ul class="example-list">
+                    <li><strong>Cambio de Universo Literario:</strong> Una versión de El Señor de los Anillos en la Segunda Guerra Mundial.</li>
+                    <li><strong>Correlaciona Personajes:</strong> Hitler es Sauron. La compañía la componen...</li>
+                    <li><strong>Personaliza protagonistas:</strong> Yo soy Aragorn, capitán de un batallón aliado con la misión de asesinar a Hitler.</li>
+                    <li><strong>Implica a otros usuarios:</strong> Mi amigo Tom (usuario de Selbook) es Gandalf, un Espía de la CIA.</li>
+                    <li><strong>Modifica la trama:</strong> En esta versión, no quiero que la Compañía se separe.</li>
+                </ul>
+                <p>Con esta información, Sely reescribirá el Stringbook con la ruta diseñada, pero no existirán nudos. Esta prestación sólo será permitida al acabar la historia. Por último, se permitirá al usuario vender su versión, ligada al Stringbook de Origen, y percibirá un porcentaje de las ventas.</p>
+            </div>
+        </div>
+        <!-- ===================================================
+     TARJETA CON LAYOUT ESPECIAL (TEXTO + IMAGEN GRANDE)
+     =================================================== -->
+<div class="feature-item-card2 xlarge special-layout-card">
+
+    <!-- COLUMNA IZQUIERDA: TEXTO -->
+    <div class="special-card-text-content">
+        <div class="feature-header">
+            <!-- El icono pequeño se ha eliminado -->
+            <div class="feature-title-group">
+                <h3>Gafas Realidad Mixta: Una alternativa increíble</h3>
+                <span class="feature-tag tag-extra">Prestación Extra</span>
+            </div>
+        </div>
+        <div class="feature-body">
+            <p>La combinación de un dispositivo BIC integrado en unas Gafas de Realidad Mixta (Apple Visión Pro, Microsoft HoloLens 2, etc) <strong>multiplicaría de forma exponencial la experiencia inmersiva del usuario</strong>, haciendo innecesario incluso el uso de una tablet. A la hora de experimentar el contenido multimedia, la capacidad de estos dispositivos de introducir al usuario en el centro de la escena y <strong>crear un espacio 3D y 360°</strong>, otorgaría al Selbook de unas prestaciones increíbles. Existirán Productos o Stringbooks que se ofrezcan con unas Gafas de Realidad Mixta desde el principio, pero también se propondrá su compra antes, durante o después de la lectura.</p>
+        </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: IMAGEN GRANDE -->
+    <div class="special-card-image-content">
+        <!-- ¡IMPORTANTE! Reemplaza este 'src' por la URL de tu nueva imagen grande -->
+        <img src="assets/img/gafas-realidad.webp" alt="Gafas de Realidad Mixta como Apple Vision Pro">
+    </div>
+
+</div>
+    </div>
+<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">Siguiente sección. </h2>
+				<h2 class="next-section-main-title">Algo más que Novelas: Aplicaciones prácticas 👉🏽</h2>
+				<blockquote>El Concepto de SelBook, las relaciones entre la adaptabilidad de contenidos Vs emociones pueden derivar en otra serie de Aplicaciones muy interesantes en otros sectores. Te dejo algunas ideas.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="producto-aplicaciones.html" class="next-section-card">
+				<img src="assets/img/aplicaciones-extras.jpg" alt="Acceso a la sección sobre Otras Aplicaciones">
+				<h3>Otras Aplicaciones</h3>
+			</a>
+
+		</div>
+	</section>
+    
+<!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<!-- Modal reutilizable para Puntos Clave / Debate / Glosario -->
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">⭐ Punto Clave</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

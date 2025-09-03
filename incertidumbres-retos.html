@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Incertidumbres y Retos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "INCERTIDUMBRES Y RETOS" (DISEÑO ESTÁTICO)
+   ==================================================================== */
+
+/* Contenedor para cada sección de Reto */
+.challenge-section {
+    margin-bottom: 50px;
+}
+.challenge-section h2 {
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--header-gradient-mid);
+    color: var(--text-dark);
+}
+.challenge-section h3 {
+    font-size: 1.4em;
+    color: var(--header-gradient-mid);
+    margin-top: 30px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Rejilla para la estrategia de captación */
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+.strategy-card {
+    background-color: #aa77772e;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border-top: 3px solid #a21d1d;
+}
+.strategy-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+}
+.strategy-card p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Tarjetas para los argumentos de captación */
+.argument-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+.argument-card .icon {
+    font-size: 1.8em;
+    color: var(--header-gradient-mid);
+    margin-top: 3px;
+}
+.argument-card-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+}
+.argument-card-content p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #444;
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA EL BLOQUE "INCERTIDUMBRES"
+   ==================================================================== */
+
+.uncertainty-section {
+    margin-bottom: 50px;
+}
+.uncertainty-section h2 {
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #c0392b; /* Usamos un rojo para indicar "incertidumbre" */
+    color: var(--text-dark);
+}
+
+/* Rejilla para los escenarios de sensibilidad del BIC */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 20px;
+    margin: 20px 0;
+}
+.scenario-card {
+    background-color: #fff9f8; /* Un fondo rojizo muy pálido */
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid #f2d7d5;
+}
+.scenario-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: #c0392b;
+}
+.scenario-card p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Responsive para la rejilla de escenarios */
+@media (max-width: 768px) {
+    .scenario-grid {
+        grid-template-columns: 1fr;
+    }
+}
+  </style>
+</head>
+
+<body data-theme="retos" data-active-section="incertidumbres" data-current-page="incertidumbres">
+
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+	<div class="main-section">
+    <div class="content-breadcrumbs">Análisis / Incertidumbres y Retos</div>
+    <h1>Incertidumbres y Retos del Proyecto Selbook</h1>
+
+    <!-- Reto 1: Captación -->
+    <div class="challenge-section">
+        <h2>Reto 1: Captación de Referencia (de renombre)</h2>
+        <p>La existencia de un mínimo catálogo de escritores de renombre, no es una condición <em>sine qua non</em> para la viabilidad y crecimiento del Proyecto Selbook. Aún recuerdo el rechazo generalizado de Autores y muchos lectores al libro digital. De echo, tal rechazo, aunque residual, sigue existiendo. El Proyecto Selbook podría existir y crecer con Autores Independientes que fueran creando comunidad y atrayendo lectores, pero este proceso sería lento y lo expondría a muchos riesgos antes de llegar a la <strong>Masa Crítica y el Product Market Fit</strong>.</p>
+        <p>La Necesidad de captar Autores de Renombre se debe a que estamos hablando de un modelo “winner-takes-all”, por lo tanto, el tiempo juega en nuestra contra. Necesitamos <strong>crecer rápido y alcanzar el Network Effect</strong> con una alta tracción, creando así <strong>barreras de entrada muy sólidas</strong> (y también de salida).</p>
+        <p>Cuanto mayor sea el número de Autores de Referencia, mayor será el catálogo y mayor será la captación de lectores. Por todo ello, es esencial definir un plan de acción, una estrategia de captación persuasiva para que estos Autores decidan unirse al Proyecto Selbook.</p>
+
+        <h3>Estrategia de Captación</h3>
+        <p>Hay que definir una serie de perfiles afines al Proyecto Selbook basado en la edad del autor, temática de sus obras y potencial “selbookiano”. Estos parámetros serían:</p>
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <h4>✍🏽 Por Edad: >50</h4>
+                <p>Será más viable que autores menores de 50 años, generación X, vean con mejores ojos una “RE-Evolución” literaria como la que propone el Selbook.</p>
+            </div>
+            <div class="strategy-card">
+                <h4>✍🏽 Por Temática: Ciencia Ficción</h4>
+                <p>Los escritores de Ciencia Ficción son amantes de la tecnología, que sueñan con el futuro, lo visualizan y aceptan los retos e innovaciones que este pudiera proponer.</p>
+            </div>
+            <div class="strategy-card">
+                <h4>✍🏽 Por potencial Selbokiano: Ciencia Ficción y Fantasía</h4>
+                <p>Las obras de Ciencia Ficción y de Fantasía son altamente visuales y gráficas. La elección de protagonistas, los relatos paralelos y personajes tangenciales otorgarían un valor increíble a las historias.</p>
+            </div>
+        </div>
+
+        <h3>Argumentos de Captación.</h3>
+        <p>Ya hemos hablado de ellos en varios puntos del estudio. Los argumentos deben basarse en la “Libertad creativa” del autor, pero también en los márgenes de beneficio y servicios editoriales. Concretemos los puntos esenciales de los argumentos que pueden convencer a un autor.</p>
+        <div class="arguments-container">
+            <div class="argument-card">
+                <span class="icon">✍🏽</span>
+                <div class="argument-card-content">
+                    <h4>Sobre la Libertad Creativa.</h4>
+                    <p>La creatividad e imaginación de un escritor va mucho más allá de las estrictas dimensiones de un libro físico y del estándar de las 70 mil palabras. Al escritor se le ocurren incontables tramas y subtramas a lo largo del desarrollo de su historia. En multitud de situaciones, tiene dudas sobre si desarrollar una trama u otra. El famoso término de “Galeradas”, en gran medida, no es otra que la mutilación y recorte de las historias para ajustarlo a unas dimensiones narrativas y estructurales que faciliten su venta. Una novela de 1000 o 2000 páginas es inviable comercialmente hablando. De ahí, en muchas ocasiones, surgen las trilogías y colecciones, pero… ¿Qué ocurriría si le decimos a un autor: Escribe todo lo que quieras, sobre lo que quieras, con todas las opciones y alternativas que consideres, con los géneros literarios que quieras, con todos los relatos “externos” que quieras sobre cualquiera de tus personajes? Porque eso es, precisamente, un Selbook.</p>
+                </div>
+            </div>
+            <div class="argument-card">
+                <span class="icon">💰</span>
+                <div class="argument-card-content">
+                    <h4>Mayores Royalties por venta</h4>
+                    <p>Es un argumento clave. Los autores que publican en editoriales tradicionales obtienen, en el mejor de los casos, un 10% sobre la venta de cada libro. En Digital, ciñéndonos a Amazon Publishing, un autor que venda por encima de los 10€, recibiría unos royalties de un 35%. En el caso de Selbook, los autores recibirían un 50% sobre la venta de cada libro (pte de estudio de precios)</p>
+                </div>
+            </div>
+            <div class="argument-card">
+                <span class="icon">📑</span>
+                <div class="argument-card-content">
+                    <h4>Servicios Editoriales y de Promoción</h4>
+                    <p>Los autores que se acojan a los Servicios Editoriales Nativos, tendrán algunos servicios editoriales incluidos como la maquetación, programación, corrección y traducción. En el caso del servicio de Traducción, en las Editoriales Tradicionales sólo se aplican si las ventas del libro alcanza cierta notoriedad o un mínimo de ventas.<br> 
+
+Por otro lado, todas los stringbooks tendrán promoción interna incluida. Landingpage, canales exclusivos en La Comunidad, etc.</p>
+                </div>
+            </div>
+            <div class="argument-card">
+                <span class="icon">🤖</span>
+                <div class="argument-card-content">
+                    <h4>Análisis de Emociones y propuestas creativas</h4>
+                    <p>Los autores con suscripción premium tendrán una potente herramienta de análisis de datos de ventas y de las emociones de los lectores. Esto le permitirá optimizar la creación de ampliaciones y obtener propuestas creativas afines a la demanda de los lectores.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reto 2: Confianza -->
+    <div class="challenge-section">
+        <h2>Reto 2: Confianza del Usuario en Privacidad y Seguridad de datos</h2>
+        <p>Para que la experiencia Selbook sea la mejor posible y para que la personalización de los Stringbooks sea la más fiel posible, el usuario debe tener la absoluta confianza en que la información que facilite y la información y emociones que se recojan por parte del sistema, serán tratados con la <strong>máxima seguridad y privacidad posible</strong>.</p>
+        <p>El usuario debe tener una confianza absoluta en las 8 leyes de Sely, por eso será esencial la transparencia y la constante presencia de elementos de control.</p>
+    </div>
+    
+    <!-- Reto 3: Papel de la IA -->
+    <div class="challenge-section">
+        <h2>Reto 3: El Papel de la Inteligencia Artificial en el Selbook</h2>
+        <p>Existirá seguro la creencia de que los Selbook son creaciones literarias realizadas con Inteligencia Artificial. Este mensaje debe ser contenido y controlado, manifestando, por todos los canales posibles, que <strong>el papel de la Inteligencia Artificial es Nulo en su parte literaria</strong>.</p>
+        <p>Tanto en la campaña de lanzamiento y en posteriores campañas de marketing, así como en cada uno de los Stringbooks, deberá especificarse la participación real de la IA en la experiencia Selbook.</p>
+        <p>Podrá ser que en el futuro se abra la puerta a un papel literario de la IA, pero en la actualidad la sociedad no está preparada para aceptar Novelas creadas con IA.</p>
+    </div>
+
+    <!-- Reto 4: Generación Multimedia -->
+    <div class="challenge-section">
+        <h2>Reto 4: La Generación Multimedia Instantánea e integración en la entrada y salida</h2>
+        <p>Cuando un usuario decide vivir un pasaje a través de una imagen, vídeo o cualquier otra alternativa multimedia, esta generación debe ser lo más <strong>instantánea posible</strong>, los tiempos de espera pueden ocasionar algún rechazo por estas prestaciones y restaría un valor importante al Selbook.</p>
+        <p>Por otro lado, la “aparición” o entrada de ese contenido multimedia (fundido de entrada), así como su fundido de salida debería verse como una <strong>transición tan natural como un salto de párrafo</strong>, sin cortes.</p>
+    </div>
+	
+	<!-- ===================================================
+     BLOQUE DE INCERTIDUMBRES
+     =================================================== -->
+<div class="uncertainty-section">
+    <h1>Incertidumbres del Proyecto Selbook</h1>
+
+    <!-- Incertidumbre 1 -->
+    <div class="uncertainty-item">
+        <h2>Incertidumbre 1: Sensibilidad del BIC e integración Narrativa</h2>
+        <p>La capacidad del dispositivo BIC de captar emociones y reacciones es, posiblemente, el punto esencial del Selbook y, aunque según la información recogida y recibida por algunos de los fabricantes no presenta dudas, hasta la prueba de un modelo elemental del sistema, no sabremos el nivel real de sensibilidad del BIC a la hora de recoger las emociones y reacciones del lector.</p>
+        <p>La fase de investigación será clave para optimizar esta sensibilidad, pero también debemos contemplar los escenarios más negativos y plantear soluciones:</p>
+
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <h4>🤖 Sensibilidad baja:</h4>
+                <p>Si la capacidad del BIC en recoger emociones de un lector no es lo suficientemente alta, los componentes multimedia serán esenciales. Deberemos potenciar las emociones del usuario a través de la BSO, de los efectos de sonido y la visualización de imágenes, ilustraciones y clips de forma “no elegible”.</p>
+            </div>
+            <div class="scenario-card">
+                <h4>🤖 Sensibilidad Muy baja o Nula:</h4>
+                <p>Es una posibilidad remota, pero de ocurrir, el Selbook tiene opciones increíbles para seguir creando una experiencia única. En este caso, se deberá aumentar la información inicial del usuario y crear sistemas “ligeros” de estudios de personalidad emocional que puedan configurar el perfil Estático. También habrá que crear algún tipo de recogida de información voluntaria (modelos “Like”) en ciertos pasajes. Por último, la carga de Nudos Visibles-Inconscientes deberá ser más alta.</p>
+            </div>
+        </div>
+
+        <p>Por último, respecto a este aspecto, la integración Narrativa, es decir, el cómo el usuario percibe la historia en aquellos pasajes de elecciones (nudos), debe ser estudiada en detalle. El usuario no debería ser consciente de las decisiones en los nudos subliminales, es decir, no puede haber un salto de página brusco o cualquier otra cosa que le haga intuir que ha pasado por un nudo. El texto y el relato debe ser lo más lineal posible.</p>
+    </div>
+
+    <!-- Incertidumbre 2 -->
+    <div class="uncertainty-item" style="margin-top: 40px;">
+        <h2>Incertidumbre 2: Problemas de Copyright con Chooseco LLC - <em>Elige tu propia aventura</em></h2>
+        <p>Con el sistema de Nudos y Elecciones de Ruta, Selbook propone una evolución de las novelas juveniles “Elige tu propia aventura”. Si bien es cierto que los Nudos Subliminales (el nudo y las alternativas de ruta es invisible) y los Nudos Visibles Inconscientes (el nudo es visible, pero no las alternativas de ruta) no deberían presentar problemas de Copyright dado que en ninguno de los dos casos es el usuario quien elige, sino que es la IA, en base al Perfil del usuario y la programación del autor, quien elige la ruta; si podría presentar problemas de Copyright los Nudos Visibles-Conscientes, es decir, situaciones narrativas donde el lector sí tiene que elegir una ruta. Estas Nudos serán los menos numerosos ya que sólo se plantearán en situaciones con dilemas morales o controversias, pero no deja de ser semejante a “elige tu propia aventura”.</p>
+        <p>La principal diferencia entre “<em>Elige tu propia aventura</em>” y el Selbook es que estas elecciones no condicionan el final de la historia ni modifican su trama o argumento principal. Aún así, hay que tener en consideración las implicaciones legales que pudieran derivarse y buscar alternativas.</p>
+        <p>La más radical sería la conversión de estos Nudos Visibles-Conscientes en Inconscientes.</p>
+        <p>La opción menos radical y puede que provechosa sería una alianza.</p>
+    </div>
+</div>
+
+</div>
+
+		<section class="final-cta" aria-labelledby="cta-title">
+		  <div class="final-cta__inner">
+			<h2 id="cta-title">Ya conoces la revolución Selbook.</h2>
+			<p class="final-cta__lead">¿Te unes?</p>
+			<a href="contacto.html" class="cta-link">
+			  <span>Contactar</span>
+			</a>
+		  </div>
+		</section>
+
+		
+		
+		
+
+	
+
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+<!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+ 
+
+<script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

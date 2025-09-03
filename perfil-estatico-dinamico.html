@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Perfil Estático y Dinámico </title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+  /* === ESTILOS ESPECÍFICOS PARA LA PÁGINA "PERFIL ESTÁTICO Y DINÁMICO" === */
+
+/* Layout de dos columnas para texto e imagen */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Rejilla para comparar perfiles */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+.comparison-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+}
+.comparison-card h3 {
+    margin-top: 0;
+    border: none;
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+.comparison-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.comparison-card li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.comparison-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--header-gradient-mid);
+    font-weight: bold;
+}
+
+/* Rejilla para los 3 tipos de alimentación de datos */
+.three-column-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+.info-card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+.info-card h3 {
+    margin: 10px 0 5px 0;
+    color: var(--text-dark);
+    font-size: 1.2em;
+    border: none;
+    padding: 0;
+}
+.info-card p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Contenedor para las tarjetas de configuración */
+.config-cards-container {
+    display: grid;
+    gap: 15px;
+}
+.config-card {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+.config-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.config-card-header .icon {
+    font-size: 1.6em;
+}
+.config-card-header h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+.config-card-body p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #555;
+}
+.sub-config-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+.sub-config-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+}
+.sub-config-item h5 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+}
+.callout.concept-box {
+    background-color: #f7f7f7;
+    border-left-color: var(--header-gradient-mid);
+}
+.callout.concept-box h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+.callout.concept-box p {
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+   .two-column-layout { flex-direction: column; }
+}
+@media (max-width: 768px) {
+    .sub-config-points {
+        grid-template-columns: 1fr;
+    }
+}
+/* Pila vertical de tarjetas con separación uniforme (reutilizable) */
+.config-stack {
+  display: grid;
+  gap: 15px;
+}
+
+/* En móviles ya tienes el comportamiento responsive por .two-column-layout */
+
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="perfiles">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+  <!--  
+    /* <div class="content-breadcrumbs">El Producto / Definición Técnica</div>
+    <h1>Definición Técnica del Selbook</h1>
+    */-->
+    <div class="main-section">
+      <div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Perfil Estático y Dinámico</div>
+    <h1>Perfil Estático y Dinámico</h1>
+
+    <h2>Introducción</h2>
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p><strong>El Perfil del Usuario será una fuente esencial de información</strong> para que el Selbook, a través de la IA Anfitriona, pueda <strong>tomar las mejores decisiones</strong> en cualquier fase de la experiencia. Ya sea en la elección de la historia, del personaje, de la ruta o en las interacciones dentro de La Comunidad, cuanto mayor sea la información, mejor será el resultado.</p>
+            <div class="callout">
+                El objetivo de la IA Anfitriona será <strong>“conocer a su huésped” mejor que él mismo</strong>. Por esta razón, el perfil deberá estar en constante retroalimentación.
+            </div>
+            <p>Lo denominamos <strong>Perfil Estático</strong> porque definirá la <strong>Personalidad o Perfil Emocional</strong> base del usuario, pero no su Estado Anímico en cada momento. Este estado, al ser cambiante, será definido por el <strong>Perfil Dinámico</strong>, pues será cada Stringbook o historia quien vaya construyéndolo para que la IA conozca las emociones y reacciones provocadas por la lectura.</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/diagrama-introduccion.webp" alt="Diagrama de la relación entre el Perfil Estático y Dinámico">
+        </div>
+    </div>
+
+    <h2>👤 El Perfil Estático: Configuración Inicial</h2>
+    <p>Cuando el usuario "abre” por primera vez el SelBook, deberá dedicar varios minutos a su configuración Personal, Narrativa y de Conexiones. Esta configuración inicial conformará lo que llamaremos “Perfil Estático", es decir, la <strong>base principal que quedará "semi-fijada"</strong> para todas sus lecturas y que la IA usará para tomar decisiones y ofrecer sugerencias.</p>
+    <div class="callout definition">
+        <p>Es el <strong>Perfil Social, Emocional y Psicológico</strong> que se creará, con la autorización, acción voluntaria, lecturas y respuestas que el usuario ofrecerá al Selbook, con el fin de que la IA (Sely) pueda crear un perfil de usuario base que le permita ofrecer las mejores lecturas y tomar las mejores decisiones de rutas.</p>
+    </div>
+
+<h3>Alimentación del Perfil Estático</h3>
+
+<!-- Fila 1: 2 columnas → Izq (2 tarjetas apiladas) / Dcha (imagen) -->
+<div class="two-column-layout">
+  <div class="text-content">
+    <div class="config-stack">
+      <!-- Tarjeta: Configuración Personal -->
+      <div class="config-card">
+        <div class="config-card-header">
+          <span class="icon">👤</span>
+          <h4>Configuración Personal</h4>
+        </div>
+        <div class="config-card-body">
+          <p>Datos sencillos como nombre, alias, hobbies, profesión, intereses, etc.</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Configuración Narrativa -->
+      <div class="config-card">
+        <div class="config-card-header">
+          <span class="icon">📚</span>
+          <h4>Configuración Narrativa</h4>
+        </div>
+        <div class="config-card-body">
+          <p>Géneros de preferencia (aventura, misterio...), listas de novelas, películas y series favoritas. Personajes históricos y literarios favoritos, épocas históricas, universos literarios, etc.</p>
+          <div class="sub-config-points">
+            <div class="sub-config-item">
+              <h5>Nivel Subliminal</h5>
+              <p>El usuario podrá elegir si los "Nudos" o elecciones invisibles en la historia son <strong>más o menos numerosos</strong>, dando más o menos control a Sely para adaptar la trama.</p>
+            </div>
+            <div class="sub-config-item">
+              <h5>Nivel Audiovisual</h5>
+              <p>Se ofrecerá al usuario la opción de indicar su preferencia por recibir un contenido <strong>multimedia mayor o menor</strong> durante la lectura.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.config-stack -->
+  </div>
+
+  <div class="image-content">
+    <img src="assets/img/diagrama-alimentacion-perfil-estatico.webp" alt="Diagrama de las fuentes de datos para el Perfil Estático">
+  </div>
+</div>
+
+<!-- Fila 2 (debajo): 2 columnas → Izq (2 tarjetas) / Dcha (1 tarjeta) -->
+<div class="two-column-layout">
+  <div class="text-content">
+    <div class="config-stack">
+      <!-- Tarjeta: Conexiones -->
+      <div class="config-card">
+        <div class="config-card-header">
+          <span class="icon">🔗</span>
+          <h4>Conexiones</h4>
+        </div>
+        <div class="config-card-body">
+          <p>Se pedirá la conexión a perfiles de redes sociales, historial de navegación y otras cuentas de interés para complementar la información del perfil.</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Comunidad SelBook -->
+      <div class="config-card">
+        <div class="config-card-header">
+          <span class="icon">👨‍👩‍👧‍👦</span>
+          <h4>Comunidad SelBook</h4>
+        </div>
+        <div class="config-card-body">
+          <p>Existirá una Red Social de usuarios, <strong>"La Comunidad"</strong>, con 4 grados de relación: <em>El Parque, La Librería, La Cafetería</em> y <em>Tu Mesa</em>. La información y contenido compartido aquí, con permiso del usuario, también será usado para “alimentar” el perfil estático.</p>
+        </div>
+      </div>
+    </div><!-- /.config-stack -->
+  </div>
+
+  <div class="image-content">
+    <!-- Tarjeta: Charla con Sely (en la columna derecha) -->
+    <div class="config-card">
+      <div class="config-card-header">
+        <span class="icon">🤖</span>
+        <h4>Charla con Sely</h4>
+      </div>
+      <div class="config-card-body">
+        <p>Tras la configuración manual, Sely entablará un diálogo natural para <strong>profundizar en la personalidad y emociones del lector</strong>, preguntando por anécdotas, sueños o recuerdos. Finalmente, Sely podrá proponer un sencillo <strong>test de personalidad</strong> (basado en arquetipos, enagrama o similar).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- INICIO: Bloque Creación del Perfil Estático -->
+<div class="main-section-block">
+    <h2>⚙️ Creación del Perfil Estático</h2>
+
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>Con toda la información recibida, <strong>Sely creará un perfil emocional y psicológico del usuario</strong>, que será la base esencial para poder ofrecer una experiencia de usuario única y verdaderamente personalizada.</p>
+            
+            <div class="callout concept-box">
+                <h4>Un Perfil "Semi-Fijo" que Crece Contigo</h4>
+                <p>Este perfil es el núcleo fundamental, pero no es inmutable. <strong>Irá alimentándose y refinándose constantemente</strong> con las relaciones y conversaciones en "La Comunidad" y con las propias compras de historias, lecturas y elecciones del usuario.</p>
+            </div>
+
+            <p>La intención es llegar a un punto de conocimiento del usuario tan fiable, que las elecciones subliminales y las sugerencias lectoras sean lo más afines posible a sus gustos y estado de ánimo.</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/diagrama-creacion-perfil-estatico-small.png" alt="Diagrama del Proceso de Creación del Perfil Estático">
+        </div>
+    </div>
+</div>
+<!-- FIN: Bloque Creación del Perfil Estático -->
+<!-- INICIO: Bloque El Perfil Dinámico -->
+<div class="main-section-block">
+    <h2>🦸🏽‍♂️ El Perfil Dinámico: Configuración Automática Adaptativa</h2>
+    <p>
+        El Perfil Dinámico será el <strong>perfil que Sely creará de forma exclusiva para cada Historia (StringBook)</strong>. Estará <strong>alimentado por el Perfil Estático y por los inputs provocados por la lectura de la historia</strong>. Esto significa que en cada historia, el perfil dinámico será diferente ya que, como es lógico, cada una creará emociones y sensaciones distintas, pero Sely <strong>aprenderá de todas las lecturas, conociendo al usuario cada vez mejor</strong>. <span class="sb-note" 
+      data-sb-type="key" 
+      data-sb-title="Sely cada vez conocerá mejor al lector. Y e autor también."
+      data-sb-content="Este aspecto es crucial, no solo para que la experiencia Selbook sea cada vez mejor para el usuario, sino para que los Autores puedan crear cada vez mejores historias. Como veremos en la sección de «Stringbooks y Autores», uno de los servicios ofrecidos en la suscripción de autores será el acceso (anónimo) a las emociones y reacciones de sus lectores. Tener esta información es tan valiosa como rentable.">Sely, con el paso del tiempo, 
+  sabrá qué tipo de personajes te atráen más, qué escenas o situaciones te provocan mayor tensión, qué tramas te atrapan más…
+  &nbsp;<i class="fas fa-star sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span> <strong>Sí, llegará un momento en que Sely te conozca mejor que nadie.</strong>
+    </p>
+    <p>
+        Aunque la relación de pasajes y personajes con las emociones que provocan es una información útil para futuras lecturas (y por eso se almacena), una vez acabada una Historia, su perfil dinámico se guardará exclusivamente para ese StringBook. De esta forma, <strong>cada Historia tendrá siempre su propio Perfil Dinámico</strong>.
+    </p>
+
+    <h3>Fuentes de Datos para el Perfil Dinámico</h3>
+    <p>
+        Este perfil se retroalimenta constantemente de diferentes puntos de información a lo largo de toda la historia:
+    </p>
+
+    <div class="comparison-grid">
+        <div class="comparison-card">
+            <h3>📥 Desde el Perfil Estático</h3>
+            <ul>
+                <li>
+                    <strong>Comunidad y Redes:</strong> El sistema monitoriza la actividad y conversaciones del usuario para extraer información clave: qué personajes le gustan más, qué opina de la trama, qué tipo de contenido comparte, etc.
+                </li>
+            </ul>
+        </div>
+        <div class="comparison-card">
+            <h3>📖 Desde la Propia Historia</h3>
+            <ul>
+                <li>Los <strong>inputs recogidos por el BIC</strong> en las diferentes escenas, vídeos, etc.</li>
+                <li>Los <strong>inputs de la lectura "normal"</strong> (velocidad, pausas, etc.).</li>
+                <li>Las <strong>elecciones</strong> Conscientes, Inconscientes y Subliminales.</li>
+                <li>Las <strong>charlas con Sely</strong> relacionadas con esa historia.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="callout concept-box">
+        <h4>🎯 El Objetivo Clave: Anticipar y Potenciar</h4>
+        <p>El objetivo de este perfil es ser capaz de <strong>anticipar las preferencias y gustos del usuario</strong> de tal forma que, al llegar a Nudos Subliminales, a pasajes multimedia o al reproducir la BSO, se puedan <strong>potenciar sus emociones y reacciones</strong>.</p>
+    </div>
+
+    <p>
+        Esto significa, además, que Sely aprenderá constantemente del usuario, llegando a un punto en que <strong>la adaptación de las historias cada vez será mejor</strong>.
+    </p>
+
+    <h3>Diagrama Completo del Flujo de Datos</h3>
+    <img src="assets/img/diagrama-copleto-perfil-estatico-y-dinmamico-small.webp" alt="Diagrama completo del Perfil Estático y Dinámico" class="image-full-width lightbox-trigger">
+
+</div>
+<!-- FIN: Bloque El Perfil Dinámico -->
+
+
+    <h2>🔄 Importancia de la Retroalimentación</h2>
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>Es un elemento clave que esta "alimentación” de los perfiles no cese. Como hemos dicho, el objetivo de la IA anfitriona será Conocer a su Huésped (usuario) lo mejor posible con el fin de poder brindarle la mejor de todas las experiencias.</p>
+            <p>Por eso, cada acción (en La Comunidad, en sus Redes Sociales, en charlas con Sely o en la propia lectura) se aprovechará para completar el Perfil del Usuario. Esta alimentación del sistema se divide en 3 tipos:</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/diagrama-retroalimentacion.png" alt="Ciclo de utilización de datos en Selbook">
+        </div>
+    </div>
+    <div class="three-column-grid">
+        <div class="info-card">
+            <h3>📍 Alimentación Externa</h3>
+            <p>Los datos recopilados fuera del entorno Selbook (redes sociales, etc.).</p>
+        </div>
+        <div class="info-card">
+            <h3>📍 Alimentación Nativa</h3>
+            <p>Los datos recopilados dentro del entorno Selbook (comunidad, charlas con Sely).</p>
+        </div>
+        <div class="info-card">
+            <h3>📍 Alimentación Narrativa</h3>
+            <p>Los datos recopilados durante la lectura en el entorno del Stringbook.</p>
+        </div>
+    </div>
+    <blockquote>
+        <p>Que estas relaciones <strong>Pasaje/personaje & Emoción se guarde</strong> tiene mucho sentido. Si en un Stringbook el usuario muestra unas emociones concretas o especiales en según qué pasajes o con según qué arquetipo de Personaje, en futuras lecturas será aprovechado.</p>
+    </blockquote>
+
+
+</div>
+        
+    </div>
+    
+	
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">¿Cómo se adapta la historia? 👉🏽</h2>
+				<blockquote>Gracias a los Perfiles Estático y Dinámico, a las emociones recogidas por el BIC y al Análisis de Sely (IA Anfitriona), se personaliza la Historia. Te explico Cómo.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="personalizacion-historia.html" class="next-section-card">
+				<img src="assets/img/persoalizacion.webp" alt="Acceso a la sección Personalización de la Historia">
+				<h3>Personalización de la historia</h3>
+			</a>
+
+		</div>
+	</section>
+    
+
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+	
+	
+	
+<!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+       <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+
+<!-- Modal reutilizable sb-* -->
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">⭐ Punto clave</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+ <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Mercado, Marketing e Ingresos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "MERCADO, MARKETING E INGRESOS - INTRO"
+   ==================================================================== */
+
+/* Contenedor principal para la sección de datos y gráficos */
+.data-analysis-section {
+    background-color: #f7f7f9; /* Fondo gris muy sutil para agrupar el contenido */
+    padding: 25px;
+    margin: 40px 0;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+}
+
+/* Rejilla para mostrar los dos gráficos de consumo por edad */
+.dual-chart-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 25px;
+    margin-top: 15px;
+}
+.chart-item {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+.chart-item h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #333;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+.chart-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Layout de dos columnas para texto e infografía */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Bloque final de conclusión */
+.conclusion-box {
+    background-color: #e8f5e9; /* Fondo verde claro, como un resultado positivo */
+    border-left: 5px solid var(--header-gradient-end);
+    padding: 25px 30px;
+    margin-top: 40px;
+    border-radius: var(--border-radius);
+}
+.conclusion-box blockquote {
+    margin: 0;
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.7;
+    color: #2e7d32;
+}
+
+/* Responsive para la rejilla de gráficos */
+@media (max-width: 768px) {
+    .dual-chart-container {
+        grid-template-columns: 1fr;
+    }
+}
+  </style>
+</head>
+
+<body data-theme="marketing" data-active-section="marketing" data-current-page="intro-mkt">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		 <!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+<div class="main-section">
+    <div class="content-breadcrumbs">Mercado, Marketing e Ingresos / Introducción</div>
+    <h1>¿Estamos preparados? ¿Hay Mercado?</h1>
+
+    <p>Con poca imaginación que se tenga, podemos prever por dónde avanzará la IA Generativa. Empezamos a vislumbrar su <strong>capacidad de crear novelas, incluso películas con una calidad increíble</strong>. Cuanto más desarrollemos la IA, <strong>cuanto más aprenda y cuanto mejor la nutramos, más increíble y rápido será el resultado</strong>. No van a pasar demasiados años hasta que <strong>con un simple prompt seamos capaces de crear nuestro contenido de entretenimiento personalizado</strong> en unos segundos, pero… Las personas seguirán leyendo. Sea en la plataforma que sea, pero al ser humano le gusta leer. ¿Cuál es el problema? <strong>El acceso a la literatura. Ese importante “primer libro” que engancha a los adolescentes y les convierten en lectores.</strong></p>
+    <p><strong>Los adolescentes y jóvenes tienen multitud de oferta multimedia</strong>, con un consumo más sencillo, más accesible y instantáneo contra el que el Libro no puede competir. Las Estadísticas están ahí. <strong>El crecimiento del consumo de los videojuegos y las plataformas de streaming duplican al del libro digital</strong>, mientras tanto, el consumo del formato físico cae en picado. Pero veamos el lado positivo: <strong>Los jóvenes quieren `leer y quieren vivir historias`</strong>. Pero también quieren jugar. Y quieren disfrutar de películas, música y series que “ellos” pueden elegir.</p>
+
+    <img src="assets/img/evolucion-venta-entretenimiento.webp" alt="Gráfica de la evolución del consumo de entretenimiento" class="image-full-width">
+    <p>La gráfica que vemos representa el consumo de <strong>Libros Físicos</strong>, <strong>Digitales</strong>, <strong>Videojuegos</strong> y <strong>Streaming</strong>.</p>
+    <p>Pero en la gráfica también podemos percibir que, esa “explosión” del consumo de Streaming y Videojuegos no ha afectado en la misma proporción al consumo de literatura. De hecho, puede verse una estabilización de la literatura.</p>
+
+    <div class="data-analysis-section">
+        <h2>Consumo de Libros, Videojuegos y Streaming por franjas de edades.</h2>
+        <p>Si nos basamos en simulaciones basadas en tendencias generales y conocidas en la industria del entretenimiento y la lectura y nos centramos en las “Edades Críticas” de estos sectores de forma combinada, obtenemos las siguientes Gráficas de Consumo:</p>
+        
+        <div class="dual-chart-container">
+            <div class="chart-item">
+                <h3>Consumo entre 30 y 80 años</h3>
+                <img src="assets/img/consumo-entre-30-y-80.webp" alt="Gráfica de consumo de entretenimiento para la franja de 30 a 80 años">
+            </div>
+            <div class="chart-item">
+                <h3>Consumo entre 14 y 29 años</h3>
+                <img src="assets/img/consumo-entre-14-y-29.webp" alt="Gráfica de consumo de entretenimiento para la franja de 14 a 29 años">
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">Interpretación:</h3>
+        <div class="two-column-layout">
+            <div class="text-content">
+                <p>Según los estudios del Pew Research Center y del Entertainment Software Association, existe un alto porcentaje de consumidores combinados de Videojuegos y Libros:</p>
+                <ul>
+                    <li><strong>14 a 29 años:</strong> Entre el 70% y 80% de los lectores también juegan videojuegos.</li>
+                    <li><strong>30 a 80 años:</strong> Entre el 30% y 40% de los lectores también consumen videojuegos.</li>
+                </ul>
+				<p>En Definitiva, según los gráficos y los datos, el consumo de libros tiende a estabilizarse, siendo creciente la demanda de libros digitales en edades superiores a 30 años. Y por otro lado, en edades menores de 30, existe un alto porcentaje de jóvenes consumidores de libros.</p>
+            </div>
+            <div class="image-content">
+                <img src="assets/img/infografia-consumo-dual.webp" alt="Infografía sobre el consumo dual de libros y videojuegos">
+            </div>
+        </div>
+        
+    </div>
+
+    <h2>Conclusión:</h2>
+    <p>EL Selbook es un producto multi-formato, capaz de potenciar el consumo de literatura gracias a combinar elementos muy atractivos para usuarios de videojuegos y streaming.</p>
+    <div class="conclusion-box">
+        <blockquote>No se trata de “pelearse contra el Videojuego y el Streaming”, se trata de tentar y retener a sus consumidores a adquirir un producto alineado con ellos y sus preferencias.</blockquote>
+    </div>
+</div>
+	
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "Mercado, Marketing e Ingresos"...</h2>
+				<h2 class="next-section-main-title">¿Hablamos del Buyer Persona y el Potencial del Mercado? 👉🏽</h2>
+				<blockquote>¿Quién comprará el Selbook? ¿Cuál es el Tamaño Potencial del Mercado? ¿Y el Tamaño Objetivo? Tenemos que basarnos en un mercado existente (libros digitales) para poder hacernos una idea del Mercado del Selbook. Lo vemos.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="buyer-person-market.html" class="next-section-card">
+				<img src="assets/img/buyer-person-portada-1.jpg" alt="Acceso a la sección sobre La comunidad: Red Social del Selbook">
+				<h3>Buyer Persona y Mercado Potencial</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

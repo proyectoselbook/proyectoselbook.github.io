@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Personalización de la Historia</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+ /* === ESTILOS ESPECÍFICOS PARA LA PÁGINA "PERSONALIZACIÓN DE LA HISTORIA" === */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Rejilla de selección de protagonista */
+.character-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+.character-card {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+.character-card h3 {
+	color: #ebd068 !important;
+	}
+
+.character-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.character-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.character-card:hover img {
+    transform: scale(1.1);
+}
+.character-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0));
+}
+.character-card-title {
+    margin: 0 0 5px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.character-card-desc {
+    margin: 0 0 15px 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+.character-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.character-card-tags span {
+    background-color: rgb(28 253 0 / 40%);
+    backdrop-filter: blur(5px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+/* Rejilla para los puntos de control de la narración */
+.control-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+.control-point-item {
+    background: #f4f8fb;
+    border: 1px solid #e0eaf1;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+
+
+
+ @media (max-width: 900px) {
+    .two-column-layout { flex-direction: column; }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="personalizacion">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+
+    <div class="main-section">
+     <div class="content-breadcrumbs">El Producto / Personalización de la Historia</div>
+    <h1>Personalización de la Historia</h1>
+
+    <h2>🤖 La Inteligencia Artificial Aprendiendo del Usuario</h2>
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>Este punto es una de las claves del SelBook: será un sistema que <strong>cada vez conocerá mejor al usuario</strong>. Ese aprendizaje comenzará con la acción directa y voluntaria del usuario en la configuración inicial y creación del Perfil Fijo.</p>
+            <p>Es como cuando conoces a alguien por primera vez, una "Cita a Ciegas”. Te presentas, haces un esbozo de cómo eres, qué te gusta, etc. Con esa información, Sely ya se va formando una idea, pero es en el trato diario, en las diferentes “citas" posteriores, cuando podrá verificar y completar el conocimiento, creando un <strong>Perfil Estático cada vez más completo</strong>.</p>
+            <p>Es decir, Sely tendrá muchas fuentes de información, pero <strong>las lecturas de cada Stringbook ("citas") serán esenciales para Aprender del Usuario.</strong></p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/aprendiendo-de-usuario.png" alt="Diagrama del aprendizaje del usuario en Selbook">
+        </div>
+    </div>
+
+    <h3>¿Cómo funcionan esos puntos de recogida de información?</h3>
+    <p>Si nos fijamos en el diagrama anterior, veremos que 3 de esos puntos parten del relato y de la elección inicial del personaje (parte inferior) y otros 3 parten de lo que hemos llamado Nudos (parte superior). Veamos cada punto:</p>
+
+    <h2>🧑‍🤝‍🧑 Elección de Protagonista</h2>
+    <p>Es uno de los elementos más diferenciadores del SelBook. El usuario podrá <strong>elegir el Personaje con el que recorrerá la historia</strong>. Esta característica es clave para multiplicar el número de lecturas posibles y la oferta de géneros literarios.</p>
+    <p>Según la elección, podrás tener una historia con mayor dosis de aventura y romance, o de intriga y misterio. Esto permitirá tener <strong>diferentes perspectivas de una misma historia</strong>. Imagina vivir "El Señor de los Anillos" no solo desde el punto de vista de Frodo, sino desde la lealtad de Sam, el dilema de Aragorn, el misterio de Gandalf o incluso la marginación de Gollum. El lector recorrerá pasajes y tramas con diferentes enfoques, géneros, estilos y voces que de otra forma no podría conocer.</p>
+    <div class="callout">
+        <h3>Dimensiones</h3>
+        <p>Llamaremos <strong>Dimensiones</strong> al número de personajes "elegibles" por el usuario. Un Selbook de 3 dimensiones significa que tienes 3 protagonistas que podrías elegir, cada uno con sus particularidades únicas en cuanto a trama, argumento y géneros. Al presentar las Dimensiones, se ofrecerá una <strong>información “emocional” y descriptiva del "viaje"</strong>, similar a los videojuegos actuales, donde puedes acceder a una "Ficha" con detalles de su personalidad, puntos fuertes, miedos e incluso relatos extra.</p>
+    </div>
+
+    <h3>Elige tu protagonista:</h3>
+    <div class="character-selection-grid">
+        <article class="character-card">
+            <img src="assets/img/frodo.jpg" alt="Frodo Bolsón">
+            <div class="character-card-overlay">
+                <h3 class="character-card-title">Frodo Bolsón</h3>
+                <p class="character-card-desc">Un joven e inocente Hobit que puede cambiar el destino, pero deberá emprender un viaje a lo desconocido…</p>
+                <div class="character-card-tags">
+                    <span>Aventura</span>
+                    <span>Amistad</span>
+                    <span>Suspense</span>
+                </div>
+            </div>
+        </article>
+        <article class="character-card">
+            <img src="assets/img/aragorn.jpg" alt="Aragorn">
+            <div class="character-card-overlay">
+                <h3 class="character-card-title">Aragorn</h3>
+                <p class="character-card-desc">Un Rey sin reino, con un amor prohibido y una gran lucha interior…</p>
+                <div class="character-card-tags">
+                    <span>Acción</span>
+                    <span>Aventura</span>
+                    <span>Amor</span>
+                </div>
+            </div>
+        </article>
+        <article class="character-card">
+            <img src="assets/img/gandalf.jpg" alt="Gandalf">
+            <div class="character-card-overlay">
+                <h3 class="character-card-title">Gandalf</h3>
+                <p class="character-card-desc">El Gran Mago Gris sabe que la Oscuridad gana terreno y debe conseguir una gran Alianza para frenarla.</p>
+                <div class="character-card-tags">
+                    <span>Intriga</span>
+                    <span>Misterio</span>
+                    <span>Magia</span>
+                </div>
+            </div>
+        </article>
+        <article class="character-card">
+            <img src="assets/img/gollum.jpg" alt="Gollum">
+            <div class="character-card-overlay">
+                <h3 class="character-card-title">Gollum</h3>
+                <p class="character-card-desc">Un protagonista inesperado, un ser atormentado y obsesionado con su Tesoro…</p>
+                <div class="character-card-tags">
+                    <span>Misterio</span>
+                    <span>Suspense</span>
+                    <span>Aventura</span>
+                </div>
+            </div>
+        </article>
+    </div>
+    
+    <h3>💬 Narración y Diálogos</h3>
+    <p>La IA estará atenta y <strong>“escuchando” en todo momento</strong>. Gracias al BIC irá recibiendo inputs en forma de reacciones y emociones, pero existirán "puntos de control” donde prestará una mayor atención, otorgando un mayor peso a la información recogida.</p>
+    <div class="control-points-grid">
+        <div class="control-point-item">Una persecución...</div>
+        <div class="control-point-item">Un dilema moral o ético...</div>
+        <div class="control-point-item">Cuando aparece un nuevo personaje</div>
+        <div class="control-point-item">A la entrada de un misterioso castillo</div>
+        <div class="control-point-item">Cuando descubres una nueva pista</div>
+        <div class="control-point-item">Cuando muere un personaje</div>
+    </div>
+    <p>Otro punto clave será <strong>las Relaciones entre personajes</strong>. En los diálogos, Sely prestará mucha atención para saber si te gusta o disgusta un nuevo personaje, si confías o sospechas de él, etc. Conociendo estas reacciones de antemano, se puede <strong>potenciar o multiplicar aquellos pasajes generadores de emociones</strong>.</p>
+    
+    <h3>🎬 Escenas de Vídeo o Imagen</h3>
+    <p>El contenido audiovisual suele generar una mayor dosis de emoción. Sely estará muy atenta para recabar esa información. Estos contenidos serán Elecciones: será el usuario quien decida si quiere “vivir” esa escena a través de la lectura o si prefiere verla en un <strong>Clip, un Videostory o en formato Cómic</strong>. La propia elección ya aporta información. Además, estas escenas contendrán “cebos” o "ganchos" para provocarte algo (una silueta al fondo, una sombra que se mueve...). Tus reacciones a esos cebos decidirán si Sely los aprovecha para llevarte a algún lado.</p>
+    
+    <h2>🧭 Puntos de Elección: Los Nudos</h2>
+    <p>Estos puntos son la <strong>Esencia del SelBook</strong>. Los Nudos son puntos narrativos donde la historia se divide en varias alternativas de trama (ruta). Existen 3 tipos, y es aquí donde la recogida de información cobra sentido, pues será Sely quien tome la decisión de qué ruta seguir.</p>
+    
+    <h3>Nudo Visible-Consciente</h3>
+    <p>Heredan la fórmula de "Elige tu propia aventura", pero serán pocos y sólo aparecerán cuando exista un <strong>“dilema moral” o “Decisión Crítica"</strong>. El Selbook te obligará a tomar partido.</p>
+    <div class="nudo-example-box">
+        <p><strong>Ejemplo 1:</strong> En el atraco a un banco, los ladrones ponen sus exigencias y si no se cumplen, matarán a un rehén cada hora. Cuando llega la primera hora... ¿Cedes? ¿Aceptas?</p>
+        <p><strong>Ejemplo 2:</strong> Eres un preso dirigiendo un plan de escape. Un Nazi sin escrúpulos pone la pistola en la cabeza de un fiel soldado a tu cargo. Si nadie confiesa el plan, irá matando a todos los sospechosos. ¿Confiesas? ¿Cuándo? ¿Dejas que mate a uno? ¿A dos?</p>
+    </div>
+    <img src="assets/img/nudo-visible-consciente.webp" alt="Diagrama del Nudo Visible-Consciente" class="image-full-width lightbox-trigger">
+    
+    <h3>Nudo Visible-Inconsciente</h3>
+    <p>Llegado a un Nudo, a través de una pregunta o "charla" con Sely, serás preguntado por un personaje o situación. Expresarás tu opinión, pero esa información <strong>no será ni vinculante ni tiene por qué ser una decisión en sí</strong>.</p>
+    <div class="nudo-example-box">
+        <p><strong>Ejemplo:</strong> Aparece un nuevo personaje en escena, Mary. Tu protagonista habla con ella, se relaciona con otros... y en un momento dado, Sely pregunta: "¿Qué te parece Mary? ¿Qué opinas? ¿Sospechas de ella? ¿Te crees su historia?"</p>
+    </div>
+    <p>Lo interesante aquí es que tu respuesta no es vinculante. Si Mary no te gusta, Sely podría decidir que la ruta a seguir sea ir con ella, obligándote a confiar en un personaje que no te agrada para provocar nuevas emociones.</p>
+    <img src="assets/img/nudo-visible-inconsciente.webp" alt="Diagrama del Nudo Visible-Inconsciente" class="image-full-width lightbox-trigger">
+    
+    <h3>Nudo Subliminal: Invisible-Inconsciente</h3>
+    <p>Este nudo es el <strong>Núcleo Esencial del Selbook</strong>. El usuario no será consciente ni podrá adivinar que está en un nudo, en una escena o situación donde todo lo que ha sentido, donde la información de su Perfil Estático y Dinámico, será usada para que Sely, de forma sutil e invisible, <strong>enlace con la ruta que considera que más te va a gustar o que más te va a provocar</strong>. El usuario nunca conocerá las alternativas, él sólo leerá.</p>
+    <img src="assets/img/flujo-toma-decision-subliminal.webp" alt="Flujo de toma de decisiones en un Nudo Subliminal" class="image-full-width lightbox-trigger">
+    <div class="nudo-example-box">
+        <p><strong>Ejemplo:</strong> Imaginemos el caso del campo de concentración. Quizás por tu personalidad (Perfil Estático), hubieras cedido a la primera amenaza para salvar a tu soldado. Pero a Sely le gusta provocarte. Sabiendo eso, permite que el Nazi ejecute a tu fiel soldado. Tus emociones se disparan. Quieres confesarlo todo, pero Sely sabe que una gran historia no es posible sin drama o sacrificio. Por tanto, tomará una decisión que no tiene por qué estar alineada con tus reacciones, sino con el objetivo de crear la mejor historia posible para ti.</p>
+    </div>
+    <img src="assets/img/nudo-subliminal.webp" alt="Diagrama del Nudo Subliminal" class="image-full-width lightbox-trigger">
+    
+    <h2>✨ La IA como generador de Enlaces e Injertos Narrativos</h2>
+    <p>Como principio esencial del Selbook, <strong><span class="sb-note"
+         data-sb-type="debate"
+         data-sb-title="Discusión"
+         data-sb-content="Punto a Debatir. ¿La IA no escribe las historias? ¿Seguro?
+Es poner puertas al campo. La evolución de la IA y de la sociedad irá minimizando el rechazo a que una IA escriba novelas. Con el tiempo, será algo normal. Pero... ¿Interesa? Es un valor diferencial decir que los autores siguen siendo humanos y, por otro lado, el poder de captación de Autores «humanos» es un elemento esencial para el Network Effect ya que atraerá lectores. ¿Soluciones? ¿Ideas? ¿Bastará con «avisos»?">
+  la IA no escribirá las historias
+  &nbsp;<i class="fas fa-exclamation-circle sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></strong>. Las historias (o Stringbooks) serán creaciones humanas en un 85-90%. Un escritor o grupo de escritores crearán el argumento principal y todas las rutas posibles.</p>
+    <p>Entonces, ¿cómo participa la IA en la creación de la Historia? En los enlaces e injertos.</p>
+    <ul>
+        <li><strong>Enlace Narrativo:</strong> Cuando un usuario llega a un Nudo, de él saldrán varias rutas. El "Enlace Narrativo" es el fragmento de texto que une el Nudo con las diferentes rutas. Estos enlaces <strong>podrán ser generados por la IA</strong>. Son pocas líneas, pero Sely, conociendo cómo se siente el usuario, puede crear una unión más orgánica y fiel que la que escribiría el propio autor.</li>
+        <li><strong>Injerto Narrativo:</strong> Es el caso contrario, se da cuando una ruta conecta con otra. Sely, con su conocimiento, podrá crear ese fragmento para que el acople sea más natural y orgánico.</li>
+    </ul>
+        
+    </div>
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">Generación Multimedia con IA 👉🏽</h2>
+				<blockquote>La IA no escribe la Historia, pero sí se encarga de la generación de contenidos multimedia. Eso sí, hay que enseñarle y darle unas directrices para que lo haga bien. Sigue leyendo y te lo cuento.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="generacion-multimedia-ia.html" class="next-section-card">
+				<img src="assets/img/generacion-multimedia-ia.webp" alt="Acceso a la sección de Generación Multimedia con IA">
+				<h3>Generación Multimedia con IA</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+  <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">💬 Debate</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

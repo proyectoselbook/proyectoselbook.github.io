@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Generación Multimedia</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "GENERACIÓN MULTIMEDIA CON IA"
+   ==================================================================== */
+
+/* Contenedor para las opciones multimedia principales */
+.media-options-container {
+    display: grid;
+    gap: 25px;
+    margin: 30px 0;
+}
+.media-option-card {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    padding: 20px 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+.media-option-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.media-option-card-header .icon { font-size: 2em; }
+.media-option-card-header h3 { margin: 0; padding: 0; border: none; font-size: 1.5em; }
+.media-option-card-body p { margin-bottom: 15px; font-size: 1em; color: #555; }
+.media-option-card-body p:last-child { margin-bottom: 0; }
+
+/* Rejilla para los 4 componentes del Prompt de un Clip */
+.prompt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.prompt-grid-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+    font-size: 0.9em;
+}
+
+/* Layout de dos columnas para texto e imagen */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Rejilla para los componentes del Prompt Objetivo/Subjetivo */
+.prompt-components-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 20px;
+}
+.prompt-component-card {
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+
+
+
+
+
+.prompt-component-card.objective {
+    background: #eef7ff;
+    border: 1px solid #d1e7fd;
+}
+.prompt-component-card.subjective {
+    background: #fff8e1;
+    border: 1px solid #ffecb3;
+}
+.prompt-component-card h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.prompt-component-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 0.95em;
+}
+.prompt-component-card li {
+    background-color: rgb(144 221 123 / 19%);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+
+.prompt-example-box {
+    background-color: #333;
+    color: #f1f1f1;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 25px 0;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.7;
+    border: 1px solid #555;
+    white-space: pre-wrap;
+}
+/* Color para "Elementos de Escena" */
+.prompt-scene li {
+    background-color: #e3f2fd; /* Azul claro */
+    border: 1px solid #bbdefb;
+}
+
+/* Color para "Elementos de Reparto y Entorno" */
+.prompt-environment li {
+    background-color: #e8f5e9; /* Verde claro */
+    border: 1px solid #c8e6c9;
+}
+
+/* Color para "Elementos de Consistencia" */
+.prompt-consistency li {
+    background-color: #f3e5f5; /* Morado claro */
+    border: 1px solid #e1bee7;
+}
+
+/* Color para "Elementos Emocionales" */
+.prompt-emotional li {
+    background-color: #fff8e1; /* Amarillo claro */
+    border: 1px solid #ffecb3;
+}
+
+@media (max-width: 768px) {
+    .prompt-components-grid {
+        grid-template-columns: 1fr;
+    }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="generacionia">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		 <!-- 
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+
+	<div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Generación Multimedia con IA</div>
+    <h1>Generación Multimedia</h1>
+
+    <h2>✨ La IA como Generador de Contenidos Multimedia</h2>
+    <p>Como ya hemos mencionado, el componente multimedia del Selbook es un valor extra esencial. Para su gestión, se habilitarán ciertos pasajes de la historia donde el usuario, si así lo decide, podrá elegir si quiere seguir leyendo o quiere usar otra alternativa. Las Opciones serán:</p>
+    
+    <div class="media-options-container">
+        <!-- Clip de Vídeo -->
+        <div class="media-option-card">
+            <div class="media-option-card-header">
+                <span class="icon">🎬</span>
+                <h3>Clip de vídeo.</h3>
+            </div>
+            <div class="media-option-card-body">
+                <p>Hablamos de Clips porque no deberían ser vídeos de muy larga duración. La IA (Sely), en esos fragmentos predefinidos, irá <strong>creando en segundo plano un Prompt</strong> que contendrá:</p>
+                <div class="prompt-grid">
+                    <div class="prompt-grid-item">🎞️<br>La <strong>información de la escena</strong> en sí, con una descripción más detallada, específica y completa.</div>
+                    <div class="prompt-grid-item">💗<br>Las <strong>emociones y reacciones</strong> que el Usuario está enviando al BIC con la intención de potenciarlas.</div>
+                    <div class="prompt-grid-item">👥<br>Las <strong>preferencias del Perfil del Usuario</strong> en cuanto a películas favoritas, estéticas o universos literarios.</div>
+                    <div class="prompt-grid-item">🎯<br>Por último, <strong>el objetivo</strong> o finalidad de la Escena visionada. Sely puede querer transmitir tensión, alegría, miedo...</div>
+                </div>
+                <p style="margin-top: 15px;">Si el usuario decide visualizar el Clip, <strong>la generación del vídeo debería ser casi instantánea</strong>. También puede ir generándose parte de ese vídeo en segundo plano, siempre disponible para el caso de que el usuario decida usar esa opción.</p>
+                <p>Sely también debe cuidar de la <strong>coherencia y consistencia</strong> de las escenas generadas, de los personajes implicados y de las emociones que el Usuario tiene hacia esa situación y personajes. El usuario no puede sentirse demasiado sorprendido o descolocado.</p>
+            </div>
+        </div>
+        
+        <div class="two-column-layout">
+            <div class="text-content">
+                <!-- Imágenes -->
+                <div class="media-option-card">
+                    <div class="media-option-card-header"><span class="icon">🖼️</span><h3>Imágenes.</h3></div>
+                    <div class="media-option-card-body"><p>Del mismo modo, el Usuario puede querer visualizar una imagen de lo que está viendo, o tener activada la opción de “novela ilustrada”. Las imágenes que ofrezca el Selbook también deberán estar <strong>alineadas con las emociones y reacciones del usuario</strong>. El usuario puede pedir a Sely: "Muéstrame cómo es este personaje". Sely deberá guardar la consistencia y coherencia.</p></div>
+                </div>
+                <!-- VideoStorys -->
+                <div class="media-option-card">
+                    <div class="media-option-card-header"><span class="icon">🎞️</span><h3>VideoStorys</h3></div>
+                    <div class="media-option-card-body"><p>Esta opción es la combinación de las anteriores. Consistirá de una narración con voz en off (podcast), la representación con imágenes y vídeos de la escena elegida. No será un clip, sino una representación visual. También contendrá el texto superpuesto o subtitulado.</p></div>
+                </div>
+                <!-- Comics Dinámicos -->
+                <div class="media-option-card">
+                    <div class="media-option-card-header"><span class="icon">📖</span><h3>Comics dinámicos</h3></div>
+                    <div class="media-option-card-body"><p>Se ofrecerá la opción, en ciertos pasajes, de seguir la historia con un modelo Comic con viñetas e imágenes con cierta animación.</p></div>
+                </div>
+            </div>
+            <div class="image-content">
+                <img src="assets/img/opciones-multimedia.webp" alt="Diagrama de opciones multimedia en Selbook">
+            </div>
+        </div>
+    </div>
+
+    <h2>🎵 Otros aspectos Multimedia</h2>
+    <div class="media-options-container">
+        <div class="media-option-card">
+             <div class="media-option-card-header"><span class="icon">🎙️</span><h3>Podcast</h3></div>
+             <div class="media-option-card-body"><p>Se ofrecerá esta opción en todo momento. El usuario, si así lo decide, <strong>podrá escuchar la narración de la historia a partir del punto que considere</strong>. Una vez más, el Podcast debe ser coherente y consistente con la experiencia almacenada del Usuario, usando una voz narrativa, voces de los personajes, banda sonora y efectos sonoros adecuados al Perfil Dinámico.</p></div>
+        </div>
+        <div class="media-option-card">
+             <div class="media-option-card-header"><span class="icon">🎶</span><h3>La Banda Sonora</h3></div>
+             <div class="media-option-card-body">
+                <p>Todos y cada uno de los StringBooks tendrán su propia banda sonora. <strong>Se usará para potenciar las sensaciones y emociones del usuario</strong>. Gracias al BIC, <strong>Sely sabe en todo momento dónde están tus ojos, qué palabra o frase estás leyendo y lo que estás sintiendo</strong>. Será capaz de adaptar el ritmo y la melodía para que coincida exactamente con lo que estás leyendo.</p>
+                <p>Con un sistema de "capas" o de "pistas", podrá ir superponiendo elementos musicales. En pasajes de transición, la melodía “base” sonará con sencillez. A medida que el usuario se acerque a pasajes más intensos, Sely irá, gradualmente y con sutileza, añadiendo Pistas musicales que acompañen la lectura.</p>
+            </div>
+        </div>
+        <div class="media-option-card">
+             <div class="media-option-card-header"><span class="icon">🔊</span><h3>Efectos Sonoros</h3></div>
+             <div class="media-option-card-body"><p>Los Stringbook tendrán sus efectos de sonido puntuales en pasajes con carga emocional. De nuevo, <strong>gracias a la coordinación del BIC con el texto, Sely puede "pulsar" sus diferentes efectos de sonido en los momentos exactos en que el usuario los está leyendo</strong>. Un disparo, un grito a lo lejos, una puerta que se abre... Con estos dos elementos de audio, la Banda Sonora y los efectos de sonido, Sely irá ambientando el pasaje, creando una lectura inmersiva y completa.</p></div>
+        </div>
+    </div>
+    <img class="image-full-width lightbox-trigger" src="assets/img/diagrama-generacion-audio-bso.webp" alt="Diagrama de cómo se genera la banda sonora y los efectos de sonido">
+    
+    <h2>🛠️ Ingeniería de Prompting: Sobre la Consistencia y Coherencia de los Contenidos Multimedia</h2>
+    <p>Hemos resaltado la importancia de la Consistencia y Coherencia de las escenas generadas por la IA, pero también es esencial dejar clara la importancia de tal consistencia entre los diferentes contenidos multimedia. Es decir, si en una imagen se muestra un personaje, ese personaje deberá seguir siendo igual si, más adelante, el usuario decide ver otra imagen o visualizar un vídeo. No podría ver dos representaciones diferentes.</p>
+    <p>Por esta razón, debemos tener en cuenta que la estructura de Prompt para la generación de contenidos Multimedia consistirá en dos partes:</p>
+
+    <div class="prompt-components-grid">
+        <div class="prompt-component-card objective">
+            <h3>Prompt – Objetivo</h3>
+            <p>Esta parte del Prompt se denomina “Objetiva” porque <strong>no está sujeta a las “emociones” del usuario</strong> ni a “recreaciones" previas. Será la información descriptiva extraída del texto que narra la escena o pasaje. Esta parte del Prompt se subdividiría en 2 secciones:</p>
+            <ul>
+                <li><strong>Elementos de Escena:</strong> [Descripción de la escena]+[Situación]+[iluminación]+[Ángulo Cámara]+[Efectos visuales]+[Efectos Sonoros]</li>
+                <li><strong>Elementos de Reparto y Entorno:</strong> [Personajes extras]+[Figurantes]+[Elementos decorativos]+[Clima]</li>
+            </ul>
+        </div>
+        <div class="prompt-component-card subjective">
+            <h3>Prompt – Subjetivo</h3>
+            <p>Son los elementos que <strong>están sujetos a la interpretación de las emociones y reacciones del Usuario</strong>, tanto presentes como pasadas. Esto significa que las anteriores recreaciones han sido "almacenadas” para tener una consistencia en cuanto a personajes y escenarios. Esta parte del Prompt también se subdivide en 2 secciones:</p>
+            <ul>
+                <li><strong>Elementos de Consistencia:</strong> [Protagonistas]+[Personajes de trama]+[Elementos de Consistencia]+[Acción]</li>
+                <li><strong>Elementos Emocionales:</strong> [Emociones de lectura]+[Reacciones del lector]+[Emociones de Personajes]+[Sensaciones de Ambientación]</li>
+            </ul>
+        </div>
+    </div>
+    <img src="assets/img/estructura-prompt.webp" alt="Diagrama de la estructura del Prompt para contenidos multimedia" class="image-full-width lightbox-trigger">
+    
+    <h3>Ejemplo:</h3>
+    <p>Imaginemos el siguiente texto:</p>
+    <div class="prompt-example-box">Allí estaba otra vez. Con un inesperado giro, el hombre misterioso se metió en el callejón. Tom salió corriendo tras él. Escuchaba sus zancadas, veía su gabardina, incluso le pareció escuchar una risa perversa, pero la oscuridad de la noche y la ineficaz luz de una farola temblorosa del callejón, que se difuminaba en la neblina, no le permitían distinguirle. La sombra era ágil, saltaba entre los cubos de basura que iba tirando a su paso. El corazón le latía a mil. En verdad, no sabía que iba a hacer si le alcanzaba, tenía más miedo que intriga, corría por instinto, sólo sabía que debía cazarlo si quería desvelar el misterio. Un transeúnte se cruzó en su camino, la sombra le gritó como un loco y asustado se tiró al suelo...</div>
+    <p>En muchos casos, algunos conceptos estarán compartidos o mezclados, pero veamos por partes cómo quedaría:</p>
+    
+<div class="prompt-components-grid">
+    
+    <div class="prompt-component-card prompt-scene"> <!-- <-- Clase añadida -->
+        <h3>Elementos de Escena:</h3>
+        <ul>
+            <li>+ Un Hombre corriendo por un callejón perseguido por el protagonista</li>
+            <li>+ Cámara primera persona, altura ojos.</li>
+            <li>+ Sonido de pasos corriendo</li>
+            <li>+ Risa perversa</li>
+            <li>+ Noche oscura con luz débil de farola</li>
+            <li>+ Grito de un loco</li>
+            <li>+ Sonido de cubos de basura al tropezar</li>
+        </ul>
+    </div>
+
+    <div class="prompt-component-card prompt-environment"> <!-- <-- Clase añadida -->
+         <h3>Elementos de Reparto y Entorno</h3>
+        <ul>
+            <li>+ Farola vieja y temblorosa</li>
+            <li>+ Cubos de basura</li>
+            <li>+ Neblina</li>
+            <li>+ Hombre cruza por el callejón.</li>
+            <li>+ Del susto, cae al suelo</li>
+        </ul>
+    </div>
+
+    <div class="prompt-component-card prompt-consistency"> <!-- <-- Clase añadida -->
+         <h3>Elementos de Consistencia</h3>
+        <ul>
+            <li>+ [Descripción almacenada del Hombre misterioso]</li>
+            <li>+ Corre delante del protagonista. Carrera frenética con risa perversa. Huye sorteando obstáculos y derribando cubos de basura.</li>
+            <li>+ Asusta a transeúnte gritándole al pasar junto a él.</li>
+        </ul>
+    </div>
+
+    <div class="prompt-component-card prompt-emotional"> <!-- <-- Clase añadida -->
+         <h3>Elementos Emocionales</h3>
+        <ul>
+            <li>+ [Emociones recogidas de la lectura del usuario]</li>
+            <li>+ Tom está nervioso. Tiene miedo. Ansiedad. Intriga.</li>
+            <li>+ El ambiente es tenso. Misterioso.</li>
+        </ul>
+    </div>
+
+</div>
+
+    <p>Con toda esta información, Sely elaboraría un Prompt lo más detallado y completo para que la IA Generativa creara el vídeo.</p>
+    <h3>Diagrama:</h3>
+    <img src="assets/img/diagrama-ingenieria-prompt-generacion-multimedia.webp" alt="Diagrama final de la ingeniería de prompting para la generación de un clip de vídeo" class="image-full-width lightbox-trigger">
+</div>
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">La Red Social del Selbook 👉🏽</h2>
+				<blockquote>¿Te gusta charlar sobre tus novelas favoritas? ¿Te gustaría “Compartir tus Rutas”? La Comunidad es la Red Social del Selbook, un paraíso para los amantes de las historias con 4 niveles de relaciones.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="producto-comunidad.html" class="next-section-card">
+				<img src="assets/img/portada-comunidad.webp" alt="Acceso a la sección sobre La comunidad: Red Social del Selbook">
+				<h3>La Comunidad: Red Social</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+<!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

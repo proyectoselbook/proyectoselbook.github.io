@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Mercado, Marketing e Ingresos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "COMERCIALIZACIÓN Y ECOMMERCE"
+   ==================================================================== */
+
+/* Contenedor para las 3 fórmulas de venta */
+.sales-formulas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+.formula-card {
+    display: block;
+    text-decoration: none;
+    background: #f0f0f0;
+    padding: 0px;
+	padding-left: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.formula-card:hover {
+    background: #f5f5f5; /* Un hover sutilmente más claro */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.formula-card .formula-number {
+    display: inline-block;
+    background-color: var(--header-gradient-mid);
+    color: white;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+span.formula-number {
+    background: #e67e22 !important;
+}
+.formula-card h3 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1.3em;
+    border: none;
+    padding: 0;
+}
+
+/* Estilos para el recordatorio "Pop-up" */
+.reminder-box {
+    background: #fff8e1;
+    border: 1px solid #ffecb3;
+    border-left: 5px solid #fbc02d;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+.reminder-box:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.reminder-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.reminder-header .icon { font-size: 1.8em; color: #fbc02d; }
+.reminder-header h3 { margin: 0; border:none; padding: 0; }
+
+/* Modal/Lightbox para el recordatorio */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+.modal-close {
+    float: right;
+    font-size: 1.8em;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Tarjetas de Producto (Packs de Iniciación) */
+.product-pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 25px 0;
+}
+.product-card {
+    background: #2f2f2f;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    text-align: center;
+    padding: 25px;
+}
+.product-card h4 {
+    color: var(--sidebar-accent-color);
+    margin-top: 0;
+    font-size: 1.4em;
+}
+.product-card p {
+    font-size: 0.95em;
+    color: #c0c0c0;
+}
+/* ====================================================================
+   ESTILOS PARA EL DESLIZANTE LATERAL (SLIDEOUT PANEL)
+   ==================================================================== */
+
+/* Contenedor del disparador */
+.slideout-trigger-box {
+display: block; /* Asegura que se comporte como un bloque */
+    max-width: 800px; /* Tu ancho fijo */
+    margin: 2px auto; /* ESTA ES LA LÍNEA MÁGICA */
+    background: #2f2f2f; /* Fondo oscuro */
+    color: #e0e0e0;
+    border: 1px solid #444;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+}
+.slideout-trigger-box:hover {
+    background-color: #3a3a3a;
+    box-shadow: 0 0 15px rgba(0, 255, 140, 0.2);
+}
+.slideout-trigger-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.slideout-trigger-header .icon { 
+    font-size: 1.3em; 
+    color: var(--sidebar-accent-color);
+}
+.slideout-trigger-header h3 { 
+    margin: 0; 
+    border:none; 
+    padding: 0; 
+	font-size: 1.2em !important;
+    color: #f2ce4e !important;
+    text-align: center;
+	margin-top: 0px !important;
+}
+.slideout-trigger-box p {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #a0a0a0;
+    margin: 3px 0 0 0;
+	text-align: center;
+}
+
+/* El panel deslizante (oculto por defecto) */
+.slideout-panel {
+    position: fixed;
+    top: 0;
+    right: -780px; /* Empieza fuera de la pantalla a la derecha */
+    width: 100%;
+    max-width: 780px; /* Ancho del panel */
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+    z-index: 4000;
+    transition: right 0.4s ease-in-out;
+    padding: 25px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Clase para mostrar el panel */
+.slideout-panel.active {
+    right: 0;
+}
+
+/* Overlay para oscurecer el fondo */
+.slideout-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 3999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.slideout-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slideout-close {
+    float: right;
+    font-size: 1.8em;
+    cursor: pointer;
+    line-height: 1;
+}
+.slideout-content h3 {
+    margin-top: 0;
+}
+/* ====================================================================
+   ESTILOS CORREGIDOS PARA LAYOUT TEXTO + IMÁGENES APILADAS
+   ==================================================================== */
+
+.text-plus-stacked-images {
+    display: flex;
+    flex-wrap: wrap; /* Para responsive */
+    gap: 30px;
+    align-items: flex-start; /* Alinear arriba */
+}
+
+/* Columna de texto a la izquierda */
+.text-plus-stacked-images .text-content {
+    flex: 1.5; /* Damos más espacio al texto */
+    min-width: 300px;
+}
+
+/* Columna de imágenes a la derecha */
+.text-plus-stacked-images .stacked-images-content {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column; /* Apila las imágenes verticalmente */
+    gap: 20px; /* Espacio entre las imágenes */
+}
+
+.stacked-images-content img {
+    width: 270px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+/* ====================================================================
+   ESTILOS PARA LAYOUT DE FÓRMULAS DE VENTA (3 TARJETAS + IMAGEN)
+   ==================================================================== */
+
+.sales-layout-container {
+    display: flex;
+    flex-wrap: wrap; /* Para responsive */
+    gap: 30px;
+    align-items: center; /* Centra verticalmente el contenido */
+    margin-top: 25px;
+}
+
+/* Columna izquierda con las 3 tarjetas apiladas */
+.sales-formulas-column {
+    flex: 1.2; /* Damos más espacio a las tarjetas */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column; /* Apila las tarjetas */
+    gap: 15px; /* Espacio entre tarjetas */
+}
+
+/* Columna derecha con la imagen */
+.sales-image-column {
+    flex: 1.2;
+    min-width: 250px;
+}
+.sales-image-column img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+/* Responsive: En pantallas pequeñas, la imagen se pone debajo */
+@media (max-width: 768px) {
+    .sales-layout-container {
+        flex-direction: column;
+    }
+}
+/* ====================================================================
+   ESTILOS ADICIONALES PARA "COMERCIALIZACIÓN Y ECOMMERCE"
+   ==================================================================== */
+
+/* Estilo para el bloque de cita largo (ej. Señor de los Anillos) */
+.long-quote-box {
+    background-color: #eadbbe69;
+    border-left: 4px solid #ff8400;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: var(--border-radius);
+    font-style: italic;
+}
+
+/* Estilo para la caja de "insight" con el icono de la bombilla */
+.insight-box {
+    background: #eef7ff;
+    border: 1px solid #d1e7fd;
+    border-left: 5px solid #2979ff;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: var(--border-radius);
+}
+.insight-box p {
+    margin: 0;
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+.insight-box .icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+    float: left;
+}
+  </style>
+</head>
+
+<body data-theme="marketing" data-active-section="marketing" data-current-page="comercializacion">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+
+	<div class="main-section">
+    <div class="content-breadcrumbs">Mercado, Marketing e Ingresos / Comercialización y eCommerce</div>
+    <h1>Comercialización del Selbook</h1>
+
+    <h2>Canales de venta</h2>
+    <div class="callout">
+        <p>💡 Hay que tener en cuenta que el Modelo de Negocio se basa en un <strong>Marketplace</strong>, es decir, el Selbook es la plataforma o “Sporte vital” de un Stringbook (Ej. Kindle de Amazon), pero los Stringbook serán obras de terceros que se venderán en La Librería. Existirán Autores bajo el Sello Nativo de SelBook y otros autores que publicarán sus obras bajo un sello externo (Editorial o proyecto propio). La Librería, por lo tanto, <strong>es la plataforma que pondrá en contacto a Lectores y Autores</strong>.</p>
+        <p><strong>La Organización Selbook cobrará el 50% en Royalties sobre el Precio</strong> en cualquiera de las vías de financiación de Venta Directa de Stringbooks y Publicidad de Emplazamiento. Con esta fórmula se pretende <span class="sb-note"
+         data-sb-type="info"
+         data-sb-title="Aclaración"
+         data-sb-content="Un autor bestseller, en el mejor de los casos, se lleva solo un 10% de cada libro vendido, pudiendo llegar a un 35% en el caso de edición digital. Por otro lado, la autoedición en plataformas tipo Amazon, está en torno al 35%. Es cierto que Amazon ofrece unas regalías del 70%, pero solo para obras con un precio menor a 10$. Por lo tanto, en cualquiera de los casos, un royalty del 50% sobre la venta del Stringbook siempre será la mejor opción para todos los tipos de escritores.">
+incentivar a que los autores opten por el sello nativo dado que su margen será mayor que si trabajan con una Editorial Externa.
+  &nbsp;<i class="fas fa-info-circle sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></p>
+    </div>
+    <p>Existirán 3 fórmulas de Venta:</p>
+    <!-- Nuevo contenedor para el layout de 2 columnas -->
+	<div class="sales-layout-container">
+		
+		<!-- COLUMNA IZQUIERDA: LAS 3 TARJETAS APILADAS -->
+		<div class="sales-formulas-column">
+			<a href="#venta-producto-minimo" class="formula-card"><h3><span class="formula-number">1</span>Venta del Dispositivo Mínimo de Entrada</h3></a>
+			<a href="#venta-stringbooks" class="formula-card"><h3><span class="formula-number">2</span>Venta de Stringbooks: eCommerce-Marketplace</h3></a>
+			<a href="#venta-ampliaciones" class="formula-card"><h3><span class="formula-number">3</span>Ampliaciones y Prestaciones: DLC</h3></a>
+		</div>
+
+		<!-- COLUMNA DERECHA: LA IMAGEN -->
+		<div class="sales-image-column">
+			<img src="assets/img/3-formulas-de-venta.png" alt="Estrategias de Venta de Productos">
+		</div>
+
+	</div>
+    
+
+	<!-- Botón/trigger #1 -->
+<div class="slideout-trigger-box" 
+     data-slideout-target="#reminder-slideout"
+     data-slideout-overlay="#slideout-overlay">
+  <div class="slideout-trigger-header">
+    <h3><span class="icon">💡</span> Recordatorio del Concepto Ampliaciones y Prestaciones</h3>
+  </div>
+  <span>Clic aquí para ver un recordatorio de estos dos importantes conceptos…</span>
+</div>
+
+	
+	
+
+    <div id="venta-producto-minimo" style="padding-top: 20px;">
+        <h2>1️⃣ Venta del Producto Mínimo de Entrada: Modelo Razor & Blade</h2>
+        <p>El requisito indispensable para el uso del Selbook es el dispositivo BIC. La tablet puede eliminarse de la ecuación o ser opcional siempre que se desarrolle una Aplicación lo suficientemente consistente para correr en cualquier dispositivo del cliente (tablet, smartphone y PC).</p>
+        <p>El margen que se genere en este caso debería ser mínimo dado que el BIC es un dispositivo de alto precio, por lo que podríamos estar hablando de un <strong>Modelo Razor & Blade (Bait & Hook)</strong>, es decir, el beneficio real se obtiene de los “consumibles” (stringbooks).</p>
+        <p>El dispositivo de Entrada consistirá en un Kit compuesto por BIC básico, una tablet más un Stringbook de iniciación, con limitaciones en Dimensiones, Rutas y Prestaciones. Su precio deberá ser accesible a todos los públicos.</p>
+        <img src="assets/img/nueva-portada-selbook-iniciacion.png" alt="Ejemplo de Pack de Iniciación" class="image-full-width">
+        <p>A partir de ahí, el Cliente Potencial dispondrá de variaciones sobre estas opciones, elevando el precio en función del dispositivo y de las Ampliaciones y Prestaciones.</p>
+        <h3>En Cuanto a Dispositivos, las opciones serían:</h3>
+        <div class="product-pack-grid">
+            <div class="product-card">
+                <h4>Mayor número de Canales</h4>
+                <p>que definen la sensibilidad del BIC y el número de emociones y reacciones que es capaz de detectar.</p>
+                <img src="assets/img/pack-avanzado.webp" alt="Pack Advance con Emotiv Epoc X" style="max-width: 100%; margin-top: 15px;">
+            </div>
+            <div class="product-card">
+                <h4>Dispositivo Integrado</h4>
+                <p>Que consistiría en unas Gafas de Realidad Mixta, con el BIC y el Audio integrado.</p>
+                <img src="assets/img/pack-dispositivo-integrado.webp" alt="Pack Experience con Gafas de Realidad Mixta" style="max-width: 100%; margin-top: 15px;">
+            </div>
+        </div>
+        <p>Estas Opciones sería las que mayor diferencia de precio marcaría respecto al Producto Mínimo de Entrada.</p>
+    </div>
+
+    <div id="venta-stringbooks" style="padding-top: 20px;">
+        <h2>2️⃣ Venta de Stringbooks</h2>
+        <p>Para usuarios que ya han adquirido el dispositivo BIC, los Stringbooks se ofrecerán como la compra de libros más tradicionales, pero con la posibilidad de adquirir diferentes “Versiones” del Stringbooks con un sistema creciente de de Ampliaciones y Prestaciones, llegando al “Full Experience” que consistirá en el Stringbook con todas las ampliaciones y prestaciones existentes.</p>
+        <img src="assets/img/venta-streingbook.webp" alt="Ejemplo de venta de un Stringbook con diferentes versiones" class="image-full-width">
+        <h3>Venta de Stringbook personalizado</h3>
+        <p>Por otro lado, también se ofrecerá al usuario la posibilidad de crear su stringbook a medida, modificando el número de Nudos, Dimensiones y marcando las diferentes prestaciones que eligiera. En función de esa configuración personalizada, se calcularía el precio final del StringBook:</p>
+        <img src="assets/img/venta-stringbook-personalizado.webp" alt="Ejemplo de configuración de un Stringbook personalizado" class="image-full-width">
+    </div>
+
+	<!-- === Venta de Ampliaciones y Prestaciones (LAYOUT CORREGIDO) === -->
+	<div id="venta-ampliaciones" style="padding-top: 20px;">
+		<h2>3️⃣ Venta de Ampliaciones y Prestaciones (Modelo DLC)</h2>
+
+		<div class="text-plus-stacked-images">
+			
+			<!-- COLUMNA IZQUIERDA: TEXTO -->
+			<div class="text-content">
+				<p>Este modelo se basa en el <strong>DLC o Venta por Descarga</strong>, donde el usuario que ya dispone de un Stringbook podrá adquirir contenidos extras de esas novelas. Los contenidos a comprar son las Ampliaciones y Prestaciones que hemos visto.</p>
+				<div class="callout">
+					<p>El precio de estos extras deberá ser proporcional al del Selbook.</p>
+				</div>
+				<p>Lo normal es que un Usuario Medio adquiera un Stringbook con limitaciones. A lo largo de su experiencia, se le propondrá u ofrecerá la posibilidad de adquirir funciones extras.</p>
+				<p>A través de funciones especiales como la <strong>"Ventana Inter-Dimensional"</strong> o el <strong>"Aviso de Encrucijadas"</strong>, el usuario tendrá tentaciones de ampliar su experiencia y podrá hacerlo en línea, sin salir del Stringbook. Podrá desbloquear una dimensión, un nudo, el Ready-to-Play, etc. El coste deberá ser aceptable y tentador.</p>
+			</div>
+
+			<!-- COLUMNA DERECHA: IMÁGENES APILADAS -->
+			<div class="stacked-images-content">
+				<img src="assets/img/ampliaciones-1.webp" alt="Ejemplo de compra in-app 1">
+				<img src="assets/img/ampliaciones-2.webp" alt="Ejemplo de compra in-app 2">
+			</div>
+
+		</div>
+		<!-- Botón/trigger #2 (más abajo en la página, apunta al mismo panel) -->
+<div class="slideout-trigger-box" 
+     data-slideout-target="#reminder-slideout"
+     data-slideout-overlay="#slideout-overlay">
+  <div class="slideout-trigger-header">
+    <h3><span class="icon">💡</span>Recordatorio del Concepto Ampliaciones y Prestaciones</h3>
+  </div>
+  <span>Clic para abrir recordatorio</span>
+</div>
+	</div>
+	<!-- === INICIO DEL CONTENIDO FALTANTE: VERSIONES Y ACTUALIZACIONES === -->
+<div id="versiones-actualizaciones" style="padding-top: 20px;">
+    <h2>🔄 Versiones y Actualizaciones</h2>
+    <p>Una de las cosas interesantes en este nuevo modelo literario es que <strong>el Autor y/o la Editorial pueden paquetizar un Strinbook inicial, con diferentes Ampliaciones y Prestaciones, pero su desarrollo no tiene por qué acabar ahí. Tanto el equipo Creativo como Editorial pueden seguir trabajando en extensiones (versiones) a ese paquete</strong>.</p>
+    
+    <blockquote class="long-quote-box">
+        Por ejemplo, imaginemos el Señor de los Anillos. Su paquete inicial podría ser dos dimensiones (Frodo y Aragorn), con un total de 10 nudos y algún Relato Paralelo. Con el tiempo, sus “nuevas ediciones” pueden contemplar otras dimensiones (Gandalf, Gollum), personajes tangenciales (la historia de Aragorn), Relatos Paralelos (la creación del anillo único), nuevos Nudos, nuevos pasajes Ready-to-Play, etc. <strong>De esta forma, aún con el libro ya publicado, el autor puede seguir dando vida a la obra, generar ingresos extras por la venta de ampliaciones y, por lo tanto, alargar la vida útil del producto.</strong>
+    </blockquote>
+
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>En la Actualidad, cuando un lector compra un libro, lo lee y se acaba el beneficio en todos los factores económicos (Creador, Editorial, Vendedor y comprador).</p>
+            <p>La siguiente acción que suele realizarse es la “revitalización” de su venta, a través de los típicos mensajes de “Nueva Edición”, “34 Ediciones”, que lo que pretende es <strong>fomentar la compra de Nuevos Lectores, pero la obra es la misma. Nada ha cambiado.</strong></p>
+            <p>Con este modelo, la promoción es más potente y atractiva, pudiendo ser “Paquetizada” como “Nueva Edición con 2 dimensiones extras, 4 nuevos nudos, 3 pasajes Ready to play y la opción de Charlar con Personajes”.</p>
+        </div>
+        <div class="image-content">
+            <img class="image-full-width" src="assets/img/image-16.webp" alt="Ciclo de Desarrollo de Extensiones de Stringbook">
+        </div>
+    </div>
+    
+    <p>Este tipo de Paquetes es <strong>susceptible de compra tanto por lectores antiguos</strong> que ya han terminado la historia y les gustaría “vivir nuevas experiencias”, pero también es de interés a los <strong>lectores actuales</strong> y, sobre todo, agita el mercado de los <strong>nuevos lectores</strong>.</p>
+    <p>De hecho, una acción muy interesante será la consulta al usuario sobre la creación de estas extensiones, haciendo así partícipe al lector de la ampliación y construcción de extensiones. Por medio de la valoración al final del libro, campañas en redes y otro tipo de consultas se podrá testar el interés real en según que tipo de extensiones.</p>
+
+    <div class="insight-box">
+        <span class="icon">💡</span>
+        <p>Pero más interesante será <strong>conocer las emociones y reacciones del Usuario</strong> a lo largo de su experiencia. De <strong>un análisis profundo de estas puede inferirse la posible demanda de estas extensiones y actualizaciones</strong>, siendo en sí mismo un Estudio de Mercado muy potente en el que apoyarse para realizar, no sólo según que otros Stringbooks, sino de ampliar los existentes, creando una estructura de Ciclo alargando de esta manera la vida útil del Stringbook.</p>
+    </div>
+</div>
+<!-- === FIN DEL CONTENIDO FALTANTE === -->
+</div>
+
+<!-- Modal para el recordatorio -->
+<div class="modal-overlay" id="reminder-modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close-button">&times;</span>
+        <h3>Recordatorio del Concepto Ampliaciones y Prestaciones</h3>
+        <p>Es importante recordar estos dos conceptos dado que, no sólo la compra de Stringbooks basa su precio en ellas, sino que también se comercializarán Ampliaciones y Prestaciones de forma aislada, consiguiendo así desbloquear funciones especiales que completan la experiencia.</p>
+        <img src="assets/img/image-15.png" alt="Diagrama de Ampliaciones vs Prestaciones" style="width:100%; max-width: 400px; margin: 15px auto; display: block;">
+        <div class="data-grid">
+            <div class="data-card">
+                <h4>➕ Ampliaciones:</h4>
+                <p>Serán todas aquellas <strong>opciones Narrativas</strong> que vienen por defecto pero amplían o completan la parte Narrativa del Stringbook.</p>
+                <ul>
+                    <li>Adquirir nuevas dimensiones</li>
+                    <li>Desbloquear Nudos Subliminales no activados</li>
+                    <li>Desbloquear Nudos Visibles no activados</li>
+                    <li>Personajes tangenciales</li>
+                    <li>Relatos Paralelos o de Contexto</li>
+                </ul>
+            </div>
+            <div class="data-card">
+                <h4>✨ Prestaciones:</h4>
+                <p>Son aquellas funciones <strong>externas a la Narración</strong> que potencian o multiplican la Experiencia del Usuario.</p>
+                <ul>
+                    <li>Ready-To-Play</li>
+                    <li>Salto de Dimensión</li>
+                    <li>Charla con Personajes</li>
+                    <li>Control de Cámara</li>
+                    <li>Versión del Usuario</li>
+                    <li>Dimensión Avatar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "Mercado, Marketing e Ingresos"...</h2>
+				<h2 class="next-section-main-title">Pero habrá otras vías de Ingresos 👉🏽</h2>
+				<blockquote>Se hace imprescindible y lógico un modelo de Suscripción, pero como Marketplace, también podemos plantear servicios extra de pago para los Autores y Editoriales. Y, desde luego, ingresos por publicidad nativa y de terceros. Veamos los casos:</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="mercado-otros-ingresos.html" class="next-section-card">
+				<img src="assets/img/portada-ingresos-2.jpg" alt="Acceso a la sección Otras vías de financiación">
+				<h3>Otras vías de financiación</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+<!-- ===================================================
+     ESTRUCTURA HTML PARA EL DESLIZANTE LATERAL							id="slideout-close-button"
+     =================================================== -->
+<div class="slideout-overlay" id="slideout-overlay"></div>
+<div class="slideout-panel" id="reminder-slideout">
+    <div class="slideout-content">
+        <span class="slideout-close" >&times;</span>
+        <h3>Recordatorio del Concepto</h3>
+        <p>Es importante recordar estos dos conceptos dado que, no sólo la compra de Stringbooks basa su precio en ellas, sino que también se comercializarán Ampliaciones y Prestaciones de forma aislada, consiguiendo así desbloquear funciones especiales que completan la experiencia.</p>
+        <img src="assets/img/ampliaciones-vs-prestaciones.webp" alt="Diagrama de Ampliaciones vs Prestaciones" style="width:100%; max-width: 300px; margin: 15px auto; display: block;">
+        <div class="data-grid">
+            <div class="data-card">
+                <h4>➕ Ampliaciones:</h4>
+                <p>Serán todas aquellas <strong>opciones Narrativas</strong> que vienen por defecto pero amplían o completan la parte Narrativa del Stringbook.</p>
+                <ul>
+                    <li>Adquirir nuevas <strong>dimensiones</strong>: desbloquear Protagonistas para recorrer la historia</li>
+                    <li>Desbloquear <strong>Nudos Subliminales</strong> no activados de inicio.</li>
+                    <li>Desbloquear <strong>Nudos Visibles</strong> no activados.</li>
+                    <li><strong>Personajes tangenciales</strong></li>
+                    <li><strong>Relatos Paralelos o de Contexto</strong></li>
+                </ul>
+            </div>
+            <div class="data-card">
+                <h4>✨ Prestaciones:</h4>
+                <p>Son aquellas funciones <strong>externas a la Narración</strong> que potencian o multiplican la Experiencia del Usuario.</p>
+                <ul>
+                    <li>Ready-To-Play</li>
+                    <li>Salto de Dimensión</li>
+                    <li>Charla con Personajes</li>
+                    <li>Control de Cámara</li>
+                    <li>Versión del Usuario</li>
+                    <li>Dimensión Avatar</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top: 15px;">En Base a estos conceptos, se definen los diferentes "Packs" de los Stringbooks.</p>
+    </div>
+</div>
+
+<!-- Modal reutilizable para Puntos Clave / Debate / Glosario / Info -->
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">ℹ️ Información</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

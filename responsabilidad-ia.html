@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Responsabilidad Ética IA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "GOBERNANZA Y RESPONSABILIDAD ÉTICA"
+   ==================================================================== */
+
+/* Contenedor principal para la rejilla de leyes */
+.laws-grid {
+    display: grid;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Estilo para cada tarjeta de ley individual */
+.law-card {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    align-items: flex-start;
+    padding: 25px;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* Contenedor del icono y el número */
+.law-icon-container {
+    flex-shrink: 0;
+    text-align: center;
+}
+.law-icon-container img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+/* Contenido de texto de la ley */
+.law-content {
+    flex-grow: 1;
+}
+
+/* Título de la ley (el texto resaltado en el PDF) */
+.law-title {
+    display: block; /* Para que ocupe su propia línea */
+    background-color: #a9d999; /* Fondo sutil para resaltar */
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-left: 4px solid var(--header-gradient-mid);
+}
+
+/* Descripción/explicación de la ley */
+.law-description {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.7;
+}
+.law-description p {
+    margin-bottom: 10px;
+}
+.law-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Nota especial para la Ley 4 (REVISAR) */
+.law-description .review-note {
+    font-weight: bold;
+    color: #c0392b;
+    background-color: #f9e3e1;
+    padding: 5px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .law-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="etica">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+<div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Responsabilidad Ética de la IA</div>
+    <h1>Gobernanza de Datos y Responsabilidad Ética de la IA</h1>
+
+    <h2>🛡️ Responsabilidad Ética de la IA</h2>
+    <p>La información del usuario contenida en un Selbook será inmensa, y de una <strong>muy alta sensibilidad</strong>. No hablamos sólo de datos personales ni gustos, hablamos de emociones y su relación con situaciones, escenas y frases.</p>
+    <p>La <strong>gobernanza de estos datos deberá estar estrictamente regulada y vigilada</strong>, siendo <strong>propiedad exclusiva del usuario</strong> y debiendo encontrar una autorización previa y expresa del usuario para su uso respecto al SelBook y otros servicios que pudieran crearse como puede ser la publicidad.</p>
+    <p>Para ello, se establecen una serie de “leyes internas” que rigen el comportamiento y administración de la información por parte de Sely, entidad compuesta de las diferentes IAs.</p>
+    
+    <h2>📜 Las 8 Leyes de Sely.</h2>
+    <p>Como hemos dicho, Sely es la Inteligencia Artificial responsable de construir, con el material de autores y escritores, la ruta que el usuario recorrerá para vivir la Historia que ha comprado. Pero también es tu compañera de viaje, tu consultora, tu confidente... Se hace imprescindible establecer una Leyes de Compromiso y obligado cumplimiento. Estas son las 8 Leyes de Sely.</p>
+
+    <div class="laws-grid">
+        
+        <!-- Ley 1 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-1.webp" alt="Icono Ley 1">
+            </div>
+            <div class="law-content">
+                <span class="law-title">1. Sely debe velar por tu Salud Emocional y Psicológica, evitando situaciones emocionales excesivas o dañinas.</span>
+                <div class="law-description">
+                    <p>No todo vale, Sely debe saberlo y establecer unos límites. Gran parte de estos límites sólo son posibles con la información que ofrece el usuario. Por ejemplo, si el usuario a sufrido algún tipo de episodio de secuestro o de acoso, Sely debe evitar estas situaciones. Pero si Sely no tiene esta información, <strong>deberá estar atenta a las reacciones y emociones del Usuario y detener la historia si percibe unos grados demasiado elevados</strong> en tus emociones y reacciones y preguntar al Usuario por su salud emocional y por las opciones de ruta alternativas para evitarlas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 2 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-2.webp" alt="Icono Ley 2">
+            </div>
+            <div class="law-content">
+                <span class="law-title">2. Sely debe provocarte emociones, sentimientos y sensaciones de todo tipo, siempre que no incumpla la 1ª ley.</span>
+                <div class="law-description">
+                    <p>Para poder cumplir con el objetivo final del Selbook, establecida en la 8ª Ley, se hace necesario que el usuario tenga emociones y sentimientos hacia la historia, trama, argumentos y personajes. Para ello, dispondrá de todas las herramientas subliminales y audiovisuales que tenga a su disposición y deberá usarlas, sin incumplir la 1ª ley, para provocar la mejor experiencia de usuario.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 3 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-3.webp" alt="Icono Ley 3">
+            </div>
+            <div class="law-content">
+                <span class="law-title">3. Sely nunca accederá a información personal sin tu permiso.</span>
+                <div class="law-description">
+                    <p>Este punto es muy importante. <strong>El usuario debe tener plena confianza en Sely</strong> y tener claro que sólo usará la información que el usuario decida compartir con ella. Si por ejemplo, un usuario decide No conectar sus redes sociales, Sely no podrá acceder a ellas en busca de información. Sí podrá “sugerirte” la conexión en aras de una mejor experiencia de usuario, pero sin el permiso expreso del usuario, jamás podrá acceder a información no autorizada o no suministrada.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 4 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                 <img src="assets/img/ley-de-sely.png" alt="Icono Ley 4">
+            </div>
+            <div class="law-content">
+                <span class="law-title">4. Sely, bajo ningún concepto y sin excepciones, <span class="sb-note"
+         data-sb-type="debate"
+         data-sb-title="Discusión"
+         data-sb-content="Hay que buscar la fórmula para que tanto autores como empresas publicitarias puedan acceder a la información de perfiles. Asegurar el anonimato o crear «perfiles tipo», segmentaciones, etc. No enseñaremos una publicidad a Juan porque conocemos a Juan, sino que se muestra a Juan porque pertenece al Perfil Tipo «X». Del mismo modo, los Autores sabrán que los Perfiles tipo «Z» son sus mayores lectores y que a estos les atrae o gustan tales cosas, y no les gusta otras. ¿Esto es buena opción?">
+  podrá compartir con terceros ni con la Comunidad la información personal
+  &nbsp;<i class="fas fa-comment-dots sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span>, ni los datos de tu perfil Estático ni Dinámico, ni podrá revelar o usar la información de vuestras charlas ni de las decisiones de ruta o imputs recogidos por el dispositivo BIC.</span>
+                <div class="law-description">
+                    
+                    <p>Es decir, <strong>los datos de tu perfil e información personal, no serán vendidos a otras empresas</strong>. Tampoco podrán ser usados por la propia empresa para otros fines comerciales o publicitarios fuera de tu entorno de usuario. Tu información sensible sólo podrá usarse para el beneficio de tu experiencia de usuario, para definir tu perfil, adaptar la Historia, tomar decisiones de ruta o proponerte historias que se ajusten a tu perfil.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 5 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-5.webp" alt="Icono Ley 5">
+            </div>
+            <div class="law-content">
+                <span class="law-title">5. Sely, bajo ningún concepto y sin excepciones, alimentará o promoverá ningún prejuicio o discriminación por razones de sexo, religiosas, políticos o raza, ni ninguna clase de delitos de odio. Tampoco promoverá ningún tipo de acción, representación ni tendencia pornográfica.</span>
+                <div class="law-description">
+                    <p>Esto significa que <strong>ninguna elección de ruta estará basada en ningún tipo de discriminación</strong> de este tipo. Incluso si el usuario presenta algún prejuicio o tendencia discriminatoria de estos tipos, no serán almacenados ni usados para mejorar de ninguna forma la experiencia de usuario. También significa que las posibles escenas de sexo no estarán inducidas por Sely, serán licencias del autor en todo caso, ni podrá proponer ni promover ni recrear escenas con contenido sexual explícito.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 6 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-6.webp" alt="Icono Ley 6">
+            </div>
+            <div class="law-content">
+                <span class="law-title">6. Sely, bajo ningún concepto y sin excepciones, alimentará o promoverá ni permitirá ningún tipo de influencia externa basada en el adoctrinamiento político o ideológico.</span>
+                <div class="law-description">
+                    <p>Esto pretende <strong>salvaguardar la independencia ideológica y de creencias</strong>. Es decir, no podrá mostrarse publicidad ideológica, las historias no podrán estar patrocinadas por movimientos políticos o ideologías y cualquier tipo de propaganda o adoctrinamiento político estará prohibido en el entorno del usuario ni en La Comunidad.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ley 7 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/ley-7.webp" alt="Icono Ley 7">
+            </div>
+            <div class="law-content">
+                <span class="law-title">7. Derecho a la Eliminación de Datos. El usuario podrá, en el momento en que lo desee, eliminar todos sus datos, perfiles y e información de Imputs. Sely velará para que esa eliminación sea completa e irrecuperable.</span>
+                <div class="law-description">
+                    <p>Es decir, si el usuario decide eliminar su cuenta o quiere reiniciar el sistema, <strong>la empresa se compromete al borrado absoluto de la información</strong> contenida en sus bases de datos respecto al usuario.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ley 8 -->
+        <div class="law-card">
+            <div class="law-icon-container">
+                <img src="assets/img/Ley-9.webp" alt="Icono Ley 8">
+            </div>
+            <div class="law-content">
+                <span class="law-title">8. Sely debe construir y tomar la decisiones necesarias para que el usuario viva La Mejor Historia que Jamás le Han contado.</span>
+                <div class="law-description">
+                    <p>Es decir, <strong>Sely tiene la responsabilidad y obligación de conseguir que el usuario tenga una experiencia literaria única</strong> siempre que no incumpla ninguna de las leyes anteriores. Para ello, tomará <strong>decisiones fundamentadas en la información ofrecida por el usuario y la recogida por el BIC</strong>. Eso significa que no siempre irá por la ruta más lógica o afín a tu perfil, o tu preferencia por recorrer una escena con la opción de lectura. Sely, por ejemplo, puede interpretar que esa escena te va a impresionar más si la recorres con un Clip. U otro ejemplo, Sely puede percibir desagrado en alguna escena o personaje, pero es no implica que elija otra ruta, puede que pare el “Fin Último”, para cumplir con la 8ª Ley, Sely decida mantener esa emoción o sensación.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">El Selbook es Algo más… 👉🏽</h2>
+				<blockquote>Estos conceptos son Esenciales, son los que llevan la Experiencia Selbook a un nivel inimaginable. Las Ampliaciones nos hablan de Extensiones Narrativa y las Prestaciones de Extensiones que potenciarán la UX.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="ampliaciones-prestaciones.html" class="next-section-card">
+				<img src="assets/img/portada-ampliaciones.webp" alt="Acceso a la sección Ampliaciones y Prestaciones">
+				<h3>Ampliaciones y Prestaciones</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">💬 Debate</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

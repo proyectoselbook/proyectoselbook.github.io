@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Obras y Autores</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "STRINGBOOK Y AUTORES" (VERSIÓN CORREGIDA Y MEJORADA)
+   ==================================================================== */
+
+/* Contenedor de dos columnas para texto e imagen */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text-content, .two-column-layout .image-content {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+/* Rejilla general para tarjetas de roles, análisis y servicios */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+/* Estilo BASE para todas las tarjetas de esta página */
+.info-card {
+    background-color: #3c5732; /* Fondo gris oscuro */
+    color: #e0e0e0; /* Texto gris claro */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.info-card:hover {
+    transform: translateY(-5px);
+}
+.info-card h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-card h4 .fas { /* Estilo para iconos Font Awesome */
+    font-size: 0.9em;
+}
+.info-card p {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #dbfbde; /* Texto ligeramente más oscuro que el título */
+}
+
+/* ESTILOS ESPECÍFICOS POR TIPO DE TARJETA */
+
+/* Tarjetas de Área Narrativa y Editorial (Glow Verdoso) */
+.role-card {
+    border: 1px solid #3f3f3f;
+    box-shadow: 0 0 15px rgba(0, 255, 140, 0.15);
+}
+.role-card:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 140, 0.4);
+}
+.role-card h4 {
+    color: var(--sidebar-accent-color); /* Título verde */
+    border-bottom: 1px solid #444;
+}
+
+/* Tarjetas de Análisis y Datos (Borde Naranja) */
+.analytics-card {
+    border-left: 5px solid var(--button-color); /* Borde izquierdo naranja */
+	background-color: #4a4948;
+}
+.analytics-card h4 {
+    color: #ffad47; /* Título naranja */
+    border-bottom: 1px solid #555;
+}
+.analytics-card p {
+	color: #fff2c7;
+}
+/* Tarjetas de Servicios (Borde Morado-Neón) */
+.service-card {
+    border-left: 5px solid #a855f7; /* Borde izquierdo morado-neón */
+	background-color: #575757;
+}
+.service-card h4 {
+    color: #ccb4e4; /* Título morado-neón */
+    border-bottom: 1px solid #555;
+}
+.service-card p {
+    color: #fbe4f9; /* Título morado-neón */
+
+}
+
+/* Lista ordenada para la dinámica de trabajo */
+.workflow-list {
+    list-style: none;
+    counter-reset: workflow-counter;
+    padding-left: 0;
+    margin-top: 20px;
+}
+.workflow-list li {
+    counter-increment: workflow-counter;
+    margin-bottom: 15px;
+    padding-left: 50px;
+    position: relative;
+    font-size: 1.1em;
+}
+.workflow-list li::before {
+    content: counter(workflow-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    background-color: var(--header-gradient-mid);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Caja de ejemplo para las rutas */
+.example-box {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-left: 4px solid var(--sidebar-accent-color);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: var(--border-radius);
+}
+.example-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Lista para las Tareas Editoriales */
+.task-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+.task-list li {
+    padding-left: 20px;
+    position: relative;
+}
+.task-list li::before {
+    content: '•';
+    color: var(--button-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* ====================================================================
+   ESTILOS PARA EL BLOQUE DE TRANSICIÓN ENTRE SECCIONES
+   ==================================================================== */
+
+.section-transition {
+    background-color: #f7f7f7; /* Fondo gris claro */
+    border: 1px solid #e9e9e9;
+    /* Resalte con borde izquierdo verde */
+    border-left: 5px solid var(--sidebar-accent-color); 
+    padding: 25px 30px;
+    margin: 50px 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.transition-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.transition-header .fas {
+    font-size: 2em; /* Icono grande */
+    color: var(--header-gradient-end); /* Icono en verde oscuro corporativo */
+}
+
+.transition-header h3 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.5em;
+    color: var(--text-dark);
+}
+
+.transition-text {
+    margin: 0;
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #333;
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="stringbook">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+	<div class="main-section">
+    <div class="content-breadcrumbs">El Producto / Stringbook y Autores</div>
+    <h1>Stringbook y Autores</h1>
+
+    <h2>Un nuevo concepto de Autor y Obra</h2>
+    <div class="two-column-layout">
+        <div class="text-content">
+            <p>La naturaleza del Selbook y de los Stringbook provocan que las Novelas ya no se puedan escribir de una manera tradicional, pero es necesario que los autores sean aún <strong>“propietarios” del argumento y de la historia</strong>. Para ello, deberán añadir "alguna capa" de información extra a sus obras.</p>
+            <p>También, la magnitud real de un Selbook que busque crear una experiencia única (lo más completa posible), hace casi imprescindible que las Obras no puedan ser creadas en su totalidad por un solo autor. Por otro lado, es incluso deseable que así sea. Pensemos que cada dimensión (protagonista elegible), tiene que tener su perspectiva e, idealmente, estilo o “voz” diferente. También hay BSO y efectos sonoros, se precisa también de conocimientos de Prompting, etc.</p>
+            <p>Por último, a la hora de “entregar la obra", el autor/es deben ser quienes provean de las diferentes emociones o decisiones que se pueden encontrar en un nudo.</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img/area-narrativa-vs-area-editorial.webp" alt="Área Narrativa vs Área Editorial">
+        </div>
+    </div>
+    <p>Esta "especial” configuración del Stringbook y su necesaria relación con el Selbook, provoca que existan dos áreas de trabajo a la hora de preparar una obra: <strong>El Área Narrativa y el Área Editorial</strong>.</p>
+    <p>El Área Narrativa estará en manos del Autor, pero del Área Editorial podrá hacerla el mismo autor si tiene los conocimientos, podrá delegarla en su Editorial (tradicional) y, si quiere mantener su independencia, <strong>Sely y toda la Organización Selbook se pondrá a su disposición.</strong></p>
+    <p>De estos puntos vamos a hablar en esta sección.</p>
+
+    <h2>Área Narrativa</h2>
+    <p>El Área Narrativa afecta a <strong>toda la parte argumental de la historia. Es decir: El Texto.</strong> Claro que sería posible que <span class="sb-note"
+         data-sb-type="debate"
+         data-sb-title="Discusión"
+         data-sb-content="Puede que aquí esté el quid de «la IA como autor». Podría ser que el Autor «Jefe» sea humano y delegue la creación de ciertos pasajes o rutas, bajo premisas e instrucciones, a la IA. La IA habría aprendido sobre su estilo de escritura, o incluso se le podría indicar cierto estilo concreto. El Autor pasaría a ser una especie de Jefe de Proyecto que dirige y guía a la IA, participando con su propia «mano» donde él lo decida. En la venta de Stringbook podría señalarse este tipo de contribución: 75% Humano, por ejemplo.">
+  una única persona fuera la responsable de la creación de un Stringbook
+  &nbsp;<i class="fas fa-comment-dots sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span>, pero su tarea sería titánica. Una organización o grupo bien definido podría realizar ese trabajo de manera más eficiente y rápida.</p>
+    <p>Teniendo esto en cuenta, una estructura mínima sería:</p>
+    <div class="content-grid">
+        <div class="info-card role-card"><h4><i class="fas fa-user-tie"></i>Jefe de proyecto/ideólogo</h4><p>Encargado de supervisar el trabajo del conjunto y autor de la trama principal.</p></div>
+        <div class="info-card role-card"><h4><i class="fas fa-sitemap"></i>Supervisor de Trama</h4><p>Responsable de que la historia y las rutas sean coherentes con el fin buscado.</p></div>
+        <div class="info-card role-card"><h4><i class="fas fa-pen-fancy"></i>Escritores de Ruta</h4><p>Responsables de escribir las diferentes rutas que surjan de cada Nudo.</p></div>
+        <div class="info-card role-card"><h4><i class="fas fa-feather-alt"></i>Escritores de Alternativas</h4><p>Encargados de los relatos paralelos y personajes tangenciales.</p></div>
+    </div>
+
+    
+    
+    <div class="two-column-layout">
+        <div class="text-content">
+		    <h3>Dinámica de trabajo:</h3>
+		<p>Existirán mil formas de afrontar una obra de este calibre. Para un escritor no es complejo comprender la idea de "disgregar" en alternativas su idea o trama, es algo que suele atender, estudiar y decidir, con la diferencia que en un Stringbook no tiene por qué descartar ninguna opción. En este caso, actuaría como Director de Guion, dando las indicaciones a sus escritores.</p>
+            <p>La forma más orgánica de trabajo sería la creación tradicional de una novela, después, con un estudio de la obra, marcar los Nudos y definir las sub-tramas con las emociones relacionadas, relatos paralelos, etc.. Él o sus Escritores de Ruta se encargarán de la narración alternativa.</p>
+            <p>Al finalizar la narración de esa dimensión y con el conocimiento global de la historia, será más sencillo la creación de otras dimensiones (protagonistas).</p>
+        </div>
+        <div class="image-content">
+            <img src="assets/img//dinamica-de-trabajo.webp" alt="Diagrama de la dinámica de trabajo">
+        </div>
+    </div>
+    <p>La dinámica de trabajo podría ser:</p>
+    <ol class="workflow-list">
+        <li>Creación de la Historia Principal.</li>
+        <li>Estudio y decisión de Rutas/nudos.</li>
+        <li>Asignación de Emociones relacionadas a las Rutas.</li>
+        <li>Definición de enlaces o injertos (es decir, puntos donde esas rutas vuelven a conectar con la historia principal).</li>
+        <li>Creación del resto de Dimensiones, con el conocimiento e influencia de la historia principal.</li>
+    </ol>
+    
+    <div class="example-box">
+         <p>Imaginemos que el autor cuenta la historia de un chico, Tom, que con su amigo Sam se van de viaje en coche. Al llegar a una gasolinera, al autor se le ocurrió introducir un nuevo Personaje, Mary. El autor decide que este punto es un Nudo Subliminal. Su propuesta podría ser la siguiente:</p>
+        <ul>
+            <li><strong>Ruta 1, Escritor Ruta A:</strong> Si al Lector le gusta Mary, pero sospecha de ella, discute con Sam, Sam desaparece y Tom y Mary siguen juntos... A demás de otras indicaciones o tramas y con un objetivo definido, por ejemplo: ven a un camión y deciden seguirlo pensado que Sam va allí. El enlace ocurre en el bosque.</li>
+            <li><strong>Ruta 2, Escritor Ruta B:</strong> Si al lector no le gusta Mary, pero presiente que a Sam sí le gusta, siguen los tres juntos, hacemos un pasaje tipo road-trip con algo de emoción, un Camión les persigue... y otras indicaciones que tenga un objetivo común con el resto de rutas.</li>
+        </ul>
+    </div>
+    <p>En definitiva, con esta nueva estructura, una obra estará terminada en su parte narrativa cuando todas las rutas, dimensiones y relatos alternativos estén completos. El material que el Autor debe entregar no sólo consistirá en el texto, también debe dejar definido las emociones que quiere relacionar con cada ruta y dimensión, así como una serie de etiquetas que definan cada dimensión.</p>
+
+    <h2>Área Editorial</h2>
+    <p>Las principales Acciones que incluyen este área son:</p>
+    <div class="content-grid">
+        <div class="info-card role-card"><h4><i class="fas fa-brain"></i>Ingeniería de Prompting</h4><p>Para definir el Prompt relacionado con cada pasaje o personaje susceptible de ser Generado por IA.</p></div>
+        <div class="info-card role-card"><h4><i class="fas fa-code-branch"></i>Programadores de Ruta</h4><p>Encargados de realizar las conexiones y relaciones de los Nudos-Rutas.</p></div>
+        <div class="info-card role-card"><h4><i class="fas fa-headphones-alt"></i>Ingenieros de Sonido</h4><p>Responsables de la BSO y de los efectos de sonido.</p></div>
+    </div>
+    <p>Existen otros tipos de tareas Editoriales que deberán estar definidas, pero estas dependerán de las Prestaciones que el autor decida que tenga su obra. Estas son:</p>
+    <ul class="task-list">
+        <li>Punto de Salto de Dimensión</li>
+        <li>Escenas Ready-to-Play</li>
+        <li>Situaciones de Ventanas Dimensionales</li>
+        <li>Charla con Protagonistas</li>
+    </ul>
+    <p>Las acciones definidas en este área son esenciales, pero no siempre tienen por qué precisar de la acción del Autor para su definición. Si es lógico su asesoramiento, pero existirán 3 opciones a la hora de definir estos aspectos:</p>
+    <div class="options-container">
+        <div class="option-card author">1. El propio autor, con su grupo de trabajo.</div>
+        <div class="option-card editorial">2. Una Editorial</div>
+        <div class="option-card selbook">3. Dejarlo en manos del Selbook.</div>
+    </div>
+    <p>Las opciones más viables serían dejarlo en manos de una Editorial. Tal y como ocurrió con la aparición de los libros digitales, que exigieron que las editoriales crearan departamentos concretos para la maquetación de obras digitales, tal ocurrirá también con los Selbook.</p>
+    <p>Pero existirá la opción de dejarlo en Manos del Selbook (Sello Nativo) y de Sely, para lo cual, la obra sí exigirá cierto tratamiento especial.</p>
+
+    <h3>No son Obras, son Proyectos...</h3>
+    <p>Como podemos adivinar, la Obra completa acabará cuando el Autor realmente quiera. Su "Stringbook de lanzamiento" puede contendrá la Historia o Trama principal" con diferentes ampliaciones y prestaciones, pero tanto a nivel Narrativo como Editorial, se puede seguir trabajando en ella, lanzando nuevas "extensiones", creando así una Obra cada vez más Completa. A través de Nuevas Dimensiones, nuevos Nudos, nuevas escenas de Ready-to-Play, Relatos Paralelos y de Contexto, Personajes tangenciales... la vida y venta del Stringbook no acaba cuando se llega a la palabra FIN, porque un lector de Stringbook que ya acabó la historia en diferentes rutas, es muy posible que esté interesado en vivirla a través de un nuevo Protagonista (Dimensión) que se haya habilitado, o querrá comprar la historia de un personaje Tangencial, o un Relato Paralelo...</p>
+    <p>Apoyado en los <strong>Servicios de Análisis</strong> (que veremos a continuación) que el Selbook pone a su disposición, tanto el Autor como la Editorial podrán seguir interesados en publicar nuevas actualizaciones de esa Obra y el lector seguirá pagando por ellas.</p>
+    <h3>Diagrama:</h3>
+    <img src="assets/img/diagrama-flujo-de-creacion.webp" alt="Diagrama de flujo de creación de un Stringbook" class="image-full-width lightbox-trigger">
+    
+    <h2><span class="sb-note"
+         data-sb-type="key"
+         data-sb-title="Punto Clave"
+         data-sb-content="Estos servicios serán la base del modelo de Suscripción para Autores, creando un escalado para Servicios Básicos y Servicios Premium. Disponer de análisis de perfiles y estadísticas, acceso a la «Galería de recuerdos», a las rutas más leídas, personajes más leídos, etc. Ofrecerá al Autor una información increíble para ampliar sus obras y crear nuevas versiones más afines a sus lectores, consiguiendo así más ventas.">
+  📊 Servicios, Datos y Analíticas para Autores y Editoriales
+  &nbsp;<i class="fas fa-star sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></h2>
+    <p>Como Modelo MarketPlace, no sólo tenemos el “lado del lector", también existirá un espacio especial y completo para los Autores y Editoriales, con una serie de ventajas que, hasta hoy en día, sin impensables. Cada Autor/editorial también dispondrá de su IA Anfitriona (Sely), que le ayudará a <strong>extraer toda la información útil de los datos y análisis</strong> realizados sobre sus obras y lectores. Los autores/editores dispondrán de:</p>
+    <h3>Datos y Análisis</h3>
+    <div class="content-grid">
+        <div class="info-card analytics-card"><h4><i class="fas fa-chart-line"></i>Datos de ventas instantáneas</h4><p>El Autor/editorial tendrá acceso a sus ventas de Stringbooks, Ampliaciones y Prestaciones, así como cualquier ingreso derivado de sus obras, con segmentaciones tipo de venta (stringbook, ampliaciones...), por perfiles y tipología de usuarios.</p></div>
+        <div class="info-card analytics-card"><h4><i class="fas fa-brain"></i>Análisis de Nudos, Rutas y Emociones</h4><p>Dispondrán de un potente y profundo análisis de las rutas más leídas, decisiones más populares, las emociones relacionadas, sensibilidad de emociones, fragmentos con más impacto emocional, etc. Una forma de poder contrastar, aprender y conocer cómo se relaciona el lector con su obra.</p></div>
+        <div class="info-card analytics-card"><h4><i class="fas fa-user-check"></i>Análisis de Emociones y Perfiles</h4><p>No sólo tendrán acceso a la tipología de Perfiles más afines a sus obras, sino que en base al estudio de los Perfiles Estáticos y Dinámicos de sus obras podrán inferir que tipo de obra futura tendría una alta posibilidad de éxito, dándole recomendaciones de Géneros, épocas, temáticas, personajes, etc.</p></div>
+        <div class="info-card analytics-card"><h4><i class="fas fa-users"></i>Análisis de Dimensiones y Relatos Alternativos</h4><p>También existirá un análisis completo de las dimensiones (protagonistas) más elegidas, las más "emocionales”, preferencias y tendencias, análisis de emociones, así como de cualquier otro Personaje Tangencial o Relato Paralelo.</p></div>
+        <div class="info-card analytics-card"><h4><i class="fas fa-tags"></i>Análisis de Prestaciones y Ampliaciones</h4><p>En la misma línea, tendrá acceso a la venta, tendencias y preferencias de los lectores sobre sus diferentes Prestaciones y Ampliaciones.</p></div>
+        <div class="info-card analytics-card"><h4><i class="fas fa-music"></i>Análisis de Banda Sonora y efectos</h4><p>Podrá conocer la percepción y gustos de los lectores sobre los componente sonoros.</p></div>
+    </div>
+    <h3>Servicios:</h3>
+    <div class="content-grid">
+        <div class="info-card service-card"><h4><i class="fas fa-laptop-code"></i>Landing Page de Obra y de Autor</h4><p>Se creará una Landing Page para cada Stringbook con toda la información de la obra y su creación. A su vez, os Autores/editores tendrán otro Micro-site con todas las obras y venta directa desde ella.</p></div>
+        <div class="info-card service-card"><h4><i class="fas fa-bullhorn"></i>Servicios de Promoción</h4><p>Si el Autor es de sello Nativo, será la Organización Selbook quien se encargue de la promoción de la obra con unos servicios mínimos que podrán ser ampliables con diferentes paquetes de pago.</p></div>
+        <div class="info-card service-card"><h4><i class="fas fa-comments"></i>Cafetería de Autor y/o Obra</h4><p>El autor podrá crear su propia Cafetería en La Comunidad o crear una cafetería sobre su obra. Recordemos que es un canal tipo Discord donde podrá recoger información sobre sus lectores, así como interactuar con ellos. Podrá pedir a Sely que administre y gestione el canal.</p></div>
+        <div class="info-card service-card"><h4><i class="fas fa-sync-alt"></i>Sistema de Actualizaciones</h4><p>El autor/editorial, gracias a la información recibida en los análisis, podrá crear actualizaciones, versiones y ediciones sobre las obras ya publicadas. Por ejemplo, creando rutas nuevas, modificando la Banda sonora, abriendo una nueva dimensión, etc.</p></div>
+        <div class="info-card service-card"><h4><i class="fas fa-archive"></i>Acceso al Archivo de Experiencias de los lectores (de pago)</h4><p>Los Autores/editores podrán tener acceso a la recopilación de Archivos de Experiencia de los lectores (anónimos) y podrán estudiar sus pasajes compartidos, creaciones multimedia, etc. Una información muy valiosa que podrán usar para crear sus promociones y análisis de proyectos futuros.</p></div>
+        
+    </div>
+	<div class="info-card service-card"><h4><i class="fas fa-lightbulb"></i>Propuestas Creativas de Sely</h4><p>Con toda la información inferida de los datos y análisis de obras y lectores, y con el conocimiento recogido sobre el autor y su obra, Sely tendrá la capacidad de dar sugerencias muy optimizadas sobre la creación de futuras obras.</p>
+		<div style="border-left: 1px solid grey; padding: 7px;">
+		<p>Por ejemplo, Sely puede detectar que sus lectores suelen tender hacia la intriga y menos hacia la Romantica. Que le atraen protagonistas con cierta personalidad, que las situaciones de persecución son las de mayor poder emocional, que tienen o les gusta más las historias basadas en la segunda guerra mundial… Etc. Una información increíble con la que Sely podrá proponerle la creación de una obra que englobe estos parámetros, nunca entrando en la parte creativa, pero sí en la definición de la idea: Escribe una obra sobre un Espía Aliado en la 2ªWW infiltrado en Berlin que debe descubrir los planes secretos de Hitler sobre la ocupación de Francia…</p>
+		</div>
+	</div>
+	
+</div>
+    
+    <!-- ===================================================
+     BLOQUE DE TRANSICIÓN A LA SIGUIENTE SECCIÓN
+     =================================================== -->
+<div class="section-transition">
+    <div class="transition-header">
+        <!-- Icono de check para indicar que la sección ha terminado -->
+        <i class="fas fa-check-circle"></i>
+        <h3>Fin de la Sección: El Producto</h3>
+    </div>
+    <p class="transition-text">
+        Ya conoces en profundidad qué es un Selbook y el increíble potencial que esconde. Ahora, es el momento de explorar cómo este concepto innovador se convierte en un modelo de negocio viable y atractivo.
+    </p>
+</div>
+
+<!-- AQUÍ DEBAJO IRÍA TU BLOQUE <section class="next-section-wrapper"> YA EXISTENTE -->
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">Siguiente sección. </h2>
+				<h2 class="next-section-main-title">Mercado, Marketing e Ingresos 👉🏽</h2>
+				<blockquote>¿Hablamos de El Mercado, Ingresos, Vías de Financiación y Marketing? ¿De verdad hay mercado potencial? ´¿Cómo se generarán los ingresos? ¿Qué estrategias de Marketing serían idóneas? Todo lo veremos en la siguiente sección.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="intro-mercado-ingresos.html" class="next-section-card">
+				<img src="assets/img/portada-mercado-potencial.webp" alt="Acceso a la sección sobre Otras Aplicaciones">
+				<h3>Mercado, Marketing e Ingresos</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+<!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">💬 Debate</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

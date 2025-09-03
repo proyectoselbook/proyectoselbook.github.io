@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Definición Técnica</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* === ESTILOS ESPECÍFICOS PARA LA PÁGINA "DEFINICIÓN TÉCNICA" === */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+.feature-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 20px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.feature-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+.feature-card-header .icon { font-size: 1.8em; color: var(--header-gradient-mid); }
+.feature-card h3 { margin: 0; padding: 0; border: none; font-size: 1.3em; }
+.feature-card ul { list-style: none; padding: 0; }
+.feature-card li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 12px;
+}
+.feature-card li::before {
+    content: '✓';
+    color: var(--header-gradient-end);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+.ai-host-section {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: var(--border-radius);
+}
+.ai-host-section img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.ai-host-section ul {
+    list-style-type: none; padding: 0;
+    columns: 2;
+}
+ .ai-host-section li {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--sidebar-accent-color);
+    font-size: 0.9em;
+ }
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+.two-column-layout .text, .two-column-layout .image {
+    flex: 1;
+    min-width: 300px;
+}
+.two-column-layout .image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+ul.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+ul.checklist li {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 12px;
+}
+ul.checklist li::before {
+    content: '✓';
+    color: var(--header-gradient-end);
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.testimonial-box {
+    background: #f0f4f8;
+    border-left: 5px solid #64b5f6;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    font-style: italic;
+}
+.inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: var(--border-radius);
+}
+.input-item {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 900px) {
+    .ai-host-section, .two-column-layout { flex-direction: column; }
+    .ai-host-section img { max-width: 200px; margin: 0 auto; }
+    .ai-host-section ul { columns: 1; }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="definicion-tecnica">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+    <div class="content-breadcrumbs">El Producto / Definición Técnica</div>
+    <h1>Definición Técnica del Selbook</h1>
+    
+    <div class="main-section">
+      
+        <h2>¿Qué es un SelBook?</h2>
+        <p>El término proviene de la combinación de las palabras <strong>Libro de Elecciones Subliminales</strong>: SelBook = S-El-Book = <strong>Subliminal Election Book</strong>.</p>
+        <p>Aunque las elecciones "subliminales" (invisibles e inconscientes) no son el "todo", sí son <strong>la parte más esencial de su propuesta</strong>. Estas elecciones, establecidas en diferentes puntos de la narración, tienen la capacidad de <strong>"adaptar y personalizar"</strong> una historia en base a las emociones y reacciones del usuario.</p>
+        <div class="callout definition">
+            <p>Un SelBook es un “libro” electrónico capaz de <strong>adaptar y personalizar la Historia</strong> o Relato a los gustos, reacciones y emociones del lector de una forma inconsciente, llevándole por rutas narrativas y generando contenidos multimedia a medida capaces de crear una <strong>atmósfera inmersiva, única e irrepetible</strong> para el lector/usuario.</p>
+        </div>
+        <div class="callout">
+            <h3>Una Experiencia Única e Irrepetible</h3>
+            <p>Gracias a las diferentes alternativas de elección, <strong>cada Historia comprada por el usuario será prácticamente única</strong>. Dos usuarios que compren la misma "novela", la recorrerán y vivirán de forma diferente, aunque compartirán un argumento central y personajes comunes. <strong>Incluso si el mismo usuario la volviera a leer, sería una historia diferente, puesto que la recorrería por rutas distintas</strong>.</p>
+        </div>
+
+        <h2>Definición por sus Características</h2>
+        <p>Para comprender en detalle lo que propone esta idea, la hemos desglosado en sus características principales:</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card-header"><span class="icon">📖</span><h3>Narrativa</h3></div>
+                <ul>
+                    <li>Adapta el argumento al lector según sus emociones, reacciones y sensaciones.</li>
+                    <li>Ofrece múltiples "rutas" o tramas dentro de la misma historia, permitiendo <strong>múltiples lecturas</strong>.</li>
+                    <li>Permite diferentes <strong>géneros</strong> como intriga, aventura, suspense o romance dentro del mismo relato.</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header"><span class="icon">🎨</span><h3>Ambientación</h3></div>
+                <ul>
+                    <li>La historia tendrá su <strong>propia BSO</strong> con un tema principal.</li>
+                    <li>La BSO se adaptará dinámicamente al <strong>ritmo de la lectura</strong> y a la escena.</li>
+                    <li>Existirán <strong>efectos sonoros</strong> coordinados con la lectura.</li>
+                    <li>Se generarán <strong>ilustraciones de refuerzo</strong> a demanda para escenas y personajes.</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header"><span class="icon">⚙️</span><h3>Configuración</h3></div>
+                <ul>
+                    <li>El usuario decidirá y configurará el <strong>grado "subliminal"</strong> de las elecciones.</li>
+                    <li>Decidirá el grado y el momento de activación de los <strong>componentes audiovisuales</strong>.</li>
+                    <li>Podrá crear un <strong>Avatar/personaje</strong> para recorrer la historia (pendiente de estudio).</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header"><span class="icon">🎬</span><h3>Formato</h3></div>
+                <ul>
+                    <li>Permite una <strong>lectura tradicional</strong>.</li>
+                    <li>Ciertos pasajes o situaciones podrán ser recreados en <strong>vídeo</strong>.</li>
+                    <li><strong>Video-stories:</strong> recreación visual con voz en off y subtítulos.</li>
+                    <li>Lectura o visionado en formato <strong>Cómic</strong>.</li>
+                    <li>Escucha en formato <strong>Podcast</strong> en cualquier momento.</li>
+                </ul>
+            </div>
+             <div class="feature-card">
+                <div class="feature-card-header"><span class="icon">🖐️</span><h3>Interactividad</h3></div>
+                <ul>
+                    <li>Permitirá al usuario <strong>elegir entre diferentes personajes</strong> para recorrer la historia.</li>
+                    <li>Permite tomar <strong>decisiones directas</strong> para ir por una trama u otra.</li>
+                    <li>Permite <strong>tomar acción</strong> en ciertos pasajes (controlar un avión, dirigir una incursión...).</li>
+                    <li>Existirá una <strong>IA Anfitriona (Sely)</strong> con la que interactuar, preguntar y pedir sugerencias.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Combinación de 3 Elementos</h2>
+        <p>En realidad, Selbook es el nombre genérico que damos a la combinación de los 3 elementos que conforman esta idea. Vamos a verlos uno a uno:</p>
+        <img src="assets/img/3-componentes-selbook.jpg" alt="Diagrama de los 3 elementos de Selbook: Plataforma, Dispositivo BIC y StringBook" class="image-full-width lightbox-trigger">
+        
+        <h3>1. StringBook: El Libro Cuerda</h3>
+        <p>El término cuerda ilustra la idea a la perfección: es la combinación de múltiples hilos entrelazados que tienen un principio y fin compartido. Un StringBook no es un relato con múltiples finales. <strong>La historia tiene un principio y un final, pero el lector podrá recorrerla por diferentes "hilos"</strong>, saltando entre ellos en puntos concretos llamados <strong>Nudos</strong>. Estos nudos podrán ser de 3 tipos: Invisibles-Inconscientes (Subliminales), Visibles-Inconscientes y Visibles-Conscientes.</p>
+        <div class="two-column-layout">
+            <div class="text">
+                <p>Cuando terminamos una novela solemos <em>“quedarnos con ganas”</em> de algo más, de conocer la historia no contada de algún personaje… El SelBook resuelve esto, ofreciendo varias diferencias clave:</p>
+                <ul class="checklist">
+                    <li>Se puede recorrer la historia desde la <strong>perspectiva del protagonista</strong> que elijamos.</li>
+                    <li>Dentro de cada ruta, seguirán existiendo <strong>tramas, subtramas y saltos temporales</strong> como en una estructura tradicional.</li>
+                    <li>Las tramas secundarias o relatos mencionados podrán ser escritos en su totalidad, <strong>formando su propia ruta</strong>.</li>
+                    <li>Existirán <strong>“Relatos Paralelos”</strong> que complementan la historia (ej: cómo Smeagol se convirtió en Gollum).</li>
+                    <li>Al acabar, habremos vivido la historia del Autor, pero con la posibilidad de <strong>releerla por caminos diferentes</strong> o con otro protagonista.</li>
+                </ul>
+            </div>
+            <div class="image">
+                <img src="assets/img/diagrama-de-diferencias.webp" alt="Diagrama de diferencias entre una novela tradicional y un Selbook">
+            </div>
+        </div>
+        <div class="callout">
+            <h3>El Sueño de Cualquier Escritor</h3>
+            <p>En el fondo, un StringBook es un libro sin limitaciones físicas, de extensión, de tramas o de estilo. Es un lugar donde un autor puede volcar todo su sueño en toda su dimensión y compartirlo de una forma <strong>única, interactiva y personalizada</strong> con cada lector.</p>
+        </div>
+        
+        <h3>2. Dispositivo BIC-EEG</h3>
+        <p>Los dispositivos de reconocimiento neuronal (BCI - Brain Computer Interface) son capaces de <strong>reconocer, registrar e interpretar nuestra actividad neuronal</strong> (EEG - Encefalografía). No es ciencia ficción; reconocen nuestros estados emocionales como miedo, alegría o tensión. Empresas como <strong>Emotiv Systems</strong> han liderado esta tecnología.</p>
+        <blockquote class="testimonial-box">
+            "Su sistema de detección analiza unas <strong>30 expresiones, emociones y acciones diferentes</strong>. En lo emocional, EPOC es capaz de reconocer sensaciones de excitación, meditación, concentración, tensión o frustración. La lista de expresiones añaden gestos de sonrisa, risa, enfado, miedo, mirada cruzada y entornada, movimiento direccional del ojo, y otras muecas."
+        </blockquote>
+        <div class="inputs-grid">
+            <div class="input-item">😬 Nerviosismo</div>
+            <div class="input-item">😄 Alegría</div>
+            <div class="input-item">😢 Tristeza</div>
+            <div class="input-item">⚡ Tensión</div>
+            <div class="input-item">❤️ Emoción</div>
+            <div class="input-item">🤔 Intriga</div>
+            <div class="input-item">😠 Rechazo emocional</div>
+            <div class="input-item">⏩ Velocidad de lectura</div>
+            <div class="input-item">👀 Seguimiento ocular</div>
+            <div class="input-item">🎯 Atención selectiva</div>
+            <div class="input-item">🧠 Fatiga mental</div>
+            <div class="input-item">😊 Afinidad emocional</div>
+            <div class="input-item">🧘 Concentración</div>
+            <div class="input-item">🦋 Dispersión</div>
+            <div class="input-item"> distract Distracción</div>
+            <div class="input-item">📊 Niveles de comprensión</div>
+            <div class="input-item">💓 Respuestas fisiológicas</div>
+            <div class="input-item">😩 Fatiga de lectura</div>
+            <div class="input-item">😤 Frustración</div>
+            <div class="input-item">🤩 Fascinación</div>
+        </div>
+
+        <h3>3. La IA, el Cemento de este Proyecto</h3>
+        <p>La idea del Selbook tiene más de 20 años, pero ha sido la <strong>"explosión" de la Inteligencia Artificial</strong> lo que ha terminado de hacerlo posible, multiplicando sus prestaciones. En un Selbook existirán diferentes Modelos de IA:</p>
+		
+        <div class="feature-grid">
+            <div class="feature-card"><h3>Redes Neuronales Convolucionales y Recurrentes</h3><p>Para crear un perfil emocional del usuario basadas en los datos recogidos por el dispositivo BIC.</p></div>
+            <div class="feature-card"><h3>Modelos de Aprendizaje por Refuerzo (RL)</h3><p>Para el análisis de datos y predicciones informadas para la toma de decisiones de ruta.</p></div>
+            <div class="feature-card"><h3>Redes Generativas (GAN) y Transformers</h3><p>Modelos de IA Generativa para la creación y edición de todo el contenido multimedia.</p></div>
+        </div>
+		<p> <strong>Se plantea un dilema o discusión a discutir: ¿La IA escribirá las historias? En su idea original, NO. Pero... ¿podemos "parar" esta evolución? ¿queremos?. El autor "humano" es un valor diferencial importante, también la necesidad de "atraer a sus lectores", esencial para el Network Effect, pero la IA como autora mejoraría muchos aspectos complejos en la fase creativa. Hay que evaluar este aspecto.</strong></p>
+        <h2>Sely: Tu Anfitrión en la Lectura</h2>
+        <p>Esta combinación de IAs estará representada por <strong>Sely, un Anfitrión IA único para el usuario</strong>. Será su enlace con el sistema, un Copilot accesible desde cualquier punto para realizar peticiones y consultas, y con múltiples funciones:</p>
+        <div class="ai-host-section">
+            <img src="assets/img/seli-la-ia.webp" alt="Retrato de Sely, la Inteligencia Artificial anfitriona de Selbook">
+            <ul>
+                <li>Velar por los intereses del usuario</li>
+                <li>Charla Inicial de Configuración y Avisos</li>
+                <li>Sugerencias de lecturas afines a su perfil</li>
+                <li>Charlas literarias sobre sus lecturas</li>
+                <li>Atender a Consultas del huésped</li>
+                <li>Avisos, notificaciones y recordatorios</li>
+                <li>Resumen de lo leído</li>
+                <li>Retroceder o recordar cualquier contenido</li>
+                <li>Crear una ruta predefinida a petición</li>
+                <li>Proteger contra spoilers de la Comunidad</li>
+            </ul>
+        </div>
+    </div>
+
+<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">Conocimiento y Aprendiendo del Lector 👉🏽</h2>
+				<blockquote>Te explico cómo el Selbook es capaz de Conocer al Lector mejor que él mismo gracias a la Combinación de dos Perfiles: el Estático y el Dinámico</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="perfil-estatico-dinamico.html" class="next-section-card">
+				<img src="assets/img/portada-perfiles.webp" alt="Acceso a la sección de Perfiles de Lector">
+				<h3>Perfil Estático y Dinámico</h3>
+			</a>
+
+		</div>
+	</section>
+    
+
+
+
+
+
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+	
+	
+  <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

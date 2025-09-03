@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Mercado, Marketing e Ingresos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA "OTRAS VÍAS DE INGRESOS" (VERSIÓN CORREGIDA)
+   ==================================================================== */
+
+/* Contenedor general para los dos modelos de suscripción */
+.subscription-models-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+	align-items: start;
+}
+
+/* Estilo para las tarjetas de suscripción (Basic y Premium) */
+.subscription-card {
+    background-color: #efefef;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    padding: 25px;
+}
+.subscription-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none; padding: 0;
+}
+.subscription-card .fas { color: #fbc02d; /* Icono de exclamación en amarillo */ }
+.subscription-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.subscription-card li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 12px;
+}
+.subscription-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--header-gradient-mid);
+    font-weight: bold;
+}
+.subscription-card .benefits-list {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.benefits-list li::before {
+    content: '☐'; /* Checkbox vacío */
+    font-family: monospace;
+    margin-right: 10px;
+}
+
+/* Tarjetas de comparación de suscripción para AUTORES (estilo SaaS) */
+.subscription-tier-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.subscription-tier-card.premium { /* Resaltamos el plan premium */
+    border-color: #5bc35b !important;
+    box-shadow: 0 0 15px rgb(0 255 140 / 80%);;
+}
+.subscription-tier-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.6em;
+    border: none; padding: 0;
+}
+.subscription-tier-card > p.tier-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empuja la lista de características hacia abajo */
+}
+.feature-list-saas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.feature-list-saas li {
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+}
+.feature-list-saas .feature-title {
+    display: block;
+    font-weight: 600;
+    font-size: 1em;
+    padding-left: 25px;
+    position: relative;
+}
+.feature-list-saas .feature-description {
+    display: block;
+    font-size: 0.85em;
+    color: #555;
+    padding-left: 25px;
+    margin-top: 4px;
+}
+/* Iconos para la leyenda de servicios */
+.feature-list-saas .feature-title.common::before   { content: '✓'; color: var(--header-gradient-end); }
+.feature-list-saas .feature-title.improved::before { content: '+'; color: #fbc02d; }
+.feature-list-saas .feature-title.exclusive::before { content: '🔥'; }
+.feature-list-saas .feature-title::before {
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Contenedor para los ejemplos de emplazamiento publicitario */
+.placement-example-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+.placement-example {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+	background: #e7e7e7;
+}
+.placement-example h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+}
+.placement-example p {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+.placement-example del {
+    text-decoration: line-through;
+    color: #c0392b;
+}
+.placement-example strong {
+    color: #27ae60;
+    background-color: #e8f5e9;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Rejilla para los tipos de embajadores */
+.ambassador-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+.ambassador-card { padding: 20px; border-radius: var(--border-radius); }
+.ambassador-card h4 { margin: 0 0 10px 0; font-size: 1.1em; padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.ambassador-card p { font-size: 0.9em; line-height: 1.6; margin: 0; }
+.ambassador-card.cafe { background-color: #e3f2fd; }
+.ambassador-card.creator { background-color: #e8f5e9; }
+.ambassador-card.library { background-color: #fff8e1; }
+
+@media (max-width: 768px) {
+    .placement-example-container { grid-template-columns: 1fr; }
+}
+/* ===================================================
+   COMPONENTE DE LAYOUT: DOS COLUMNAS (TEXTO + IMAGEN)
+   =================================================== */
+
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se apilen en pantallas pequeñas */
+    gap: 30px;
+    align-items: center; /* Centra el contenido verticalmente */
+    margin: 30px 0;
+}
+
+/* Contenedor para la columna de texto */
+.two-column-layout .text-content {
+    flex: 1.5; /* Damos un poco más de espacio al texto por defecto */
+    min-width: 300px; /* Ancho mínimo antes de que se apile */
+}
+
+/* Contenedor para la columna de la imagen */
+.two-column-layout .image-content {
+    flex: 1;
+    min-width: 250px;
+    text-align: center; /* Centra la imagen si es más pequeña */
+}
+
+.two-column-layout .image-content img {
+    width: 100%;
+    max-width: 450px; /* Un tamaño máximo razonable para la imagen */
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive: En pantallas muy pequeñas, forzamos el apilamiento */
+@media (max-width: 600px) {
+    .two-column-layout {
+        flex-direction: column;
+    }
+}
+
+  </style>
+</head>
+
+<body data-theme="marketing" data-active-section="marketing" data-current-page="financiacion">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+	
+	<div class="main-section">
+    <div class="content-breadcrumbs">Mercado, Marketing e Ingresos / Otras vías de ingresos</div>
+    <h1>Otras vías de ingresos</h1>
+
+    <h2>Introducción:</h2>
+    <p>Al tratarse de un Modelo Marketplace, podemos aprovechar otras vías de ingreso de gran interés a parte de la venta de Stringbooks. Hablamos de publicidad, pero también de establecer modelos de suscripción tanto para lectores como autores/editoriales.</p>
+    <p>Detallamos estas fórmulas:</p>
+
+    <h2>Modelo de Suscripción para Lectores</h2>
+    <p>Se establecerá un Modelo de Suscripción especial donde el usuario, <strong><span class="sb-note"
+         data-sb-type="debate"
+         data-sb-title="Discusión"
+         data-sb-content="Deberemos valorar los beneficios de esta suscripción para hacerla rentable pero atractiva. ¿Número máximo de Stringbooks? ¿Ampliaciones y prestaciones incluidas? Si un Stringbook tendrá un precio aproximado de 50 € y su lectura durará más de 1 mes... No podemos pedir una suscripción de 100. Una suscripción de más de 20 € costará que se pague. ¿Qué beneficios damos?">
+  pagando una cuota, tendrá derecho a una cantidad de Stringbooks al mes
+  &nbsp;<i class="fas fa-comment-dots sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></strong>. Para el control de descargas, se establecerá un máximo de descargas al mes, pero será el propio formato quien obligue a mantener la suscripción ya que no podrá ser consumido en otras plataformas que no sean Selbook.</p>
+    <p>Se presentarán dos modelos de suscripción, con un pago mensual/anual, el usuario podrá adquirir un número limitado de Stringbooks con diferentes niveles de Ampliaciones y Prestaciones. (Estudiar modelos y precios).</p>
+    <div class="subscription-models-container">
+        <div class="subscription-card">
+            <h3>👤 Miembro Basic:</h3>
+            <ul>
+                <li>Acceso a todo el catálogo pero en la <strong>versión Básica</strong> de cada Stringbook (limitadas en Ampliaciones y Prestaciones).</li>
+                <li>Se pagarán de forma normal las ampliaciones y prestaciones que decidan adquirir.</li>
+                <li><strong>Beneficios extra:</strong>
+                    <ul class="benefits-list">
+                        <li>Acceso a preventa.</li>
+                        <li>Descuento por pago anual.</li>
+                        <li>Acumula puntos para futuras compras.</li>
+                        <li>Precios especiales en Fullpacks.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="subscription-card">
+            <h3>🏅 Miembro Premium:</h3>
+            <ul>
+                <li>Acceso a todo el catálogo en versiones <strong>Full Experience</strong>.</li>
+                <li><strong>Beneficios extra:</strong>
+                    <ul class="benefits-list">
+                        <li>Acceso a preventa.</li>
+                        <li>Descuento por pago anual.</li>
+                        <li>Invitación a eventos y presentaciones.</li>
+                        <li>Precios especiales en Fullpacks.</li>
+                        <li>Acumula puntos para futuras compras.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Suscripción y Servicios a Autores y Editoriales</h2>
+    <p>Del mismo modo y de forma similar a otros Marketplace, el lado de los vendedores existirá la posibilidad de Suscripción que le ofrecerá una serie de servicios y ventajas que no obtendrían como simples vendedores. Habrá que estudiar cómo paquetizar estos servicios, estudiar las prestaciones y valorar el precio de la suscrición de tal forma que a los autores y editores les sea interesante.</p>
+    <div style="width: 60%, margin: 0 auto;">
+		<img src="assets/img/suscripcion-autores.png" alt="Infografía detallada del Buyer Persona" class="image-full-width">
+	</div>
+	<p>Ya hemos visto la mayoría de los servicios en la sección de Stringbooks y Autores. En base a estos, se podrían establecer dos modelos.</p>
+    <div class="callout" style="text-align: center; font-size: 1.1em;">
+        <strong>Leyenda:</strong> <span style="color: var(--header-gradient-end)">✓</span> Servicio Común <span style="color: #fbc02d;"><strong>+</strong></span> Servicio Mejorado <span style="color: #e53935;">🔥</span> Servicio Exclusivo Premium
+    </div>
+    <div class="subscription-models-container">
+        <article class="subscription-tier-card">
+            <h3>🟢 Suscripción Estándar</h3>
+            <p class="tier-description">La principal diferencia de este modelo es que la información ofrecida serán datos, dejando la parte de análisis y conclusiones al propio suscriptor. <strong>**Incluye Servicios Editoriales, sin la suscripción, si el autor quiere publicar el libro, o bien está pre-maquetado y editado y corregido (División de Coherencia), o deberán pagarse los costes de edición nativa.</strong></p>
+            <ul class="feature-list-saas">
+                <li><span class="feature-title common">Datos de ventas instantáneas</span><span class="feature-description">Acceso a ventas de Stringbooks, Ampliaciones y Prestaciones, con segmentaciones.</span></li>
+                <li><span class="feature-title common">Análisis de Nudos, Rutas y Emociones</span><span class="feature-description">Análisis de rutas más leídas, decisiones más populares, emociones relacionadas, etc.</span></li>
+                <li><span class="feature-title common">Informes de Emociones y Perfiles</span><span class="feature-description">Información sobre la tipología de Perfiles de usuarios más afines a sus obras.</span></li>
+                <li><span class="feature-title common">Análisis de Dimensiones y Relatos Alternativos</span><span class="feature-description">Análisis completo de las dimensiones (protagonistas) más elegidas y "emocionales".</span></li>
+                <li><span class="feature-title common">Análisis de Banda Sonora y efectos</span><span class="feature-description">Conocer la percepción y gustos de los lectores sobre los componente sonoros.</span></li>
+                <li><span class="feature-title common">Análisis de Prestaciones y Ampliaciones</span><span class="feature-description">Acceso a la venta, tendencias y preferencias de los lectores sobre estos extras.</span></li>
+                <li><span class="feature-title common">Landing Page de Autor</span><span class="feature-description">Se creará una Landing Page de Autor, con información sobre sus obras y acceso a ellas.</span></li>
+                <li><span class="feature-title common">Cafetería de Autor</span><span class="feature-description">El autor podrá crear su propia Cafetería en La Comunidad.</span></li>
+                <li><span class="feature-title common">Servicios de Promoción</span><span class="feature-description">Si el Autor es de sello Nativo, será la Organización Selbook quien se encargue de la promoción.</span></li>
+                <li><span class="feature-title common">Sistema de Actualizaciones</span><span class="feature-description">Podrá crear actualizaciones, versiones y ediciones sobre las obras ya publicadas.</span></li>
+            </ul>
+        </article>
+        <article class="subscription-tier-card premium">
+            <h3><span class="sb-note"
+         data-sb-type="key"
+         data-sb-title="Punto Clave"
+         data-sb-content="Para que un Autor se decida a pagar la suscripción Premium, debe tener claro el beneficio, pero también que los servicios ofrecidos no le supongan un extra. Si le damos un canal tipo Discord (que administrar) o una web (que actualizar) y, además, análisis y propuestas… puede sentirse abrumado por la gestión. Por eso Sely es la clave: TODO lo hará la IA. Conociendo su estilo y teniendo acceso a toda la información, moderará el canal, actualizará la web, contestará a lectores, etc.">
+  👑 Suscripción Premium
+  &nbsp;<i class="fas fa-star sb-ico"></i>&nbsp;<i class="fas fa-hand-pointer sb-ico-hand"></i>
+</span></h3>
+            <p class="tier-description">En el caso de la suscripción Premium, a parte de un mayor acceso a informes y análisis, también tendrán incluido la actuación de la IA (Sely) como analista de esa información y recomendación de mejoras, ampliaciones y obras futuras. A los servicios estándar, se suman:</p>
+            <ul class="feature-list-saas">
+                <li><span class="feature-title improved">Análisis de Emociones y Perfiles con IA</span><span class="feature-description">Inferir qué tipo de obra futura tendría una alta posibilidad de éxito, con recomendaciones.</span></li>
+                <li><span class="feature-title improved">Landing Page de Autor, Editorial y por Obra</span><span class="feature-description">Además de la de Autor, una de Editorial y una Landing Page para cada Stringbook.</span></li>
+                <li><span class="feature-title improved">Cafetería de Autor y/o Obra</span><span class="feature-description">El autor podrá pedir a Sely que administre y gestione el canal.</span></li>
+                <li><span class="feature-title improved">Servicios de Promoción (Mejorados)</span><span class="feature-description">Un paquete mejorado de promoción y visibilidad (listas de ventas, recomendaciones de Sely, etc.).</span></li>
+                <li class="exclusive"><span class="feature-title exclusive">Acceso al Archivo de Experiencias de los lectores</span><span class="feature-description">Acceso a la recopilación de Archivos de Experiencia de los lectores (anónimos).</span></li>
+                <li class="exclusive"><span class="feature-title exclusive">Propuestas Creativas de Sely</span><span class="feature-description">Sely tendrá la capacidad de dar sugerencias muy optimizadas sobre la creación de futuras obras.</span></li>
+            </ul>
+        </article>
+    </div>
+    <div class="callout"><p>El acceso a los datos y análisis del Servicio Premium se acotan en los propios lectores de ese autor/editorial, pero habría que estudiar la opción de dar al servicio Premium acceso a toda la información y análisis emocional y de perfiles (guardando anonimato de los lectores) de todos los lectores. Esta opción seria extremadamente valiosa para que las editoriales y autores busquen opciones y planifiquen proyectos de una altísima posibilidad de éxito.</p></div>
+    
+    <h2>Financiación por vías publicitarias</h2>
+    <p>Se habilitará la Publicidad en espacios externos al Stringbooks. Hablamos de La Comunidad, Publicidad en Redes Sociales del Selbook. Dejar claro que la experiencia narrativa del usuario jamás debería ser interrumpida por anuncios de ningún tipo, pero sí podrá existir técnicas de <strong>Product Placement (Emplazamiento Publicitario)</strong> en los contenidos multimedia generados.</p>
+    <p>Se desarrollarán dos vías de alojamientos publicitarios: Emplazamiento y Anuncios. Veamos ambas opciones:</p>
+
+    <div class="two-column-layout">
+    
+    <!-- COLUMNA IZQUIERDA: TEXTO -->
+    <div class="text-content">
+        <h3>Anuncios en La Comunidad</h3>
+        <p>Consistirá en la publicación de anuncios en la red social del Selbook: La Comunidad. Un modelo tradicional que presenta un atractivo inigualable para las marcas ya que podrán aprovechar la segmentación de usuarios por tipología, gustos y... <strong>perfil emocional</strong>. Hoy en día la segmentación del Público Objetivo la basamos en la información recopilada por su historial de navegación, cookies, etc. Datos estadísticos basados en la experiencia de uso del usuario. Con el Selbook, añadimos a esto, la posibilidad de segmentar por el Perfil de Emocional del Usuario. Pero lo más valioso... <strong>Los anunciantes podrán tener la información (anónima) de cómo reaccionan emocionalmente los usuarios a sus anuncios.</strong></p>
+        
+        <h3>Anuncios en Las Cafeterías</h3>
+        <p>Recordemos que Las Cafeterías es un “Sub-espacio” dentro de La Comunidad basado en canales tipo Discord. Existirán cafeterías oficiales y privadas, creadas por los Usuarios. En estas cafeterías privadas, serán sus administradores quienes decidan si hay publicidad o no. En caso de aceptar publicidad, tendrán una comisión de intermediación, implicándoles así en la difusión y promoción de su canal.</p>
+    </div>
+
+    <!-- COLUMNA DERECHA: IMAGEN -->
+    <div class="image-content">
+        <img src="assets/img/publicidad-en-la-comunidad.png" alt="Diagrama de la segmentación publicitaria mejorada en Selbook">
+    </div>
+
+</div>
+    <h3>Emplazamiento Publicitario</h3>
+    <p>Este modelo deberá usarse con sutileza y sin abusar. Consistirá en la tradicional Publicidad Indirecta en escenas o situaciones narrativas. Existirán 2 modelos y el coste de la impresión dependerá de la cercanía a situaciones emocionales de interés.</p>
+    <h4>Modelo Narrativo:</h4>
+    <p>La publicidad estará integrada en el texto. Ejemplo:</p>
+    <div class="placement-example-container">
+        <div class="placement-example">
+            <h4><i class="fas fa-times-circle" style="color: #c0392b;"></i> Sin Emplazamiento Publicitario:</h4>
+            <p>Tom se subió al coche. Estaba feliz y emocionado por lo que acababa de suceder con Sara.</p>
+        </div>
+        <div class="placement-example">
+            <h4><i class="fas fa-check-circle" style="color: #27ae60;"></i> CON Emplazamiento Publicitario:</h4>
+            <p>Tom se subió al <strong>BMW</strong>. Estaba feliz y emocionado por lo que acababa de suceder con Sara.</p>
+        </div>
+    </div>
+    <h4>Modelo Visual:</h4>
+    <p>La publicidad se integrará en la generación de contenidos de Audiovisuales: Vídeos, Imágenes, videostory. Del mismo modo, se sustituirá el concepto genérico por la marca. Y cuanto más cercana y positiva sea la emoción generada, mayor será el coste por impresión.</p>
+    <div class="callout"><p>🔥 Lo interesante de este modelo es la capacidad de unir una Marca no sólo a una (o varias) emociones de forma directa y “caliente”, sino que puede ligarlas a un perfil de lector o a un protagonista.</p></div>
+
+    <h2>Programa "Embajadores Selbook"</h2>
+    <p>Con la idea de implicar a los propios usuarios en la promoción de Stringbooks, se establecerá un programa de “Embajadores”, que tendrá 4 tipos:</p>
+    <div class="ambassador-grid">
+        <div class="ambassador-card cafe"><h4>Cafetería Embajadora</h4><p>Consistirá en un usuario normal que podrá solicitar unirse al programa y que recibirá una comisión por las ventas que consiga. Este usuario deberá crear una Cafetería en La Comunidad y promocionar en ella las novelas que quiera (Club de lectores, asociaciones, etc).</p></div>
+        <div class="ambassador-card creator"><h4>Creador Embajador</h4><p>Entre las Prestaciones del Selbook existe la opción de “Versión del Usuario" donde el propio usuario, interactuando con Sely, puede crear diferentes versiones de un Stringbook. Este “creador” estará incentivado a la promoción de su versión (para lo cual, el usuario interesado deberá adquirir el Stringbook original) y recibirá una comisión de estas ventas.</p></div>
+        <div class="ambassador-card library"><h4>Librería Embajadora</h4><p>Con la intención de unir al proyecto a las librerías físicas tradicionales, se propondrá a los dueños la instalación de un “cajero” o máquina tipo Vending en sus locales donde se promocionarán los Stringbooks más vendidos. La librería recibirá una comisión por venta.</p></div>
+    </div>
+    <blockquote class="callout" style="border-left-color: #2c2c2c; margin-top: 20px;"><p>Esta estrategia también permite alcanzar al Lector tradicional, el “librero” es el primero que le anima a comprar...</p></blockquote>
+</div>
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "Mercado, Marketing e Ingresos"...</h2>
+				<h2 class="next-section-main-title">Hablemos de la Estrategia de Marketing 👉🏽</h2>
+				<blockquote>Es un producto de muy alta innovación, disrruptor y con cierta complejidad, por eso debemos tener clara la Estrategia de Lanzamiento, pero también el enfoque de los mensajes y cómo realzar los elementos de valor que presenta el Selbook.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="mercado-mkt-publi.html" class="next-section-card">
+				<img src="assets/img/portada-kt.png" alt="Acceso a la sección Otras vías de financiación">
+				<h3>Marketing y Publicidad</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+<div class="sb-overlay" aria-hidden="true"></div>
+<div class="sb-dialog" role="dialog" aria-modal="true" aria-labelledby="sb-dialog-title" tabindex="-1">
+  <button class="sb-close" aria-label="Cerrar">×</button>
+  <div class="sb-dialog-type" id="sb-dialog-type">💬 Debate</div>
+  <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
+  <div class="sb-dialog-content" id="sb-dialog-content"></div>
+</div>
+
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

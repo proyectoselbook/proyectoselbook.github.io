@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: Introducción</title>
+  <link rel="stylesheet" href="assets/css/style.css"">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+ /* === ESTILOS ESPECÍFICOS PARA LA PÁGINA "INTRODUCCIÓN" === */
+.main-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.text-column {
+  flex: 1 1 100%;
+}
+.image-column {
+   float: right;
+   width: 300px;
+   margin-left: 20px;
+   margin-bottom: 15px;
+}
+.image-column img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.quote-box {
+  background: #FFF5E6;
+  border-left: 4px solid #FFA94D;
+  padding: 12px 16px;
+  margin: 20px 0;
+  border-radius: var(--border-radius);
+  font-style: italic;
+  font-size: 1.05em;
+}
+.timeline-marker {
+    font-weight: bold;
+    color: var(--header-gradient-mid);
+    border-left: 3px solid var(--header-gradient-mid);
+    padding-left: 10px;
+    margin: 40px 0 20px 0;
+}
+.tech-summary-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: var(--border-radius);
+}
+.tech-item { text-align: center; 
+border: 1px dotted green;
+    border-radius: 10px;
+    padding: 5px;
+	}
+.tech-item img {
+    max-width: 150px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.tech-item h3 {
+    margin: 5px 0;
+    border: none;
+    padding: 0;
+}
+.conclusion-heading {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 40px;
+    color: var(--text-dark);
+    border: none;
+}
+@media (max-width: 900px) {
+    .image-column { float: none; width: 100%; max-width: 350px; margin: 0 auto 20px; }
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="intro-producto">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+	
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+			<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+    <div class="content-breadcrumbs">El Producto / Introducción</div>
+    <h1>El Origen de la Idea: Más Allá de las Novelas</h1>
+    
+    <div class="main-section">
+      <div class="text-column">
+        
+        
+
+        <h2>Imagina...</h2>
+        <p>Imagina que quieres que te cuente una historia. Nos sentamos en un cómodo salón y me pides que te cuente un relato de aventuras, de detectives o de misterio. Nos servimos un café y, antes de comenzar, te explico que tengo una historia increíble con <strong>3 protagonistas</strong>: un detective, un asesino y una chica. Te pido que elijas uno de ellos para recorrer la historia. Tú eliges. Yo, después, levanto la mano y una leve melodía de misterio comienza a sonar. Te miro a los ojos y te digo:</p>
+        
+        <div class="quote-box">Voy a contarte la historia que tú quieres, pero no es la historia que tú esperas.</div>
+
+        <p>Me miras confuso, esbozas una sonrisa y comienzo.</p>
+
+        <h2>Puedo Leerte la Mente y Sentir lo que Sientes...</h2>
+		<div class="image-column">
+            <img src="assets/img/leyendo_mente.webp" alt="Ilustración de un hombre concentrado, leyendo la mente.">
+        </div>
+        <p>Ahora imagina que tengo el poder de leerte la mente. Puedo sentir el latido de tu corazón, cuando se acelera o cuando está en calma. <strong>Siento cuando estás tenso, intrigado o nervioso</strong>; cuando lees más rápido... Siento cuando un personaje te gusta o disgusta, cuando una escena te resulta angustiosa, o cuando un beso te emociona. De forma mágica, <strong>en cada una de esas reacciones y en armonía con mis palabras, la melodía se acompasa, los efectos sonoros resuenan y te ves inmerso en una Experiencia Increíble</strong>.</p>
+        <p>Imagina que <strong>percibo, evalúo e interpreto cada una de las emociones</strong> que tu cuerpo experimenta al escuchar mi historia, y tengo la capacidad creativa suficiente para <strong>adaptar la historia y convertirla en Tu Historia</strong>. Cada vez te conozco mejor. Entiendo tus emociones y las aprovecho para continuar por el camino que menos te esperas pero que, al final, más te gustará.</p>
+
+        <h2>Charlar, Vivir, Sumergirte en la Historia</h2>
+        <p>Y puede que en algún momento hable contigo, que charlemos sobre la historia y me cuentes tus emociones para seguir adaptando el relato. Pero cuidado, esas preguntas pueden ser un engaño. No es un simple "Elige tu propia aventura", porque a veces <strong>tu decisión no dará como resultado lo que tú esperabas...</strong> mi objetivo es provocarte emociones de todo tipo.</p>
+        <p><strong>De pronto, en mitad de una persecución, eres el protagonista de una escena de cine</strong>. Corres, otros te persiguen, el ruido de las balas te sobrecoge... O en mitad de un paisaje, te ves en el centro de una imagen inmersiva que ha transformado mis palabras en una <strong>realidad visual</strong>. La música acompaña a tu ritmo del corazón, a tus nervios, a tu alegría... va al compás de tus latidos.</p>
+        <p>Quiero sorprenderte, frustrarte, buscar el suspense o la intriga. No soy un mero relator, <strong>soy el creador de la historia que realmente quieres sentir.</strong> Lo que quiero es que al final me digas: "es la mejor historia que me han contado nunca".</p>
+        <p style="color: #ef780f;"><strong>Ahora, dejemos de imaginar. Todo esto puede hacerse realidad.</strong></p>
+
+        <h2 class="timeline-marker">Año 2000. La Idea.</h2>
+        <p>Con la incertidumbre del cambio de siglo, rondaba por mi cabeza la idea de una novela futurista. Influenciado por Bradbury y Orwell, me pregunté: ¿Y los libros? ¿Y la literatura? <strong>¿Cómo serían dentro de 400 años?</strong></p>
+        <p>Mi ejercicio de proyección me llevó al año 2400. Imaginé una especie de tablet avanzada, una conexión neuronal y una historia que pudiera adaptarse en función de las emociones y pensamientos del lector. Esto me llevó a un punto crítico: ¿cómo podría una historia ser única para cada lector? Me acordé de los libros de "Elige tu propia aventura", pero mi idea quería ir más allá.</p>
+        
+        <h2 class="timeline-marker">Año 2003. La Inspiración.</h2>
+        <p>Los puntos de decisión del lector no se verían, <strong>serían invisibles</strong>. Gracias a una "Conexión Neuronal", la plataforma percibiría las emociones y reacciones del lector y, sin que fuera consciente, enlazaría con la opción programada para esas emociones. La historia sería gigantesca: una novela que podrías leer y releer, y nunca vivirla de la misma forma.</p>
+        <p>Así surgieron dos términos: <strong>El SelBook</strong>, la plataforma capaz de soportar la historia, y <strong>el Stringbook</strong>, la historia en sí, con su infinidad de caminos.</p>
+        
+        <h2 class="timeline-marker">Año 2012. La Solución.</h2>
+        <p>En 2012, una empresa llamada <strong>Emotiv lanzó unos cascos capaces de reconocer emociones y reacciones fisiológicas</strong>. Ahí estaba, la Conexión Neuronal que había imaginado hacía 12 años. Esto multiplicó mi imaginación: ¿y si los libros tuvieran BSO adaptativa? ¿Y si tuvieran efectos sonoros? ¿Y si creamos vídeos que representen las escenas? La tecnología existente parecía frenar el sueño, pero sabía que era Posible.</p>
+
+        <h2 class="timeline-marker">Año 2023. La Inteligencia Artificial.</h2>
+        <p>Ya casi me había rendido cuando a principios de 2023 escuché hablar de ChatGPT. Sí, sabía de la IA, pero era algo de "un futuro...".</p>
+        <p>En Febrero de 2023 tuve mi primera charla con <strong>ChatGPT</strong>. En Marzo descubrí <strong>Midjourney</strong>. Ese mismo mes supe de <strong>Runway ML</strong>. Antes de que acabara marzo, saqué el Proyecto Selbook, lo puse sobre la mesa y lo tuve claro. <strong>Ya existía toda la tecnología necesaria:</strong></p>
+
+        <div class="tech-summary-container">
+            <div class="tech-item">
+                <img src="assets/img/vision-pro.webp" alt="Gafas de realidad mixta">
+                <h3>El Soporte</h3>
+                <p>Una tablet, Gafas de realidad mixta, etc.</p>
+            </div>
+            <div class="tech-item">
+                <img src="assets/img/mn8-0-brushes.png" alt="Dispositivo de conexión neuronal">
+                <h3>La Conexión Neuronal</h3>
+                <p>Dispositivos BIC-EGG como los de Emotiv o NeuroSky.</p>
+            </div>
+            <div class="tech-item">
+                <img src="assets/img/inteligencia_artificial.webp" alt="Icono de Inteligencia Artificial">
+                <h3>Procesamiento y Generación</h3>
+                <p>La Inteligencia Artificial para datos y contenidos instantáneos.</p>
+            </div>
+        </div>
+        
+        <h2 class="conclusion-heading">Había llegado el momento. Ha llegado.</h2>
+      </div>
+    </div>
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">Componentes y detalles técnicos 👉🏽</h2>
+				<blockquote>Una buena comprensión del Selbook es esencial… Aquí te cuento su definición técnica detallada de sus componentes principales: El BIC, El Soporte de lectura y la gestión de la Inteligencia Artificial..</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="producto-definicion-tecnica.html" class="next-section-card">
+				<img src="assets/img/acceso_detalles_tecnicos.webp" alt="Acceso a detalles técnicos del Selbook">
+                <h3>Definición Técnica del Selbook</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

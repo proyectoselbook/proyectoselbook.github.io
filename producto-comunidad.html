@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— El Producto: La Comunidad</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ====================================================================
+   ESTILOS ESPECÍFICOS PARA LA PÁGINA "LA COMUNIDAD"
+   ==================================================================== */
+
+/* Contenedor para la introducción y los motivos */
+.intro-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+.intro-text {
+    flex: 2;
+    min-width: 300px;
+}
+.intro-motives {
+    flex: 1;
+    min-width: 250px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+}
+.motive-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.motive-item:last-child {
+    margin-bottom: 0;
+}
+.motive-item .icon { font-size: 1.8em; color: var(--header-gradient-mid); }
+.motive-item h3 { margin: 0; font-size: 1.1em; border:none; padding: 0; }
+
+/* Estilo para cada nivel de la comunidad */
+.community-level-card {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: var(--border-radius);
+    margin-top: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden; /* Para que el header se vea bien */
+}
+.level-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 25px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #e5e5e5;
+}
+.level-header .icon { font-size: 2.2em; }
+.level-header h2 { margin: 0; border: none; padding: 0; font-size: 1.8em; }
+.level-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 25px;
+    align-items: center;
+}
+.level-text {
+    flex: 1.5;
+    min-width: 300px;
+}
+.level-diagram {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+.level-diagram img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+/* Estilo para listas dentro de los niveles (ej. En la librería podremos...) */
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+.feature-list-item {
+    background: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.tu-mesa-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.tu-mesa-card {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+.tu-mesa-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: var(--header-gradient-mid);
+}
+/* ====================================================================
+   AJUSTES DE ESTILO PARA LA PÁGINA "LA COMUNIDAD"
+   ==================================================================== */
+
+/* Contenedor para las 3 tarjetas de motivos */
+.motives-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0 40px 0; /* Espacio después del texto y antes de la siguiente sección */
+    padding: 0;
+}
+
+/* Estilo para cada tarjeta de motivo, basado en la imagen */
+.motive-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    padding: 15px 20px;
+    border: 1px solid #e9e9e9;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.motive-card .icon {
+    font-size: 1.6em;
+    color: var(--header-gradient-mid);
+}
+.motive-card h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+}
+
+/* Ajuste para la sección de La Librería */
+.libreria-intro-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+.libreria-intro-layout .level-text,
+.libreria-intro-layout .level-diagram {
+    flex: 1;
+    min-width: 300px;
+}
+.libreria-intro-layout .level-diagram img {
+    max-width: 100%; /* Asegura que la imagen sea más grande */
+}
+  </style>
+</head>
+
+<body data-theme="producto" data-active-section="producto" data-current-page="comunidad">
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Inversores.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+
+<div class="main-section">
+    <div class="content-breadcrumbs">El Producto / La Comunidad</div>
+    <h1>🏘️ La Comunidad: La Red Social del Selbook</h1>
+
+	<!-- === Bloque de Introducción Corregido === -->
+	<div class="intro-text">
+		<h2>Una Red Social supervisada por la IA</h2>
+		<p>Hay pocas cosas que superen el placer de <strong>compartir y charlar sobre una Historia con otras personas que ya la han vivido</strong>. Podemos llamarla Novela, Película, Serie o Anécdota. Compartir, recordar y rememorar esas situaciones genera un grado de “hermanamiento” y “disfrute” que el Selbook tiene que recoger y fomentar. De ahí surge la red social propia del Selbook, que hemos llamado <strong>“La – Comunidad”</strong>.</p>
+		<p>Pero también es cierto que pocas cosas generan mayor enfado o malestar que el <strong>Spoiler</strong>. Por eso era preciso que La – Comunidad tuviera varios "estamentos" o <strong>Niveles de privacidad</strong>.</p>
+		<p>Siguiendo en esta línea, una acción muy habitual entre las personas es el intercambio de ideas y de recomendaciones, ya sean de Novelas, películas, etc. El Selbook, a través de La Comunidad, quiere dar cabida a estos niveles por diferentes motivos:</p>
+	</div>
+	<div class="motives-container">
+		<div class="motive-card">
+			<span class="icon">📈</span>
+			<h3>Mejora de la Experiencia de Usuario</h3>
+		</div>
+		<div class="motive-card">
+			<span class="icon">📢</span>
+			<h3>Promoción y acciones comerciales</h3>
+		</div>
+		<div class="motive-card">
+			<span class="icon">📝</span>
+			<h3>Gestión de Reseñas</h3>
+		</div>
+	</div>
+
+    <p>Pero en definitiva, el objetivo es que el Usuario encuentre <strong>“Su sitio”</strong>, un espacio de privacidad "elegible", donde interactúe con los demás usuarios y potencie el disfrute de su experiencia.</p>
+    <p>Estos niveles de Privacidad estarán supervisados, cómo no, por la IA, por <strong>Sely, y regulada por las 8 Leyes de Sely</strong>. Describamos estos niveles y la acción de la IA en cada uno de ellos.</p>
+
+
+    <!-- Nivel 1: El Parque -->
+    <div class="community-level-card">
+        <div class="level-header">
+            <span class="icon">🌳</span>
+            <h2>El – Parque</h2>
+        </div>
+        <div class="level-content">
+            <div class="level-text">
+                <p>Es el nivel superior, el lugar por donde paseas y te <strong>relacionas con otros amantes de la literatura y de los Selbook</strong>. Será una Red Social más al uso, pública y abierta. Podrás interactuar con cualquier usuario. Allí encontrarás “tiendas”, publicidad, promociones, etc. Y será el Acceso a diferentes "librerías” y “Cafeterías”.</p>
+                <div class="callout">
+                    <p>La principal función de Sely en este espacio será el de <strong>moderar y evitar posibles Spoiler</strong> de cualquier StrinBook, pero también supervisará que la publicidad que se te muestre esté alineada con los intereses de su huésped (usuario), que podrá preconfigurar o podrá ser extraído de su Perfil Estático.</p>
+                </div>
+            </div>
+            <div class="level-diagram">
+                <img src="assets/img/el-parque.webp" alt="Diagrama de El Parque">
+            </div>
+        </div>
+    </div>
+	<!-- === Nivel 2: La Librería (Estructura Corregida) === -->
+	<div class="community-level-card">
+		<div class="level-header">
+			<span class="icon">📚</span>
+			<h2>La – Librería</h2>
+		</div>
+		<div class="level-content">
+			<!-- Inicio del nuevo layout de 2 columnas -->
+			<div class="libreria-intro-layout">
+				<div class="level-text">
+					<p>La Librería (General) será la <strong>entrada desde el exterior al entorno SelBook</strong>, donde los nuevos usuarios y los antiguos pueden adquirir sus Dispositivos SelBook, los StringBooks y demás complementos que pudieran existir.</p>
+					<p>Hablamos en Singular porque existirá una Librería Central donde los usuarios podrán adquirir sus Stringbook, pero también se facilitarán <strong>espacios a afiliados, autores y proyectos de stringbooks Independientes</strong>, o librerías de temáticas, pero a estas Librerías Secundarias sólo podrán acceder los miembros de La Comunidad.</p>
+				</div>
+				<div class="level-diagram">
+					<img src="assets/img/la-libreria.webp" alt="Diagrama de La Librería">
+				</div>
+			</div>
+			<!-- Fin del layout de 2 columnas -->
+			
+			<!-- Contenido que ahora va debajo, en una sola columna -->
+			<div class="full-width-content" style="flex-basis: 100%;">
+				 <h4>En la librería podremos:</h4>
+				<div class="feature-list">
+					<span class="feature-list-item"><i class="fas fa-book-open"></i> Comprar las Historias</span>
+					<span class="feature-list-item"><i class="fas fa-puzzle-piece"></i> Comprar Extensiones o Dimensiones</span>
+					<span class="feature-list-item"><i class="fas fa-tablet-alt"></i> Comprar Dispositivos (Selbooks, BIC, etc)</span>
+					<span class="feature-list-item"><i class="fas fa-sync-alt"></i> Suscripciones</span>
+					<span class="feature-list-item"><i class="fas fa-shopping-cart"></i> Acceso Carrito de compra y lista de deseos</span>
+					<span class="feature-list-item"><i class="fas fa-pen"></i> Leer y Escribir Reseñas</span>
+				</div>
+				<p style="margin-top: 15px;">Una vez más, Sely actuará como consejera, proponiendo historias, respondiendo consultas, explicando cualquier opción y gestionando tus compras y pedidos. Será tu <strong>“Personal Shopper”</strong>.</p>
+			</div>
+		</div>
+	</div>
+
+    
+    <!-- Nivel 3: La Cafetería -->
+    <div class="community-level-card">
+        <div class="level-header">
+            <span class="icon">☕</span>
+            <h2>La – Cafetería</h2>
+        </div>
+        <div class="level-content">
+            <div class="level-text">
+                <p>Hablamos de un <strong>nivel de privacidad alto</strong>, donde Sely te protegerá de spoiler y de publicidad. Es un lugar donde buscar tranquilidad, charlar con tus amigos, intercambiar impresiones, consejos de lectura, etc.</p>
+                <p>Este nivel será un tipo <strong>“Discord"</strong> donde cualquier usuario puede crear su propia Cafetería e invitar a quien quiera. Estos canales o cafeterías serán <strong>temáticos por Historias, Géneros literarios, amantes de un personaje, clubs de lectura, etc.</strong></p>
+                <p>Existirán Cafeterías exclusivas y Oficiales de los Stringbooks publicados, pero también se permitirán salas de fans sobre esos stringbooks, donde podrás ir a charlar sobre tu propia lectura, sin miedo a spoiler, pero intercambiando impresiones.</p>
+                <p>En este espacio también se permitirá el <strong>intercambio audiovisual del Selbook</strong>. Es decir, si el video que ha creado Sely para un pasaje de tu lectura te ha gustado o impresionado, podrás compartirlo con otros miembros de esa cafetería. La Intervención de la IA en este apartado será esencial. Sely deberá comprobar y verificar que el contenido compartido puedes visionarlo sin que ello suponga un spoiler.</p>
+            </div>
+            <div class="level-diagram">
+                <img src="assets/img/la-cafeteria.webp" alt="Diagrama de La Cafetería">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Nivel 4: Tu Mesa -->
+    <div class="community-level-card">
+        <div class="level-header">
+            <span class="icon">📍</span>
+            <h2>Tu – Mesa</h2>
+        </div>
+        <div class="level-content">
+            <div class="level-text">
+                <p>Es el <strong>nivel más privado</strong>. Sería tu perfil y en él puedes aceptar a tus amigos. Podrás chatear con ellos, compartiendo tus lecturas, opiniones, etc. Sely, a través del chat, te ayudará con cualquiera de estas acciones:</p>
+            </div>
+        </div>
+        <div class="tu-mesa-features" style="padding: 0 25px 25px 25px;">
+            <div class="tu-mesa-card">
+                <h4><i class="fas fa-users"></i> Lectura Compartida</h4>
+                <p>¿No vemos series en pareja o al mismo tiempo que un amigo? Haz una lectura compartida. Enlazad vuestras historias y recorrerla juntos. Decidid juntos en los nudos visibles y dejad al poder de la IA que decida en los invisibles de manera conjunta.</p>
+            </div>
+            <div class="tu-mesa-card">
+                <h4><i class="fas fa-coffee"></i> Un Café Ya</h4>
+                <p>¿No puedes más, tienes que contarle a alguien lo que acabas de leer? Pulsa un botón, invita a un amigo o a cualquiera de una cafetería y chatea sobre ello.</p>
+            </div>
+            <div class="tu-mesa-card">
+                <h4><i class="fas fa-gift"></i> Regala Tu Camino</h4>
+                <p>¿Has terminado y no puedes permitir que lo que acabas de leer no lo lea otro? Marca tu ruta y mándasela a quien quieras.</p>
+            </div>
+            <div class="tu-mesa-card">
+                <h4><i class="fas fa-print"></i> Imprime Tu Historia</h4>
+                <p>¿Eres un romántico empedernido y necesitas tenerlo en papel? Registra tu camino, guárdala, personaliza la edición y te la imprimirán en papel.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Diagrama de La Comunidad:</h2>
+    <img src="assets/img/diagrama-completo-comunidad.webp" alt="Diagrama completo de la estructura de La Comunidad" class="image-full-width lightbox-trigger">
+</div>
+    
+    
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección de "El Producto"...</h2>
+				<h2 class="next-section-main-title">Gobernanza de Datos e IA Responsable 👉🏽</h2>
+				<blockquote>Nos tomaremos muy enserio tus derechos y privacidad. Que Sely te conozca mejor que tú mismo no significa que pueda compartir esa información, tendrá estrictas reglas: Las 8 Leyes de Sely.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="responsabilidad-ia.html" class="next-section-card">
+				<img src="assets/img/responsabilidad-ia.webp" alt="Acceso a la sección sobre IA Responsable">
+				<h3>Responsabilidad Ética de la IA</h3>
+			</a>
+
+		</div>
+	</section>
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+<!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+<!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>
