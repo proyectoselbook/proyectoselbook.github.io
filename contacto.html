@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook — Contacto</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+/* ===== Estilos específicos de la página de Contacto ===== */
+    :root{
+      --contact-grad-start: #0f1512;   /* Negro verdoso */
+      --contact-grad-end:   #07351f;   /* Verde muy oscuro */
+      --contact-accent:     #18c37e;   /* Verde acento */
+      --contact-accent-2:   #9AF0C2;   /* Verde claro para detalles */
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-bd: rgba(255, 255, 255, 0.18);
+      --text-soft: #cfeadd;
+    }
+
+    body.contacto {
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(24,195,126,0.10), transparent 55%),
+                  linear-gradient(180deg, var(--contact-grad-start) 0%, var(--contact-grad-end) 100%);
+    }
+
+    .contact-hero {
+      position: relative;
+      padding: clamp(48px, 6vw, 96px) 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        radial-gradient(700px 400px at 80% -20%, rgba(24,195,126,0.18), transparent 60%),
+        linear-gradient(145deg, rgba(24,195,126,0.10), rgba(0,0,0,0.0));
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      border: 1px solid rgba(24,195,126,0.18);
+	  padding-bottom: 10px;
+	  padding-top: 10px;
+    }
+    .contact-hero h1{
+      font-size: clamp(28px, 3.5vw, 48px);
+      line-height: 1.1;
+      color: #eafff4;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.5px;
+      text-wrap: balance;
+    }
+    .contact-hero p.lead {
+      color: var(--text-soft);
+      font-size: clamp(16px, 1.4vw, 19px);
+      margin: 0 0 22px 0;
+      max-width: 900px;
+    }
+
+    .cta-row {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border .15s ease, color .15s ease;
+      border: 1px solid var(--glass-bd);
+      background: linear-gradient(180deg, rgba(24,195,126,0.18) 0%, rgba(24,195,126,0.08) 100%);
+      color: #eafff4;
+      backdrop-filter: blur(6px);
+    }
+    .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(24,195,126,0.15); }
+    .cta-btn i { font-size: 1.05em; }
+
+    .cta-btn.alt {
+      background: rgba(255,255,255,0.06);
+      color: #eafff4;
+    }
+    .cta-btn.alt:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+    /* Bloque de accesos directos */
+    .contact-quick {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      margin-top: 22px;
+    }
+    @media (min-width: 860px){
+      .contact-quick { grid-template-columns: repeat(4, minmax(180px, 1fr)); }
+    }
+    .quick-card{
+      display:flex; align-items:center; gap:12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-bd);
+      color:#eafff4; text-decoration:none;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+    }
+    .quick-card:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.08); border-color: rgba(24,195,126,0.35); }
+    .quick-card i { color: var(--contact-accent-2); }
+
+    /* Tarjetas “Usuarios / Inversores” */
+    .dual-intent {
+      display: grid; gap: 16px; margin-top: 26px;
+      grid-template-columns: 1fr; 
+    }
+    @media (min-width: 980px){
+      .dual-intent { grid-template-columns: 1fr 1fr; }
+    }
+    .intent-card {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-bd);
+      color: #eafff4;
+    }
+    .intent-card h3 { margin: 0 0 8px 0; color: #ff8e03 !important; }
+    .intent-card p { margin: 0 0 12px 0; color: var(--text-soft) !important; }
+
+    /* Formulario Tally en glass card */
+    .form-card{
+      margin-top: 0px;
+      padding: 18px;
+	  padding-top:0px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 0 0 1px rgba(24,195,126,0.10);
+    }
+    .form-card h2{
+      color: #eafff4; margin: 0 0 10px 0;
+      font-size: clamp(20px, 2.2vw, 28px);
+    }
+    .form-note{ color: var(--text-soft); font-size: 14px; margin: 6px 0 16px; }
+
+    /* CTA secundaria al final */
+    .bottom-cta {
+      margin-top: 26px; display:flex; flex-wrap:wrap; gap: 10px; align-items:center;
+    }
+    .muted { color: var(--text-soft); font-size: 14px; }
+
+.mystery-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.65);
+  display: none; z-index: 9000;
+}
+.mystery-modal {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #111;
+  border: 1px solid #ffa94d;
+  padding: 28px;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 90%;
+  color: #ffe8cc;
+  display: none;
+  z-index: 9010;
+  box-shadow: 0 0 30px rgba(255,140,0,.6);
+}
+.mystery-modal h3 { color:#ff922b; margin-top:0; }
+.mystery-close {
+  position:absolute; top:10px; right:14px;
+  background:none; border:0; font-size:24px;
+  color:#ffb56b; cursor:pointer;
+}
+.mystery-modal p { margin-bottom:1em; line-height:1.5; }
+
+  </style>
+</head>
+
+<body class="contacto" data-theme="contacto" data-active-section="contacto" data-current-page="contacto">
+
+
+
+<header>
+<div class="header-content">
+    <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+    <div class="header-text">
+      <div class="header-title">Proyecto Selbook — Conclusiones y Contacto</div>
+      <div class="header-subtitle">Queremos escucharte y construir esta Revolución juntos.</div>
+    </div>
+  </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="#" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="contacto.html" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+		<!--
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="#" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="#" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="#" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="#" data-subsection="segmentacion">Segmentación y Curva de valor</a></li>
+            <li><a href="#" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		-->
+        <li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+		<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+
+      </ul>
+  </nav>
+
+<main id="content">
+  <section class="main-section contact-hero">
+    <h1>Hablemos. <br/>Tu historia empieza aquí.</h1>
+	<div class="mystery-card" id="mystery-trigger">
+  <span class="mystery-text">💡 ¿Y si estuviera pasando?<br><strong>Léeme</strong></span>
+</div>
+    <p class="lead">
+      Seas <strong>usuario</strong> o <strong>inversor</strong>, Selbook nace para ti: queremos escucharte, resolver tus dudas, que propongas ideas y, si te encaja la visión, nos ayudes a hacerlo más grande. 
+      Pregunta, opina, desafía — cada mensaje abre un camino.
+    </p>
+	<p class="lead"><strong>Estamos desarrollando el MVP (Producto Mínimo Viable)</strong>, si te unes a la revolución, será el primero en probarlo de forma gratuita. ¿Te unes? ¡Escríbenos y apúntate!</p>
+
+
+    <!-- Accesos rápidos -->
+    <div class="contact-quick">
+      <a class="quick-card" href="mailto:proyectoselbook@gmail.com"><i class="fas fa-envelope-open-text"></i> proyectoselbook@gmail.com</a>
+      <a class="quick-card" href="tel:+34609836904"><i class="fas fa-phone-alt"></i> 609 83 69 04</a>
+      <a class="quick-card" href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> Perfil LinkedIn Jose I Ros</a>
+      <a class="quick-card" href="https://wa.me/34609836904" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
+    </div>
+
+    <!-- Intenciones: Usuarios / Inversores -->
+    <div class="dual-intent">
+      <div class="intent-card">
+        <h3><i class="fas fa-heart"></i> Para usuarios</h3>
+        <p>Ayúdanos a crear la mejor experiencia de lectura del mundo. Prueba, siente y cuéntanos qué te mueve: tu opinión influye en el producto final.</p>
+        <p class="muted">Tu feedback se convierte en decisiones de producto. Queremos escucharte.</p>
+		<div class="cta-row">
+  <a href="#form" class="cta-btn">
+    <i class="fas fa-user-check"></i> Soy usuario — Quiero participar
+  </a>
+  <a class="cta-btn alt" target="_blank" rel="noopener"
+     href="https://wa.me/34609836904?text=Hola%21%20Me%20interesa%20Selbook%20como%20usuario.%20Me%20gustar%C3%ADa%20probarlo%20y%20dejar%20feedback.%20Soy%20%5Btu%20nombre%5D.">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+</div>
+      </div>
+      <div class="intent-card">
+        <h3><i class="fas fa-chart-line"></i> Para inversores</h3>
+        <p>Te mostramos la tesis, el modelo de negocio y las vías de crecimiento. Si ves potencial, abrimos números, riesgos y plan de ejecución.</p>
+        <p class="muted">Buscamos smart money: visión, red y confianza para escalar.</p>
+		<div class="cta-row">
+  <a href="#form" class="cta-btn">
+    <i class="fas fa-hand-holding-usd"></i> Soy inversor — Quiero participar
+  </a>
+  <a class="cta-btn alt" target="_blank" rel="noopener"
+     href="https://wa.me/34609836904?text=Hola%21%20Estoy%20interesado%20en%20invertir%20en%20Selbook.%20%C2%BFPodemos%20agendar%20una%20llamada%3F%20Soy%20%5Btu%20nombre%5D%20de%20%5Btu%20empresa%5D.">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Formulario ===== -->
+  <section id="form" class="form-card">
+    <h2>Envíanos tu mensaje</h2>
+    <p class="form-note">Cuéntanos qué te interesa: probar Selbook, resolver dudas, opinar sobre el producto o explorar una posible inversión.</p>
+
+    <!-- Tally embed -->
+    <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+    <script>
+      var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+        if("undefined"!=typeof Tally){Tally.loadEmbeds()}
+        else{d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})}
+      };
+      if("undefined"!=typeof Tally){v()}else if(d.querySelector('script[src="'+w+'"]')==null){
+        var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);
+      }
+    </script>
+
+    <div class="bottom-cta">
+      <a class="cta-btn" target="_blank" rel="noopener"
+         href="https://wa.me/34609836904?text=Hola%21%20Quiero%20contactar%20con%20Selbook.%20Soy%20%5Btu%20nombre%5D.">
+         <i class="fab fa-whatsapp"></i> Enviar mensaje por WhatsApp
+      </a>
+      <a class="cta-btn"href="mailto:proyectoselbook@gmail.com"><span class="muted">o escríbenos a proyectoselbook@gmail.com</span></a>
+    </div>
+  </section>
+
+
+    
+
+
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES -->
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			<!--
+            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			-->
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+  
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+ <div class="mystery-overlay" id="mystery-overlay"></div>
+<div class="mystery-modal" id="mystery-modal">
+  <button class="mystery-close" id="mystery-close">&times;</button>
+  <div class="mystery-content">
+    <h3>Una idea loca…</h3>
+    <p>
+      Si has llegado hasta aquí es porque algo te ha interesado.  
+      Ahora imagina que ese interés no ha sido casualidad.  
+      Que en cada momento, mientras leías, he podido <strong>detectar tus emociones</strong>: 
+      cuando algo te aburría, cuando estabas más atento, cuando dudabas.  
+      Y, sin que lo notaras, el contenido se <strong>ajustaba dinámicamente</strong> a ti.  
+    </p>
+    <p>
+      Así, paso a paso, hemos llegado juntos hasta aquí, al final de esta historia. Gracias a  
+     una lectura que se adapta a ti, a tus emociones y reacciónes, creando una "historia" que
+      te acompaña y te convence sin que lo sepas.
+    </p>
+	<p><strong>Eso es precisamente el Selbook</strong></p>
+    <p><em>Bienvenido a la revolución.</em></p>
+  </div>
+</div>
+<script>
+const trigger = document.getElementById('mystery-trigger');
+const modal = document.getElementById('mystery-modal');
+const overlay = document.getElementById('mystery-overlay');
+const closeBtn = document.getElementById('mystery-close');
+
+trigger.addEventListener('click', () => {
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
+});
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
+});
+overlay.addEventListener('click', () => {
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
+});
+</script>
+
+
+<script src="assets/js/scripts.js"></script>
+
+</body>
+</html>
