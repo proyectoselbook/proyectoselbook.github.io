@@ -1,0 +1,1084 @@
+/* =================================================================
+   ARCHIVO DE ESTILOS GENERALES: STYLE.CSS (VERSIÓN DEFINITIVA Y CORRECTA)
+   ================================================================= */
+
+/* =================================================================
+   ARCHIVO DE ESTILOS GENERALES: STYLE.CSS (CON TEMAS DE COLOR)
+   ================================================================= */
+
+/* 1. VARIABLES GENERALES Y RESET */
+:root {
+  /* Variables Fijas (no cambian) */
+  --header-height: 120px;
+  --sidebar-width: 300px;
+  --sidebar-offset: 15px;
+  --text-dark: #212121;
+  --text-light: #FFFFFF;
+  --border-radius: 8px;
+  
+  --sticky-offset: 200px;
+  
+  
+ 
+
+  
+  /* Colores de Acento Genéricos (estos cambiarán de valor) */
+  --section-gradient-start: #061704;
+  --section-gradient-mid:   #2f8030;
+  --section-gradient-end:   #07700c;
+  --section-accent-color: #00ff8c;
+  --section-accent-glow: rgba(0, 255, 140, 0.7);
+  --section-button-color: #FF8C00;
+  --section-button-hover: #FFA94D;
+  --section-button-glow: rgba(255, 140, 0, 0.6);
+
+  /* Variables del Menú Lateral Fijas */
+  --sidebar-bg-dark: #2c2c2c;
+  --sidebar-text-color: #e0e0e0;
+  --sidebar-hover-bg: #444;
+  --sidebar-active-bg: #3a3a3a;
+  --sidebar-separator-color: #555;
+  --sidebar-accent-color: var(--section-accent-color);
+
+}
+
+/* --- TEMA VERDE (PRODUCTO) - Por defecto y para [data-theme="producto"] --- */
+body, body[data-theme="producto"] {
+  --section-gradient-start: #061704;
+  --section-gradient-mid:   #2f8030;
+  --section-gradient-end:   #07700c;
+  --section-accent-color: #00ff8c;
+  --section-accent-glow: rgba(0, 255, 140, 0.7);
+}
+
+/* --- TEMA NARANJA (MARKETING) --- */
+body[data-theme="marketing"] {
+  --section-gradient-start: #331a00;
+  --section-gradient-mid:   #e67e22;
+  --section-gradient-end:   #331a00;
+  --section-accent-color: #f39c12;
+  --section-accent-glow: rgba(243, 156, 18, 0.7);
+}
+
+/* --- TEMA AZUL (MODELO DE NEGOCIO) --- */
+body[data-theme="modelo"] {
+  --section-gradient-start: #011f4b;
+  --section-gradient-mid:   #2980b9;
+  --section-gradient-end:   #011f4b;
+  --section-accent-color: #3498db;
+  --section-accent-glow: rgba(52, 152, 219, 0.7);
+}
+
+/* --- TEMA AMARILLO (EXPERIENCIA DE USUARIO) - Provisional --- */
+body[data-theme="ux"] {
+  --section-gradient-start: #3d2c00;
+  --section-gradient-mid:   #f1c40f;
+  --section-gradient-end:   #3d2c00;
+  --section-accent-color: #f1c40f;
+  --section-accent-glow: rgba(241, 196, 15, 0.7);
+}
+
+/* --- TEMA ROJO (INCERTIDUMBRES) - Provisional --- */
+body[data-theme="retos"] {
+  --section-gradient-start: #4c0000;
+  --section-gradient-mid:   #c0392b;
+  --section-gradient-end:   #4c0000;
+  --section-accent-color: #e74c3c;
+  --section-accent-glow: rgba(231, 76, 60, 0.7);
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #FAFAFA;
+  color: var(--text-dark);
+}
+ /* El offset se aplica cuando hacemos scrollIntoView(block: 'start') */
+.journey-step .step-header {
+  scroll-margin-top: var(--sticky-offset);
+}
+
+/* 2. HEADER Y STRINGBOOK DESPLEGABLE */
+header {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--header-height);
+  background: linear-gradient(90deg, var(--section-gradient-start), var(--section-gradient-mid), var(--section-gradient-end));
+  color: var(--text-light); display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; box-sizing: border-box; z-index: 1000;
+}
+.header-content { display: flex; align-items: center; }
+.header-text { display: flex; flex-direction: column; justify-content: center; }
+.header-title { font-size: 1.6em; font-weight: 700; line-height: 1.1; }
+.header-subtitle { font-size: 1.1em; font-style: italic; opacity: 0.85; }
+.header-content img { height: 80px; margin-right: 12px; }
+/* ===================================================
+   NUEVOS ESTILOS PARA LOS BOTONES DEL HEADER
+   =================================================== */
+
+.header-buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  display: flex;
+  gap: 12px; /* Espacio entre botones */
+}
+
+/* Estilo unificado para botones y enlaces */
+.header-action-button {
+  display: inline-flex; /* Para alinear icono y texto */
+  align-items: center;
+  gap: 8px; /* Espacio entre icono y texto */
+  padding: 8px 16px; /* Padding reducido */
+  font-size: 0.9em;  /* Tamaño de fuente reducido */
+  font-weight: 600;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 140, 0, 0.4); /* Borde sutil naranja */
+  border-radius: 20px; /* Bordes redondeados */
+  cursor: pointer;
+  
+  /* Glow inicial anaranjado */
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+  
+  transition: all 0.3s ease;
+}
+
+.header-action-button:hover {
+  background-color: #2a2a2a;
+  color: var(--button-color);
+  /* Glow intensificado */
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+  transform: translateY(-2px); /* <-- AÑADE ESTA LÍNEA */
+}
+
+/* Pequeño ajuste para que los iconos dentro de los botones también cambien de color al hacer hover */
+.header-action-button:hover .fas {
+    color: var(--button-color);
+}
+
+#route-container {
+  position: fixed; top: var(--header-height); left: calc(var(--sidebar-width) + var(--sidebar-offset) * 2); right: 0;
+  background: #FFFFFF; overflow: hidden; max-height: 0; border-bottom: 1px solid #DDD;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: max-height 0.4s ease; z-index: 999;
+}
+#route-container.open { max-height: 320px; }
+#route-container .route-content { padding: 20px; }
+.route-node {
+  border: 1px dashed #AAA; border-radius: 6px; padding: 10px 14px; margin: 6px;
+  display: inline-block; background: #FDFDFD; font-size: 0.85em;
+}
+
+/* 4. MENÚ LATERAL (VERSIÓN FINAL Y CORRECTA) */
+nav#sidebar {
+  position: fixed; top: calc(var(--header-height) + var(--sidebar-offset)); left: var(--sidebar-offset);
+  width: var(--sidebar-width); bottom: var(--sidebar-offset); overflow-y: auto;
+  background: var(--sidebar-bg-dark); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  padding: 15px; box-sizing: border-box; border-radius: 12px; padding-top: 7px;
+}
+nav#sidebar ul { list-style: none; padding: 0; margin: 0; }
+nav#sidebar li { margin-bottom: 2px; }
+.menu-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px;
+  border-radius: var(--border-radius); cursor: pointer;
+  transition: background-color 0.2s ease; color: var(--sidebar-text-color);
+}
+.menu-item:hover {
+  background-color: var(--sidebar-active-bg); /* Mismo fondo que el item activo */
+  color: var(--sidebar-accent-color);  /*Color de texto verde */
+}
+
+/* Pequeño ajuste para que el título también se ponga verde */
+.menu-item:hover .section-title,
+.menu-item:hover span a {
+    color: var(--section-accent-color); 
+}
+.menu-item.active { background-color: var(--sidebar-active-bg); }
+.menu-item.active .section-title { color: var(--section-accent-color); font-weight: 700; }
+.menu-item span a, .menu-item .section-title {
+  color: var(--sidebar-text-color); text-decoration: none;
+  font-weight: 500; font-size: 0.95em;
+  transition: color 0.2s ease;
+}
+.toggle { font-size: 1.1em; font-weight: bold; transition: transform 0.3s ease; }
+.menu-item.active .toggle { transform: rotate(90deg); }
+.submenu {
+  max-height: 0; overflow: hidden; padding-left: 8px; margin-left: 8px;
+  border-left: 1px solid var(--sidebar-separator-color);
+  transition: max-height 0.4s ease-out;
+}
+.submenu.open { max-height: 600px; }
+.submenu a {
+  display: block; padding: 6px 10px;
+  color: #b0b0b0; text-decoration: none;
+  font-size: 0.85em; border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+}
+/*.submenu a:hover { color: var(--sidebar-accent-color); background-color: var(--sidebar-hover-bg); }*/
+.submenu a:hover { color: var(--section-accent-color); background-color: var(--sidebar-hover-bg); }
+
+
+nav#sidebar a.visited::before, .menu-item .section-title.completed::before {
+  content: '\2714\00a0';
+  color: var(--section-accent-color);
+}
+/* Estilo para el enlace de la página actual (ahora incluye enlaces principales) */
+.submenu a.current-page,
+.menu-item a.current-page { /* <-- SELECTOR CORREGIDO Y AÑADIDO */
+  color: var(--section-accent-color) !important;
+  font-weight: 700;
+}
+
+/* El fondo solo se aplica si está en un submenú */
+.submenu a.current-page {
+  background-color: var(--sidebar-hover-bg);
+}
+
+/* El fondo se aplica al contenedor si es un enlace principal */
+.menu-item:has(a.current-page) {
+    background-color: var(--sidebar-active-bg);
+}
+
+/* Estilo para el enlace de la página actual 
+.submenu a.current-page {
+  color: var(--section-accent-color); 
+  font-weight: 700;
+  background-color: var(--sidebar-hover-bg);
+}
+*/
+li.direct-link {
+    margin-top: 10px; padding-top: 8px;
+    border-top: 1px solid var(--sidebar-separator-color);
+}
+/* ===================================================
+   NUEVO BOTÓN DE INICIO EN EL MENÚ LATERAL
+   =================================================== */
+
+/* Contenedor del botón para el espaciado y la línea separadora */
+.home-button-container {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--sidebar-separator-color);
+}
+
+/* Estilos del propio botón */
+.sidebar-home-button {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 10px;
+    font-weight: 700;
+    font-size: 1em;
+    color: #FFFFFF; /* Texto en blanco para destacar sobre el fondo negro */
+    background-color: #1a1a1a; /* Fondo negro */
+    border-radius: var(--border-radius);
+    
+    /* Glow inicial anaranjado (usando el color de los botones del header) */
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+    
+    transition: all 0.3s ease;
+}
+
+/* Hover: fondo más claro, más glow y texto naranja */
+.sidebar-home-button:hover {
+    background-color: #2a2a2a; /* Fondo menos negro */
+    color: var(--button-color); /* Texto anaranjado, como los botones del header */
+    box-shadow: 0 0 25px rgba(255, 140, 0, 0.7); /* Glow más intenso */
+}
+/* ===================================================
+   NUEVO ESTILO PARA SUBMENÚ ACTIVO
+   =================================================== */
+
+.submenu.open {
+    background-color: var(--sidebar-active-bg); /* Mismo fondo que el item activo */
+    border-radius: 0 0 var(--border-radius) var(--border-radius); /* Redondea solo las esquinas inferiores */
+    margin-top: 5px;  /* Pequeño espacio para separarlo del item principal */
+    padding-top: 10px;    /* Espacio interno superior */
+    padding-bottom: 10px; /* Espacio interno inferior */
+    margin-left: 0;   /* Reseteamos el margen para que ocupe todo el ancho */
+    padding-left: 20px; /* Mantenemos la indentación de los enlaces */
+    border: 1px solid rgba(0, 255, 140, 0.1); /* Borde muy sutil */
+
+    /* Efecto "Glow" verdoso */
+    /* box-shadow: 0 0 40px rgba(0, 255, 140, 0.50); */
+	/* Un brillo más definido y con profundidad */
+	box-shadow: 
+		  inset 0 0 5px var(--section-accent-glow), /* CAMBIO AQUÍ */
+		  0 0 40px var(--section-accent-glow);   /* CAMBIO AQUÍ */
+}
+
+/* Ajuste para que el borde izquierdo del submenú desaparezca cuando está abierto */
+.submenu.open {
+    border-left: none;
+}
+
+/* Ajuste para que el borde del item principal activo se una con el submenú */
+.menu-item.active {
+    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Redondea solo las esquinas superiores */
+}
+
+/* 5. CONTENIDO PRINCIPAL Y COMPONENTES COMUNES */
+main#content {
+  margin-top: calc(var(--header-height) + var(--sidebar-offset));
+  margin-left: calc(var(--sidebar-width) + var(--sidebar-offset) * 2);
+  margin-right: 20px; padding: 20px 20px 40px 20px;
+  box-sizing: border-box; max-width: 100%;
+}
+main#content h1 { font-size: 2.2em; margin-top: 0; margin-bottom: 20px; }
+main#content h2 { font-size: 1.8em; margin-top: 40px; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px;}
+main#content h3 { font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; color: var(--section-gradient-mid);}
+main#content p { line-height: 1.6; margin-bottom: 16px; }
+
+.callout {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--callout-border);
+  padding: 15px 20px; margin: 20px 0; border-radius: var(--border-radius);
+}
+.callout h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.4em; }
+.content-breadcrumbs { font-size: 0.9em; color: #666; margin-bottom: 10px; }
+
+/* 6. TARJETAS DE ACCESO GENERALES */
+
+/* ===================================================
+   6. TARJETAS DE ACCESO (CON TOOLTIPS CORREGIDOS)
+   =================================================== */
+
+.cards-wrapper {
+  margin-top: 28px; background: linear-gradient(180deg, #252525, #1b1b1b);
+  padding: 22px; border-radius: 14px; box-shadow: 0 6px 18px rgba(0, 0, 0, .18); color: #eee
+}
+.cards-head {
+  background: linear-gradient(135deg, rgba(0, 255, 140, .06), rgba(0, 180, 120, .03));
+  border: 1px solid rgba(0, 255, 140, .18); padding: 14px 16px; border-radius: 12px;
+  margin-bottom: 16px; box-shadow: inset 0 0 20px rgba(0, 255, 140, .06);
+}
+.cards-head h2 { margin: 0 0 6px 0; color: #eafff4; border: none; padding: 0; }
+.cards-head p.intro { margin: 0; color: #cfeee4 }
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px }
+
+/*
+ * AJUSTE CLAVE 1:
+ * El contenedor <article> ahora SÓLO se encarga de la posición.
+ * Le quitamos todos los estilos visuales y el `overflow: hidden`.
+ */
+.card {
+  position: relative; /* <-- ESTO ES LO MÁS IMPORTANTE QUE SE QUEDA */
+}
+
+/*
+ * AJUSTE CLAVE 2:
+ * Movemos TODOS los estilos visuales (fondo, borde, overflow)
+ * a la etiqueta <a> que está dentro.
+ */
+.card a {
+  display: block;
+  background: #2f2f2f;
+  border: 1px solid #3f3f3f;
+  border-radius: 12px;
+  overflow: hidden; /* <-- El overflow ahora está aquí, afectando solo a la imagen. */
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+  color: #fff;
+  text-decoration: none;
+}
+.card:hover a { /* El hover ahora se aplica al <a> también */
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px rgba(0, 255, 140, .25), 0 12px 28px rgba(0, 255, 140, .25);
+  border-color: rgba(0, 255, 140, .4)
+}
+
+.card img { width: 100%; height: 160px; object-fit: cover }
+.card-body { padding: 12px 14px }
+.card-title { font-weight: 700; margin: 0 0 6px }
+.card-desc { font-size: .95em; color: #e7e7e7; margin: 0 }
+
+/*
+ * AJUSTE CLAVE 3:
+ * Cambiamos la posición del tooltip para que aparezca a la derecha.
+ * Ahora SÍ puede "salirse" porque su padre (.card) ya no tiene overflow:hidden.
+ */
+.tooltip {
+  position: absolute;
+  left: 15%; /* Lo colocamos justo al borde derecho de la tarjeta */
+  top: 15px;   /* Lo bajamos un poco desde la parte superior */
+  margin-left: 15px; /* Le damos un espacio para que no esté pegado */
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-10px); /* Efecto de entrada desde la izquierda */
+  transition: opacity .2s ease, visibility .2s ease, transform .2s ease;
+
+  background: rgba(18, 18, 18, .98); color: #e9ffe8; border: 1px solid rgba(0, 255, 140, .35);
+  border-radius: 12px; box-shadow: 0 18px 40px rgba(0, 0, 0, .45), 0 0 0 1px rgba(0, 255, 140, .12) inset;
+  padding: 12px 14px; width: 300px; max-width: 85vw; z-index: 50;
+}
+.card:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0); /* Lo movemos a su posición final */
+}
+.tooltip h4 { margin: 0 0 6px 0; font-size: .95em; color: #afffcb }
+.tooltip ul { margin: 0; padding-left: 18px; font-size: .9em; line-height: 1.4 }
+
+/* AJUSTE CLAVE 4: La flecha del tooltip ahora apunta a la izquierda */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 15px; /* Alineado verticalmente con el tooltip */
+  left: -16px; /* Lo colocamos fuera, a la izquierda */
+  border: 8px solid transparent;
+  border-right-color: rgba(18, 18, 18, .98); /* La flecha apunta a la derecha */
+}
+
+@media (max-width: 1024px) { .card-grid { grid-template-columns: repeat(2, 1fr) } }
+@media (max-width: 720px) { .card-grid { grid-template-columns: 1fr } }
+
+
+
+/* ===================================================
+   ESTILO CORREGIDO PARA IMÁGENES DE APOYO
+   =================================================== */
+
+.image-full-width {
+  display: block; /* Necesario para que el centrado con margin:auto funcione */
+  width: 100%; /* La imagen será responsive y ocupará el ancho disponible */
+  max-width: 800px; /* PERO nunca superará los 600px de ancho */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 30px auto; /* Centra la imagen horizontalmente y le da espacio vertical */
+  border-radius: var(--border-radius); /* Mantiene los bordes redondeados consistentes */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); /* Sombra sutil para darle profundidad y realce */
+  
+  
+  /* === LÍNEAS AÑADIDAS PARA LA INTERACCIÓN === */
+  cursor: zoom-in; /* El cursor cambia para indicar que se puede hacer clic */
+  transition: opacity 0.2s ease; /* Transición suave para el hover */
+}
+
+/* ====================================================================
+   7. FOOTER (DISEÑO CORREGIDO CON FLEXBOX PARA UN AJUSTE PERFECTO)
+   ==================================================================== */
+
+footer {
+  margin-left: calc(var(--sidebar-width) + var(--sidebar-offset) * 2);
+  background: #2c2c2c;
+  color: #e0e0e0;
+  padding: 50px 40px 30px 40px;
+  border-top: 4px solid var(--sidebar-accent-color);
+  position: relative;
+  z-index: 10;
+}
+
+/* Usamos Flexbox para un control preciso del ancho */
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap; /* Para responsive */
+    gap: 40px; /* Espacio entre columnas */
+    margin-bottom: 40px;
+}
+
+/* Columna Izquierda: Mensaje y Contacto */
+.footer-contact {
+    flex: 1; /* Ocupa una fracción del espacio */
+    min-width: 350px; /* Ancho mínimo antes de apilarse */
+}
+.footer-contact h3 {
+    font-size: 1.8em;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.footer-contact p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #c0c0c0;
+    margin-bottom: 25px;
+}
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+.contact-details .fas, .contact-details .fab {
+    color: var(--sidebar-accent-color);
+    width: 20px;
+    text-align: center;
+}
+.contact-details a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.contact-details a:hover {
+    color: var(--sidebar-accent-color);
+}
+
+/* Columna Derecha: Formulario Tally */
+.footer-form {
+    flex: 1.5; /* Hacemos esta columna un 50% más ancha que la otra */
+    min-width: 400px; /* Ancho mínimo antes de apilarse */
+}
+.footer-form h3 {
+    font-size: 1.5em;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Contenedor del Iframe (LA CLAVE ESTÁ AQUÍ) */
+.tally-form-container {
+    height: 500px; /* Altura exacta de tu iframe */
+    width: 100%; /* Ocupa el 100% de su columna (que ahora es más ancha) */
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Oculta cualquier borde o scrollbar del iframe */
+}
+.tally-form-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Parte Inferior del Footer: Créditos y Legal */
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+    font-size: 0.85em;
+    color: #a0a0a0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsive */
+}
+.footer-credits {
+    max-width: 60%;
+}
+.footer-legal {
+    text-align: right;
+}
+.footer-legal img {
+    max-width: 120px;
+    opacity: 0.7;
+}
+
+/* Media Query para apilar columnas y centrar contenido en móvil */
+@media (max-width: 1100px) {
+    footer { padding-right: 40px; }
+    .footer-credits { max-width: 100%; }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .footer-legal {
+        text-align: center;
+    }
+}
+
+
+
+/* Estilo para el iframe de Tally */
+.tally-form-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+    font-size: 0.85em;
+    color: #a0a0a0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-credits {
+    max-width: 60%;
+}
+.footer-legal img {
+    max-width: 120px;
+    opacity: 0.7;
+}
+
+@media (max-width: 1100px) {
+    footer {
+        padding-right: 40px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .footer-credits {
+        max-width: 100%;
+    }
+}
+/* ====================================================================
+   BLOQUE "SIGUIENTE SECCIÓN" (VERSIÓN FINAL CORREGIDA Y CON VARIABLES)
+   ==================================================================== */
+
+/* Contenedor principal que crea la caja oscura */
+.next-section-wrapper {
+    margin: 50px 0;
+    padding: 25px 30px;
+    background: #2b2b2b;
+    color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    border: 1px solid #444;
+}
+
+/* El div que contiene las dos columnas (texto y tarjeta) */
+.next-section-promo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Columna izquierda con todo el texto */
+.next-section-text {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* Título superior "En la siguiente sección..." */
+.next-section-wrapper .next-section-title {
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    font-size: 20px !important;
+    font-weight: 400;
+    color: #a0a0a0;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    border: none;
+    border-bottom: 1px solid #666; /* Línea gris sutil, como en la imagen */
+}
+
+
+/* Título principal de la siguiente sección */
+.next-section-promo .next-section-main-title {
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    font-size: 1.8em;
+    border: none !important;
+    /* border-bottom: 0px solid #666;  Línea gris sutil, como en la imagen */
+    color: var(--section-accent-color); /* <-- Usa la variable de color de la sección */
+}
+
+/* Descripción con borde izquierdo */
+.next-section-promo blockquote {
+    margin: 0;
+    padding-left: 15px;
+    border-left: 2px solid var(--section-accent-color); /* <-- Usa la variable de color */
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+/* Tarjeta de la derecha con borde y glow */
+.next-section-card {
+    flex: 1;
+    max-width: 250px;
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    display: block;
+    border: 2px solid var(--section-accent-color); /* <-- Usa la variable de color */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px var(--section-accent-glow); /* <-- Usa la variable de glow */
+}
+
+.next-section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 35px var(--section-accent-glow); /* <-- Usa la variable de glow */
+}
+
+.next-section-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* H3 de la tarjeta: ahora es un bloque con fondo */
+.next-section-card h3 {
+    margin: 0;
+    padding: 15px 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    background-color: rgba(20, 20, 20, 0.7);
+    color: #FFFFFF !important;
+    transition: color 0.3s ease;
+}
+
+/* Hover para el H3 */
+.next-section-card:hover h3 {
+    color: var(--section-accent-color); /* <-- Usa la variable de color */
+}
+
+/* Media Query para apilar las columnas en pantallas pequeñas */
+@media (max-width: 900px) {
+    .next-section-promo { 
+        flex-direction: column; 
+    }
+    .next-section-card {
+        max-width: 100%;
+    }
+}
+
+
+/* ====================================================================
+   ESTILOS PARA LA CAJA DE LUZ (LIGHTBOX)
+   ==================================================================== */
+
+/* Contenedor principal de la caja de luz (oculto por defecto) */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* Siempre por encima de todo */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Clase para mostrar la caja de luz */
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* La imagen ampliada dentro de la caja de luz */
+.lightbox img {
+    max-width: 95vw;  /* Ocupa como máximo el 90% del ancho de la pantalla */
+    max-height: 90vh; /* Ocupa como máximo el 80% del alto de la pantalla */
+    display: block;
+    box-shadow: 0 0 40px rgba(0, 255, 140, 0.5); /* Un brillo verdoso para que destaque */
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+.lightbox.active img {
+    transform: scale(1); /* Efecto de zoom al aparecer */
+}
+
+/* Botón para cerrar la caja de luz */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5em;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.lightbox-close:hover {
+    transform: scale(1.2);
+}
+
+/* Las imágenes en el contenido que activarán la caja de luz */
+.lightbox-trigger {
+    cursor: zoom-in; /* Cambia el cursor para indicar que se puede hacer clic */
+    transition: opacity 0.2s ease;
+}
+.image-full-width:hover {
+    opacity: 0.85; /* Un pequeño efecto visual al pasar el ratón */
+}
+
+/* Separador sutil bajo el menú */
+.sidebar-divider{
+  height:1px;
+  margin:10px 12px 12px;
+  background: linear-gradient(90deg, transparent, rgba(24,195,126,.35), transparent);
+  opacity:.8;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Botón CTA bajo el menú */
+.sidebar-cta{
+  display:block;
+  margin:0 12px 14px;
+  padding:12px 14px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:700;
+  text-decoration:none;
+  
+      margin-top: 10px;
+}
+
+.sidebar-cta i{ margin-right:8px; }
+
+/* === Sidebar CTA: usa variables de tema === */
+.sidebar-cta{
+  color: var(--text-light);
+  background:
+    radial-gradient(120% 120% at 50% -20%,
+      color-mix(in srgb, var(--section-accent-color) 22%, transparent),
+      color-mix(in srgb, var(--section-accent-color) 10%, transparent)),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid color-mix(in srgb, var(--section-accent-color) 70%, transparent);
+  box-shadow:
+    0 8px 22px color-mix(in srgb, var(--section-accent-glow) 60%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--section-accent-color) 15%, transparent);
+}
+.sidebar-cta:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 30px color-mix(in srgb, var(--section-accent-glow) 80%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--section-accent-color) 25%, transparent);
+  border-color: color-mix(in srgb, var(--section-accent-color) 90%, transparent);
+}
+.sidebar-cta i{ margin-right:8px; }
+
+/* === Callout temático (hereda del tema activo) === */
+.callout{
+  /* usa el acento del tema como color base */
+  --_accent: var(--section-accent-color);
+
+  /* fondo suave que funciona en claro/oscuro */
+  background:
+    linear-gradient(0deg,
+      color-mix(in srgb, var(--_accent) 18%, transparent),
+      color-mix(in srgb, var(--_accent) 8%, transparent));
+  border-left: 4px solid color-mix(in srgb, var(--_accent) 75%, transparent);
+
+  /* ligero glow con la variable del tema */
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--section-accent-glow, rgba(0,0,0,.2)) 40%, transparent);
+
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: var(--border-radius);
+}
+
+/* Fallback para navegadores sin color-mix */
+@supports not (color: color-mix(in srgb, white, black)) {
+  .callout{
+    background: rgba(0,0,0,.06);
+    border-left-color: var(--section-accent-color);
+    box-shadow: 0 10px 28px var(--section-accent-glow, rgba(0,0,0,.18));
+  }
+}
+
+/* === Bloque final CTA (temático) === */
+.final-cta{
+  position: relative;
+  margin: 26px 0;
+  padding: clamp(28px, 5vw, 56px) clamp(18px, 4vw, 40px);
+  border-radius: 18px;
+  color: #eafff4;
+  background:
+    radial-gradient(900px 400px at 85% -20%,
+      color-mix(in srgb, var(--section-accent-color) 18%, transparent), transparent 60%),
+    linear-gradient(135deg,
+      var(--section-gradient-start, #0e1311),
+      var(--section-gradient-end, #0a1f15));
+  border: 1px solid color-mix(in srgb, var(--section-accent-color) 36%, transparent);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--section-accent-glow, rgba(0,0,0,.3)) 70%, transparent);
+  overflow: hidden;
+}
+.final-cta__inner{ max-width: 980px; margin: 0 auto; text-align: center; }
+.final-cta h2{ margin: 0 0 6px; line-height: 1.1; font-size: clamp(22px, 3.4vw, 40px); }
+.final-cta__lead{ margin: 0 0 16px; opacity: .9; font-size: clamp(15px, 1.5vw, 18px); }
+
+/* Botón */
+.cta-link{
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 12px 18px; border-radius: 14px; font-weight: 700;
+  text-decoration: none; color: #0b1a13; /* texto oscuro para contraste */
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--section-accent-color) 92%, white 8%),
+      color-mix(in srgb, var(--section-accent-color) 78%, black 22%));
+  border: 1px solid color-mix(in srgb, var(--section-accent-color) 70%, transparent);
+  box-shadow:
+    0 10px 26px color-mix(in srgb, var(--section-accent-glow, rgba(0,0,0,.25)) 60%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #ffffff 30%, transparent);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.cta-link:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 34px color-mix(in srgb, var(--section-accent-glow, rgba(0,0,0,.25)) 80%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #ffffff 46%, transparent);
+  filter: saturate(1.05);
+}
+
+/* Fallback si no hay color-mix */
+@supports not (color: color-mix(in srgb, white, black)) {
+  .final-cta{
+    background: linear-gradient(135deg, #0e1311, #0a1f15);
+    border-color: var(--section-accent-color);
+    box-shadow: 0 18px 48px var(--section-accent-glow, rgba(0,0,0,.35));
+  }
+  .cta-link{
+    background: var(--section-accent-color);
+    border-color: var(--section-accent-color);
+    color: #07120d;
+  }
+}
+.mystery-card {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: rgba(255,140,0,0.15);
+  border: 1px solid rgba(255,140,0,0.35);
+  color: #ffa94d;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255,140,0,0.5);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.mystery-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255,140,0,0.8);
+}
+.mystery-card .mystery-text { display:block; text-align:right; }
+
+/* --- Apariencia del término clicable (marco punteado verde + iconos al final) --- */
+
+/* ====== Nota inline sin romper el flujo ====== */
+.sb-note{
+  display: inline;                          /* se mantiene en la misma línea */
+  border: 2px dotted var(--sb-accent, #18c37e);
+  border-radius: 8px;
+  padding: 0 .35em;                         /* margen lateral suave */
+  background: rgba(24,195,126,0.10);
+  cursor: pointer;
+  /* hace que el borde y fondo se apliquen a cada línea si hay salto */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.sb-note:hover{
+  background: rgba(24,195,126,0.15);
+  border-color: #20d08b;
+  box-shadow: 0 0 0 2px rgba(24,195,126,0.12) inset;
+}
+
+/* sin etiquetas ni pseudo-iconos automáticos */
+.sb-note::before, .sb-note::after{ content:none !important; }
+
+/* Iconos manuales: tamaño y alineación sutil */
+.sb-ico, .sb-ico-hand{
+  font-size: .95em; 
+  vertical-align: -0.1em; 
+  opacity: .9;
+}
+.sb-ico{ color: #ffd27a; }            /* el icono “representativo” */
+.sb-ico-hand{ color: #ed9032; }       /* la mano cursor */
+.sb-note:hover .sb-ico, .sb-note:hover .sb-ico-hand{ opacity: 1; }
+
+
+/* Alternativas según tipo */
+.sb-note[data-sb-type="glossary"]::before{ content: "💡"; color:#9AF0C2; }
+.sb-note[data-sb-type="debate"]::before{ content: "💬"; color:#ffaeae; }
+.sb-note[data-sb-type="key"]::before{ content: "★"; color:#ffd27a; }
+
+/* ====== Modal (sb-*) ====== */
+.sb-overlay{
+  position: fixed; inset: 0; background: rgba(0,0,0,.65);
+  opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  z-index: 9800;
+}
+/* --- Modal centrado con altura automática y límite máximo --- */
+.sb-dialog{
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%); /* centra siempre */
+  width: min(680px, 92vw);
+  max-height: 80vh;                 /* limita altura si el contenido es largo */
+  overflow: auto;                    /* scroll interno si se excede */
+  background: #0f1216;
+  color: #e9ecef;
+  border: 1px solid #2a2f36;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+  padding: 1.2rem 1.2rem 1rem;
+  opacity: 0; pointer-events: none;
+  transition: .2s ease;             /* mantiene las transiciones */
+  z-index: 9810;
+}
+
+/* Estados abiertos (se mantienen) */
+.sb-dialog.is-open, .sb-overlay.is-open{ opacity: 1; pointer-events: auto; }
+
+
+.sb-close{
+  position:absolute; top:.5rem; right:.6rem; background:transparent; border:0;
+  color:#9fb3c8; font-size:1.4rem; cursor:pointer;
+}
+.sb-dialog-type{
+  font-size:.9rem; opacity:.9; margin-bottom:.25rem; color:#ffb35a;
+}
+.sb-dialog-title{
+  margin: .1rem 0 .6rem;
+  font-size: 1.12rem;
+  color: #ffe8cc;
+  text-shadow: 0 0 8px rgba(255,140,0,.18);
+}
+.sb-dialog-content{ font-size:.96rem; line-height:1.5; opacity:.95; }
+/* ====== Variante DISCUSIÓN (rojizo) ====== */
+.sb-note[data-sb-type="debate"] {
+  border-color: #ff6b6b;
+  background: rgba(255,107,107,.10);
+}
+.sb-note[data-sb-type="debate"]:hover {
+  background: rgba(255,107,107,.16);
+  box-shadow: 0 0 0 2px rgba(255,107,107,.12) inset;
+  border-color: #ff8585;
+}
+.sb-note[data-sb-type="debate"] .sb-ico { 
+  color:#f63d3d; 
+}
+
+/* Variante ACLARACIÓN / INFORMATIVO (azulado) */
+.sb-note[data-sb-type="info"]{
+  border-color:#4dabf7;
+  background: rgba(77,171,247,.10);
+}
+.sb-note[data-sb-type="info"]:hover{
+  background: rgba(77,171,247,.16);
+  box-shadow: 0 0 0 2px rgba(77,171,247,.12) inset;
+  border-color:#74c0fc;
+}
+.sb-note[data-sb-type="info"] .sb-ico{ color:#4dabf7; }
+/* Caja para ejemplos de los Nudos */
+.nudo-example-box {
+background-color: #333;
+    color: #f1f1f1;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 2px 0;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1;
+    border: 1px solid #555;
+    white-space: pre-wrap;
+	    padding-top: 2px;
+    padding-bottom: 2px;
+}
