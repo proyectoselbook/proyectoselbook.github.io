@@ -97,22 +97,30 @@
 	decoration: none;
   }
 
-  .entry{
-    padding:18px 20px 20px;
-    border-radius:16px;
-    backdrop-filter: blur(2px);
-    background: rgba(255,255,255,0.03);
-    border:1px solid rgba(0,255,153,0.10);
-    transition: transform .25s ease, border-color .25s ease, background .25s ease;
-    cursor:pointer;
-			text-decoration: none;
+.entry {
+  padding:18px 20px 20px;
+  border-radius:16px;
+  backdrop-filter: blur(2px);
+  background: rgba(255,255,255,0.03);
+  border:1px solid rgba(0,255,153,0.35); /* borde más intenso de inicio */
+  box-shadow: 0 0 10px rgba(0,255,153,0.25); /* glow inicial sutil */
+  transition: transform .25s ease, 
+              border-color .25s ease, 
+              background .25s ease,
+              box-shadow .3s ease; /* animación suave */
+  cursor:pointer;
+  text-decoration: none;
+}
 
-  }
-  .entry:hover{
-    transform: translateY(-2px) scale(1.02);
-    border-color: rgba(0,255,153,0.28);
-    background: rgba(0,255,153,0.06);
-  }
+.entry:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(0,255,153,0.8); /* borde brillante */
+  background: rgba(0,255,153,0.08);
+  box-shadow: 
+    0 0 18px rgba(0,255,153,0.6),
+    0 0 32px rgba(0,255,153,0.45); /* glow potente */
+}
+
 
   .entry-title{
     font-family:'Inter',sans-serif;
@@ -193,3 +201,4 @@
   </main>
 </body>
 </html>
+
