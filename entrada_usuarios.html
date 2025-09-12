@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selbook - La Revolución Literaria</title>
+    <link rel="stylesheet" href="assets/css/styles_user.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <img src="assets/img/selbook_logo.png" alt="Selbook Logo" class="hero-logo logo-pulse">
+            <h1 class="hero-title">SELBOOK</h1>
+            <h2 class="hero-subtitle">La Revolución Literaria Ha Comenzado</h2>
+            <p class="hero-description">
+                Imagina una historia que se adapta en tiempo real a tus emociones, donde puedes elegir el protagonista para vivirla, 
+                donde cada lectura es única y donde la literatura cobra vida de formas nunca antes vistas.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="whatIsSelbook">
+                    <span class="btn-icon">✨</span>
+                    ¿Qué es Selbook?
+                </button>
+                <button class="btn btn-secondary">
+                    <span class="btn-icon">👁</span>
+                    Ver Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+<!-- SECCIÓN: ¿Qué es un Selbook? (Tarjetas) -->
+<section id="que-es-selbook-cards" class="imagine-section">
+  <div class="container">
+    <h2 class="section-title glow-title">¿Qué es un Selbook?</h2>
+    <p class="section-subtitle">Tócala. Ábrela. Imagina.</p>
+
+    <div class="imagine-grid">
+      <!-- Tarjeta 1 -->
+      <article class="imagine-card" data-imagine="card1">
+        <div class="imagine-glow"></div>
+        <div class="imagine-inner">
+          <div class="imagine-icon">🧠</div>
+          <h3>Imagina que puedo leerte la mente y saber lo que sientes</h3>
+          <p>La historia se adapta a tus emociones y reacciones… en tiempo real. Serán ellas quienes creen la historia.</p>
+          <button class="imagine-cta">Ver cómo funciona</button>
+        </div>
+      </article>
+
+      <!-- Tarjeta 2 -->
+      <article class="imagine-card" data-imagine="card2">
+        <div class="imagine-glow"></div>
+        <div class="imagine-inner">
+          <div class="imagine-icon">🧩</div>
+          <h3>Imagina que puedes elegir un protagonista para recorrer la historia</h3>
+          <p>Vive la misma historia… desde otra mente, otra ruta, otros destinos.</p>
+          <button class="imagine-cta">Ver cómo funciona</button>
+        </div>
+      </article>
+
+      <!-- Tarjeta 3 -->
+      <article class="imagine-card" data-imagine="card3">
+        <div class="imagine-glow"></div>
+        <div class="imagine-inner">
+          <div class="imagine-icon">🎧</div>
+          <h3>Imagina que en vez de leer, eliges cómo vivir la historia</h3>
+          <p>Audio, vídeo, cómic… incluso “pilotando” escenas clave.</p>
+          <button class="imagine-cta">Ver cómo funciona</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+    <!-- Hexagon Universe Section -->
+
+<section class="hexagon-section" id="hexagon-universe">
+  <div class="container">
+    <div class="hex-2col">
+      <!-- IZQUIERDA: círculo de 9 (centro + 8 alrededor) -->
+      <div class="hex-left">
+        <div class="hex-layout layout-circle9">
+          <div class="hex-orbit">
+            <!-- Centro -->
+            <div class="hexagon-item hex-center" data-hexagon="emotions" tabindex="0" role="button">
+              <div class="hexagon-container">
+                <img src="assets/img/selbook_hexagon_emotions.png" alt="Adaptación Emocional" class="hexagon-image">
+                <div class="hexagon-overlay">
+                  <i class="fa-solid fa-magnifying-glass-plus overlay-icon" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Anillo (ajusta orden si quieres) -->
+			<!-- 1 -->
+			<div class="hexagon-item" data-hexagon="protagonists" style="--a: 270deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_protagonists.png" alt="Múltiples Protagonistas" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 2 -->
+			<div class="hexagon-item" data-hexagon="infinite-routes" style="--a: 315deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_infinite_routes.png" alt="Rutas Infinitas" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 3 -->
+			<div class="hexagon-item" data-hexagon="multimedia" style="--a: 0deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_multimedia.png" alt="Experiencia Multimedia" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 4 -->
+			<div class="hexagon-item" data-hexagon="community" style="--a: 45deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_community2.png" alt="La Comunidad" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 5 -->
+			<div class="hexagon-item" data-hexagon="authors" style="--a: 90deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/servicios_autores.png" alt="Servicios para Autores" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 6 -->
+			<div class="hexagon-item" data-hexagon="sely-ai" style="--a: 135deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_sely_ai.png" alt="Sely, tu Compañera IA" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+			<!-- 7 -->
+			<div class="hexagon-item" data-hexagon="create-version" style="--a: 180deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/contenidos_extra.png" alt="Contenidos Extra / Crea tu Versión" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			<!-- 8 -->
+			<div class="hexagon-item" data-hexagon="x360" style="--a: 225deg;" tabindex="0" role="button">
+			  <div class="hexagon-container">
+				<img src="assets/img/selbook_hexagon_exp_360.png" alt="Experiencia 360" class="hexagon-image">
+				<div class="hexagon-overlay"><i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i></div>
+			  </div>
+			</div>
+
+			
+			
+          </div>
+        </div>
+      </div>
+
+      <!-- DERECHA: título, subtítulo y caja de detalle -->
+      <aside class="hex-right" aria-live="polite">
+        <div class="hex-sticky-head">
+		  <h2 class="section-title">El Universo Selbook</h2>
+		  <p class="section-subtitle" id="hex-right-subtitle">Explora los pilares del Selbook</p>
+		</div>
+
+        <div class="hex-detail-card" id="hex-detail">
+          <!-- Imagen opcional del detalle -->
+          <div class="hex-detail-media" id="hex-detail-media" hidden></div>
+
+          <!-- Título del detalle -->
+          <h3 class="hex-detail-title" id="hex-detail-title">Haz clic en un hexágono</h3>
+
+          <!-- Texto del detalle -->
+          <div class="hex-detail-body" id="hex-detail-body">
+            <p>
+              Aquí verás, sin abrir ventanas, cómo cada pilar transforma la lectura:
+              adaptación a tus emociones, protagonistas alternativos, rutas infinitas,
+              sonido y vídeo sincronizados… Haz clic en cualquier hexágono para cargar
+              ejemplos, imágenes y explicaciones.
+            </p>
+            <p class="muted">Consejo: empieza por <strong>Experiencia Multimedia</strong> o <strong>Se adapta a tus emociones</strong>.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+    <!-- BIC Device Section -->
+    <section class="bic-section" id="bic-section">
+        <div class="container">
+            <div class="bic-content">
+                <div class="bic-text">
+                    <h2 class="section-title">El Dispositivo BIC</h2>
+                    <p class="bic-description">
+                        El Brain Interface Computer es el corazón de la experiencia Selbook.
+                        Este dispositivo no invasivo y cómodo es <strong style="color:orange;">capaz de reconocer hasta 30 emociones y reaciones</strong> fisiológicas en tiempo real.<br>
+						Gracias a esta tecnología, podemos recoger una increíble información sobre lo que sientes mientras lees e ir adaptando la historia para que sea la mejor historia. <b>Tu Historia</b>.
+						                    </p>
+                    <div class="bic-features">
+                        <div class="bic-feature">
+                            <span class="feature-icon">🛡️</span>
+                            <span>100% seguro y no invasivo</span>
+                        </div>
+                        <div class="bic-feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Conexión instantánea</span>
+                        </div>
+                        <div class="bic-feature">
+                            <span class="feature-icon">✨</span>
+                            <span>Diseño cómodo y elegante</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bic-image">
+                    <img src="assets/img/selbook_bic_device.png" alt="Dispositivo BIC">
+                </div>
+            </div>
+        
+		<!-- BIC: Emociones y señales captadas -->
+<div class="bic-sensors">
+  <h3 class="bic-sensors-title">
+    Gracias al BIC, el Selbook puede recibir tus emociones y reacciones
+  </h3>
+
+  <div class="sensors-box" role="region" aria-label="Emociones y señales detectadas por el BIC">
+    <ul class="sensors-grid" role="list">
+      <!-- Emociones / señales (no vertical: rejilla de chips) -->
+      <li class="sensor-chip" data-type="neg"><span class="icon">😬</span>Nerviosismo</li>
+      <li class="sensor-chip" data-type="pos"><span class="icon">😄</span>Alegría</li>
+      <li class="sensor-chip" data-type="neg"><span class="icon">😢</span>Tristeza</li>
+      <li class="sensor-chip" data-type="neg"><span class="icon">⚡</span>Tensión</li>
+      <li class="sensor-chip" data-type="pos"><span class="icon">❤️</span>Emoción</li>
+      <li class="sensor-chip" data-type="cog"><span class="icon">🤔</span>Intriga</li>
+      <li class="sensor-chip" data-type="neg"><span class="icon">😠</span>Rechazo emocional</li>
+      <li class="sensor-chip" data-type="meta"><span class="icon">⏩</span>Velocidad de lectura</li>
+      <li class="sensor-chip" data-type="gaze"><span class="icon">👀</span>Seguimiento ocular</li>
+      <li class="sensor-chip" data-type="pos"><span class="icon">😊</span>Afinidad emocional</li>
+      <li class="sensor-chip" data-type="cog"><span class="icon">📊</span>Niveles de comprensión</li>
+      <li class="sensor-chip" data-type="neg"><span class="icon">😤</span>Frustración</li>
+      <li class="sensor-chip" data-type="pos"><span class="icon">🤩</span>Fascinación</li>
+    </ul>
+  </div>
+</div>
+</div>
+    </section>
+	
+	<section class="magic-section" id="magic-how">
+  <div class="container">
+    <h2 class="section-title">Así Funciona la Magia</h2>
+    <p class="section-subtitle">El motor que conecta lo que sientes con lo que lees.</p>
+
+    <div class="microflow">
+      <!-- Micro-tarjetas + flechas inline -->
+     <div class="micro-cards" role="tablist" aria-label="Flujo Selbook">
+  <button class="microcard" data-key="perfil" aria-pressed="false" role="tab" style="--glow:#22d3ee;">
+    <span class="icon">👤</span><span class="label">Perfil<br>de Usuario</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="inicio" aria-pressed="false" role="tab" style="--glow:#a78bfa;">
+    <span class="icon">▶️</span><span class="label">Inicio</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="bic" aria-pressed="false" role="tab" style="--glow:#34d399;">
+    <span class="icon">🧠</span><span class="label">BIC</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="nudos" aria-pressed="false" role="tab" style="--glow:#f59e0b;">
+    <span class="icon">⎇</span><span class="label">Nudos</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="ia" aria-pressed="false" role="tab" style="--glow:#60a5fa;">
+    <span class="icon">🤖</span><span class="label">IA (Sely)</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="viva" aria-pressed="false" role="tab" style="--glow:#10b981;">
+    <span class="icon">🎧🎬🎮</span><span class="label">Experiencia<br>Viva</span>
+  </button><span class="arrow"></span>
+
+  <button class="microcard" data-key="fin" aria-pressed="false" role="tab" style="--glow:#f87171;">
+    <span class="icon">🔁</span><span class="label">Fin /<br>Aprendizaje</span>
+  </button><span class="arrow"></span>
+
+  <!-- NUEVA -->
+  <button class="microcard" data-key="reinicio" aria-pressed="false" role="tab" style="--glow:#ffd166;">
+    <span class="icon">🔄</span><span class="label">Volver a empezar<br>o elegir otra historia</span>
+  </button>
+</div>
+
+
+
+      <!-- Panel de detalle -->
+      <div class="detail-card" id="magic-detail" aria-live="polite">
+        <h3 class="detail-title" id="magic-detail-title">¿Cómo funciona Selbook?</h3>
+        <div id="magic-detail-media" class="detail-media" hidden></div>
+        <div id="magic-detail-body">
+          <p class="lead">
+            Haz clic en un paso para ver cómo <strong>Sely</strong> conecta lo que sientes (BIC),
+            lo que te gusta (Perfil) y el mapa de la historia (Stringbook) para elegir la mejor ruta.
+          </p>
+          <p>Sin ventanas emergentes: todo aquí, con ejemplos e imágenes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="expand-section" id="amplia-comparte-crea">
+  <div class="container">
+    <h2 class="section-title">Amplía. Comparte. Crea</h2>
+    <p class="section-subtitle">Funciones que expanden el universo Selbook</p>
+
+    <div class="features-grid">
+	     <!-- Las dos últimas: 50% ancho -->
+      <article class="feature-card wide" style="--glow:#f59e0b;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">✍️</span>
+            <h3 class="feature-title">La Versión del Usuario</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p><strong>Haz tu “cover” del Stringbook</strong>: época, personajes y subtramas. El Señor de los Anillos en versión 2ª Guerra Mundial? ¿Quieres que tú y tus amigos seais los 3 mosqueteros en el año 2308? Pídeselo a Sely y creará la adaptación cumpliendo tus instrucciones. Y lo mejor de todo... <strong>Podrás publicarlo y venderlo en La Librería</strong> como una Ampliación del Stringbook original, <strong>!ganando dinero con tus versiones!</strong></p>
+        </div>
+      </article>
+
+      <article class="feature-card wide" style="--glow:#a78bfa;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🕶️</span>
+            <h3 class="feature-title">Gafas de Realidad Mixta</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p><strong>Imagina vivir la experiencia con unas Gafas de Realidad Mixta</strong>, con todo integrado, el BIC, los auriculares, disfrutar de una pantalla panorámica pra tu experiencia inmersiva. Te recuestas en un sofá, te pones las Gafas. Con un simple gesto de tu mano, pasas una página. Otro gesto, activas un vídeo. <strong>Vive una experiencia revolucionaria y única con Selboob</strong></p>
+        </div>
+      </article>
+		
+		<!-- Ready-to-Play -->
+      <article class="feature-card" style="--glow:#fb7185;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🎮</span>
+            <h3 class="feature-title">Ready-to-Play</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Ponte al mando en escenas clave (conducir, investigar, liderar…).</p>
+        </div>
+      </article>
+		
+      <!-- Relatos Paralelos -->
+      <article class="feature-card" style="--glow:#16c79a;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">📚</span>
+            <h3 class="feature-title">Relatos Paralelos</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Historias de contexto que amplían el universo (p. ej. <em>Rogue One</em> en Star&nbsp;Wars).</p>
+        </div>
+      </article>
+
+      <!-- Personajes Tangenciales -->
+      <article class="feature-card" style="--glow:#f472b6;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🧑‍🚀</span>
+            <h3 class="feature-title">Personajes Tangenciales</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Biopics de secundarios relevantes (p. ej. Han Solo, Viuda Negra…) con su propia historia.</p>
+        </div>
+      </article>
+
+      <!-- Rutas Predefinidas -->
+      <article class="feature-card" style="--glow:#60a5fa;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🗺️</span>
+            <h3 class="feature-title">Rutas Predefinidas</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p><strong>Programa tu mismo la ruta desde el principio o deja que</strong> Sely lo <strong>Pre-configurada</strong> por ti antes de leer.</p>
+        </div>
+      </article>
+		
+      <!-- Charla con Personajes -->
+      <article class="feature-card" style="--glow:#93c5fd;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">💬</span>
+            <h3 class="feature-title">Charla con Personajes</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Podrás hablar con tus protagonistas, preguntarles lo que quieras, conocerles mejor</p>
+        </div>
+      </article>
+	  
+	  
+	  <!-- Imprime tu Ruta -->
+      <article class="feature-card" style="--glow:#f59e0b;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🖨️</span>
+            <h3 class="feature-title">Imprime tu Ruta</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Impresión bajo demanda la ruta que has recorrido, crea tu propia colección de Rutas.</p>
+        </div>
+      </article>
+
+      <!-- Ventana Inter-dimensional -->
+      <article class="feature-card" style="--glow:#a78bfa;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🪟</span>
+            <h3 class="feature-title">Ventana Inter-dimensional</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Asómate a lo que vive otro personaje en el mismo tiempo narrativo.</p>
+        </div>
+      </article>
+
+      <!-- Subrayar y Notas -->
+      <article class="feature-card" style="--glow:#22d3ee;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🖍️</span>
+            <h3 class="feature-title">Subrayar y Notas</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Marca, comenta y comparte fragmentos. Todo queda en tu Archivo de Experiencias.</p>
+        </div>
+      </article>
+
+      <!-- Archivo de Experiencias -->
+      <article class="feature-card" style="--glow:#10b981;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🗂️</span>
+            <h3 class="feature-title">Archivo de Experiencias</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Guarda notas, generados multimedia y pasajes de <em>ready-to-play</em>.</p>
+        </div>
+      </article>
+
+      
+
+      
+
+      <!-- Salto de Dimensión -->
+      <article class="feature-card" style="--glow:#f472b6;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🔀</span>
+            <h3 class="feature-title">Salto de Dimensión</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Puede que no resistas qué está pasando con él. Salta de Dimensión, cambia de protagonista y sigue su ruta.</p>
+        </div>
+      </article>
+
+      <!-- Dimensión Avatar -->
+      <article class="feature-card" style="--glow:#84cc16;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🧬</span>
+            <h3 class="feature-title">Dimensión Avatar</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Protagonista personalizable sugerido por tu perfil. (Pte. de estudio)</p>
+        </div>
+      </article>
+
+      <!-- Control de Cámara -->
+      <article class="feature-card" style="--glow:#22d3ee;">
+        <header class="feature-head">
+          <span class="feature-tag">
+            <span class="emotion-dot"></span>
+            <span class="emoji" aria-hidden="true">🎥</span>
+            <h3 class="feature-title">Control de Cámara</h3>
+          </span>
+        </header>
+        <div class="feature-body">
+          <p>Dirige la cámara en escenas de vídeo: abre plano, gira, enfoca…</p>
+        </div>
+      </article>
+
+ 
+    </div>
+  </div>
+</section>
+
+<!-- STRIP IMPACTANTE -->
+<section class="nudge-strip nudge-hero" id="selbook-nudge">
+  <div class="container nudge-hero-wrap">
+    <p class="nudge-eyebrow">Una última cosa…</p>
+
+    <button class="nudge-btn nudge-btn--xl" id="open-selbook-nudge">
+      ¿Y si ya estuvieras en un Selbook?
+    </button>
+  </div>
+</section>
+
+<section class="cta-section cta-v2" id="cta-actions">
+  <div class="container">
+    <h2 class="section-title">Participa y acelera la revolución</h2>
+    <p class="section-subtitle">Elige tu siguiente paso: prueba el MVP o ayúdanos a validar el producto.</p>
+
+    <div class="cta-cards cta-cards--wide">
+      <!-- Card MVP -->
+      <article class="cta-card big" style="--glow:#22d3ee;">
+        <div class="cta-card__head">
+          <span class="cta-dot"></span>
+          <span class="cta-emoji" aria-hidden="true">🧪</span>
+          <h3>Probar el MVP</h3>
+        </div>
+        <p class="cta-card__text">
+          Acceso temprano a una demo funcional. Tu feedback aquí impulsa las próximas iteraciones.
+        </p>
+        <ul class="cta-bullets">
+          <li>⏱️ 5–7 minutos</li>
+          <li>🎯 Casos guiados</li>
+          <li>🔒 Tus datos son tuyos</li>
+        </ul>
+        <div class="cta-actions">
+          <button class="btn btn-primary btn-large" id="open-mvp">Quiero probar</button>
+        </div>
+      </article>
+
+      <!-- Card TEST -->
+      <article class="cta-card big" style="--glow:#10b981;">
+        <div class="cta-card__head">
+          <span class="cta-dot"></span>
+          <span class="cta-emoji" aria-hidden="true">📝</span>
+          <h3>Test de validación</h3>
+        </div>
+        <p class="cta-card__text">
+          Responde a un cuestionario breve y cuéntanos si encaja contigo. Nos ayudas a priorizar.
+        </p>
+        <ul class="cta-bullets">
+          <li>⏱️ 3–4 minutos</li>
+          <li>🙌 Sin registro</li>
+          <li>📩 Opción de seguimiento</li>
+        </ul>
+        <div class="cta-actions">
+          <button class="btn btn-secondary btn-large" id="open-test">Empezar test</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contacto-usuarios" class="main-section contact-hero">
+  <!-- Top: texto a la izquierda (60-65%) + tarjeta Inversores a la derecha -->
+  <div class="contact-hero__top">
+    <div class="intro">
+      <h1>Hablemos. <br/>Tu historia empieza aquí.</h1>
+      <p class="lead">
+        Si te intriga Selbook y quieres vivir una lectura que se adapta a ti, este es tu sitio.
+        Buscamos <strong>usuarios pioneros</strong> que prueben el producto, nos cuenten qué sienten y nos ayuden a mejorarlo.
+      </p>
+      <p class="lead">
+        <strong>Estamos desarrollando el MVP (Producto Mínimo Viable)</strong>. Únete como early adopter, pruébalo gratis y comparte tu feedback.
+      </p>
+    </div>
+
+    <aside class="investors-aside">
+      <div class="intent-card investors-card">
+        <h3><i class="fas fa-chart-line"></i> Versión para Inversores</h3>
+        <p>¿Buscas la tesis, el modelo y el plan de crecimiento? Entra en la versión para inversores.</p>
+        <p class="muted">Abrimos números, riesgos y ejecución si ves encaje.</p>
+        <div class="cta-row">
+          <a href="entrada-inversores.html" class="cta-btn">
+            <i class="fas fa-arrow-right"></i> Ir a Inversores
+          </a>
+          <a class="cta-btn alt" target="_blank" rel="noopener"
+             href="https://wa.me/34609836904?text=Hola%21%20Estoy%20interesado%20en%20la%20opci%C3%B3n%20de%20inversi%C3%B3n%20de%20Selbook.%20Soy%20%5Btu%20nombre%5D.">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Accesos rápidos -->
+  <div class="contact-quick">
+    <a class="quick-card" href="mailto:proyectoselbook@gmail.com"><i class="fas fa-envelope-open-text"></i> proyectoselbook@gmail.com</a>
+    <a class="quick-card" href="tel:+34609836904"><i class="fas fa-phone-alt"></i> 609 83 69 04</a>
+    <a class="quick-card" href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> Perfil LinkedIn Jose I Ros</a>
+    <a class="quick-card" href="https://wa.me/34609836904" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
+  </div>
+
+  <!-- Formulario dentro de la MISMA sección -->
+  <h2 id="form" class="form-title">Envíanos tu mensaje</h2>
+  <p class="form-note">Cuéntanos si quieres probar Selbook, resolver dudas o aportar ideas para mejorar la experiencia.</p>
+
+  <div class="form-area">
+    <iframe
+      data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1&role=usuario"
+      loading="lazy" width="100%" height="600" frameborder="0"
+      marginheight="0" marginwidth="0" title="Contacto"></iframe>
+  </div>
+  <script>
+    (function(){
+      var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+        if(typeof Tally!=="undefined"){Tally.loadEmbeds()}
+        else{d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e){e.src=e.dataset.tallySrc})}
+      };
+      if(typeof Tally!=="undefined"){v()}
+      else if(!d.querySelector('script[src="'+w+'"]')){
+        var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);
+      }
+    })();
+  </script>
+</section>
+
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-grid">
+    <!-- Marca + contacto -->
+    <div class="brand">
+      <h4 class="brand-name">Proyecto Selbook</h4>
+      <p class="tagline">Queremos escucharte y construir esta revolución juntos.</p>
+
+      <address class="footer-social">
+        <a href="mailto:proyectoselbook@gmail.com" class="fs-item">
+          <i class="fas fa-envelope-open-text"></i> proyectoselbook@gmail.com
+        </a>
+        <a href="tel:+34609836904" class="fs-item">
+          <i class="fas fa-phone-alt"></i> +34 609 83 69 04
+        </a>
+        <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener" class="fs-item">
+          <i class="fab fa-linkedin"></i> LinkedIn · Jose I. Ros
+        </a>
+        <a href="https://wa.me/34609836904" target="_blank" rel="noopener" class="fs-item">
+          <i class="fab fa-whatsapp"></i> WhatsApp directo
+        </a>
+      </address>
+    </div>
+
+    <!-- Enlaces rápidos -->
+    <nav class="footer-links" aria-label="Enlaces del sitio">
+      <h5>Enlaces</h5>
+      <ul>
+        <li><a href="entrada-usuarios.html">Usuarios</a></li>
+        <li><a href="entrada-inversores.html">Inversores</a></li>
+        <li><a href="/contacto.html">Contacto</a></li>
+        <li><a href="/legal/privacidad.html">Privacidad</a></li>
+        <li><a href="/legal/aviso-legal.html">Aviso legal</a></li>
+      </ul>
+    </nav>
+
+    <!-- Safe Creative -->
+    <div class="safecreative">
+      <p class="sc-copy">Protegido con propiedad intelectual <strong>Safe Creative</strong></p>
+      <img
+        src="https://proyectoselbook.github.io/assets/img/safecreative.png"
+        alt="Registro de Proyecto Selbook en Safe Creative"
+        width="160"
+        height="auto"
+        loading="lazy">
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <p>© <span class="js-year">2024</span> Jose Ignacio Ros Velázquez — Todos los derechos reservados.</p>
+    <p class="legal-note">
+      Prohibida la reproducción total o parcial de este contenido, así como el uso o explotación de las ideas expuestas sin autorización expresa del autor.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Año dinámico seguro
+  (function(){try{
+    var y=document.querySelector('.js-year');
+    if(y) y.textContent = new Date().getFullYear();
+  }catch(e){}})();
+</script>
+
+
+<!-- Modal genérico para tarjetas "Imagina" -->
+<div class="modal" id="imagine-modal" aria-hidden="true">
+  <div class="modal-content imagine-modal-content" role="dialog" aria-modal="true" aria-labelledby="imagine-modal-title">
+    <div class="modal-header">
+      <h2 id="imagine-modal-title"></h2>
+      <button class="modal-close" id="close-imagine" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="imagine-modal-media">
+        <!-- Imagen principal (opcional / placeholder) -->
+        <img id="imagine-modal-image" src="" alt="" />
+      </div>
+      <div class="imagine-modal-text">
+        <p id="imagine-modal-description"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== Plantillas de contenido del panel (OCULTAS) ===== -->
+<div class="hex-templates" aria-hidden="true">
+  <!-- DEFAULT -->
+  <article id="hex-default" class="hex-detail-template" data-key="default">
+    <h3>Explora los pilares del Selbook</h3>
+<!--    <div class="media media-right">
+      <img src="assets/panel_default.jpg" alt="Selbook: experiencia">
+    </div>
+	-->
+    <p class="lead">Haz clic en cualquier hexágono para ver una explicación sin salir de aquí.</p>
+    <p>
+      Con estos nueve hexágonos podrás comprender la increíble experiencia Selbook. No se trata de una simple historia de "Elije tu propia aventura",
+	  Es algo que va mucho más allá. Ahora manda el Lector. Ahora mandas tú.<br>
+	  Y tendrás infinitos caminos... <br>Pero sólo uno será <strong>Tu Historia</strong>.
+    </p>
+  </article>
+
+  <!-- EMOTIONS -->
+  <article class="hex-detail-template" data-key="emotions">
+    <h3>Se adapta a tus emociones</h3>
+ <!--   <div class="media media-right">
+       <img src="assets/detail_emotions.jpg" alt="Adaptación emocional">
+    </div>-->
+   <p>La capacidad de adaptación del Selbook se basa en 3 componentes:</p>
+<ul>
+  <li><strong>Dispositivo de Reconocimiento Neuronal (BIC):</strong> lee tus emociones y reacciones en tiempo real.</li>
+  <li><strong>Nudos narrativos:</strong> momentos de la historia donde la trama se bifurca en distintas opciones.</li>
+  <li><strong>Sely, la IA anfitriona:</strong> con tu perfil y emociones, decide qué ruta seguir.</li>
+</ul>
+<p><em>En la configuración inicial indicas voluntariamente tus gustos. Después, el BIC capta tus reacciones y, al llegar a un nudo, Sely combina esa información con la historia para elegir la subtrama más adecuada.</em></p>
+
+  </article>
+
+  <!-- MULTIMEDIA -->
+  <article class="hex-detail-template" data-key="multimedia">
+    <h3>Experiencia Multimedia</h3>
+    <div class="media media-left">
+      <img src="assets/img/eleccion-video.png" alt="Audio y vídeo sincronizados">
+    </div>
+    <p>No estas leyendo un libro. <strong>Estás viviendo una experiencia 360</strong>. El BIC o las Gafas de realida mixta, dispondrán de auriculares de alta calidad.
+	Escucharás una <strong>Banda Sonora que se acompasa a la trama y tensión de la historia de forma dinámica</strong> y palabra por palabra. Si hay tensión, si la escena es épica, o romántica... la BSO se irá adaptando a tus emociones en coherencia con tu lectura.</p>
+	<p>Tendrás <strong>efectos sonoros que potencien cada situación</strong> (sin excesos, claro). Y podrás vivir muchos de los pasajes y escenas de diferentes formas: <strong>Un vídeo</strong> donde "sientes" la batalla, <strong>una imagen</strong> para ponerle cara al malo, puede que prefieras seguir un rato en <strong>modo Comics</strong>, o puede que te encanten los <strong>Audiolibros</strong>...</p>
+    <p class="lead">Todo es posible en el Selbbok.</p>
+  </article>
+
+  <!-- Añade más artículos copiando la misma estructura -->
+  <article class="hex-detail-template" data-key="protagonists">
+    <h3>Elige tu protagonista</h3>
+    <div class="media media-right">
+      <img src="assets/img/eleccion-personajes-2.jpg" alt="Múltiples protagonistas">
+    </div>
+    <p><strong>¿Alguna vez te has preguntado cómo sería una historia "vista" desde la perspectiva de otro personaje?</strong> ¿Cómo sería El Señor de los Anillos visto desde los ojos de Gollum?
+	¿Qué pasó cuando Gandalf se separó de "La Compañia"?. <b>Una obra literaria tradicional tiene limitaciones por la extensión y estructura</b>. Pero cada una de esas perspectivas
+	de cada personaje, en realidad, existen en la cabeza del autor. ¿Y si le dejamos que las cuente? <strong>Eso es Selbook: La creatividad sin límites.</strong></p>
+	<p><strong>Podrás elegir a tu protagonista</strong>, vivir la misma historia, pero con sub-tramas diferentes, conociendo otros personajes secundarios o profundizando en los de la trama principal. Sintiendo y experimentando nuevos caminos.Y cuando termines... podrás, no, <strong>querrás empezar con otro protagonista.</strong></p>
+  </article>
+
+  <article class="hex-detail-template" data-key="infinite-routes">
+    <h3>Rutas infinitas</h3>
+    <div class="media media-right">
+      <img src="assets/img/nudos.png" style="width: 130px;" alt="Ramas narrativas">
+    </div>
+    <p>Recuerda que <strong>los "Nudos" son encrucijadas narrativas donde la historia se ramifica</strong>. Según tus emociones, reacciones y, a veces, decisiones, seguirás una ruta u otra. <strong>Seli, la IA, decidirá por ti en función de tu perfil emocional</strong>.</p>  
+<p>Basta con imaginar 3 o 4 nudos, con varias rutas cada uno, para que <b>las posibilidades de vivir la historia se multipliquen de forma exponencial</b>. Al terminar, querrás empezar de nuevo. Pero ya conocerás personajes y situaciones, y tus emociones habrán cambiado. <strong>Seli nunca repetirá un camino que ya viviste</strong>: te sorprenderá, es su 8ª Ley. Así, un Selbook te ofrecerá infinitos recorridos... y <strong>querrás explorarlos todos</strong>.</p>
+  </article>
+
+  <article class="hex-detail-template" data-key="sely-ai">
+    <h3>Sely, tu anfitriona IA</h3>
+    <div class="media media-left">
+      <img src="assets/img/seli-la-ia.png" alt="Sely IA">
+    </div>
+  <p><strong>Sely no es solo una IA. Es tu anfitriona</strong>. Su misión es que tu experiencia Selbook sea perfecta. <strong>Irá aprendiendo de ti</strong>. De tus gustos, de lo que sientes en cada escena, los personajes que más te atraen o los que menos te gustan. El estilo de escritura o género literario que prefieres... Con el tiempo, <strong>te conocerá mejor que tú mismo</strong>. Y cuidará de ti. Será quien genere las imagenes y los vídeos, quien te proteja de spoilers. Podrás charlar con ella sobre historias o personajes y te guiará en la búsqueda de nuevas historias. <strong>Sus 8 leyes están pensadas para protegerte y ayudarte</strong>. Lo dicho: <strong>Sély es mucho más que una IA.</strong></p>
+
+  </article>
+
+  <article class="hex-detail-template" data-key="community">
+    <h3>La Comunidad</h3>
+    <div class="media media-right">
+      <img src="assets/img/la-comunidad.png" alt="Comunidad">
+    </div>
+    <p>No sólo nos gusta leer o vivir historias. <strong>Nos Gusta hablar de ellas. Compartir. Debatir. Opinar...</strong> <b>La Comunidad es la Red Social soñada por los amantes de las historias</b>. Tendrás <strong>La Librería</strong> para conocer y comprar nuevos stringbooks. Tendrás <strong>El Parque</strong> donde conocer gente nueva. Tendrás <strong>La Cafetería</strong>, tu pequeño rincón de amigos. Y tendrás <strong>Tu Mesa</strong>, tu nivel más íntimo donde sólo tú decidirás con quién te tomas un café. Y para ayudarte, protegerte y guiarte, <b>Sely, tu anfitriona IA, se encargará de todo</b>. Tú sólo pasea, ve a la librería, tomate un café y, sobre todo, <strong>vive una historia</strong>.</p>
+  </article>
+
+  <article class="hex-detail-template" data-key="x360">
+    <h3>Ready-to-play</h3>
+    <div class="media media-left">
+      <img src="assets/img/eleccion-jugar.png" alt="Experiencia 360">
+    </div>
+    <p><strong>¿Estás listo para tomar el control de la historia?</strong> El Selbook es una <b>experiencia 360</b>: puedes vivir un vídeo, la banda sonora, comics... y podrás vivir en primera persona diferentes escenas, tomando tú mismo el control: Te pones a los mandos de un aeroplano, <strong>conduces un coche en una persecución, capitaneas una incursión militar en un bosque</strong>... Y tu participación puede ser aún más activa y real: <strong>Interroga tú mismo al sospechoso</strong>, investiga y recoge pruebas en una escena de un crimen, etc.</p>
+	<p>Recuerda: Un Selbook no es una simple novela. <strong>Es una Experiencia. Es una Revolución.</strong></p>
+  </article>
+
+  <article class="hex-detail-template" data-key="create-version">
+    <h3>Contenidos Extra</h3>
+ 
+    <p>Dispondrás de una completa lista de "extras" increíbles. <strong>Relatos paralelos</strong>, que completan la visión global de la historia o <strong>Personajes Tangenciales</strong>, personajes sin una presencia protagonista en la historia principal, pero que genera interés y podrás leer algun relato sobre ellos. Podras <strong>Chatear con los personajes</strong> de la historia, imprimir la ruta leída, guardar tus generaciones multimedia, etc.</p>
+	<p><strong>Todo pensado para que tu experiencia Selbook sea increíble.</strong></p>
+  </article>
+
+  <article class="hex-detail-template" data-key="authors">
+    <h3>Servicios para Autores</h3>
+ 
+    <p>Los Autores son una <strong>pieza clave para el Selbook</strong>. Por esa razón, dispondrán de toda un serie de <strong>herramientas creativas y de promoción</strong> a su disposición. Podrán publizar en el Sello Nativo o externo, podrán <strong>aprovechar la información de emociones y análisis estadísticos</strong> de sus obras, lecturas, personajes y rutas (los datos serán anónimos). <b>La vida útil de sus obras será mucho mayor</b> gracias a la posibilidad de publicar ampliaciones de rutas o nuevos Protagonistas elegibles. <strong>Su potencial creativo no tendrá límites en Selbook.</strong></p>
+  </article>
+
+
+</div>
+
+<!-- ===== Plantillas del panel (OCULTAS) ===== -->
+<div class="micro-templates" aria-hidden="true" hidden>
+  <article class="tpl" data-key="perfil">
+    <h3>Perfil de Usuario (Estático)</h3>
+    <div class="media right"><img style="width: 100px;" src="assets/img/config-ini.png" alt="Perfil y fuentes"></div>
+    <p>En la configuración inicial, y <strong class="sb-strong">con la ayuda de Sely</strong>, el Selbook crea un Perfil Base del usuario con sus <strong class="sb-strong">gustos y preferencias</strong> (novelas, series, cine...) y sus <strong class="sb-strong">rasgos emocionales y de personalidad</strong> (alegre, tímido, optimista, etc.). Además, se solicita permiso para conexiones externas como redes sociales. Con esta información, y con la <strong class="sb-strong">experiencia acumulada en otras lecturas e interacciones en la Comunidad</strong>, se construye el <strong class="sb-strong">Perfil Emocional</strong> del lector.</p>
+
+  </article>
+
+  <article class="tpl" data-key="inicio">
+    <h3>Inicio</h3>
+    <div class="media right"><img src="assets/img/perfil-ini.png" alt="Selector de historia"></div>
+    <p>Antes de iniciar la lectura, el usuario <strong class="sb-strong">puede configurar algunos aspectos</strong> como el número de nudos subliminales o el volumen del audio. Después llega el paso clave: <strong class="sb-strong">elegir al protagonista</strong>. El Selbook mostrará las opciones indicando, por ejemplo, el <strong class="sb-strong">género narrativo predominante</strong> (uno con más aventura, otro con más intriga), junto a sinopsis o relatos paralelos.</p>
+<p>Y entonces llega el momento: el usuario elige a su protagonista y comienza la historia.</p>
+
+  </article>
+
+  <article class="tpl" data-key="bic">
+    <h3>BIC: emociones en tiempo real</h3>
+    <div class="media left"><img src="assets/img/bic-dispositivo.png" alt="BIC"></div>
+    <p><strong class="sb-strong">El BIC</strong> (Dispositivo de reconocimiento neuronal), está <strong class="sb-strong">leyendo tus reacciones y emociones</strong> desde que has entrado en la "Sala de lectura", incluso cuando estás decidiendo qué protagonista elegir, recoge información, pero su principal actividad empezará cuando comiences la lectura.</p>
+	<p><strong class="sb-strong">Cuando conoces a un personaje, cuando lees la descripción de una escena, cuando hay situaciones de tensión o de emoción</strong>... la interacción entre personajes y esecenas provocan <strong class="sb-strong">emociones y reacciones que recoge el BIC y alimentan tu Perfil Emocional</strong>.</p>
+  </article>
+
+  <article class="tpl" data-key="nudos">
+    <h3>Nudos del Stringbook</h3>
+ <div class="media left"><img src="assets/img/nudos.png" style="width: 60%;" alt="Nudos"></div>   
+<p>A lo largo de la historia surgirán <strong class="sb-strong">“encrucijadas” o Nudos</strong>, de los que parten <strong class="sb-strong">rutas diferentes</strong>. A veces invisibles y otras evidentes, son la <strong class="sb-strong">clave de la Adaptabilidad</strong>. Cada ruta abre nuevas subtramas dentro de la misma historia, pueden surgir otros personajes o profundizar en otras relaciones, vivir escenas diferentes... en definitiva: Infinitos caminos. Una Historia.</p>
+<p>Existen 3 tipos de nudos:</p>
+<ul>
+  <li><strong class="sb-strong">Invisible-Subliminal:</strong> Sely decide sin que lo notes.</li>
+  <li><strong class="sb-strong">Visible Inconsciente:</strong> se te consulta, pero decide Sely.</li>
+  <li><strong class="sb-strong">Visible Consciente:</strong> tú eliges ante un dilema.</li>
+</ul>
+
+
+  </article>
+
+  <article class="tpl" data-key="ia">
+    <h3>IA (Sely)</h3>
+    <div class="media left"><img src="assets/img/seli-ia.png" alt="IA Sely"></div>
+    <p>Sely será la encargada de que tu <strong class="sb-strong">Experiencia Selbook sea increíble, la mejor posible</strong>,. Cuando llegas un Nudo, Seli <strong class="sb-strong">analiza tus emociones y perfil emocional</strong>, compara todas las rutas posibles y <strong class="sb-strong">elegirá la mejor opción</strong>. No buscará lo fácil, sino <strong class="sb-strong">sacarte de tu zona de confort literario</strong> para crear una historia memorable.</p>
+	<p>Es posible que sus decisiones no las comprendas al principio (<em>"Por qué me lleva por aquí si no me gusta Tom??"</em>), pero Sely sabe que esa es la ruta que más te gustará. <strong class="sb-strong">Confía en ella!</strong></p>
+	
+	
+  </article>
+  <article class="tpl" data-key="viva">
+    <h3>Experiencia Interactiva</h3>
+    <div class="media left"><img src="assets/img/ready-play.png" alt="Multiformato"></div>
+    <p>Otras decisiones que podrás tomar será el <strong class="sb-strong">cómo quieres vivir una escena o situación</strong>. En ciertos pasajes dispondrás de la posibilidad de <strong class="sb-strong">generar una imagen</strong> (quizás quieras ver cómo es Sam, o ese increíble paisaje), podrás <strong class="sb-strong">ver un vídeo</strong> (de, por ejemplo, una batalla épica), seguir la historia en <strong class="sb-strong">modo Comic, o Audiolibro</strong>...</p>
+	<p>Y dispondrás de una función Increíble: Tomar el control. <strong class="sb-strong">Con el Ready-to-Play podrás interrogas al sospechoso, conducir en la persecución, comandar una emboscada</strong>...</p>
+  </article>
+
+  <article class="tpl" data-key="fin">
+    <h3>Fin / Aprendizaje</h3>
+    <div class="media right"><img src="assets/img/aprendizaje.png" alt="Aprendizaje y privacidad"></div>
+    <p>No, amigo mío, <strong class="sb-strong">el Final no podrás elegirlo</strong>. No existirán finales alternativos. La Historia es Una y sólo tiene un final. Pero podrás <strong class="sb-strong">llegar a él por diferentes caminos</strong> y vivir ese final desde perspectivas y protagonistas diferentes.</p>
+	<p>Y cuando termines la historia, <strong class="sb-strong">Sely habrá ampliado su conocimiento sobre tus tendencias, gustos y afinidades</strong>, por lo que, cada lectura, cada ruta, cada historia le servirá para apender de ti y guiarte en la siguiente aventura consiguiendo que <strong class="sb-strong">cada vez tu experiencia sea mejor.</strong></p>
+  </article>
+    <article class="tpl" data-key="reinicio">
+	  <h3>Volver a empezar o elegir otra historia</h3>
+	  <div class="media right"><img src="assets/img/reinicio.png" alt="Reiniciar o elegir historia"></div>
+	  <p>Y llegará el momento de <strong class="sb-strong">tomar otra gran decisión</strong>: ¿<strong class="sb-strong">Comienzas de nuevo pero con otro protagonista</strong>? ¿Con el mismo, pero tomando <strong class="sb-strong">otras decisiones</strong>? (y, como ya conoces la historia, sely se encargará de sorprenderte por otro camino) ¿Vas a una cafetería sobre esa historia y charlas? O... Entras en <strong class="sb-strong">La Librería en busca del siguiente Stringbook?</strong>	  </p>
+	</article>
+</div>
+<!-- Modal: Probar MVP -->
+<div class="cta-modal" id="mvp-modal" aria-hidden="true">
+  <div class="cta-modal__backdrop" data-close="mvp"></div>
+  <div class="cta-modal__panel" role="dialog" aria-modal="true" aria-labelledby="mvp-title">
+    <button class="cta-modal__close" data-close="mvp" aria-label="Cerrar">×</button>
+    <h3 id="mvp-title">Probar el MVP</h3>
+    <p class="modal-sub">Déjanos un contacto y te damos acceso inmediato a la demo guiada.</p>
+
+    <form id="mvp-form" class="cta-form">
+      <div class="field">
+        <label>Nombre</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field checkbox">
+        <label><input type="checkbox" name="consent" required> Acepto ser contactado para el MVP</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-large">Solicitar acceso</button>
+      <p class="form-note">Privacidad: nunca vendemos tus datos.</p>
+    </form>
+
+    <div class="cta-success" id="mvp-success" hidden>
+      <div class="check">✔</div>
+      <p>¡Gracias! Te enviaremos el acceso al MVP en breve.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Test de Validación -->
+<div class="cta-modal" id="test-modal" aria-hidden="true">
+  <div class="cta-modal__backdrop" data-close="test"></div>
+  <div class="cta-modal__panel" role="dialog" aria-modal="true" aria-labelledby="test-title">
+    <button class="cta-modal__close" data-close="test" aria-label="Cerrar">×</button>
+    <h3 id="test-title">Test de validación</h3>
+    <p class="modal-sub">3 preguntas rápidas para entender tu encaje con Selbook.</p>
+
+    <form id="test-form" class="cta-form">
+      <div class="field">
+        <label>¿Qué te motiva más?</label>
+        <select name="motivation" required>
+          <option value="" selected disabled>Elige una opción</option>
+          <option>Personalizar mi lectura</option>
+          <option>Probar formatos (audio/vídeo/ready-to-play)</option>
+          <option>Explorar rutas con distintos protagonistas</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Con qué frecuencia lees ficción?</label>
+        <select name="freq" required>
+          <option value="" selected disabled>Elige una opción</option>
+          <option>Cada semana</option>
+          <option>Cada mes</option>
+          <option>Ocasional</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Quieres recibir un resumen con rutas sugeridas?</label>
+        <label class="radio"><input type="radio" name="followup" value="sí" required> Sí</label>
+        <label class="radio"><input type="radio" name="followup" value="no"> No</label>
+      </div>
+      <button type="submit" class="btn btn-secondary btn-large">Enviar respuestas</button>
+      <p class="form-note">Tiempo estimado: <b>3–4 min</b>.</p>
+    </form>
+
+    <div class="cta-success" id="test-success" hidden>
+      <div class="check">✔</div>
+      <p>¡Gracias por tu tiempo! Usaremos tus respuestas para priorizar.</p>
+    </div>
+  </div>
+</div>
+<!-- Modal NARANJA: ¿Y si ya estuvieras en un Selbook? -->
+<div class="cta-modal cta-modal--orange" id="selbook-nudge-modal" aria-hidden="true">
+  <div class="cta-modal__backdrop" data-close="nudge"></div>
+  <div class="cta-modal__panel" role="dialog" aria-modal="true" aria-labelledby="nudge-title">
+    <button class="cta-modal__close" data-close="nudge" aria-label="Cerrar">×</button>
+
+    <h3 id="nudge-title">¿Y si ya estuvieras en un Selbook?</h3>
+    <div class="nudge-body">
+      <p>Si has llegado hasta aquí es porque algo te ha interesado. Ahora imagina que ese interés no ha sido casualidad. Que en cada momento, mientras leías, he podido detectar tus emociones: cuando algo te aburría, cuando estabas más atento, cuando dudabas. Y, sin que lo notaras, el contenido se ajustaba dinámicamente a ti.</p>
+      <p>Así, paso a paso, hemos llegado juntos hasta aquí, al final de esta historia. Gracias a una lectura que se adapta a ti, a tus emociones y reacciones, creando una “historia” que te acompaña y te convence sin que lo sepas.</p>
+      <p><strong>Eso es precisamente el Selbook.</strong></p>
+      <p class="nudge-cta">Bienvenido a la revolución.</p>
+    </div>
+  </div>
+</div>
+<!-- ===== Menú flotante de secciones (solo desktop) ===== -->
+<nav class="sb-floater" aria-label="Navegación rápida Selbook">
+  <ul>
+    <li><a class="sb-chip" href="#que-es-selbook-cards">¿Qué es?</a></li>
+    <li><a class="sb-chip" href="#hexagon-universe">Explora</a></li>
+    <li><a class="sb-chip" href="#bic-section">El BIC</a></li>
+    <li><a class="sb-chip" href="#magic-how">La Magia</a></li>
+    <li><a class="sb-chip" href="#amplia-comparte-crea">Más aún</a></li>
+    <li><a class="sb-chip" href="#selbook-nudge">¿Y si...?</a></li>
+    <li><a class="sb-chip" href="#cta-actions">Participa</a></li>
+    <li><a class="sb-chip" href="#contacto-usuarios">Hablemos</a></li>
+	<li>
+  <a class="sb-chip sb-chip--investor" href="entrada-inversores.html">
+    ¿Inversor?
+  </a>
+</li>
+  </ul>
+</nav>
+
+<script>
+(function(){
+  // ===== Config =====
+  var HEADER_OFFSET = 86; // ajusta a la altura de tu header fijo
+  var START_ANCHOR = document.querySelector('#que-es-selbook-cards') || document.querySelector('.imagine-section');
+  var nav = document.querySelector('.sb-floater');
+  if(!nav || !START_ANCHOR) return;
+
+  // Mostrar/ocultar a partir de imagine-section (solo desktop)
+  var mq = window.matchMedia('(min-width: 1024px)');
+  function toggleFloater(){
+    if(!mq.matches){ nav.classList.remove('is-visible'); return; }
+    var startTop = START_ANCHOR.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+    if(window.pageYOffset >= startTop - 20){ nav.classList.add('is-visible'); }
+    else { nav.classList.remove('is-visible'); }
+  }
+  // Estilo: usa display por CSS; aquí solo toggl-eamos una clase si quieres animar
+  // (puedes añadir .sb-floater.is-visible { opacity:1; transform: translateY(-50%);} y por defecto opacity:0)
+  
+  // Scroll con offset y marcado activo inmediato
+  var links = Array.from(nav.querySelectorAll('a.sb-chip[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(!target) return;
+      e.preventDefault();
+      var y = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET - 6;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      setActive(a); // feedback instantáneo
+    });
+  });
+
+  function setActive(linkEl){
+    links.forEach(function(l){ l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+    linkEl.classList.add('is-active');
+    linkEl.setAttribute('aria-current','true');
+  }
+
+  // Observa secciones para activar el item correspondiente
+  var sections = links.map(function(a){
+    var id = a.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  var io = new IntersectionObserver(function(entries){
+    // Elegir la más visible
+    var visible = entries
+      .filter(function(en){ return en.isIntersecting; })
+      .sort(function(a,b){ return b.intersectionRatio - a.intersectionRatio; })[0];
+    if(!visible) return;
+    var id = visible.target.id;
+    var link = nav.querySelector('a[href="#'+CSS.escape(id)+'"]');
+    if(link) setActive(link);
+  },{
+    root: null,
+    rootMargin: (-HEADER_OFFSET-10)+'px 0px -50% 0px', // compensa header y prioriza lo que está más arriba
+    threshold: [0.25, 0.5, 0.75]                        // activa cuando hay visibilidad suficiente
+  });
+
+  sections.forEach(function(sec){ io.observe(sec); });
+
+  // Eventos
+  window.addEventListener('scroll', toggleFloater, { passive: true });
+  window.addEventListener('resize', toggleFloater);
+  toggleFloater();
+})();
+</script>
+
+
+    <script src="assets/js/script_user.js"></script>
+</body>
+</html>
+
