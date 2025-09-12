@@ -227,7 +227,7 @@ setInterval(() => {
 const imagineData = {
   card1: {
     title: "Te leo la mente (emociones en tiempo real)",
-    image: "assets/img/imagine-cta", // cámbiala por tu imagen real
+    image: "assets/img/leyendo_mente.webp", // cámbiala por tu imagen real
     description: `
 Imagina que puedo leerte la mente, saber lo que sientes en cada instante, las emociones que te provoca cada escena o personaje... 
 Cuando tienes miedo, o cuando te gusta un personaje, o cuando ríes, o cuando lloras...
@@ -241,7 +241,7 @@ Imagina que, al terminar, quieres empezar de nuevo y la historia es la misma, pe
   },
   card2: {
     title: "Elige el protagonista (misma historia, otra vida)",
-    image: "assets/img/placeholder-card2.jpg",
+    image: "assets/img/eleccion-personajes-2.jpg",
     description: `
 Imagina que pudieras elegir el protagonista para recorrer la historia. Que en vez de **Frodo** eliges a **Aragorn**, ¡a Gollum! 
 Que en vez de **Sherlock Holmes** eliges a **Watson**; en vez de **Clarice Starling**, eliges a **Hannibal Lecter**... 
@@ -254,7 +254,7 @@ Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es 
   },
   card3: {
     title: "Elige cómo vivirla (audio, vídeo, cómic… y acción)",
-    image: "assets/img/placeholder-card3.jpg",
+    image: "assets/img/experiencia-360.png",
     description: `
 Imagina que una **melodía** acompasa tu lectura; sintiendo tu corazón, su ritmo se adapta. 
 Cuando hay tensión, la melodía multiplica esa sensación; cuando hay alegría, la melodía lo acompaña.
