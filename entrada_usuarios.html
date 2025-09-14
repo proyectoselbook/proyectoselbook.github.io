@@ -1361,7 +1361,52 @@
   toggleFloater();
 })();
 </script>
+<script>
+// ====== MODALES "Simulaciones" ======
+(function(){
+  const openBtns = document.querySelectorAll('.btn-sim');
+  openBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const sel = btn.getAttribute('data-target');
+      const modal = document.querySelector(sel);
+      if(!modal) return;
+      modal.setAttribute('aria-hidden','false');
+      btn.setAttribute('aria-expanded','true');
+    });
+  });
 
+  document.addEventListener('click', (e)=>{
+    const isClose = e.target.matches('[data-close]');
+    if(isClose){
+      const modal = e.target.closest('.screen-modal') || document.querySelector('.screen-modal[aria-hidden="false"]');
+      if(modal){ modal.setAttribute('aria-hidden','true'); }
+    }
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.screen-modal[aria-hidden="false"]').forEach(m=>m.setAttribute('aria-hidden','true'));
+    }
+  });
+})();
+
+// ====== LIGHTBOX de la ficha (MISMA LÓGICA DEL ORIGINAL) ======
+(function initializeProductLightbox() {
+  const trigger = document.getElementById('palomas-trigger');
+  const lightbox = document.getElementById('product-lightbox');
+  if (!trigger || !lightbox) return;
+
+  const closeButton = lightbox.querySelector('.lightbox-close');
+
+  function openLightbox(){ lightbox.classList.add('active'); }
+  function closeLightbox(){ lightbox.classList.remove('active'); }
+
+  trigger.addEventListener('click', openLightbox);
+  closeButton && closeButton.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox){ closeLightbox(); }});
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeLightbox(); }});
+})();
+</script>
 
     <script src="assets/js/script_user.js"></script>
 </body>
