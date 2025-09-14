@@ -2452,3 +2452,81 @@ section {
     0 16px 34px rgba(0,0,0,.46);
   animation: sbPulseOrange 2s ease-in-out infinite;
 }
+
+/* ===== CTA modals 90% viewport + scroll interno ===== */
+.cta-modal{
+  position: fixed; inset: 0;
+  display: none; place-items: center;
+  background: rgba(2,10,14,.56);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  padding: 2vh 2vw;           /* respiración para que no pegue al borde */
+}
+.cta-modal.is-open{ display: grid; }
+
+.cta-modal__panel{
+  /* TAMAÑO 90% de la pantalla */
+  width: 90vw;
+  height: 90vh;
+
+  /* layout para header/close arriba + body con scroll */
+  display: flex;
+  flex-direction: column;
+
+  background: #0b1013;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.04), 0 0 80px rgba(0,0,0,.6);
+  position: relative;
+  overflow: hidden;           /* el scroll va en el body */
+}
+
+/* Botón cerrar se queda fijo arriba */
+.cta-modal__close{
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 24px; line-height: 1;
+  background: transparent; border: none; color: #dbe7ea; cursor: pointer;
+  z-index: 2;
+}
+
+/* El contenido desplaza internamente */
+.cta-modal__body{
+  flex: 1 1 auto;
+  min-height: 0;              /* clave para que el overflow funcione */
+  overflow-y: auto;
+  padding: 18px 18px 22px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch; /* suaviza en iOS */
+}
+
+/* Títulos y espaciados opcionales */
+.cta-modal__panel .modal-title{
+  margin: 18px 48px 8px 18px; /* deja hueco al botón cerrar */
+  color: #eafff4;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* Iframes (Tally) bien encajados y desplazables */
+.cta-modal__body iframe{
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 70vh;           /* asegura área útil grande */
+  border: 0;
+  background: #0e1417;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* Responsive: en móvil ocupamos casi todo */
+@media (max-width: 640px){
+  .cta-modal{ padding: 1.5vh 1.5vw; }
+  .cta-modal__panel{
+    width: 96vw;
+    height: 96vh;
+    border-radius: 14px;
+  }
+  .cta-modal__body{ padding: 14px; }
+}
