@@ -532,6 +532,51 @@
   </div>
 </section>
 
+<!-- =========================
+     SECCIÓN: SIMULACIONES
+     (colocar antes de #selbook-nudge)
+========================= -->
+<section id="simulaciones" class="sims-section" aria-labelledby="sims-title">
+  <div class="sims-inner">
+    <h2 id="sims-title">Simulaciones</h2>
+
+    <div class="sims-grid">
+      <!-- Tarjeta 1: Librería -->
+      <article class="sim-card">
+        <div class="sim-card__body">
+          <h3 class="sim-card__title">Simulación de Librería</h3>
+          <p class="sim-card__desc">Explora la tienda Selbook y abre la ficha de ejemplo.</p>
+          <button class="btn-sim" data-target="#sim-lib-modal" aria-controls="sim-lib-modal" aria-expanded="false">
+            Abrir simulación
+          </button>
+        </div>
+      </article>
+
+      <!-- Tarjeta 2: Elección de Personajes (vacía por ahora) -->
+      <article class="sim-card">
+        <div class="sim-card__body">
+          <h3 class="sim-card__title">Elección de Personajes</h3>
+          <p class="sim-card__desc">Preparada para integrar más adelante.</p>
+          <button class="btn-sim" data-target="#sim-personajes-modal" aria-controls="sim-personajes-modal" aria-expanded="false">
+            Abrir simulación
+          </button>
+        </div>
+      </article>
+
+      <!-- Tarjeta 3: Nudos (vacía por ahora) -->
+      <article class="sim-card">
+        <div class="sim-card__body">
+          <h3 class="sim-card__title">Ejemplo de Nudos</h3>
+          <p class="sim-card__desc">Preparada para integrar más adelante.</p>
+          <button class="btn-sim" data-target="#sim-nudos-modal" aria-controls="sim-nudos-modal" aria-expanded="false">
+            Abrir simulación
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+	
 <!-- STRIP IMPACTANTE -->
 <section class="nudge-strip nudge-hero" id="selbook-nudge">
   <div class="container nudge-hero-wrap">
@@ -979,6 +1024,256 @@
     </div>
   </div>
 </div>
+
+<!-- =========================
+     MODAL 1: Simulación Librería
+     - Contiene el simulacro de tienda EXACTO del original
+========================= -->
+<div class="screen-modal" id="sim-lib-modal" role="dialog" aria-modal="true" aria-labelledby="sim-lib-title" aria-hidden="true">
+  <div class="screen-modal__backdrop" data-close></div>
+  <div class="screen-modal__panel">
+    <button class="screen-modal__close" data-close aria-label="Cerrar">×</button>
+    <h3 id="sim-lib-title" class="screen-modal__title">Simulación de Librería</h3>
+
+    <!-- === BLOQUE DE TIENDA (copiado del original) === -->
+    <div class="online-store-container">
+      <div class="store-header">
+        <h3><i class="fas fa-book-open books-icon"></i> Libros</h3>
+      </div>
+
+      <div class="store-grid store-grid--3">
+        <!-- Ficha 1: EJEMPLO INTERACTIVO (TRIGGER DEL LIGHTBOX) -->
+<!-- Ficha 1: Palomas y Gorriones (EJEMPLO INTERACTIVO) -->
+        <article class="product-card" id="palomas-trigger">
+            <div class="card-cover">
+                <img src="assets/img/venta-streingbook.webp" alt="Portada de Palomas y Gorriones">
+                <div class="card-pricing-overlay">
+                    <h4>Elige tu Versión:</h4>
+                    <div class="tier"><strong>Basic:</strong> 49'50€</div>
+                    <div class="tier"><strong>Advance:</strong> 59'50€</div>
+                    <div class="tier"><strong>FULL:</strong> 75'50€</div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4><img src="assets/img/gorrin_rojo_grafitti-icono.webp" width="20" alt="Icono"> Palomas y Gorriones <span style="color: yellow; font-size: 12px;">[EJEMPLO]</span></h4>
+                <div class="card-tags">
+                    <span>Novela Negra</span><span>Thriller</span><span>Ficción</span><span>Suspense</span><span>Intriga</span>
+                </div>
+                <p class="description">Un asesino perfecto. Un detective obsesionado.</p>
+                <div class="card-tags">
+                    <span style="background-color: #f9e478;">VideoStory</span><span style="background-color: #f9e478;">Audiolibro</span><span style="background-color: #f9e478;">Clips</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;" >Dimensiones: <strong>3</strong></span><div class="progress-bar"><div style="width: 30%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>28</strong></span><div class="progress-bar"><div style="width: 28%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+
+         <!-- Ficha 2: Semiya -->
+        <article class="product-card">
+            <div class="card-cover"><img src="assets/img/portada-ficha-semiya.png" alt="Portada de Semiya, Siembra y Revolución"></div>
+            <div class="card-info">
+                <h4>📖 Semiya, Siembra y Revolución</h4>
+                <div class="card-tags"><span>Ciencia Ficción</span><span>Aventura</span><span>Acción</span><span>Intriga</span><span>Suspense</span><span>Romance</span><span>Social</span></div>
+                <p class="description">La revolución está en los libros.</p>
+                <div class="card-tags"><span style="background-color: #f9e478;">Clips</span><span style="background-color: #f9e478">Audiolibro</span><span style="background-color: #4a4a4a;">VideoStory</span><span style="background-color: #4a4a4a;">Imágenes</span><span style="background-color: #f9e478;">Games</span></div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;">Dimensiones: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>58</strong></span><div class="progress-bar"><div style="width: 58%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>12</strong></span><div class="progress-bar"><div style="width: 100%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+        <!-- Ficha 3: POW -->
+        <article class="product-card">
+            <div class="card-cover"><img src="assets/img/portada-libro-3-pow.png" alt="Portada de POW. El Árbol de la Vida"></div>
+            <div class="card-info">
+                <h4>🌳 POW. El Árbol de la Vida</h4>
+                <div class="card-tags"><span>Bélico</span><span>Acción</span><span>Aventura</span><span>Intriga</span><span>Suspense</span><span>Romance</span><span>Ficción</span></div>
+                <p class="description">Una prisión. Un plan. Un final inesperado.</p>
+                <div class="card-tags"><span style="background-color: #f9e478;">Clips</span><span style="background-color: #f9e478;">Audiolibro</span><span style="background-color: #4a4a4a;">VideoStory</span><span style="background-color: #f9e478;">Imágenes</span><span style="background-color: #4a4a4a;">Games</span></div>
+                <div class="card-stats">
+                    <div class="stat-item"><span style="color: #00ff8;">Dimensiones: <strong>5</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Profundidad: <strong>50</strong></span><div class="progress-bar"><div style="width: 50%;"></div></div></div>
+                    <div class="stat-item"><span style="color: #00ff8;">Subliminal: <strong>8</strong></span><div class="progress-bar"><div style="width: 80%;"></div></div></div>
+                </div>
+            </div>
+        </article>
+      </div>
+    </div>
+    <!-- === FIN BLOQUE TIENDA === -->
+  </div>
+</div>
+
+<!-- =========================
+     MODAL 2: Personajes (vacío)
+========================= -->
+<div class="screen-modal" id="sim-personajes-modal" role="dialog" aria-modal="true" aria-labelledby="sim-personajes-title" aria-hidden="true">
+  <div class="screen-modal__backdrop" data-close></div>
+  <div class="screen-modal__panel">
+    <button class="screen-modal__close" data-close aria-label="Cerrar">×</button>
+    <h3 id="sim-personajes-title" class="screen-modal__title">Elección de Personajes</h3>
+    <div class="screen-modal__placeholder">
+      <p>Simulación vacía por ahora. Aquí integraremos la elección de personajes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =========================
+     MODAL 3: Nudos (vacío)
+========================= -->
+<div class="screen-modal" id="sim-nudos-modal" role="dialog" aria-modal="true" aria-labelledby="sim-nudos-title" aria-hidden="true">
+  <div class="screen-modal__backdrop" data-close></div>
+  <div class="screen-modal__panel">
+    <button class="screen-modal__close" data-close aria-label="Cerrar">×</button>
+    <h3 id="sim-nudos-title" class="screen-modal__title">Ejemplo de Nudos</h3>
+    <div class="screen-modal__placeholder">
+      <p>Simulación vacía por ahora. Aquí integraremos un ejemplo de Nudos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================================
+     LIGHTBOX DE LA FICHA (EXACTO AL ORIGINAL)
+     Copia aquí el bloque #product-lightbox
+     desde "Experiencia de Usuario".
+=========================================== -->
+
+
+<!-- 2. La Ventana Lightbox (inicialmente oculta) -->
+<div id="product-lightbox">
+    <div class="lightbox-container">
+        <button class="lightbox-close">&times;</button>
+<header class="lightbox-header">
+  <!-- Columna izquierda del header -->
+  <div class="header-info">
+    <div class="cover-and-title">
+      <img class="book-mark" src="assets/img/Palomas-portada-kdp-OK-ejemplo-selbook.png" alt="Icono novela" />
+      <div class="title-wrap">
+        <h3>Palomas y Gorriones</h3>
+        <p>Blanco y Negro. Locura o Cordura. Amor u Odio. Asesino y Policía: Los polos opuestos se atraen...</p>
+      </div>
+    </div>
+  </div>
+
+  
+</header>
+
+<div class="lightbox-body">
+<div class="body-top-grid">
+  <div class="left-col">
+    <section class="section-card">
+      <h4 class="h-modern">Sinopsis</h4>
+      <p>Un asesino insensible, <strong>mata a todas aquellas mujeres que “le sobran”</strong> en el mundo. Con absoluta naturalidad escribe en su blog cómo y por qué...</p>
+      <p><strong>Samuel Rot, un detective de homicidios</strong>, sumido en una depresión tras el asesinato de su mujer, debe llevar el caso. Por recomendación de su Psicólogo, escribe sus sospechas en su blog... ambos están condenados a encontrarse...</p>
+    </section>
+
+    <section class="section-card">
+      <h4 class="h-modern">Relatos de Contexto</h4>
+      <p>Año y medio antes de los acontecimientos relatados... Una joven aparece muerta en un callejón. <em>¿Quieres leer lo sucedido?</em></p>
+    </section>
+  
+  <!-- Columna derecha del header: Ampliaciones + Prestaciones (apilados) -->
+  <aside class="header-stats">
+    <div class="stats-group">
+      <h6>Ampliaciones</h6>
+      <div class="chips">
+        <span class="chip chip-green"><i class="fas fa-user-friends"></i> 4 protagonistas</span>
+        <span class="chip chip-purple"><i class="fas fa-project-diagram"></i> 10 nudos subliminales</span>
+        <span class="chip chip-cyan"><i class="fas fa-brain"></i> 3 nudos inconscientes</span>
+        <span class="chip chip-orange"><i class="fas fa-lightbulb"></i> 2 nudos conscientes</span>
+      </div>
+    </div>
+
+    <div class="stats-group">
+      <h6>Prestaciones</h6>
+      <div class="chips">
+        <span class="chip chip-green"><i class="fas fa-play-circle"></i> Ready-to-play</span>
+        <span class="chip chip-cyan"><i class="fas fa-comments"></i> Chat con Personajes</span>
+        <span class="chip chip-orange"><i class="fas fa-video"></i> 8 vídeos</span>
+      </div>
+    </div>
+  </aside>
+</div>
+  <div class="right-col">
+    <!-- Vídeo vertical 9:16, contenido y sin solapes -->
+    <div class="book-trailer vertical">
+      <video
+        src="assets/img/booktrailer-selbook.mp4"
+        controls autoplay muted loop playsinline></video>
+    </div>
+  </div>
+</div>
+
+  
+
+  <section class="section-card">
+    <h4 class="h-modern">Ampliaciones y Prestaciones</h4>
+    <p>Explora la historia con <strong>rutas alternativas</strong>, <strong>nudos subliminales</strong> e <strong>interacciones</strong> con los personajes clave. Toma el control en escenas críticas, entra en el crimen y charla con el Detective y el Asesino cuando quieras.</p>
+  </section>
+
+  <!-- Protagonistas con ficha sobre imagen de fondo -->
+  <section class="section-card">
+    <h4 class="h-modern">Protagonistas</h4>
+
+    <div class="characters-grid">
+      <!-- Personaje 1 -->
+      <article class="character-card" style="--bg:url('assets/img/personaje-1-samuel-rot.png')">
+        <div class="labels">
+          <span class="tag">Detective</span>
+          <span class="tag ghost">Héroe herido</span>
+        </div>
+        <div class="overlay">
+          <div class="content">
+            <h5>Samuel Rot</h5>
+            <p>Detective de homicidios. Inteligente, obsesivo, quebrado por la pérdida. Su blog es su refugio y su arma.</p>
+            <ul class="bullets">
+              <li>Motivación: Justicia vs. venganza</li>
+              <li>Debilidad: Culpa y aislamiento</li>
+              <li>Conflicto: Verdad vs. supervivencia</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Personaje 2 -->
+      <article class="character-card" style="--bg:url('assets/img/personaje-2-asesino.png')">
+        <div class="labels">
+          <span class="tag danger">Asesino</span>
+          <span class="tag ghost">Frío y metódico</span>
+        </div>
+        <div class="overlay">
+          <div class="content">
+            <h5>El Asesino</h5>
+            <p>Metódico, narcisista y convencido de su misión “purificadora”. Narra con crudeza cada crimen.</p>
+            <ul class="bullets">
+              <li>Motivación: Control absoluto</li>
+              <li>Debilidad: Soberbia</li>
+              <li>Conflicto: Anonimato vs. Reconocimiento</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      
+    </div>
+  </section>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <button class="btn primary"><i class="fas fa-shopping-cart"></i> Comprar StringBook</button>
+    <button class="btn ghost"><i class="fas fa-info-circle"></i> Más información</button>
+    <button class="btn outline"><i class="fas fa-heart"></i> Añadir a Favoritos</button>
+  </div>
+
+</div> <!-- .lightbox-body -->
+
+    </div>
+</div>
+
+	
 <!-- ===== Menú flotante de secciones (solo desktop) ===== -->
 <nav class="sb-floater" aria-label="Navegación rápida Selbook">
   <ul>
