@@ -2530,3 +2530,20 @@ section {
   }
   .cta-modal__body{ padding: 14px; }
 }
+/* Contenedor estrecho centrado en el modal */
+.modal-narrow{
+  width: min(650px, 100%);   /* no se pasa en móvil */
+  margin: 0 auto;            /* centra horizontal */
+}
+
+/* Asegura que el contenido se adapta al ancho del contenedor */
+.modal-narrow iframe,
+.modal-narrow form,
+.modal-narrow .tally-embed{  /* si usas clase del script de Tally */
+  width: 100%;
+  display: block;
+}
+
+/* (Opcional) si quieres un poco de aire */
+.modal-narrow{ padding: 6px 0; }
+
