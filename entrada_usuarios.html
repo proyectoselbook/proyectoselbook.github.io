@@ -1108,17 +1108,117 @@
 </div>
 
 <!-- =========================
-     MODAL 2: Personajes (vacío)
+     MODAL 2: Personajes (llénalo con el código de abajo)
 ========================= -->
 <div class="screen-modal" id="sim-personajes-modal" role="dialog" aria-modal="true" aria-labelledby="sim-personajes-title" aria-hidden="true">
-  <div class="screen-modal__backdrop" data-close></div>
-  <div class="screen-modal__panel">
-    <button class="screen-modal__close" data-close aria-label="Cerrar">×</button>
-    <h3 id="sim-personajes-title" class="screen-modal__title">Elección de Personajes</h3>
-    <div class="screen-modal__placeholder">
-      <p>Simulación vacía por ahora. Aquí integraremos la elección de personajes.</p>
+  
+  <!-- ▼▼▼ PEGA EL SIGUIENTE CÓDIGO AQUÍ DENTRO ▼▼▼ -->
+
+  <div class="character-selection-stage">
+	  <div id="tutorial-popover" class="tutorial-popover is-hidden" role="dialog" aria-live="polite">
+    <div class="tutorial-popover__arrow"></div>
+    <div class="tutorial-popover__content">
+      <p id="tutorial-text" class="tutorial-popover__text"></p>
+    </div>
+    <div class="tutorial-popover__footer">
+      <button id="tutorial-close-btn" class="tutorial-popover__btn-close">Cerrar</button>
+      <button id="tutorial-next-btn" class="tutorial-popover__btn-next">Siguiente</button>
     </div>
   </div>
+  
+    <button class="close-modal-btn" aria-label="Cerrar simulación">&times;</button>
+    
+	
+	
+    <div class="selection-container">
+      
+      <!-- ===== Columna Izquierda ===== -->
+      <div class="info-column left">
+        <div class="info-card genres-card">
+          <h3 class="info-card-title">Géneros Literarios</h3>
+          <div id="char-genres" class="genres-chips">
+            <!-- Los géneros se insertarán aquí con JS -->
+          </div>
+        </div>
+        <div class="info-card bio-card">
+          <h3 class="info-card-title">Bio</h3>
+          <p id="char-bio">
+            <!-- La bio del personaje se insertará aquí con JS -->
+          </p>
+        </div>
+		<div class="action-buttons-container">
+		  <button id="btn-incluido" class="btn-action btn-incluido">
+			<i class="fas fa-check-circle"></i> Incluido
+		  </button>
+		  <button id="btn-comprar" class="btn-action btn-comprar">
+			<i class="fas fa-shopping-cart"></i> Comprar
+		  </button>
+		</div>
+      </div>
+      
+      <!-- ===== Carrusel Central ===== -->
+      <div class="carousel-container">
+        
+        <div class="character-carousel">
+          <!-- Las imágenes de los personajes se insertarán aquí con JS -->
+        </div>
+		<h2 id="char-name" class="character-name">
+          <!-- El nombre del personaje se insertará aquí con JS -->
+        </h2>
+		<!-- ▼▼▼ PEGA EL NUEVO BOTÓN AQUÍ ▼▼▼ -->
+		  <button id="btn-empezar-historia" class="btn-start-story">
+			<i class="fas fa-play"></i>
+			Empezar Historia con este Personaje
+		  </button>
+		  <!-- ▲▲▲ FIN DEL BOTÓN A PEGAR ▲▲▲ -->
+        <div class="carousel-nav">
+          <button id="prev-char" class="nav-arrow" aria-label="Personaje anterior">&#9664;</button>
+          <button id="next-char" class="nav-arrow" aria-label="Siguiente personaje">&#9654;</button>
+        </div>
+      </div>
+      
+      <!-- ===== Columna Derecha ===== -->
+      <div class="info-column right">
+		<!-- ▼▼▼ AÑADE ESTE TÍTULO GENERAL AQUÍ ▼▼▼ -->
+		<h3 class="right-column-title">Configura tu Stringbook</h3>
+		
+        <div class="info-card multimedia-card">
+			<h3 class="info-card-title">Prestaciones</h3>
+			<ul id="char-multimedia">
+			  <!-- El contenido de 3 columnas se generará aquí con JS -->
+			</ul>
+			<button class="btn-adquirir-prestacion">
+			  Adquirir Prestación
+			</button>
+		</div>
+        <div class="info-card relatos-card">
+          <h3 class="info-card-title">Relatos Paralelos</h3>
+          <ul id="char-relatos">
+            <!-- Los relatos se insertarán aquí con JS -->
+          </ul>
+		  
+		  <div class="card-actions-row">
+			<button class="btn-card-action">Ver más</button>
+			<button class="btn-card-action btn-card-action--primary">Comprar Relato</button>
+		  </div>
+		  
+        </div>
+        <div class="info-card rutas-card">
+          <h3 class="info-card-title">Alternativas de Rutas</h3>
+          <ul id="char-rutas">
+            <!-- Las rutas se insertarán aquí con JS -->
+          </ul>
+		  <button class="btn-card-action">
+			Ampliar
+		  </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ▲▲▲ FIN DEL CÓDIGO A PEGAR ▲▲▲ -->
+
 </div>
 
 <!-- =========================
