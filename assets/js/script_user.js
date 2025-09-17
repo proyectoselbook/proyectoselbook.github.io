@@ -630,3 +630,429 @@ document.querySelectorAll('.layout-circle9 .hex-orbit').forEach(orbit => {
   });
   window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
 })();
+
+
+// ======================================================
+// SCRIPT PARA LA SIMULACIÓN DE ELECCIÓN DE PERSONAJES
+// ======================================================
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Comprobamos que el modal existe en la página antes de ejecutar nada
+    const modal = document.getElementById('sim-personajes-modal');
+    if (!modal) {
+        console.log("El modal de personajes no se encuentra en esta página.");
+        return; // Detiene la ejecución si el modal no existe
+    }
+
+    // --- Datos de los Personajes ---
+    const characters = [
+        {
+            name: 'Samuel Rot',
+            img: 'assets/img/samuel-rot-eleccion.png',
+			isIncluded: true,
+            genres: ['Intriga', 'Drama', 'Amor'],
+			prestaciones: [
+				{ label: 'Ready-to-Play', icon: 'fa-gamepad', type: 'count', value: 2, total: 3 },
+				{ label: 'Vídeos', icon: 'fa-video', type: 'count', value: 8, total: 12 },
+				{ label: 'Modo Cómic', icon: 'fa-book-open', type: 'count', value: 1, total: 4 },
+				{ label: 'Podcast', icon: 'fa-headphones-alt', type: 'check', value: true },
+				{ label: 'Imágenes', icon: 'fa-image', type: 'text', value: 'Ilimitado' },
+				{ label: 'Ventana', icon: 'fa-window-restore', type: 'count', value: 4, total: 8 },
+				{ label: 'Salto Dimensión', icon: 'fa-dungeon', type: 'count', value: 2, total: 5 },
+				{ label: 'Chat Personajes', icon: 'fa-comments', type: 'count', value: 3, total: 8 },
+				{ label: 'Versión Usuario', icon: 'fa-user-edit', type: 'check', value: false }
+			],
+            relatos: [
+				{ text: 'Relato Paralelo 1', available: true },
+				{ text: 'El Caso Livi', available: true }, // <-- Desactivado
+				{ text: 'Sam Rot, Detective', available: false }
+			],
+            multimedia: { 'Ready-to-play': 3, videos: 7, comics: 3 },
+            rutas: [
+				{ label: 'Nudos Invisibles', value: 6, total: 10 },
+				{ label: 'Nudos Inconscientes', value: 4, total: 6 },
+				{ label: 'Nudos Conscientes', value: 2, total: 5 }
+			],
+            bio: 'No pudo resolver el asesinato de su mujer, pero esta vez no permitirá que pase lo mismo. Decidido y firme se enfrentará a un Asesino Perfecto que hará tambalear su equilibrio frente al tormento de los recuerdos que no consigue borrar.'
+        },
+        {
+            name: 'El Gorrión Rojo',
+            img: 'assets/img/gorrion-rojo-eleccion.png',
+			isIncluded: true,
+            genres: ['Misterio', 'Noir', 'Psicológica'],
+			prestaciones: [
+				{ label: 'Ready-to-Play', icon: 'fa-gamepad', type: 'count', value: 1, total: 2 },
+				{ label: 'Vídeos', icon: 'fa-video', type: 'count', value: 6, total: 7 },
+				{ label: 'Modo Cómic', icon: 'fa-book-open', type: 'count', value: 2, total: 3 },
+				{ label: 'Podcast', icon: 'fa-headphones-alt', type: 'check', value: true },
+				{ label: 'Imágenes', icon: 'fa-image', type: 'text', value: 'Ilimitado' },
+				{ label: 'Ventana', icon: 'fa-window-restore', type: 'count', value: 3, total: 5 },
+				{ label: 'Salto Dimensión', icon: 'fa-dungeon', type: 'count', value: 1, total: 3 },
+				{ label: 'Chat Personajes', icon: 'fa-comments', type: 'count', value: 3, total: 6 },
+				{ label: 'Versión Usuario', icon: 'fa-user-edit', type: 'check', value: true }
+			],
+            relatos: [
+				{ text: 'La Biblioteca', available: true },
+				{ text: 'Asesinato por Gravedad', available: false }, // <-- Desactivado
+				{ text: 'El Gorrión Blanco', available: true }
+			],
+            multimedia: { 'Ready-to-play': 2, videos: 8, comics: 1 },
+            rutas: [
+				{ label: 'Nudos Invisibles', value: 4, total: 7 },
+				{ label: 'Nudos Inconscientes', value: 3, total: 3},
+				{ label: 'Nudos Conscientes', value: 1, total: 2 }
+			],
+            bio: 'Las bibliotecas son su refugio. Los Libros sus Armas. De ellos aprendió todo lo que debía saber para investigar, para juzgar y para ejecutar un plan sencillo y macabro: Acabar con las asquerosas palomas de la ciudad. Palomas que... unas vuelan y otras andan.'
+        },
+        {
+            name: 'René Sánchez',
+            img: 'assets/img/rene-sanchez-eleccion.png',
+			isIncluded: false,
+            genres: ['Thriller', 'Investigación', 'Suspense'],
+			prestaciones: [
+				{ label: 'Ready-to-Play', icon: 'fa-gamepad', type: 'count', value: 2, total: 3 },
+				{ label: 'Vídeos', icon: 'fa-video', type: 'count', value: 4, total: 7 },
+				{ label: 'Modo Cómic', icon: 'fa-book-open', type: 'count', value: 2, total: 2 },
+				{ label: 'Podcast', icon: 'fa-headphones-alt', type: 'check', value: true },
+				{ label: 'Imágenes', icon: 'fa-image', type: 'text', value: 'Ilimitado' },
+				{ label: 'Ventana', icon: 'fa-window-restore', type: 'count', value: 1, total: 2 },
+				{ label: 'Salto Dimensión', icon: 'fa-dungeon', type: 'count', value: 1, total: 3 },
+				{ label: 'Chat Personajes', icon: 'fa-comments', type: 'count', value: 2, total: 2 },
+				{ label: 'Versión Usuario', icon: 'fa-user-edit', type: 'check', value: false }
+			],			
+            relatos: [
+				{ text: 'George Sanchez. Policía', available: false },
+				{ text: 'Asesinato por Gravedad', available: false }, // <-- Desactivado
+				{ text: 'El Gorrión Blanco', available: false }
+			],
+            multimedia: { 'Ready-to-play': 4, videos: 4, comics: 5 },
+            rutas: [
+				{ label: 'Nudos Invisibles', value: 4, total: 5 },
+				{ label: 'Nudos Inconscientes', value: 3, total: 3 },
+				{ label: 'Nudos Conscientes', value: 2, total: 2 }
+			],
+            bio: 'Jamás imaginó que trabajaría con el gran Samuel Rot. Y jamás imaginó que aquello no sería tan fácil. Un hombre roto que ella misma sacó de su casa y que ahora debía cuidar que no volviera a romperse en su persecución obsesiva de El Gorrión Rojo.'
+        }
+    ];
+
+    // --- Referencias a los elementos INTERNOS del modal ---
+    const closeButton = modal.querySelector('.close-modal-btn');
+    const carousel = modal.querySelector('.character-carousel');
+    const charName = modal.querySelector('#char-name');
+    const charBio = modal.querySelector('#char-bio');
+    const charGenres = modal.querySelector('#char-genres');
+    const charMultimedia = modal.querySelector('#char-multimedia');
+    const charRelatos = modal.querySelector('#char-relatos');
+    const charRutas = modal.querySelector('#char-rutas');
+    const prevBtn = modal.querySelector('#prev-char');
+    const nextBtn = modal.querySelector('#next-char');
+	const btnEmpezar = modal.querySelector('#btn-empezar-historia');
+	const btnIncluido = modal.querySelector('#btn-incluido');
+	const btnComprar = modal.querySelector('#btn-comprar');
+    // --- Estado del Carrusel ---
+    let currentIndex = 0;
+    let characterSlides = [];
+
+    // --- Funciones del Carrusel ---
+
+    function initCarousel() {
+        carousel.innerHTML = '';
+        characters.forEach((char, index) => {
+            const slide = document.createElement('div');
+            slide.classList.add('character-slide');
+            slide.dataset.index = index;
+            slide.innerHTML = `<img src="${char.img}" alt="${char.name}">`;
+            carousel.appendChild(slide);
+        });
+        characterSlides = modal.querySelectorAll('.character-slide');
+    }
+
+    /**
+     * Actualiza la información mostrada en las tarjetas con ICONOS.
+     * @param {object} charData - El objeto del personaje a mostrar.
+     */
+function updateCharacterInfo(charData) {
+    charName.textContent = charData.name;
+    charBio.textContent = charData.bio;
+    
+    charGenres.innerHTML = charData.genres.map(genre => `<span class="chip">${genre}</span>`).join('');
+    
+    // --- LÓGICA RECONSTRUIDA PARA LA TARJETA DE PRESTACIONES ---
+    charMultimedia.innerHTML = charData.prestaciones.map(item => {
+        let valueHtml = '';
+        // Generamos el HTML del valor según el tipo de prestación
+        switch (item.type) {
+            case 'count':
+                valueHtml = `<span class="prestacion-value"><span class="active-count">${item.value}</span><span class="total-count">/${item.total}</span></span>`;
+                break;
+            case 'check':
+                valueHtml = `<span class="prestacion-value"><i class="fas fa-check-circle ${item.value ? 'check-active' : 'check-inactive'}"></i></span>`;
+                break;
+            case 'text':
+                valueHtml = `<span class="prestacion-value prestacion-text">${item.value}</span>`;
+                break;
+        }
+        // Devolvemos el elemento de la lista completo con icono y valor
+        return `<li><i class="fas ${item.icon}" title="${item.label}"></i> ${valueHtml}</li>`;
+    }).join('');
+        
+    charRelatos.innerHTML = charData.relatos
+        .map(relato => {
+            // Añadimos la clase 'is-disabled' si el relato no está disponible
+            const disabledClass = relato.available ? '' : 'is-disabled';
+            return `<li class="${disabledClass}"><i class="fas fa-book icon-lime"></i>${relato.text}</li>`;
+        })
+        .join('');
+
+    charRutas.innerHTML = charData.rutas
+        .map(ruta => {
+            const counterHtml = `<span class="ruta-counter"><span class="active-count">${ruta.value}</span><span class="total-count">/${ruta.total}</span></span>`;
+            return `<li><i class="fas fa-route icon-lime"></i>${ruta.label}: ${counterHtml}</li>`;
+        })
+        .join('');
+
+    // Lógica para los botones (sin cambios)
+    if (charData.isIncluded) {
+        btnIncluido.classList.add('is-active');
+        btnIncluido.removeAttribute('disabled');
+        btnComprar.classList.remove('is-active');
+        btnComprar.setAttribute('disabled', 'true');
+        btnEmpezar.removeAttribute('disabled');
+        btnEmpezar.classList.add('is-active');
+    } else {
+        btnIncluido.classList.remove('is-active');
+        btnIncluido.setAttribute('disabled', 'true');
+        btnComprar.classList.add('is-active');
+        btnComprar.removeAttribute('disabled');
+        btnEmpezar.setAttribute('disabled', 'true');
+        btnEmpezar.classList.remove('is-active');
+    }
+}
+    
+    /**
+     * ¡LA FUNCIÓN QUE FALTABA!
+     * Actualiza la posición y clases del carrusel.
+     * @param {number} newIndex - El nuevo índice del personaje central.
+     */
+    function updateCarousel(newIndex) {
+        currentIndex = (newIndex + characters.length) % characters.length;
+
+        const prevIndex = (currentIndex - 1 + characters.length) % characters.length;
+        const nextIndex = (currentIndex + 1) % characters.length;
+
+        characterSlides.forEach((slide, index) => {
+            slide.classList.remove('is-active', 'is-prev', 'is-next');
+            if (index === currentIndex) {
+                slide.classList.add('is-active');
+            } else if (index === prevIndex) {
+                slide.classList.add('is-prev');
+            } else if (index === nextIndex) {
+                slide.classList.add('is-next');
+            }
+        });
+        
+        updateCharacterInfo(characters[currentIndex]);
+    }
+
+
+    // --- Event Listeners del Carrusel ---
+    nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+    prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            modal.setAttribute('aria-hidden', 'true');
+            // Si tu script general de modales usa una clase para mostrar/ocultar,
+            // puede que necesites una línea como: modal.classList.remove('is-visible'); 
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (modal.getAttribute('aria-hidden') === 'true' || !modal.hasAttribute('aria-hidden') === false) return;
+        if (e.key === 'ArrowRight') nextBtn.click();
+        else if (e.key === 'ArrowLeft') prevBtn.click();
+        else if (e.key === 'Escape' && closeButton) closeButton.click();
+    });
+
+    carousel.addEventListener('click', (e) => {
+        const clickedSlide = e.target.closest('.character-slide');
+        if (!clickedSlide) return;
+        if (clickedSlide.classList.contains('is-next')) nextBtn.click();
+        else if (clickedSlide.classList.contains('is-prev')) prevBtn.click();
+    });
+
+    // --- Inicialización del Carrusel ---
+    initCarousel();
+    updateCarousel(0); // <-- Esta línea ahora funcionará porque updateCarousel existe
+});
+
+// ▼▼▼ PEGA ESTE BLOQUE COMPLETO AL FINAL DE TU ARCHIVO script_user.js ▼▼▼
+
+// ======================================================
+// SCRIPT PARA LA GUÍA INTERACTIVA TIPO TOOLTIP
+// ======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('sim-personajes-modal');
+    if (!modal) return;
+
+// ▼▼▼ REEMPLAZA TU ARRAY tourSteps POR ESTE ▼▼▼
+const tourSteps = [
+    { 
+        element: '#next-char', 
+        position: 'top', // Lo colocamos a la izquierda de la flecha
+        text: 'Podrás desplazarte por todos los Protagonistas del Stringbook. La información de las Tarjetas Flotantes cambiará y podrás hacerte una pequeña idea sobre cómo vivirás la Historia desde ese personaje. Pruebalo y pasa a la siguiente burbuja!' 
+    },
+    { 
+        element: '.genres-card', 
+        position: 'right', // A la derecha de la tarjeta de géneros
+        text: 'Cada personaje tiene sus particularidades en cuanto a géneros literarios dentro de la Historia...'
+    },
+    { 
+        element: '.bio-card', 
+        position: 'right', // Encima de los botones de "Incluido/Comprar"
+        align: 'start', // <-- AÑADE ESTA LÍNEA
+		text: 'Una pequeña reseña sobre ese Protagonista te pondrá sobre la pista de lo que podrías vivir...'
+    },
+    { 
+        element: '.multimedia-card', 
+        position: 'left', // A la izquierda de la tarjeta de prestaciones
+        text: 'Podrás ver toda la información sobre las opciones multimedia que tiene tu versión de Stringbook...'
+    },
+    { 
+        element: '.relatos-card', 
+        position: 'left', // A la izquierda de la tarjeta de relatos
+        text: 'Recuerda, son Relatos que complementan la historia principal...'
+    },
+    { 
+        element: '.rutas-card', 
+        position: 'left', // A la izquierda de la tarjeta de rutas
+        text: 'Desde aquí se te informa del potencial narrativo del Stringbook...'
+    },
+    { 
+        element: '#btn-empezar-historia', 
+        position: 'top', // Encima del botón principal
+        text: '¡Ya está todo listo! Cuando te hayas decidido, comienza tu aventura!' 
+    }
+];
+
+    const popover = document.getElementById('tutorial-popover');
+    const nextBtn = document.getElementById('tutorial-next-btn');
+    const closeBtn = document.getElementById('tutorial-close-btn');
+    const textEl = document.getElementById('tutorial-text');
+    const arrowEl = popover.querySelector('.tutorial-popover__arrow');
+    
+    let currentStep = -1;
+
+    function startTour() {
+        if (currentStep !== -1) return;
+        currentStep = 0;
+        showStep(currentStep);
+    }
+
+    function endTour() {
+        popover.classList.remove('is-visible');
+        popover.classList.add('is-hidden');
+        currentStep = -1;
+    }
+
+// ▼▼▼ REEMPLAZA TU FUNCIÓN showStep POR ESTA ▼▼▼
+function showStep(stepIndex) {
+    if (stepIndex >= tourSteps.length) {
+        endTour();
+        return;
+    }
+
+    const step = tourSteps[stepIndex];
+    const targetElement = modal.querySelector(step.element);
+    if (!targetElement) { endTour(); return; }
+    
+    textEl.textContent = step.text;
+    nextBtn.textContent = (stepIndex === tourSteps.length - 1) ? 'Finalizar' : 'Siguiente';
+
+    popover.classList.remove('is-hidden');
+    popover.classList.add('is-visible');
+
+    const targetRect = targetElement.getBoundingClientRect();
+    const popoverRect = popover.getBoundingClientRect();
+    
+    let popoverTop, popoverLeft, arrowClass;
+    const offset = 15;
+
+    switch (step.position) {
+        case 'top':
+            popoverTop = targetRect.top - popoverRect.height - offset;
+            popoverLeft = targetRect.left + (targetRect.width / 2) - (popoverRect.width / 2);
+            arrowClass = 'arrow-bottom';
+            break;
+        case 'left':
+            popoverLeft = targetRect.left - popoverRect.width - offset;
+            // -- NUEVA LÓGICA DE ALINEACIÓN --
+            if (step.align === 'start') {
+                popoverTop = targetRect.top; // Alinear con el borde superior
+            } else {
+                popoverTop = targetRect.top + (targetRect.height / 2) - (popoverRect.height / 2); // Centrar (por defecto)
+            }
+            arrowClass = 'arrow-right';
+            break;
+        case 'right':
+            popoverLeft = targetRect.right + offset;
+            // -- NUEVA LÓGICA DE ALINEACIÓN --
+            if (step.align === 'start') {
+                popoverTop = targetRect.top; // Alinear con el borde superior
+            } else {
+                popoverTop = targetRect.top + (targetRect.height / 2) - (popoverRect.height / 2); // Centrar (por defecto)
+            }
+            arrowClass = 'arrow-left';
+            break;
+        default: // 'bottom'
+            popoverTop = targetRect.bottom + offset;
+            popoverLeft = targetRect.left + (targetRect.width / 2) - (popoverRect.width / 2);
+            arrowClass = 'arrow-top';
+            break;
+    }
+
+    // (El resto de la función para corregir bordes y posicionar la flecha se mantiene igual)
+    if (popoverLeft < 10) popoverLeft = 10;
+    if (popoverLeft + popoverRect.width > window.innerWidth) {
+        popoverLeft = window.innerWidth - popoverRect.width - 10;
+    }
+
+    popover.style.top = `${popoverTop}px`;
+    popover.style.left = `${popoverLeft}px`;
+    popover.className = 'tutorial-popover is-visible';
+    popover.classList.add(arrowClass);
+
+    if (arrowClass === 'arrow-top' || arrowClass === 'arrow-bottom') {
+        const arrowLeft = targetRect.left + (targetRect.width / 2) - popoverLeft;
+        arrowEl.style.left = `clamp(10px, ${arrowLeft}px, ${popoverRect.width - 20}px)`;
+        arrowEl.style.top = '';
+    } else {
+        // -- LÓGICA DE FLECHA MEJORADA --
+        if (step.align === 'start') {
+             // Alinear la flecha con el centro de la primera línea de texto aprox.
+            arrowEl.style.top = '20px';
+        } else {
+            const arrowTop = targetRect.top + (targetRect.height / 2) - popoverTop;
+            arrowEl.style.top = `clamp(10px, ${arrowTop}px, ${popoverRect.height - 20}px)`;
+        }
+        arrowEl.style.left = '';
+    }
+}
+
+    nextBtn.addEventListener('click', () => { currentStep++; showStep(currentStep); });
+    closeBtn.addEventListener('click', endTour);
+
+    // Observador para iniciar/cerrar el tutorial con el modal
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'aria-hidden') {
+                if (modal.getAttribute('aria-hidden') === 'false') {
+                    setTimeout(startTour, 300); // Pequeña espera para que el modal se anime
+                } else {
+                    endTour();
+                }
+            }
+        });
+    });
+    observer.observe(modal, { attributes: true });
+});
