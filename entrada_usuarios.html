@@ -531,7 +531,6 @@
     </div>
   </div>
 </section>
-
 <!-- =========================
      SECCIÓN: SIMULACIONES
      (colocar antes de #selbook-nudge)
@@ -576,6 +575,7 @@
     </div>
   </div>
 </section>
+
 	
 <!-- STRIP IMPACTANTE -->
 <section class="nudge-strip nudge-hero" id="selbook-nudge">
@@ -1405,6 +1405,25 @@
   closeButton && closeButton.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox){ closeLightbox(); }});
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeLightbox(); }});
+})();
+</script>
+
+<script>
+(function fixNavArrows(){
+  const modal = document.getElementById('sim-personajes-modal');
+  if(!modal) return;
+  const panel = modal.querySelector('.screen-modal__panel');
+  const btnPrev = modal.querySelector('.cs-nav--prev');
+  const btnNext = modal.querySelector('.cs-nav--next');
+
+  // Asegura los glifos correctos
+  btnPrev?.querySelector('.cs-nav__chev')?.replaceChildren(document.createTextNode('‹'));
+  btnNext?.querySelector('.cs-nav__chev')?.replaceChildren(document.createTextNode('›'));
+
+  // Reenvía a tu listener de teclado (que ya maneja ArrowLeft/ArrowRight)
+  const send = key => panel.dispatchEvent(new KeyboardEvent('keydown',{key}));
+  btnPrev?.addEventListener('click', e => { e.preventDefault(); send('ArrowLeft'); }, true);
+  btnNext?.addEventListener('click', e => { e.preventDefault(); send('ArrowRight'); }, true);
 })();
 </script>
 
