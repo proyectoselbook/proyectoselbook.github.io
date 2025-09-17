@@ -2938,3 +2938,659 @@ section {
 @media (max-width: 520px){
   #product-lightbox .chips{ grid-template-columns:1fr; }
 }
+
+/* ===================================
+   ESTILOS PARA SIMULACIÓN DE PERSONAJES  GOOGLE
+   =================================== */
+
+/* --- Contenedor Principal (Escenario) --- */
+.character-selection-stage {
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/fondo-eleccion-personajes.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* --- Layout General (Grid) --- */
+.selection-container {
+    display: grid;
+    grid-template-columns: 320px minmax(400px, 500px) 320px;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1240px;
+    height: 100%;
+}
+
+/* --- Columnas de Información --- */
+.info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    justify-content: center;
+}
+
+.info-card {
+    background: rgb(10 25 40 / 18%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    color: #f0f0f0;
+	/* ▼▼▼ AÑADE ESTA LÍNEA ▼▼▼ */
+    box-shadow: 0 0 15px rgba(0, 242, 195, 0.8); /* Glow: sin offset, 15px de blur, color verde-cian al 40% de opacidad */
+    
+    /* (Opcional) Añade una transición para futuras animaciones */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.info-card-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #4de190; /* Un color cian para acentuar */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.genres-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* ===================================
+   ESTILOS MODERNOS PARA CHIPS DE GÉNERO
+   =================================== */
+
+/* --- 1. Estilo Base Moderno para TODOS los chips --- */
+.genres-chips .chip {
+    /* Diseño y tipografía */
+    padding: 0.4em 0.9em; /* Padding más equilibrado */
+    font-size: 0.85rem;
+    font-weight: 600; /* Semi-bold */
+    color: #1a1a1a; /* Un negro más suave que el puro */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    text-shadow: none; /* Quitamos cualquier sombra de texto anterior */
+
+    /* Efecto de brillo sutil */
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 
+                0 2px 4px rgba(0, 0, 0, 0.2);
+
+    /* Animación suave para el hover */
+    transition: transform 0.2s ease-out, filter 0.2s ease-out;
+}
+
+/* --- 2. Paleta de Colores por Posición --- */
+/* Estilo para el PRIMER chip de la lista */
+.genres-chips .chip:nth-child(1) {
+    background-image: linear-gradient(160deg, #f068ff, #a93df5); /* Gradiente Púrpura/Magenta */
+}
+
+/* Estilo para el SEGUNDO chip de la lista */
+.genres-chips .chip:nth-child(2) {
+    background-image: linear-gradient(160deg, #ffd34f, #ff8f00); /* Gradiente Naranja/Dorado */
+}
+
+/* Estilo para el TERCER chip de la lista */
+.genres-chips .chip:nth-child(3) {
+    background-image: linear-gradient(160deg, #6ac8ff, #3d8bff); /* Gradiente Azul Eléctrico */
+}
+
+/* --- 3. Efecto Interactivo (Hover) --- */
+.genres-chips .chip:hover {
+    transform: translateY(-3px) scale(1.05); /* Se levanta y agranda un poco */
+    filter: brightness(1.15); /* Aumenta el brillo del gradiente */
+    cursor: default; /* Muestra que no es clicable */
+}
+
+#char-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.info-card ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- Carrusel Central --- */
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.character-name {
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.character-carousel {
+    width: 100%;
+    height: 500px; /* Altura fija para contener las imágenes */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Activa la perspectiva 3D */
+    transform-style: preserve-3d; /* Permite que los hijos se muevan en 3D */
+}
+
+.character-slide {
+    position: absolute;
+    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.character-slide img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    user-select: none; /* Evita que la imagen se pueda arrastrar */
+}
+
+/* --- Estados del Carrusel --- */
+.character-slide {
+    opacity: 0;
+    transform: scale(0); /* Estado inicial oculto */
+}
+
+.character-slide.is-prev {
+    transform: translateX(-180px) translateZ(-200px) rotateY(35deg) scale(0.7);
+    filter: brightness(0.4);
+    opacity: 1;
+    z-index: 1;
+}
+
+.character-slide.is-active {
+    transform: translateX(0) translateZ(0) rotateY(0) scale(1);
+    filter: brightness(1.1) drop-shadow(0 0 25px rgba(77, 208, 225, 0.8)); /* Glow effect */
+    opacity: 1;
+    z-index: 10;
+}
+
+.character-slide.is-next {
+    transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.7);
+    filter: brightness(0.4);
+    opacity: 1;
+    z-index: 1;
+}
+
+
+/* --- Navegación del Carrusel --- */
+.carousel-nav {
+    margin-top: 1rem;
+}
+
+.nav-arrow {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.nav-arrow:hover {
+    background: rgba(77, 208, 225, 0.5);
+}
+
+
+/* ===================================
+   DISEÑO RESPONSIVE
+   =================================== */
+@media (max-width: 992px) {
+    .character-selection-stage {
+        padding: 1rem;
+        overflow-y: auto; /* Permitir scroll en pantallas pequeñas */
+    }
+
+    .selection-container {
+        grid-template-columns: 1fr; /* Apila todo en una columna */
+        gap: 1.5rem;
+        max-width: 500px;
+        margin: auto;
+    }
+    
+    /* Poner el carrusel primero visualmente */
+    .carousel-container {
+        order: -1;
+    }
+
+    .info-column {
+        width: 100%;
+        max-height: none; /* Quitar la altura máxima */
+    }
+
+    /* En móvil, ocultar los personajes de los lados para simplificar */
+    .character-slide.is-prev,
+    .character-slide.is-next {
+        display: none;
+    }
+
+    .character-slide.is-active {
+        position: relative; /* Cambiar a relativo para que ocupe espacio */
+    }
+
+    .character-carousel {
+        height: auto;
+        min-height: 400px;
+    }
+}
+
+/* ===================================
+   ESTILOS PARA ICONOS DE TARJETAS
+   =================================== */
+
+/* Color verde lima para los iconos */
+.icon-lime {
+    color: #4de190; /* Un verde lima brillante y legible */
+}
+
+/* Espaciado para los iconos que están dentro de una lista */
+.info-card ul li .fas {
+    width: 20px; /* Asegura que todos los iconos ocupen el mismo espacio */
+    margin-right: 0.75rem; /* Margen a la derecha para separar el icono del texto */
+    text-align: center; /* Centra el icono dentro de su espacio asignado */
+}
+
+/* ========================================================
+   ESTILOS REFINADOS PARA BOTONES DE ACCIÓN (INCLUIDO/COMPRAR)
+   ======================================================== */
+
+/* --- Contenedor de los botones --- */
+.action-buttons-container {
+    display: flex;
+    gap: 0.75rem; /* Espacio reducido entre botones */
+    margin-top: 1.25rem; /* Espacio respecto a la sinopsis */
+}
+
+/* --- Estilo Base para ambos botones (Ahora más sutil) --- */
+.btn-action {
+    flex-grow: 1;
+    padding: 0.6em 1em; /* Padding más pequeño y proporcional */
+    font-size: 0.9rem; /* Fuente más pequeña */
+    font-weight: 600; /* Semi-bold es más elegante que bold */
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.25); /* Borde grisáceo por defecto */
+    background: transparent; /* Fondo transparente por defecto */
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.25s ease-out; /* Transición más rápida y suave */
+    /* Quitamos cualquier transform que pueda causar problemas */
+    transform: none; 
+}
+
+/* --- Estado Desactivado (Más integrado) --- */
+.btn-action[disabled] {
+    background: rgba(30, 40, 50, 0.3);
+    color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Estado Activado: INCLUIDO (Elegante y sutil) --- */
+.btn-incluido.is-active {
+    /* El truco: el color lo dan el borde y el texto, no el fondo */
+    border-color: #00f2c3; /* Borde cian luminoso */
+    color: #e0fffa; /* Texto de un color cian muy claro, casi blanco */
+    /* Un fondo radial muy sutil que da la sensación de luz interior */
+    background: radial-gradient(circle at center, rgba(0, 242, 195, 0.1) 0%, transparent 70%);
+    /* Un glow más controlado y elegante */
+    box-shadow: 0 0 12px rgba(0, 242, 195, 0.5);
+}
+
+/* --- Estado Activado: COMPRAR (Naranja destacado pero sin crecer) --- */
+.btn-comprar.is-active {
+    background-image: linear-gradient(160deg, #ffab40, #ff6f00);
+    color: #fff;
+    border-color: transparent; /* El gradiente ya define el borde */
+    /* Glow naranja bien definido */
+    box-shadow: 0 0 15px rgba(255, 111, 0, 0.6);
+    /* IMPORTANTE: quitamos el transform: scale() para evitar el scroll */
+}
+
+/* --- Efectos Hover (Sutiles y sin afectar al layout) --- */
+.btn-action.is-active:not([disabled]):hover {
+    transform: translateY(-2px); /* Se eleva ligeramente */
+    filter: brightness(1.15);   /* Aumenta el brillo general */
+}
+
+/* El botón desactivado NO debe tener efecto hover */
+.btn-action[disabled]:hover {
+    transform: none;
+    filter: none;
+}
+
+/* ===================================
+   ESTILO PARA BOTÓN PRINCIPAL "EMPEZAR HISTORIA"
+   =================================== */
+.btn-start-story {
+    /* Posicionamiento y tamaño */
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem; /* Espacio para separarlo de la imagen */
+    margin-bottom: 1.5rem; /* Espacio para separarlo de las flechas */
+    width: 90%; /* Ancho relativo para que se ajuste bien */
+    max-width: 400px; /* Ancho máximo para que no sea enorme */
+    
+    /* Diseño y tipografía */
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-radius: 50px; /* Forma de píldora, muy moderna */
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    
+    /* Animación */
+    transition: all 0.3s ease;
+}
+
+/* --- Estado Activado (Verdoso y luminoso) --- */
+.btn-start-story.is-active {
+    background-image: linear-gradient(135deg, #00c9a7, #92fe9d); /* Gradiente verde-agua/lima */
+    color: #0d3d35; /* Un verde muy oscuro para el texto, casi negro */
+    border-color: #c8ffcf; /* Un borde verde pálido que complementa */
+    box-shadow: 0 4px 20px rgba(0, 242, 195, 0.4); /* Glow sutil */
+}
+
+/* --- Estado Desactivado --- */
+.btn-start-story[disabled] {
+    background: rgba(42, 59, 74, 0.8);
+    color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Efecto Hover (solo para el botón activo) --- */
+.btn-start-story.is-active:hover {
+    transform: translateY(-3px); /* Se eleva un poco */
+    box-shadow: 0 6px 25px rgba(0, 242, 195, 0.6); /* El glow se intensifica */
+    filter: brightness(1.05);
+}
+
+/* ========================================================
+   AJUSTES DE LAYOUT Y NUEVA TARJETA DE PRESTACIONES
+   ======================================================== */
+
+/* --- Título de la columna derecha --- */
+.right-column-title {
+    color: #f0f0f0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Ajuste para el nombre del personaje en su nueva posición --- */
+.character-name {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem; /* Ligeramente más pequeño para que no domine tanto */
+}
+
+/* --- Layout de 3 columnas para la tarjeta de prestaciones (más compacto) --- */
+#char-multimedia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Volvemos a 3 columnas */
+    gap: 0.6rem 0.5rem; /* Reducimos el espacio vertical y horizontal al mínimo */
+}
+
+/* --- Estilo de cada item de la lista de prestaciones --- */
+#char-multimedia li {
+    display: flex;
+    flex-direction: row; /* Icono y valor en horizontal */
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre icono y valor */
+    font-size: 0.85rem;
+}
+
+/* Icono de la prestación */
+#char-multimedia li .fas {
+    font-size: 1rem; /* Icono un poco más pequeño */
+    color: #94b896;
+    margin: 0;
+    width: 18px; /* Ancho fijo para alineación */
+    text-align: center;
+}}
+
+/* Contenedor del valor (ocupa el resto del espacio) */
+.prestacion-value {
+    font-weight: 600;
+    flex-grow: 1; /* Para que el texto se alinee a la derecha */
+    text-align: right; /* Alineamos los números a la derecha */
+}
+
+/* Contador activo (ej: "1" de 1/4) */
+.active-count {
+    color: #ffab40; /* Naranja */
+}
+
+/* Contador total (ej: "/4" de 1/4) */
+.total-count {
+    color: #64748b; /* Gris */
+}
+
+/* Check activo (Naranja) */
+.check-active {
+    color: #68e16f;
+}
+
+/* Check inactivo (Gris) */
+.check-inactive {
+    color: #475569;
+    opacity: 0.6;
+}
+
+/* Texto (ej: Ilimitado) */
+.prestacion-text {
+    color: #cbd5e1;
+}
+
+/* Botón "Adquirir Prestación" más compacto */
+.btn-adquirir-prestacion {
+    width: 100%;
+    margin-top: 1rem; /* Menos espacio superior */
+    background: #4ddd6b2e;
+    border: 1px solid #4de190;
+    color: #4de190;
+    padding: 0.4rem; /* Menos padding */
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-adquirir-prestacion:hover {
+    background-color: #475569;
+    color: #fff;
+}
+
+/* ========================================================
+   ESTILOS PARA TARJETA "RELATOS PARALELOS"
+   ======================================================== */
+
+/* --- Estilo para el relato desactivado --- */
+#char-relatos li.is-disabled {
+    color: #96ae97; /* Color de texto gris y apagado */
+    opacity: 0.6;
+    pointer-events: none; /* Evita que se pueda seleccionar o interactuar */
+}
+
+/* También apagamos el color del icono dentro del relato desactivado */
+#char-relatos li.is-disabled .icon-lime {
+    color: inherit; /* Hereda el color gris del texto */
+}
+
+/* --- Contenedor para los nuevos botones dentro de las tarjetas --- */
+.card-actions-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem; /* Espacio respecto a la lista */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea separadora sutil */
+    padding-top: 1rem;
+}
+
+/* --- Estilo base para los botones internos de las tarjetas --- */
+.btn-card-action {
+    flex-grow: 1;
+    background: #4ddd6b2e;
+    border: 1px solid #4de190;
+    color: #4de190;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-card-action:hover {
+    background-color: #475569;
+    color: #fff;
+}
+
+/* Botón primario (Comprar) con un toque de color */
+.btn-card-action.btn-card-action--primary {
+    background-color: rgba(255, 171, 64, 0.15); /* Fondo naranja muy sutil */
+    border-color: #ffab40;
+    color: #ffab40;
+}
+
+.btn-card-action.btn-card-action--primary:hover {
+    background-color: #ffab40;
+    color: #1a1a1a;
+}
+
+/* ========================================================
+   ESTILOS PARA TARJETA "ALTERNATIVAS DE RUTAS"
+   ======================================================== */
+
+/* Asegura que el contador se empuje a la derecha */
+#char-rutas li {
+    display: flex;
+    justify-content: space-between; /* Clave para separar el texto del contador */
+    width: 100%;
+}
+
+/* El botón 'Ampliar' ya usa la clase .btn-card-action,
+   por lo que no necesita nuevos estilos. */
+   
+ /* ======================================================
+   NUEVOS ESTILOS PARA LA GUÍA TIPO TOOLTIP (v2)
+   ====================================================== */
+
+.tutorial-popover {
+    position: fixed;
+    z-index: 10000;
+    background: #2c3e50;
+    color: #ecf0f1;
+    border: 1px solid #34495e;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 300px;
+    max-width: 90vw;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateY(10px);
+    opacity: 0;
+}
+.tutorial-popover.is-hidden { display: none; }
+.tutorial-popover.is-visible { opacity: 1; transform: translateY(0); }
+
+/* --- La flecha que señala --- */
+.tutorial-popover__arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #2c3e50;
+    border-top: 1px solid #34495e;
+    border-left: 1px solid #34495e;
+}
+
+/* --- Clases para posicionar la flecha --- */
+.tutorial-popover.arrow-top .tutorial-popover__arrow {
+    top: -8px; /* Se posiciona en el borde superior del popover */
+    transform: rotate(45deg); /* Gira para apuntar hacia arriba */
+}
+/* Cuando el tooltip está ENCIMA (position: 'top'), la flecha apunta HACIA ABAJO */
+.tutorial-popover.arrow-bottom .tutorial-popover__arrow {
+    bottom: -8px; /* Se posiciona en el borde inferior del popover */
+    transform: rotate(225deg); /* Gira para apuntar hacia abajo */
+}
+
+/* Las reglas para 'left' y 'right' ya deberían estar bien */
+.tutorial-popover.arrow-left .tutorial-popover__arrow {
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+.tutorial-popover.arrow-right .tutorial-popover__arrow {
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+}
+
+/* --- Contenido y botones --- */
+.tutorial-popover__text { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+.tutorial-popover__footer { margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.tutorial-popover__btn-close { background: transparent; border: none; color: #95a5a6; cursor: pointer; font-weight: 600; }
+.tutorial-popover__btn-next { background-color: #aeea00; color: #1e293b; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
