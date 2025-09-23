@@ -3541,17 +3541,20 @@ section {
 .tutorial-popover {
     position: fixed;
     z-index: 10000;
-    background: #2c3e50;
+    background: #049457;
     color: #ecf0f1;
     border: 1px solid #34495e;
     border-radius: 10px;
     padding: 1rem;
-    width: 300px;
+    width: 400px;
     max-width: 90vw;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s 
+ease, transform 0.2s 
+ease;
     transform: translateY(10px);
     opacity: 0;
+	
 }
 .tutorial-popover.is-hidden { display: none; }
 .tutorial-popover.is-visible { opacity: 1; transform: translateY(0); }
@@ -3561,7 +3564,7 @@ section {
     position: absolute;
     width: 14px;
     height: 14px;
-    background: #2c3e50;
+    background: #049457;
     border-top: 1px solid #34495e;
     border-left: 1px solid #34495e;
 }
