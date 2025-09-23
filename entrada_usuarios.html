@@ -1222,18 +1222,69 @@
 </div>
 
 <!-- =========================
-     MODAL 3: Nudos (vacío)
+     MODAL 3: Simulación de Nudos
 ========================= -->
-<div class="screen-modal" id="sim-nudos-modal" role="dialog" aria-modal="true" aria-labelledby="sim-nudos-title" aria-hidden="true">
-  <div class="screen-modal__backdrop" data-close></div>
-  <div class="screen-modal__panel">
-    <button class="screen-modal__close" data-close aria-label="Cerrar">×</button>
-    <h3 id="sim-nudos-title" class="screen-modal__title">Ejemplo de Nudos</h3>
-    <div class="screen-modal__placeholder">
-      <p>Simulación vacía por ahora. Aquí integraremos un ejemplo de Nudos.</p>
+<div class="screen-modal" id="sim-nudos-modal" role="dialog" aria-modal="true" aria-labelledby="nudos-title" aria-hidden="true">
+  <div class="screen-modal__backdrop" data-close="nudos"></div>
+
+  <div class="screen-modal__panel nudos-sim-panel" role="document">
+    <button class="screen-modal__close" data-close="nudos" aria-label="Cerrar simulación">×</button>
+
+    <!-- Encabezado fijo (verde lima) -->
+    <header class="nudos-header">
+      <h2 id="nudos-title" class="nudos-title">Simulación de Tipos de Nudos</h2>
+      <div class="nudos-actions">
+        <button type="button" class="nudos-help" id="nudos-open-intro" aria-label="Ver ayuda de la simulación">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Capa de introducción (cubre todo el panel) -->
+    <div class="nudos-intro" id="nudos-intro" aria-labelledby="nudos-intro-title" aria-describedby="nudos-intro-desc">
+      <div class="nudos-intro__backdrop"></div>
+      <div class="nudos-intro__card" role="dialog" aria-modal="true">
+        <h3 id="nudos-intro-title">Antes de empezar…</h3>
+        <p id="nudos-intro-desc" class="nudos-intro__text">
+          Por ahora no podemos leer tus emociones, por eso la simularemos usando unas pequeñas ventanas de explicación sobre un texto.
+          <br>Haz clic en el icono <i class="fa-solid fa-circle-info"></i> junto a los fragmentos resaltados y verás una breve explicación.
+          <br><br><strong>¿Empezamos?</strong>
+        </p>
+        <div class="nudos-intro__actions">
+          <button type="button" id="nudos-start-btn" class="btn btn-primary">Iniciar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor principal de lectura -->
+    <main class="nudos-reader" id="nudos-reader" aria-live="polite">
+      <!-- Ventana “página de libro” -->
+      <article class="nudos-page" id="nudos-page" data-page="1">
+        <!-- El contenido de las páginas se inyecta por JS -->
+      </article>
+
+      <!-- Navegación inferior -->
+      <footer class="nudos-footer">
+        <div class="nudos-footer__left">
+          <button type="button" class="nudos-btn nudos-btn--ghost" id="nudos-close">Cerrar simulación</button>
+        </div>
+        <div class="nudos-footer__nav">
+          <button type="button" class="nudos-btn" id="nudos-prev" aria-label="Página anterior">Página anterior</button>
+          <button type="button" class="nudos-btn nudos-btn--primary" id="nudos-next" aria-label="Siguiente página">Siguiente página</button>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Tooltip propio (reutiliza estilos .tutorial-popover pero con id distinto) -->
+    <div id="nudos-popover" class="tutorial-popover is-hidden" role="dialog" aria-live="polite">
+      <div class="tutorial-popover__arrow"></div>
+      <div class="tutorial-popover__content">
+        <p id="nudos-popover-text" class="tutorial-popover__text"></p>
+      </div>
     </div>
   </div>
 </div>
+
 
 <!-- ===========================================
      LIGHTBOX DE LA FICHA (EXACTO AL ORIGINAL)
