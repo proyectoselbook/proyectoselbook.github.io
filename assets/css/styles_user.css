@@ -3906,7 +3906,7 @@ border: 1px solid #0fbf0c;
 }
 /* el lienzo (article.nudos-page) ya tiene overflow:auto y altura fija por --nudos-page-h */
 
-p.descr {
+p.descr, p.footnote {
     font-size: 15px !important;
     color: #95662a;
 	font-style: italic;
