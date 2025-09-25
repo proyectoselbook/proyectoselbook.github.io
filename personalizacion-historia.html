@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selbook&nbsp;— El Producto: Personalización de la Historia</title>
   <link rel="stylesheet" href="assets/css/style.css">
+ <link rel="stylesheet" href="assets/css/simulaciones.css"> 
+
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+	   <!-- Pega esta línea dentro de tu <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
  /* === ESTILOS ESPECÍFICOS PARA LA PÁGINA "PERSONALIZACIÓN DE LA HISTORIA" === */
@@ -277,6 +285,27 @@
             </div>
         </article>
     </div>
+	<!-- CTA: Ver simulación de Elección de Personajes (INVERSORES) -->
+	<section class="sim-cta-box" style="margin: 28px 0;">
+	  <div class="cta-card"
+		   style="--glow:#aeea00; border-radius:14px; padding:22px; border:1px solid rgba(174,234,0,.35);
+				  background:linear-gradient(145deg, rgba(174,234,0,.06), rgba(255,153,0,.05));">
+		<div class="cta-card__head">
+		  <span class="cta-dot"></span>
+		  <span class="cta-emoji">🎮</span>
+		  <strong>Simulación interactiva</strong>
+		</div>
+		<h3 class="cta-card__title" style="margin:6px 0 8px;">Elige a tu protagonista</h3>
+		<p class="cta-card__text">
+		  ¿Quieres ver una simulación de cómo sería la ventana de <strong>Elección de Dimensiones</strong>?
+		  Te servirá para hacerte a la idea.
+		</p>
+		<div class="cta-actions">
+		  <button id="open-sim-personajes" class="btn-sim" type="button">Abrir simulación</button>
+		</div>
+	  </div>
+	</section>
+
     
     <h3>💬 Narración y Diálogos</h3>
     <p>La IA estará atenta y <strong>“escuchando” en todo momento</strong>. Gracias al BIC irá recibiendo inputs en forma de reacciones y emociones, pero existirán "puntos de control” donde prestará una mayor atención, otorgando un mayor peso a la información recogida.</p>
@@ -320,6 +349,39 @@
     </div>
     <img src="assets/img/nudo-subliminal.webp" alt="Diagrama del Nudo Subliminal" class="image-full-width lightbox-trigger">
     
+
+
+<!-- CTA: Ver simulación de Nudos (mismos estilos que Personajes) -->
+<section class="sim-cta-box" style="margin: 28px 0;">
+  <div class="cta-card"
+       style="--glow:#aeea00; border-radius:14px; padding:22px; border:1px solid rgba(174,234,0,.35);
+              background:linear-gradient(145deg, rgba(174,234,0,.06), rgba(255,153,0,.05));">
+    <div class="cta-card__head">
+      <span class="cta-dot"></span>
+      <span class="cta-emoji">🎮</span>
+      <strong>Simulación interactiva</strong>
+    </div>
+    <h3 class="cta-card__title" style="margin:6px 0 8px;">Explora los Nudos narrativos</h3>
+    <p class="cta-card__text">
+      ¿Quieres ver una simulación de cómo sería la ventana de <strong>Tipos de Nudos</strong>?
+      Te servirá para hacerte a la idea.
+    </p>
+    <div class="cta-actions">
+      <button class="btn-sim" type="button" data-target="#sim-nudos-modal">Abrir simulación</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+	
+
+	
+	
     <h2>✨ La IA como generador de Enlaces e Injertos Narrativos</h2>
     <p>Como principio esencial del Selbook, <strong><span class="sb-note"
          data-sb-type="debate"
@@ -513,7 +575,302 @@ Es poner puertas al campo. La evolución de la IA y de la sociedad irá minimiza
   <h3 class="sb-dialog-title" id="sb-dialog-title"></h3>
   <div class="sb-dialog-content" id="sb-dialog-content"></div>
 </div>
-  <script src="assets/js/scripts.js"></script>
+<!-- =========================
+     MODAL: Simulación — Elección de Personajes
+     (reutiliza el mismo diseño/IDs que la versión Usuario)
+========================= -->
+<div class="screen-modal" id="sim-personajes-modal"
+     role="dialog" aria-modal="true" aria-labelledby="sim-personajes-title" aria-hidden="true">
+
+  <div class="screen-modal__backdrop" data-close></div>
+
+  <div class="screen-modal__panel">
+    <button class="screen-modal__close close-modal-btn" aria-label="Cerrar">×</button>
+    <h3 id="sim-personajes-title" class="screen-modal__title">Elección de Personajes</h3>
+
+    <!-- Escenario -->
+    <section class="character-selection-stage" style="background-image:url('assets/img/fondo-eleccion-personajes.jpg')">
+      	  <div id="tutorial-popover" class="tutorial-popover is-hidden" role="dialog" aria-live="polite">
+			<div class="tutorial-popover__arrow"></div>
+			<div class="tutorial-popover__content">
+			  <p id="tutorial-text" class="tutorial-popover__text"></p>
+			</div>
+			<div class="tutorial-popover__footer">
+			  <button id="tutorial-close-btn" class="tutorial-popover__btn-close">Cerrar</button>
+			  <button id="tutorial-next-btn" class="tutorial-popover__btn-next">Siguiente</button>
+			</div>
+		  </div>
+	  
+	  
+	  
+	  <div class="selection-container">
+        
+        <!-- Columna izquierda: Géneros + Bio -->
+        <aside class="info-column">
+          <article class="info-card genres-card">
+            <h4>Géneros literarios</h4>
+            <div id="char-genres" class="genres-chips"></div>
+          </article>
+
+          <article class="info-card bio-card">
+            <h4 id="char-name"></h4>
+            <p id="char-bio"></p>
+          </article>
+		  <!-- CTA izquierda: Incluido / Comprar (debajo de Bio) -->
+			<div class="cs-cta-left">
+			  <button id="btn-incluido" class="btn btn--ghost" type="button"><i class="fas fa-check-circle"></i> Incluido</button>
+			  <button id="btn-comprar" class="btn btn--ghost" type="button" disabled><i class="fas fa-shopping-cart"></i> Comprar</button>
+			</div>
+        </aside>
+
+        <!-- Carrusel central -->
+		<!-- Carrusel central -->
+		<div class="carousel-container">
+		  <div class="character-carousel cs-carousel" aria-live="polite"></div>
+
+		  <!-- NOMBRE DEL PERSONAJE (pie de imagen) -->
+		  <div class="cs-hero-name" aria-live="polite"></div>
+
+		  <!-- Botón principal (GRANDE, VERDE) encima de las flechas -->
+		  <div class="cs-primary-action">
+			<button id="btn-empezar-historia" class="btn btn--primary" type="button" disabled>
+			  ▶ Empezar Historia con este Personaje
+			</button>
+		  </div>
+
+		  <!-- Flechas bajo el botón principal -->
+		  <div class="carousel-nav cs-navbar" aria-label="Navegación de personajes">
+			<button id="prev-char" class="nav-arrow cs-nav cs-nav--prev" type="button" aria-label="Anterior">‹</button>
+			<button id="next-char" class="nav-arrow cs-nav cs-nav--next" type="button" aria-label="Siguiente">›</button>
+		  </div>
+		</div>
+
+
+        <!-- Columna derecha: Multimedia + Relatos + Rutas -->
+        <aside class="info-column">
+          <article class="info-card multimedia-card">
+            <h4>Multimedia</h4>
+            <ul id="char-multimedia" class="info-list"></ul>
+          </article>
+
+          <article class="info-card relatos-card">
+            <h4>Relatos paralelos</h4>
+            <p class="descr">Algunos relatos para situarte en la historia:</p>
+            <ul id="char-relatos" class="info-list"></ul>
+          </article>
+
+          <article class="info-card rutas-card">
+            <h4>Alternativas de rutas</h4>
+            <ul id="char-rutas" class="info-list"></ul>
+          </article>
+        </aside>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- =========================
+     MODAL 3: Simulación de Nudos
+========================= -->
+<div class="screen-modal" id="sim-nudos-modal" role="dialog" aria-modal="true" aria-labelledby="nudos-title" aria-hidden="true">
+  <div class="screen-modal__backdrop" data-close="nudos"></div>
+
+  <div class="screen-modal__panel nudos-sim-panel" role="document">
+    <button class="screen-modal__close" data-close="nudos" aria-label="Cerrar simulación">×</button>
+
+    <!-- Encabezado fijo (verde lima) -->
+    <header class="nudos-header">
+      <h2 id="nudos-title" class="nudos-title">Simulación de Tipos de Nudos</h2>
+      <div class="nudos-actions">
+        <button type="button" class="nudos-help" id="nudos-open-intro" aria-label="Ver ayuda de la simulación">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Capa de introducción (cubre todo el panel) -->
+    <div class="nudos-intro" id="nudos-intro" aria-labelledby="nudos-intro-title" aria-describedby="nudos-intro-desc">
+      <div class="nudos-intro__backdrop"></div>
+      <div class="nudos-intro__card" role="dialog" aria-modal="true">
+        <h3 id="nudos-intro-title">Antes de empezar…</h3>
+        <p id="nudos-intro-desc" class="nudos-intro__text">
+          Por ahora no podemos leer tus emociones, por eso la simularemos usando unas pequeñas ventanas de explicación sobre un texto.
+          <br>Haz clic en el icono <i class="fa-solid fa-circle-info"></i> junto a los fragmentos resaltados y verás una breve explicación.
+          <br><br><strong>¿Empezamos?</strong>
+        </p>
+        <div class="nudos-intro__actions">
+          <button type="button" id="nudos-start-btn" class="btn btn-primary">Iniciar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor principal de lectura -->
+    <main class="nudos-reader" id="nudos-reader" aria-live="polite">
+      <!-- Ventana “página de libro” -->
+      <article class="nudos-page" id="nudos-page" data-page="1">
+        <!-- El contenido de las páginas se inyecta por JS -->
+      </article>
+
+      <!-- Navegación inferior -->
+      <footer class="nudos-footer">
+        <div class="nudos-footer__left">
+          <button type="button" class="nudos-btn nudos-btn--ghost" id="nudos-close">Cerrar simulación</button>
+        </div>
+        <div class="nudos-footer__nav">
+          <button type="button" class="nudos-btn" id="nudos-prev" aria-label="Página anterior">Página anterior</button>
+          <button type="button" class="nudos-btn nudos-btn--primary" id="nudos-next" aria-label="Siguiente página">Siguiente página</button>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Tooltip propio (reutiliza estilos .tutorial-popover pero con id distinto) -->
+    <div id="nudos-popover" class="tutorial-popover is-hidden" role="dialog" aria-live="polite">
+      <div class="tutorial-popover__arrow"></div>
+      <div class="tutorial-popover__content">
+        <p id="nudos-popover-text" class="tutorial-popover__text"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="assets/js/scripts.js"></script>
+
+<script src="assets/js/script_user.js"></script>
+
+
+<!-- -->
+
+<script>
+  // Sincroniza el nombre del pie (.cs-hero-name) con el título de la Bio (#char-name)
+  (function syncHeroNameFromBio(){
+    const modal   = document.getElementById('sim-personajes-modal');
+    if (!modal) return;
+
+    const heroEl  = modal.querySelector('.cs-hero-name');
+    const bioName = modal.querySelector('#char-name');
+
+    const setName = () => {
+      if (heroEl && bioName) {
+        const t = (bioName.textContent || '').trim();
+        if (t) heroEl.textContent = t;
+      }
+    };
+
+    // Observa cambios en el contenido del título de la Bio
+    const obs = new MutationObserver(setName);
+    if (bioName) obs.observe(bioName, { childList: true, subtree: true, characterData: true });
+
+    // Cuando se abre el modal (cambio de aria-hidden), forzamos una primera sincronización
+    const attrObs = new MutationObserver(() => {
+      if (modal.getAttribute('aria-hidden') === 'false') setName();
+    });
+    attrObs.observe(modal, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+    // Inicial
+    setName();
+  })();
+</script>
+
+<script>
+  // Abrir el modal al clicar el CTA
+  document.getElementById('open-sim-personajes')?.addEventListener('click', () => {
+    const m = document.getElementById('sim-personajes-modal');
+    if (m) m.setAttribute('aria-hidden', 'false');
+  });
+
+  // Cerrar si clicas fondo o la X (coherente con tu patrón)
+  document.querySelector('#sim-personajes-modal .screen-modal__backdrop')?.addEventListener('click', () => {
+    document.getElementById('sim-personajes-modal')?.setAttribute('aria-hidden', 'true');
+  });
+  document.querySelector('#sim-personajes-modal .close-modal-btn')?.addEventListener('click', () => {
+    document.getElementById('sim-personajes-modal')?.setAttribute('aria-hidden', 'true');
+  });
+</script>
+<script>
+// ====== MODALES "Simulaciones" ======
+(function(){
+  const openBtns = document.querySelectorAll('.btn-sim');
+  openBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const sel = btn.getAttribute('data-target');
+      const modal = document.querySelector(sel);
+      if(!modal) return;
+      modal.setAttribute('aria-hidden','false');
+      btn.setAttribute('aria-expanded','true');
+	  document.body.classList.add('has-open-modal');
+    });
+  });
+  function closeModal(modal){
+    modal.setAttribute('aria-hidden','true');
+    // si no queda ningún modal abierto, quitamos la clase en <body>
+    if(!document.querySelector('.screen-modal[aria-hidden="false"]')){
+      document.body.classList.remove('has-open-modal'); // << AÑADIDO
+    }
+  }
+
+  document.addEventListener('click', (e)=>{
+    const isClose = e.target.matches('[data-close]');
+    if(isClose){
+      const modal = e.target.closest('.screen-modal') || document.querySelector('.screen-modal[aria-hidden="false"]');
+      if(modal){ modal.setAttribute('aria-hidden','true'); }
+    }
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.screen-modal[aria-hidden="false"]').forEach(m=>m.setAttribute('aria-hidden','true'));
+	  }
+  });
+})();
+
+// ====== LIGHTBOX de la ficha (MISMA LÓGICA DEL ORIGINAL) ======
+(function initializeProductLightbox() {
+  const trigger = document.getElementById('palomas-trigger');
+  const lightbox = document.getElementById('product-lightbox');
+  if (!trigger || !lightbox) return;
+
+  const closeButton = lightbox.querySelector('.lightbox-close');
+
+  function openLightbox(){ lightbox.classList.add('active'); }
+  function closeLightbox(){ lightbox.classList.remove('active'); }
+
+  trigger.addEventListener('click', openLightbox);
+  closeButton && closeButton.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox){ closeLightbox(); }});
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeLightbox(); }});
+})();
+</script>
+<script>
+/* ===== Desbloqueo de scroll SOLO para el modal de Nudos ===== */
+(function () {
+  const modal = document.getElementById('sim-nudos-modal');
+  if (!modal) return;
+
+  const unlockIfNoModals = () => {
+    // Si NO queda ningún modal abierto, quitamos el lock del body
+    if (!document.querySelector('.screen-modal[aria-hidden="false"]')) {
+      document.body.classList.remove('has-open-modal');
+    }
+  };
+
+  const closeAndUnlock = (evt) => {
+    // Si alguien ya se encarga de poner aria-hidden="true", no lo tocamos:
+    // solo liberamos el lock después
+    setTimeout(unlockIfNoModals, 0);
+  };
+
+  // 1) Si se cierra por backdrop o por la X del propio modal de Nudos
+  modal.querySelector('.screen-modal__backdrop')?.addEventListener('click', closeAndUnlock);
+  modal.querySelector('.screen-modal__close, [data-close]')?.addEventListener('click', closeAndUnlock);
+
+  // 2) Si se cierra por otros caminos (ESC / script genérico), observamos aria-hidden
+  new MutationObserver(() => {
+    if (modal.getAttribute('aria-hidden') === 'true') unlockIfNoModals();
+  }).observe(modal, { attributes: true, attributeFilter: ['aria-hidden'] });
+})();
+</script>
 
 </body>
 
