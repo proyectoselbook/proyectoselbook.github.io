@@ -821,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     // 9 (Pregunta)
     {
-      id:9, isQuestion:true, bg:'assets/img/fondo-nudo-inconsciente.png',
+      id:9, isQuestion:true, bg:'assets/img/fondo-nudo-consciente.jpg',
       body: `
         <div class="question"><strong>Tienes que tomar una decisión: <span class="nudo-step" data-step="13">¿Tratas de Salvar a Sam o a Mary?</span></strong></div>
         <div class="options">
