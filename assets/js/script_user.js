@@ -929,13 +929,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Estado de navegación global
 //		current = id;
-//		const isQ = !!data.isQuestion;        // páginas 4 y 9
-//		prevBtn.disabled = isQ || (current === 1);
-//		nextBtn.disabled = isQ || (current === PAGES[PAGES.length-1].id);
-		// Estado de navegación global
-		current = id;
-		prevBtn.disabled = (current === 1);
-		nextBtn.disabled = (current === PAGES[PAGES.length-1].id);
+		const isQ = !!data.isQuestion;        // páginas 4 y 9
+		prevBtn.disabled = isQ || (current === 1);
+		nextBtn.disabled = isQ || (current === PAGES[PAGES.length-1].id);
+
 
 
 // Si existe nav inline, muéstralo/ocúltalo según sea pregunta o no
