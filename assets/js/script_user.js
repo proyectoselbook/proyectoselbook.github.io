@@ -727,6 +727,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1
     {
       id:1, title:'Ejemplo de Nudo Subliminal-Invisible',
+		descr:'Recuerda que un Nudo Invisible-Subliminal no es percibido por el lector, pero por detrás está Sely interpretando tus emociones y tomando decisiones de ruta narrativa.',
       body: `
         <p><span class="nudo-step" data-step="1">Tom y Sam</span> mataban el cansancio en los taburetes de la gasolinera, cada sorbo de café era un castigo más que un alivio. La campanilla de la puerta sonó y, como una ráfaga de aire nuevo, <span class="nudo-step" data-step="2">entró Mary. Llevaba una chaqueta de cuero desgastada, el cabello cayéndole en mechones indomables, y una sonrisa breve, casi traviesa, cuando preguntó si podía sentarse. Sus ojos —oscuros, incisivos— parecían medirlos, como si jugara a descubrir algo en ellos</span>. Sam respondió antes que Tom, y en un instante los tres compartían mesa, conversación ligera y una sensación difusa de extraña familiaridad.</p>
         <p>Pero cuando <span class="nudo-step" data-step="3">el rugido de un tráiler atravesó el aire de la noche, algo en Mary se quebró. Su sonrisa se apagó de golpe, la mirada chispeante se volvió alerta, casi asustada. Dejó el vaso sin terminar y se dirigió al baño con pasos rápidos. Sam, confundido, la siguió. Tom alcanzó a ver un cruce de palabras tensas en la penumbra del pasillo… y después, nada.</span></p>
@@ -765,6 +766,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 5
     {
       id:5,
+	  descr:'Por ejemplo, elegiste "Me gusta, pero me da mala espina..."',
       body: `
         <p>Un minuto después Mary regresó sola, como si nada hubiera pasado. Sam no. Tom esperó, inquieto, hasta que la impaciencia le obligó a levantarse. Recorrió el pasillo, llamó a la puerta del baño, buscó entre las sombras: vacío. <span class="nudo-step" data-step="9">Sam había desaparecido</span>...</p>
         <p>De vuelta al salón, Tom encaró a Mary.<br>—¿Qué hablasteis ahí dentro? —preguntó con voz tensa.<br>Mary bajó la mirada y se encogió de hombros. —Nada importante.</p>
@@ -780,6 +782,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 6
     {
       id:6,
+	  descr:'En este caso, elegiste "Me intriga su reacción, ¿por qué se asusta?"',
       body: `
         <p>Alarmado, salió a buscarlos. Entonces lo vio: Mary y Sam eran empujados hacia el tráiler por un hombre enorme, rostro hundido en sombras, la fuerza de sus brazos imponiendo un silencio brutal. Mary forcejeaba, pero no parecía solo miedo: había rabia también en sus ojos. <span class="nudo-step" data-step="10">Sam intentaba resistir, inútil</span>. El camión rugió, engulléndolos.</p>
         <p>Tom corrió, gritó, pero el asfalto devolvió su voz en vano. El tráiler se alejaba ya, doblando la curva con un bramido metálico. Con los dedos crispados, se lanzó al coche, giró la llave y hundió el pie en el acelerador.</p>
@@ -793,6 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 7
     {
       id:7,
+	  descr:'Si tu elección fue "No quiero líos. Mi viaje es con Sam.", quizás Sely no te hizo caso...',
       body: `
         <p>Pocos minutos más tarde, Sam regresó. Mary venía tras él, más pálida, con los ojos abiertos de par en par. Se susurraron algo que Tom no alcanzó a oír. Luego Sam, con gesto firme, dijo lo inevitable:<br>—<span class="nudo-step" data-step="11">Debe venir con nosotros.</span></p>
         <p>Tom se irguió de golpe. —¿Estás loco? Ni la conocemos.</p>
@@ -825,8 +829,8 @@ document.addEventListener('DOMContentLoaded', function() {
       body: `
         <div class="question"><strong>Tienes que tomar una decisión: <span class="nudo-step" data-step="13">¿Tratas de Salvar a Sam o a Mary?</span></strong></div>
         <div class="options">
-          <button class="option-btn" data-goto="10">Opción 1: Salvo a Sam</button>
-          <button class="option-btn" data-goto="10">Opción 2: Salvo a Mary</button>
+          <button class="option-btn" data-goto="10">Salvo a Sam</button>
+          <button class="option-btn" data-goto="10">Salvo a Mary</button>
         </div>
       `
     },
