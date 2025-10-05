@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Modelo de Negocio: Customer Persona</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+ /* ================================
+   MODELO · Segmentación (esta página)
+   ================================ */
+body[data-theme="modelo"] #modelo-segmentacion .microcards{
+  display:flex; flex-wrap:wrap; gap:10px 12px; margin:8px 0 14px;
+}
+body[data-theme="modelo"] #modelo-segmentacion .microcard{
+  display:inline-flex; align-items:center;
+  padding:.48rem .78rem;
+  background:#fff;
+  border:1px solid var(--mn-border, #e5e7eb);
+  border-left:4px solid var(--section-accent-color, #6aa8ff);
+  border-radius:10px;
+  font-weight:800; color:#2f3b48;
+  box-shadow: var(--mn-shadow, 0 6px 16px rgba(0,0,0,.06));
+}
+
+/* Rejilla de tarjetas (curva de valor) */
+body[data-theme="modelo"] #modelo-segmentacion .network-cards{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:14px 18px;
+  align-items:start;
+}
+@media (max-width: 980px){
+  body[data-theme="modelo"] #modelo-segmentacion .network-cards{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Matriz RICE (2x2 responsive) */
+body[data-theme="modelo"] #modelo-segmentacion .rice-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px 20px;
+  margin-top: 6px;
+}
+@media (max-width: 980px){
+  body[data-theme="modelo"] #modelo-segmentacion .rice-grid{
+    grid-template-columns: 1fr;
+  }
+}
+body[data-theme="modelo"] #modelo-segmentacion .rice-cell{
+  background: linear-gradient(180deg,#fff,#f6f8fb);
+  border:1px solid var(--mn-border, #e5e7eb);
+  border-radius:12px;
+  box-shadow: var(--mn-shadow, 0 6px 16px rgba(0,0,0,.06));
+  padding:12px 14px;
+}
+body[data-theme="modelo"] #modelo-segmentacion .rice-cell h3{
+  margin:4px 0 8px; font-weight:800; color:#2b3a4a;
+}
+body[data-theme="modelo"] #modelo-segmentacion .rice-cell ul{ margin:0 0 0 1.15rem; }
+body[data-theme="modelo"] #modelo-segmentacion .rice-cell li{ margin-bottom:6px; line-height:1.6; }
+
+/* Asegura imagen de persona alineada y con borde sutil (por si falta global) */
+body[data-theme="modelo"] #modelo-segmentacion aside.card img{
+  border:1px solid var(--mn-border, #e5e7eb); border-radius:8px;
+}
+body[data-theme="modelo"] #modelo-segmentacion aside.card img{
+  object-fit: cover;         /* sigue ocupando el ancho/alto fijado */
+  object-position: top center;/* muestra la parte superior de la foto */
+  display: block;            /* evita espacios fantasma */
+  height: 250px;
+}
+/* Curva de Valor: lista de 8 puntos en 2 columnas */
+@media (min-width: 900px) {
+  body[data-theme="modelo"] #modelo-segmentacion
+  .block:has(> h2.block-title.band + p + ul) > ul:first-of-type {
+    column-count: 2;
+    column-gap: 24px;
+    column-rule: 1px solid var(--mn-border, #e5e7eb);
+    margin: 8px 0 14px 1.15rem;
+  }
+  body[data-theme="modelo"] #modelo-segmentacion
+  .block:has(> h2.block-title.band + p + ul) > ul:first-of-type > li {
+    break-inside: avoid;
+    padding-bottom: 6px;
+  }
+}
+
+/* En móvil: 1 columna */
+@media (max-width: 899px) {
+  body[data-theme="modelo"] #modelo-segmentacion
+  .block:has(> h2.block-title.band + p + ul) > ul:first-of-type {
+    column-count: 1;
+    column-rule: none;
+  }
+}
+/* Curva de Valor → lista en 2 columnas SIN línea que une los bullets */
+@media (min-width: 900px){
+  body[data-theme="modelo"] #modelo-segmentacion
+  .block:has(> h2.block-title.band + p + ul) > ul:first-of-type{
+    column-rule: none !important;   /* quita la línea */
+    column-gap: 28px;               /* más aire entre columnas */
+    list-style-position: outside;   /* bullets fuera del texto (evita solapes) */
+  }
+}
+@media (min-width: 900px){
+  body[data-theme="modelo"] #modelo-segmentacion
+  .block:has(> h2.block-title.band + p + ul) > ul:first-of-type.separador{
+    background-image: linear-gradient(#eaeef5, #eaeef5);
+    background-repeat: no-repeat;
+    background-size: 1px 92%;
+    background-position: 50% 4%;
+  }
+}
+
+</style>
+</head>
+
+<body data-theme="modelo" data-active-section="modelo" data-current-page="model-customer">
+
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Customer Persona.</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="entrada_usuarios.html" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+	
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+			
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>    <ul class="submenu">
+            <li><a href="intro-modelo.html" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="model-canvas.html" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="model-network.html" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="model-customer.html" data-subsection="model-customer">Customer Persona, Segmentación y Curva de valor</a></li>
+            <li><a href="model-lean.html" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="#" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+    <div class="content-breadcrumbs">Modelo de Negocio / Customer Persona</div>
+    <h1>Segmentación, Customer Persona y Curva de Valor</h1>
+    
+<!-- MAIN-SECTION · MODELO DE NEGOCIO (usar con body[data-theme="modelo"]) -->
+<div class="main-section" id="modelo-negocio">
+<!-- MAIN-SECTION · MODELO DE NEGOCIO · Segmentación, Customer Persona y Curva de Valor -->
+<div class="main-section" id="modelo-segmentacion">
+
+  <!-- INTRODUCCIÓN -->
+  <section class="block">
+    <h2 class="block-title band">Introducción</h2>
+
+    <p>En la sección de <strong>Mercado, Ingresos y Marketing</strong> ya hicimos un análisis del mercado y del Buyer Persona. En este punto vamos a detallar más con <strong>técnicas de Segmentación</strong> y pondremos nombre a nuestros <strong>Customer Personas</strong>.</p>
+
+    <p>Por último, realizaremos una <strong>comparación de la Curva de Valor</strong> de Selbook frente a otros productos que, de forma inicial, podrían ser complementarios o sustitutivos.</p>
+
+    <ul>
+      <li><strong><code>Contenidos Relacionados:</code></strong>
+        <a href="#contenido-relacionado-segmentacion" class="sb-note cta-link" data-sb-type="info" data-sb-target="modal-segmentacion">
+          <span class="sb-ico">ℹ️</span>Contenidos Relacionados
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SEGMENTACIÓN -->
+  <section class="block">
+    <h2 class="block-title band">Segmentación</h2>
+
+    <p>Veamos la Segmentación en una tabla y detallamos punto por punto:</p>
+
+    <!-- Imagen grande y centrada -->
+    <figure style="text-align:center;margin:10px 0 16px;">
+      <a href="assets/img/variables-segmentacion.png" class="lightbox-trigger" aria-label="Ampliar variables de segmentación">
+        <img src="assets/img/variables-segmentacion.png" alt="Variables de segmentación Selbook" style="max-width:960px;width:100%;height:auto;border-radius:10px;border:1px solid #e5e7eb;">
+      </a>
+    </figure>
+
+    <p>La <strong>segmentación geográfica</strong> no es un dato relevante, ya que se trata de un producto online con <strong>posibilidad de consumo global</strong>. La <strong>segmentación demográfica</strong> queda definida en el cuadro. Vemos el resto:</p>
+
+    <h3>🧠 Segmentación Psicográfica</h3>
+    <p>Amantes de la literatura —y de las “grandes historias”—. Les gusta invertir en literatura y cine. La lectura está entre sus pasatiempos favoritos. Tienen <strong>perfil tecnológico</strong> y, sin ser grandes gamers, poseen <strong>experiencia con videojuegos</strong>. Valoran y consumen <strong>cultura</strong>. Tienen redes sociales, pero no son especialmente activos o su actividad se centra en <strong>cultura y noticias</strong>. Selbook les motiva por su <strong>experiencia literaria</strong> y por descubrir <strong>nuevos caminos culturales</strong> alineados con la tecnología, a la que muestran admiración.</p>
+
+    <h3>🧡 Segmentación por comportamiento</h3>
+    <p>Consumidores <strong>regulares de literatura</strong>, sobre todo en formato digital. También suscritos a varias plataformas de <strong>streaming</strong>. Tienden a la <strong>lealtad a autores</strong> y también a <strong>géneros</strong>. En Selbook buscarán un producto que les sorprenda y cumpla el lema <em>“Más allá de las Novelas”</em>. Si esto ocurre, su <strong>sensibilidad al precio</strong> será <strong>baja</strong>.</p>
+
+    <h3>💭 Segmentación por Necesidades, Problemas y Retos</h3>
+    <p>Necesidades principalmente <strong>emocionales</strong>. Durante la lectura se hacen preguntas sobre personajes y alternativas; tras la lectura imaginan <strong>“cómo continúa la historia”</strong> o sienten interés por <strong>tramas no resueltas</strong>. Por ello valorarán y consumirán <strong>Personajes Tangenciales</strong>, <strong>Ampliaciones</strong> y <strong>Relatos Paralelos</strong>. Con experiencia en videojuegos y consumo de streaming, apreciarán <strong>Elegir Dimensión</strong>, <strong>ready-to-play</strong> y <strong>generación audiovisual</strong>.</p>
+  </section>
+
+  <!-- CUSTOMER PERSONA · LECTORES -->
+  <section class="block">
+    <h2 class="block-title band">Customer Persona – Lectores</h2>
+
+    <p>Para detalles más globales, véase el punto sobre <strong>Mercado, Buyer Persona y Marketing</strong>. En este punto, veremos <strong>3 tipos</strong> de Customer Persona representados por 3 perfiles:</p>
+
+    <aside class="card surface">
+      <div><strong>✔️</strong></div>
+      <h3>🙋🏽‍♂️ <strong>Green</strong></h3>
+
+      <!-- Imagen a la derecha, no clicable -->
+      <img src="assets/img/green.jpg" alt="Perfil Green" style="float:right;width:320px;max-width:38vw;margin:0 0 10px 16px;border-radius:8px;border:1px solid #e5e7eb;">
+
+      <p>Green es un chico de 16 años. Va al instituto y empieza a preguntarse sobre su futuro; es <strong>soñador</strong> e <strong>imaginativo</strong>, curioso con las nuevas tecnologías, aunque no el típico apasionado de los videojuegos. Juega ciertos títulos y temáticas; no le importa jugar solo, pero no termina de engancharse porque echa en falta <strong>historia</strong> o relato. No es un ávido lector; disfruta de ciertas historias, pero su hábito no es regular. Es sociable y extrovertido.</p>
+
+      <p>Le atraen las historias de <strong>aventura</strong>, con épica, intriga y <strong>personajes de gran personalidad</strong> (admira tanto a Aragorn como a Darth Vader). Buscará <strong>experiencias de otro nivel</strong> con cierto control. En pasajes descriptivos optará por la <strong>generación multimedia</strong> y aprovechará el <strong>Ready-to-Play</strong>, sobre todo en escenarios de investigación.</p>
+
+      <p>Consumirá Stringbooks con cierta <strong>latencia</strong> para exprimir cada obra. Comprará <strong>muchas Ampliaciones y Prestaciones</strong>. Su recurrencia de compra dependerá del <strong>catálogo</strong> y las historias, con una media de <strong>5 Stringbooks/año</strong>.</p>
+
+      <div class="clear"></div>
+    </aside>
+
+    <aside class="card surface">
+      <div><strong>✔️</strong></div>
+      <h3>🧏🏽‍♀️ <strong>Yellow</strong></h3>
+
+      <img src="assets/img/yellow.jpg" alt="Perfil Yellow" style="float:right;width:320px;max-width:38vw;margin:0 0 10px 16px;border-radius:8px;border:1px solid #e5e7eb;">
+
+      <p>Yellow tiene ~25 años, perfil <strong>analítico</strong> e <strong>introvertido</strong>, buena estudiante y con alto compromiso profesional. Lectora habitual de <strong>novelas de intriga</strong> y seguidora de 2–3 autores de renombre. Consume series de <strong>crímenes y detectives</strong>. Uso esporádico de redes sociales en <strong>círculos pequeños</strong>.</p>
+
+      <p>Llega a Selbook por la <strong>innovación</strong> y porque uno de sus <strong>autores fetiche</strong> publica un Stringbook. Las <strong>Dimensiones</strong> y <strong>Nudos</strong> le generan curiosidad; el <strong>Ready-to-Play</strong> en investigación será el factor de enganche. No le seducen todas las prestaciones, pero sí las <strong>ampliaciones</strong>. Su consumo será <strong>regular</strong>, por lo que elegirá <strong>suscripción</strong>.</p>
+
+      <p>Será usuaria activa de <strong>La Comunidad</strong> por su entorno cultural seguro; se afiliará y participará en <strong>Cafeterías de Autor</strong> y de <strong>Stringbooks</strong>.</p>
+
+      <div class="clear"></div>
+    </aside>
+
+    <aside class="card surface">
+      <div><strong>✔️</strong></div>
+      <h3>🧔🏽 <strong>Blue</strong></h3>
+
+      <img src="assets/img/blue.jpg" alt="Perfil Blue" style="float:right;width:320px;max-width:38vw;margin:0 0 10px 16px;border-radius:8px;border:1px solid #e5e7eb;">
+
+      <p>Samuel (≈45) es profesor en rama tecnológica o informática, con alto gusto artístico y cinéfilo de <strong>Ciencia Ficción</strong> y <strong>Fantasía</strong>. Amante de grandes sagas (<em>El Señor de los Anillos</em>, <em>Star Wars</em>). Se hace preguntas del tipo “¿de dónde sale Han Solo?, ¿cuál es su historia?”.</p>
+
+      <p>Generación X; vivió la digitalización e internet, por lo que aceptará Selbook con alta afinidad al mezclar <strong>literatura tradicional + tecnología</strong>. Lo entenderá como una evolución lógica y necesaria.</p>
+
+      <p>La posibilidad de que cada Stringbook sea una <strong>gran historia</strong> (Dimensiones, Rutas, Personajes tangenciales, Relatos paralelos) le convertirá en <strong>consumidor regular</strong> de Stringbooks y de <strong>Ampliaciones/Prestaciones</strong>. Potencial <strong>Premium</strong> y creador de contenido en La Comunidad. Un verdadero <strong>Early Adopter</strong>.</p>
+
+      <div class="clear"></div>
+    </aside>
+  </section>
+
+  <!-- CUSTOMER PERSONA · AUTORES -->
+  <section class="block">
+    <h2 class="block-title band">Customer Persona – Autores</h2>
+
+    <p>Recordemos que, como <strong>Marketplace</strong>, Selbook también tiene como clientes a los <strong>Autores</strong>. Es lógico definir <strong>perfiles base</strong>:</p>
+
+    <aside class="card surface">
+      <div><strong>✔️</strong></div>
+      <h3>✍🏽 <strong>White</strong></h3>
+
+      <img src="assets/img/white.jpg" alt="Perfil White" style="float:right;width:320px;max-width:38vw;margin:0 0 10px 16px;border-radius:8px;border:1px solid #e5e7eb;">
+
+      <p>White, 30 años, trabajo estable y <strong>sueño de ser escritor</strong>. Publica en Amazon de forma independiente con cierto reconocimiento, pero insuficiente para vivir de ello. Encuentra <strong>barreras de visibilidad</strong> por falta de tiempo y conocimientos de marketing. Renunció al proceso editorial tradicional, pero su necesidad de crear historias le mantiene activo.</p>
+
+      <p>Las <strong>posibilidades narrativas</strong> del Stringbook (sin límites de extensiones, alternativas y protagonistas) le conquistan, y termina decidiéndose por los <strong>servicios editoriales de Selbook</strong>. Él solo tiene que <strong>escribir</strong>, que es lo que quiere.</p>
+
+      <div class="clear"></div>
+    </aside>
+
+    <aside class="card surface">
+      <div><strong>✔️</strong></div>
+      <h3>🖊️ <strong>Brown</strong></h3>
+
+      <img src="assets/img/brown.jpg" alt="Perfil Brown" style="float:right;width:320px;max-width:38vw;margin:0 0 10px 16px;border-radius:8px;border:1px solid #e5e7eb;">
+
+      <p>Brown, ~50 años, escritor <strong>conocido</strong> y con <strong>prestigio literario</strong>, especialmente en <strong>Ciencia Ficción</strong>. Perfil tecnológico y admirador de avances científicos e informáticos. La explosión de la IA le llevó a investigar su potencial en literatura y a escribir alguna obra sobre ello. Al conocer Selbook supo que el cambio había llegado: el futuro del que escribía <strong>aterriza</strong> en la literatura; quien se suba al Stringbook estará mejor posicionado.</p>
+
+      <p>Viejos proyectos <strong>renacen</strong> y se transforman en Stringbooks.</p>
+
+      <div class="clear"></div>
+    </aside>
+  </section>
+
+  <!-- CURVA DE VALOR -->
+  <section class="block">
+    <h2 class="block-title band">Curva de Valor</h2>
+
+    <p>Selbook sigue siendo una <strong>composición literaria</strong>, por lo que sus competidores son los <strong>libros físicos y digitales</strong>. Comparemos sus <strong>curvas de valor</strong> en 8 puntos:</p>
+
+    <ul>
+      <li><strong>Precio</strong></li>
+      <li><strong>Configuración/uso</strong></li>
+      <li><strong>Limitaciones en Portabilidad</strong></li>
+      <li><strong>Experiencia Literaria</strong></li>
+      <li><strong>Protagonismo del Lector</strong></li>
+      <li><strong>Interactividad y Multimedia</strong></li>
+      <li><strong>Vida Útil</strong></li>
+      <li><strong>Beneficios Autor</strong></li>
+    </ul>
+
+    <p>Veremos las curvas y después detallaremos cada punto.</p>
+
+    <!-- Imagen centrada -->
+    <figure style="text-align:center;margin:10px 0 16px;">
+      <a href="assets/img/curva-valor.png" class="lightbox-trigger" aria-label="Ampliar curva de valor">
+        <img src="assets/img/curva-valor.png" alt="Curva de valor comparada" style="max-width:800px;width:100%;height:auto;border-radius:10px;border:1px solid #e5e7eb;">
+      </a>
+    </figure>
+
+    <!-- Tarjetas en 2 columnas -->
+    <div class="network-cards">
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Precio:</code></strong></h3>
+        <p>El precio del Libro Digital y Físico es menor que el de un Stringbook. Libros digitales por <strong>3–5€</strong> y físicos por <strong>15–20€</strong> frente a una media de <strong>~40€</strong> para un Stringbook en paquete medio.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Configuración y Uso.</code></strong></h3>
+        <p>El libro físico es “abrir y listo”. El digital requiere descarga y configuración de plataforma. Selbook exige la <strong>configuración inicial</strong> del Selbook y alguna más sencilla del Stringbook.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Portabilidad</code></strong></h3>
+        <p>El libro físico/digital es muy portable (eReader o bolsillo). Selbook puede requerir <strong>Tablet+BIC</strong> o <strong>Gafas de Realidad Mixta</strong>; aun así, son objetos <strong>transportables</strong>.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Protagonismo del Lector</code></strong></h3>
+        <p>En libro físico/digital el protagonismo del lector es <strong>cero</strong>; el autor decide todo. Selbook es <strong>lector-centrista</strong>: ofrece <strong>opciones y elecciones</strong> con <strong>control del lector</strong>. Lo esencial: <strong>las emociones del lector construyen la historia</strong>.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Vida Útil</code></strong></h3>
+        <p>Libro físico/digital: una <strong>única lectura</strong>, vida útil de semanas. Selbook contempla <strong>múltiples rutas</strong>; repetir historia casi nunca repite camino. <strong>Ampliaciones</strong> y <strong>Prestaciones</strong> alargan y multiplican la vida útil; puede haber obras “vivas” durante <strong>años</strong>.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Experiencia Literaria</code></strong></h3>
+        <p>Libro tradicional limitado en <strong>extensión</strong>, <strong>dinamismo</strong> y <strong>estructura</strong>. Selbook suma Nudos, Rutas, Dimensiones, Elecciones, Relatos paralelos, Personajes tangenciales y <strong>Prestaciones</strong>.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Interactividad y Multimedia.</code></strong></h3>
+        <p>En libro físico/digital es casi <strong>nula</strong>; en Selbook es <strong>clave</strong>: vídeos, imágenes, <strong>nudos conscientes</strong> (dilemas éticos), <strong>Ready-to-Play</strong> y la integración de <strong>La Comunidad</strong> y <strong>Sely</strong>.</p>
+      </aside>
+
+      <aside class="card surface">
+        <div><strong>✅</strong></div>
+        <h3><strong><code>Beneficios del Autor</code></strong></h3>
+        <p>No solo económicos. El autor tradicional percibe ~<strong>8–10%</strong> (1–2€). Selbook ofrecerá <strong>mejores condiciones</strong>, especialmente bajo el <strong>Sello Nativo</strong>. Los ingresos dependerán de la <strong>Vida Útil</strong> y de la capacidad de crear <strong>ampliaciones y versiones</strong>.</p>
+        <p>También hay <strong>beneficios creativos</strong>: sin límites para construir obras grandes, con múltiples argumentos, tramas y desarrollo profundo de personajes. Suman los <strong>Servicios Editoriales</strong> y las propuestas de <strong>Sely</strong> para nuevas obras y extensiones.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- MATRIZ DE RICE -->
+  <section class="block">
+    <h2 class="block-title band">Matriz de RICE</h2>
+
+    <p>Es evidente que con Selbook hablamos de un <strong>Océano Azul</strong>; por ello la <strong>Innovación en Valor</strong> debe ser <strong>elevada</strong>. Las propuestas de valor esenciales radican en la <strong>captación, análisis e interpretación de emociones</strong> y en las <strong>Ampliaciones y Prestaciones</strong>.</p>
+
+    <p>Si definimos la <strong>Matriz de RICE</strong> quedaría:</p>
+
+    <!-- Imagen centrada -->
+    <figure style="text-align:center;margin:10px 0 16px;">
+      <a href="assets/img/rice.png" class="lightbox-trigger" aria-label="Ampliar Matriz RICE">
+        <img src="assets/img/rice.png" alt="Matriz RICE Selbook" style="max-width:600px;width:100%;height:auto;border-radius:10px;border:1px solid #e5e7eb;">
+      </a>
+    </figure>
+
+    <!-- Matriz recreada con CSS (2x2) -->
+    <div class="rice-grid">
+      <section class="rice-cell">
+        <h3>🔻 Reducir: <em>¿¿Qué tiene esto que ver con los costes??</em></h3>
+        <ul>
+          <li>La <strong>reducción de la Comisión de la Editorial</strong> es determinante para que los Autores vengan a Selbook. Gracias a la <strong>optimización y automatización</strong> de procesos, Selbook podrá ejercer esos <strong>servicios editoriales</strong>, eliminando la intervención de una Editorial; se incentivará, pero no se cerrará la puerta a las editoriales.</li>
+          <li>El Autor debe comprender que el <strong>protagonismo pasa al Lector</strong>; sus narraciones, enfoques y esfuerzos deben orientarse en esa dirección.</li>
+        </ul>
+      </section>
+
+      <section class="rice-cell">
+        <h3>❌ Eliminar</h3>
+        <p>Gracias a la <strong>Inteligencia Artificial</strong> (modelos entrenados), las funciones tradicionales de una Editorial —que suponen un importante porcentaje de los <strong>costes de edición</strong>— podrán eliminarse: <strong>maquetación</strong>, <strong>corrección de estilo/ortotipográfica</strong> y <strong>traducciones</strong>. Esos costes se eliminan porque no dependen de RR. HH., sino del <strong>entrenamiento de modelos de IA</strong> cada vez más eficientes.</p>
+      </section>
+
+      <section class="rice-cell">
+        <h3>🔼 Incrementar</h3>
+        <p>Se incrementará la inversión en los <strong>Factores Diferenciadores</strong> para Lectores y Autores:</p>
+        <ul>
+          <li><strong>Prolongar Vida Útil</strong>: promoviendo y animando la creación de <strong>ampliaciones</strong>.</li>
+          <li>Buscar fórmulas que aumenten los <strong>beneficios económicos y creativos</strong> del autor.</li>
+          <li>Invertir más en la <strong>promoción</strong> de Stringbooks.</li>
+        </ul>
+      </section>
+
+      <section class="rice-cell">
+        <h3>➕ Crear</h3>
+        <p>Aumentar la inversión en <strong>I+D</strong> para que la <strong>captación de emociones</strong>, la <strong>experiencia de usuario</strong>, los <strong>nuevos modelos interactivos</strong> y la <strong>generación multimedia</strong> sean cada vez más <strong>orgánicos y óptimos</strong>.</p>
+      </section>
+    </div>
+  </section>
+
+</div>
+<!-- RESUMEN EJECUTIVO · Customer Persona -->
+<section class="block" id="resumen-customer">
+  <h2 class="block-title band">Resumen Ejecutivo</h2>
+  <p style="margin-top:2px">Quién es quién, qué valor ofrecemos y cómo se monetiza —en una mirada—.</p>
+
+  <!-- Personas clave en micro-tarjetas -->
+  <div class="microcards" style="margin-top:8px">
+    <div class="microcard" title="Lector">Green (16) · Curioso & multimedia</div>
+    <div class="microcard" title="Lector">Yellow (~25) · Intriga & suscripción</div>
+    <div class="microcard" title="Lector">Blue (~45) · Sagas & Premium</div>
+    <div class="microcard" title="Autor">White (30) · Indie + servicios IA</div>
+    <div class="microcard" title="Autor">Brown (~50) · Reconocido + expansión</div>
+  </div>
+
+  <!-- 4 bloques clave en 2 columnas -->
+  <div class="network-cards" style="margin-top:12px">
+    <!-- Insight de Segmentación -->
+    <aside class="card surface">
+      <h3 style="margin-top:4px"><strong>Insights de Segmentación</strong></h3>
+      <ul class="checklist">
+        <li><strong>Psicográficas:</strong> cultura + tech; buscan <em>“grandes historias”</em> y control.</li>
+        <li><strong>Comportamiento:</strong> lectura digital + streaming; fidelidad a autores/géneros.</li>
+        <li><strong>Necesidades:</strong> explorar rutas, resolver tramas, consumir <strong>ampliaciones</strong>.</li>
+      </ul>
+    </aside>
+
+    <!-- Propuesta de Valor -->
+    <aside class="card surface">
+      <h3 style="margin-top:4px"><strong>Propuesta de Valor</strong></h3>
+      <ul class="checklist">
+        <li><strong>Lector-centrista:</strong> decisiones, <strong>Dimensiones</strong>, <strong>Nudos</strong>.</li>
+        <li><strong>Obra viva:</strong> <strong>Relatos paralelos</strong> y <strong>Prestaciones</strong> que prolongan la vida útil.</li>
+        <li><strong>Comunidad segura:</strong> Cafeterías, reputación, contenido compartible.</li>
+      </ul>
+    </aside>
+
+    <!-- Monetización & Retención -->
+    <aside class="card surface">
+      <h3 style="margin-top:4px"><strong>Monetización & Retención</strong></h3>
+      <ul class="checklist">
+        <li><strong>Ingresos:</strong> stringbooks + <strong>ampliaciones</strong> + <strong>suscripción</strong> + publicidad.</li>
+        <li><strong>Autores:</strong> royalties competitivos + servicios (Standard/Premium).</li>
+        <li><strong>Sticky:</strong> <strong>CLTV alto</strong> (obra viva) y <strong>churn bajo</strong> (pertenencia a la Comunidad).</li>
+      </ul>
+    </aside>
+
+    <!-- Prioridades RICE -->
+    <aside class="card surface">
+      <h3 style="margin-top:4px"><strong>Prioridades RICE</strong></h3>
+      <ul class="checklist">
+        <li><strong>Reducir:</strong> comisión editorial vía automatización.</li>
+        <li><strong>Eliminar:</strong> maquetación/corrección/traducción manuales (IA).</li>
+        <li><strong>Incrementar:</strong> vida útil, beneficios al autor, promoción.</li>
+        <li><strong>Crear:</strong> I+D en emociones, UX interactiva y multimedia avanzada.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+
+
+
+ 
+</div>
+
+<!-- Nota: esta página usa .lightbox-trigger y .sb-note ya definidos en tu CSS general. -->
+<!-- La maquetación de columnas puntuales se ha resuelto inline para no tocar tu CSS global. -->
+<!-- Imágenes alineadas a la derecha (370px aprox.) con apertura en caja de luz sin salir de página. -->
+
+<!-- Clases usadas: .block, .block-title.band, .card.info/.surface, .sb-note.cta-link, .checklist -->
+<!-- Ajusta si ya tienes equivalentes en tu framework de sección. -->
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección...</h2>
+				<h2 class="next-section-main-title">Desarrollo del Modelo Lean Startup 👉🏽</h2>
+				<blockquote>Un producto tan innovador en un gran océano azul debe analizarse con el conocido análisis de Lean Startup y el Lean Canvas. Veremos el ciclo de aprendizaje con 2 hipótesis (experimentos) para la validación del Product-Solution-Fit y otros 2 para el Product-Market-Fit.</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="model-lean.html" class="next-section-card">
+				<img src="" alt="Acceso a la sección de Lean Startup">
+				<h3>Lean Startup</h3>
+			</a>
+
+		</div>
+	</section>
+
+
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES SIEMPRE DEBE DE ESTAR -->
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  
+
+
+
+<!-- CONTENEDOR REUTILIZABLE DEL MODAL (una sola vez en el layout, preferible justo antes de </body>) -->
+<div id="sb-modal-root" class="sb-modal" aria-hidden="true">
+  <div class="sb-modal__overlay" data-sb-modal-close="backdrop"></div>
+  <div class="sb-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="sb-modal-title" tabindex="-1">
+    <div class="sb-modal__head">
+      <h3 class="sb-modal__title" id="sb-modal-title">Información relacionada</h3>
+      <button type="button" class="sb-modal__close" aria-label="Cerrar" data-sb-modal-close="button">×</button>
+    </div>
+    <div class="sb-modal__body" id="sb-modal-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/script-modelo.js" defer></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>

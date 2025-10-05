@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Modelo de Negocio: Lean Startup</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- CSS local (sólo ayudas de maquetación específicas de esta página) -->
+  <style>
+  /* ======= MODELO · Lean (scopeado) ======= */
+  body[data-theme="modelo"] #modelo-lean .solutions-lead { /* 1ª fila: tarjeta izq + imagen dcha */
+    display:grid; grid-template-columns: 1fr minmax(320px, 420px);
+    gap:16px 20px; align-items:start; margin: 8px 0 12px;
+  }
+  @media (max-width: 980px){
+    body[data-theme="modelo"] #modelo-lean .solutions-lead { grid-template-columns: 1fr; }
+  }
+  /* El resto de soluciones usa la rejilla del tema (.network-cards) */
+
+  /* Experimentos: una tarjeta por fila con grid interno img(400px) + texto */
+  body[data-theme="modelo"] #modelo-lean .exp-card .exp-row{
+    display:grid; grid-template-columns: 400px 1fr;
+    gap:14px 18px; align-items:start; margin-top: 6px;
+  }
+  body[data-theme="modelo"] #modelo-lean .exp-card figure{
+    margin:0; border:1px solid var(--mn-border); border-radius:10px; overflow:hidden;
+    box-shadow: var(--mn-shadow); background:#fff;
+  }
+  body[data-theme="modelo"] #modelo-lean .exp-card img{ width:100%; height:auto; display:block; }
+  @media (max-width: 980px){
+    body[data-theme="modelo"] #modelo-lean .exp-card .exp-row{ grid-template-columns: 1fr; }
+  }
+  /* Imagen del Lean Canvas a 799px centrada (usa helpers globales) */
+  body[data-theme="modelo"] #modelo-lean .lean-canvas-img{ max-width:799px; width:100%; height:auto; }
+  code {
+    background: #e2e1e1;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ee5d5d;
+}
+  </style>
+</head>
+
+<body data-theme="modelo" data-active-section="modelo" data-current-page="estrategias-crecimiento">
+
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Lean Startup</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="entrada_usuarios.html" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+	
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+			
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>    <ul class="submenu">
+            <li><a href="intro-modelo.html" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="model-canvas.html" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="model-network.html" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="model-customer.html" data-subsection="model-customer">Customer Persona, Segmentación y Curva de valor</a></li>
+            <li><a href="model-lean.html" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="model-crecimiento.html" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            
+          </ul>
+        </li>
+		
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+    <div class="content-breadcrumbs">Modelo de Negocio / Análisis del Sector y Estrategias de Crevimiento</div>
+    <h1>Análisis del Sector y Estrategias de Crevimiento</h1>
+    
+    <!-- MAIN SECTION (tema modelo) -->
+	<div class="main-section" id="modelo-negocio"> 
+	<!-- INTRODUCCIÓN --> 
+		<section class="block"> 
+			<h2 class="block-title band">Introducción</h2> 
+				<p><strong>La misión y objetivo del Selbook es Revolucionar el concepto de libro y la literatura en toda su dimensión</strong>, pero esto ocurrirá a muy largo plazo. El libro físico lleva años, décadas con la etiqueta de “en peligro de extinción”, pero sigue firme y sigue acaparando el mayor número de ventas de libros. No es el objetivo real del Selbook suplantar al libro físico, será una consecuencia lógica y evolutiva, pero no un empeño.</p> <p>No así con <strong>el Libro Digital</strong>, que consideramos un <strong>formato a medio camino, indeciso y con poco valor</strong> como producto o idea. Su tiket es menor, el margen es menor y <strong>soluciona un problema muy vago en el cliente</strong>. Teniendo en cuenta el potencial de su formato, establece un coste de oportunidad que no está aprovechando en absoluto.</p> <p><strong>El Selbook, como primera misión y objetivo, tendría el provocar la transición del Libro Digital hacia el Selbook como estándar</strong>. Por lo tanto, este sería el Sector real de estudio, aunque por extensión, debemos también tener en cuenta el Sector del libro Físico y la Literatura en su conjunto.</p> 
+
+		</section> 
+	
+	<!-- 5 FUERZAS DE PORTER --> 
+	<section class="block"> 
+		<h2 class="block-title band">Las 5 Fuerzas de Porter</h2>
+		<!-- 1 -->
+		<h3>1️⃣ Amenazas de nuevos competidores - Barreras de Entrada</h3>
+
+		<!-- Imagen a la derecha SOLO para este punto -->
+		<aside class="side-media" style="float:right; max-width:340px; margin:2px 0 12px 18px;">
+		  <figure class="thumb">
+			<img class="lightbox-trigger" src="assets/img/barreras-entrada.png" alt="Barreras de entrada" />
+			<figcaption>Imagen: Amenazas</figcaption>
+		  </figure>
+		</aside>
+
+		<p>El Selbook correrá peligro en su fase inicial si alguna de las grandes empresas decide entrar a competir dado que tendrán la tecnología, el dinero y el atractivo necesario para crear un buen catálogo de Autores y libros. <strong>La principal barrera de entrada en esta fase inicial será el “Ser los primeros” y la capacidad que se tenga de atraer autores de relevancia</strong>.</p>
+		<p>Una vez superada esa fase inicial, si el catálogo es atractivo y si la masa crítica se ha alcanzado, <strong>el Network Effect será la principal y más potente barrera de entrada</strong>.</p>
+		<div class="clear"></div>
+
+		<!-- 2 -->
+		<h3>2️⃣ Amenaza por sustitutivos</h3>
+		<p>Los sustitutivos serán los propios <strong>libros físicos y digitales</strong>. Seguirán existiendo lectores de Libros Físicos, pero <strong>el lector de Libro Digital tendrá un coste de cambio tan pequeño y está tan alineado con la tecnología</strong>, que contemplará al Selbook como una <strong>opción más completa</strong> y potente.</p>
+		<p>En la medida en que seamos capaces de implementar y explicar la innovación y experiencia Selbook, el libro digital dejará de ser una amenaza. Conseguido esto, el tiempo y crecimiento (edad de entrada) del público objetivo serán quienes consigan ir “robando” lectores físicos.</p>
+
+		<!-- 3 -->
+		<h3>3️⃣ El Poder de los Compradores</h3>
+		<p>Una vez experimentado el universo Selbook, <strong>sería poco probable que un lector regrese al Digital</strong>. <strong>No existe sustitutivo del mismo valor</strong> y será inevitable que el Lector que regrese al Digital, compare la experiencia y eche en falta muchas de las características del Selbook.</p>
+		<p><strong>El poder del comprador será baja</strong> dado que si quieres una experiencia literaria parecida, sólo existirá una opción: el Selbook.</p>
+
+		<!-- 4 -->
+		<h3>4️⃣ Poder de los Proveedores</h3>
+		<p>El principal riesgo en este aspecto lo encontraríamos en los <strong>proveedores de Tecnologías, sobre todo, del BIC, y de los Autores</strong>.</p>
+		<p>Para minimizar este riesgo y para poder ofrecer diferentes opciones al comprador, en el catálogo de BIC existirán <strong>modelos de varios proveedores</strong>, sin dar la fuerza a ninguno.</p>
+		<p>En cuanto a los Autores, si somos capaces de planificar una estrategia de costes y precios atractivos, <strong>el Selbook será el distribuidor o “Editorial” más rentable para los Autores, dejándoles un margen mucho mayor</strong> que el que obtienen con una Editorial Tradicional. En el momento en que la Masa Crítica y el Network Effect están funcionando, la fuerza aislada de un autor o editorial será muy baja.</p>
+
+		<!-- 5 -->
+		<h3>5️⃣ <code>Rivalidad Competitiva.</code></h3>
+
+		<!-- Imagen a la derecha SOLO para este punto -->
+		<aside class="side-media" style="float:right; max-width:340px; margin:2px 0 12px 18px;">
+		  <figure class="thumb">
+			<img class="lightbox-trigger" src="assets/img/barreras-entrada.png" alt="Rivalidad competitiva" />
+			<figcaption>Imagen: Rivalidad competitiva</figcaption>
+		  </figure>
+		</aside>
+
+		<p>El conjunto de las 4 Fuerzas de Porter conseguirán que la Rivalidad Competitiva sea muy baja:</p>
+		<ul>
+		  <li>Superado el riesgo inicial de las Grandes Empresas Tecnológicas, <strong>No existirán Competidores reales</strong> en su fase de crecimiento. El Catálogo y el Network Effect crearán una gran barrera de entrada.</li>
+		  <li>Esto provocará que <strong>no existan Propuestas similares</strong>, por lo que el comprador sólo podrá contemplar una opción que le ofrezca de verdad una experiencia revolucionaria e innovadora.</li>
+		  <li><strong>La Red Social de La Comunidad, la larga Vida Útil de los Stringbooks</strong>, su tendencia a ampliaciones a lo largo de la vida útil, y la propia experiencia de usuario, no existente en otro producto literario, <strong>crearán unas barreras de salida sólidas</strong>.</li>
+		  <li>La Fase inicial será algo lenta dado que el producto presenta un cambio de paradigma tan grande, que la tracción será más progresiva que acelerada. Pero cuando llegue la tracción y cuando más nos acerquemos a la masa crítica y un catálogo mínimo atractivo, <strong>el Océano Azul que se presenta ante el Selbook es, en realidad, todo el mercado de libro Digital</strong> y, con el tiempo, todo el mercado de la literatura.</li>
+		</ul>
+		<div class="clear"></div>
+		</section> 
+		
+		<!-- ESTRUCTURA COMPETITIVA --> 
+		<section class="block"> 
+			<h2 class="block-title band">Estructura Competitiva</h2> 
+				<p>Por todo esto y por la naturaleza del Selbook, estamos hablando de un <strong>Mercado basado en la Diferenciación</strong>, tanto desde la perspectiva de la empresa como del cliente.</p> <p>La <strong>Sensibilidad al precio será baja</strong>, pero no sólo por la falta de competidores, sino porque el valor de la experiencia literaria es tan grande que el usuario, capaz de pagar 10€ por un libro digital, o 25 por un libro físico, o 10€ por ir al cine o 50€ por un videojuego, encontrará una experiencia tan completa que <strong>la percepción del precio estará por debajo del valor de la experiencia</strong>.</p> 
+		</section> 
+		
+		<!-- PEST / PESTEL --> 
+		<section class="block"> 
+			<h2 class="block-title band">Análisis del Macro-Entorno (PEST)</h2> 
+				<p>Hay una serie de Riesgos o impactos que debemos estudiar, pero que en cualquier caso, con una buena estrategia, podrán solventarse.</p> 
+				<p><strong>Modelo de Análisis PESTEL</strong></p>
+				<div class="card info" style="overflow-x:auto;">
+					<table style="width:100%; border-collapse:separate; border-spacing:0;">
+						<thead>
+						  <tr>
+							<th style="text-align:left; padding:10px; border-bottom:1px solid #e5e7eb;">Análisis PESTEL</th>
+							<th style="text-align:left; padding:10px; border-bottom:1px solid #e5e7eb;">¿Impacto? ¿Riesgos?</th>
+							<th style="text-align:left; padding:10px; border-bottom:1px solid #e5e7eb;">Solución</th>
+							<th style="text-align:left; padding:10px; border-bottom:1px solid #e5e7eb;">Probabilidad</th>
+							<th style="text-align:left; padding:10px; border-bottom:1px solid #e5e7eb;">Impacto</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">POLÍTICOS</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">No tendrían por qué afectar</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+						  </tr>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">ECONÓMICOS</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">Posibles Crisis Económicas</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">Potenciar los modelos de Suscripción.</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">3</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">4</td>
+						  </tr>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">SOCIALES</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  - Rechazo a la IA como creador Literario<br>
+							  <br>
+							  - Cambio de Paradigma Literario
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  - Una buena explicación y campaña de información: La IA no escribe los Selbooks.<br><br>
+							  - Alianza: No queremos competir. Amamos los libros Físicos. El Selbook es otra Experiencia.
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">2<br><br>3</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">4<br><br>3</td>
+						  </tr>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">TECNOLÓGICOS</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  - Evolución en Tecnologías<br><br>
+							  - Literatura creada por la IA
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  - Cualquier evolución es favorable a nuestro modelo. El Avance de la IA y de los dispositivos BIC lo único que harán será potenciar al Selbook<br><br>
+							  - Esta evolución encontrará rechazo en los propios lectores, pero podría ser fácilmente adaptable al Selbook si no fuera así y encontrara buena aceptación.
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">5<br><br>5</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">0<br><br>2</td>
+						  </tr>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">LEGALES</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  Legislación sobre la IA<br><br>
+							  Protección de Datos y IA Responsable
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">
+							  - Adaptar los controles que se exigen.<br><br>
+							  - 8 Leyes de Sely y su evolución
+							</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">4<br><br>4</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">3<br><br>3</td>
+						  </tr>
+						  <tr>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">MEDIOAMBIENTALES</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;">No aplican</td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+							<td style="padding:10px; border-top:1px solid #eef0f4;"></td>
+						  </tr>
+						</tbody>
+					  </table>
+				</div>
+			
+		</section> 
+		
+		<!-- ESTRATEGIAS ANSOFF --> 
+		<section class="block"> 
+			<h2 class="block-title band">Estrategias de Crecimiento Ansoff</h2> 
+				<p>El potencial de Crecimiento del Selbook es uno de sus mayores atractivos dado que, al tratarse de un Océano Azul, tendremos la <strong>capacidad de Ser los Primeros en las tres direcciones de la Matriz de Ansof</strong>: Desarrollo de Mercados, Desarrollo de Producto y Diferenciación.</p> 
+				<p>Veamos estas opciones.</p>
+				<aside class="callout">
+				  <h3>💡 Penetración en Mercado:</h3>
+				  <p>Una vez en fase de crecimiento, el foco principal para crecer y afianzarse como líder será el catálogo. La <strong>Captación de Autores será esencial para crear una gran Barrera de Entrada</strong>.</p>
+				</aside>
+
+				<aside class="callout">
+				  <h3>💡 Desarrollo de productos:</h3>
+				  <p>La evolución de la IA es imparable. Hay que dar por echo que la aparición de Novelas creadas con IA, por lo tanto, hay que anticiparse y preparar el camino en esa dirección.</p>
+				  <p>Como opciones de desarrollo de productos debemos contemplar:</p>
+				  <ul>
+					<li><strong>Stringbooks creados con IA</strong></li>
+					<li><strong>Versiones para segmentos</strong>: Aprovechar la IA para crear versiones de Stringbooks de Autores afines a según qué segmentos:
+					  <ul>
+						<li>Versiones Juveniles e Infantiles de obras adultas.</li>
+						<li>Jugar con las opciones de Perfiles de Usuario, creando Versiones Alternativas de Stringbooks de autores</li>
+					  </ul>
+					</li>
+				  </ul>
+				  <p>Por otro lado, ya hemos hablado de otras aplicaciones del Selbook en otros sectores:</p>
+				  <ul>
+					<li><strong><code>Contenidos Relacionados:</code></strong> <em>Clic en desplegable</em> — <a class="sb-note" data-sb-type="info" href="https://www.notion.so/123de629c7048133944cf011325405ac?pvs=21" target="_blank"><span class="sb-ico">🔗</span>Sin título</a></li>
+					<li><strong>Sector educativo:</strong> Creando obras pedagógicas capaces de comprender el nivel de atención del alumno, sus emociones y adaptar los contenidos educativos en tiempo real.</li>
+					<li><strong>Sector Psicológico</strong>: Creando obras capaces de ayudar en la terapias psicológicas tanto en el tratamiento como en el diagnóstico y detección.</li>
+					<li><strong>Sector RRHH</strong>: Creando obras capaces de profundizar en el verdadero potencial y personalidad el candidato y arrojando análisis mucho más potentes y óptimos sobre su validación.</li>
+				  </ul>
+				</aside>
+
+				<aside class="callout">
+				  <h3>💡 Desarrollo de Mercados:</h3>
+				  <p>La propia idea del Selbook como Tecnología capaz de Adaptar contenidos a las emociones del consumidor es muy extensible (y es una evolución lógica) en la Creación Cinematográfica. <strong>¿Películas y Series capaces de adaptarse a las emociones del espectador?</strong></p>
+				</aside>
+
+				<aside class="callout">
+				  <h3>💡 Diferenciación:</h3>
+				  <p>Puede que una estrategia interesante sea que guardemos varias de las Prestaciones que hemos definido para ir evolucionando el producto poco a poco y creando ese crecimiento por Diferenciación. Por otro lado, se establece un sistema I+D esencial en Seobook en la búsqueda incesante de características que sigan buscando esa diferenciación y experiencia inmersiva.</p>
+				</aside>
+	</section> 
+</div>
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección...</h2>
+				<h2 class="next-section-main-title">Análisis con Porter y PESTEL 👉🏽</h2>
+				<blockquote>Analizamos el Sector con las 5 Fuerzas de Porter y el Macro-Entorno con un modelo PESTEL. Estudiamos la Matriz de Ansof para evaluar las Estrategias de Crecimiento</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="model-crecimiento.html" class="next-section-card">
+				<img src="" alt="Acceso a la sección de Análisis del Sector y Estrategias de Crecimiento">
+				<h3>Análisis del Sector y Estrategias de Crecimiento</h3>
+			</a>
+
+		</div>
+	</section>
+
+
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES SIEMPRE DEBE DE ESTAR -->
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  
+
+
+
+<!-- CONTENEDOR REUTILIZABLE DEL MODAL (una sola vez en el layout, preferible justo antes de </body>) -->
+<div id="sb-modal-root" class="sb-modal" aria-hidden="true">
+  <div class="sb-modal__overlay" data-sb-modal-close="backdrop"></div>
+  <div class="sb-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="sb-modal-title" tabindex="-1">
+    <div class="sb-modal__head">
+      <h3 class="sb-modal__title" id="sb-modal-title">Información relacionada</h3>
+      <button type="button" class="sb-modal__close" aria-label="Cerrar" data-sb-modal-close="button">×</button>
+    </div>
+    <div class="sb-modal__body" id="sb-modal-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/script-modelo.js" defer></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>

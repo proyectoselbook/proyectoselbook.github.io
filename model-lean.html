@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbook&nbsp;— Modelo de Negocio: Lean Startup</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- CSS local (sólo ayudas de maquetación específicas de esta página) -->
+  <style>
+  /* ======= MODELO · Lean (scopeado) ======= */
+  body[data-theme="modelo"] #modelo-lean .solutions-lead { /* 1ª fila: tarjeta izq + imagen dcha */
+    display:grid; grid-template-columns: 1fr minmax(320px, 420px);
+    gap:16px 20px; align-items:start; margin: 8px 0 12px;
+  }
+  @media (max-width: 980px){
+    body[data-theme="modelo"] #modelo-lean .solutions-lead { grid-template-columns: 1fr; }
+  }
+  /* El resto de soluciones usa la rejilla del tema (.network-cards) */
+
+  /* Experimentos: una tarjeta por fila con grid interno img(400px) + texto */
+  body[data-theme="modelo"] #modelo-lean .exp-card .exp-row{
+    display:grid; grid-template-columns: 400px 1fr;
+    gap:14px 18px; align-items:start; margin-top: 6px;
+  }
+  body[data-theme="modelo"] #modelo-lean .exp-card figure{
+    margin:0; border:1px solid var(--mn-border); border-radius:10px; overflow:hidden;
+    box-shadow: var(--mn-shadow); background:#fff;
+  }
+  body[data-theme="modelo"] #modelo-lean .exp-card img{ width:100%; height:auto; display:block; }
+  @media (max-width: 980px){
+    body[data-theme="modelo"] #modelo-lean .exp-card .exp-row{ grid-template-columns: 1fr; }
+  }
+  /* Imagen del Lean Canvas a 799px centrada (usa helpers globales) */
+  body[data-theme="modelo"] #modelo-lean .lean-canvas-img{ max-width:799px; width:100%; height:auto; }
+  code {
+    background: #e2e1e1;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ee5d5d;
+}
+  </style>
+</head>
+
+<body data-theme="modelo" data-active-section="modelo" data-current-page="lean-startup">
+
+
+<header>
+    <div class="header-content">
+      <img src="assets/img/logo-selbook.png" alt="Logo de Selbook">
+      <div class="header-text">
+        <div class="header-title">Proyecto Selbook – Lean Startup</div>
+        <div class="header-subtitle">Más allá de las Novelas, donde hay infinitos caminos, pero sólo uno es… Tu Historia.</div>
+      </div>
+    </div>
+    <!-- Contenedor de botones actualizado -->
+    <div class="header-buttons">
+        <button id="show-route" type="button" class="header-action-button">
+            <i class="fas fa-project-diagram"></i> Tu Ruta <i class="fas fa-chevron-down"></i>
+        </button>
+        <a href="entrada-inversores.html" class="header-action-button">
+            <i class="fas fa-home"></i> Inversores
+        </a>
+        <a href="entrada_usuarios.html" class="header-action-button">
+            <i class="fas fa-users"></i> Usuarios
+        </a>
+        <a href="#footer" id="btn-contact-header" class="header-action-button">
+            <i class="fas fa-envelope"></i> Contacto
+        </a>
+    </div>
+</header>
+
+  <nav id="sidebar">
+      <ul>
+		  <li>
+          <div class="menu-item" data-section-toggle="producto"><span class="section-title">El Producto</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="producto-introduccion.html" data-subsection="intro-producto">Introducción</a></li>
+            <li><a href="producto-definicion-tecnica.html" data-subsection="definicion-tecnica">Definición&nbsp;técnica</a></li>
+            <li><a href="perfil-estatico-dinamico.html" data-subsection="perfiles">Perfil Estático y Dinámico</a></li>
+            <li><a href="personalizacion-historia.html" data-subsection="personalizacion">Personalización de la Historia</a></li>
+            <li><a href="generacion-multimedia-ia.html" data-subsection="generacionia">Generación Multimedia con IA</a></li>
+            <li><a href="producto-comunidad.html" data-subsection="comunidad">La Comunidad: Red Social</a></li>
+            <li><a href="responsabilidad-ia.html" data-subsection="etica">Responsabilidad Ética de la IA</a></li>
+            <li><a href="ampliaciones-prestaciones.html" data-subsection="ampliaciones">Ampliaciones y Prestaciones</a></li>
+            <li><a href="producto-aplicaciones.html" data-subsection="aplicaciones">Otras Aplicaciones</a></li>
+            <li><a href="stringbook-autores.html" data-subsection="stringbook">Stringbook y Autores</a></li>
+          </ul>
+        </li>
+	
+        <li>
+          <div class="menu-item" data-section-toggle="marketing"><span class="section-title">Mercado, Marketing e Ingresos</span><span class="toggle">&gt;</span></div>
+          <ul class="submenu">
+            <li><a href="intro-mercado-ingresos.html" data-subsection="intro-mkt">Introducción</a></li>
+            <li><a href="buyer-person-market.html" data-subsection="buyer-persona">Buyer Persona y Mercado Potencial</a></li>
+            <li><a href="mercado-comercializacion.html" data-subsection="comercializacion">Comercialización y eCommerce</a></li>
+            <li><a href="mercado-otros-ingresos.html" data-subsection="financiacion">Otras vías de financiación</a></li>
+            <li><a href="mercado-mkt-publi.html" data-subsection="mkt-publicidad">Marketing y Publicidad</a></li>
+          </ul>
+        </li>
+			
+        <li>
+          <div class="menu-item" data-section-toggle="modelo"><span class="section-title">Estudio del Modelo de negocio</span><span class="toggle">&gt;</span></div>    <ul class="submenu">
+            <li><a href="intro-modelo.html" data-subsection="intro-modelo">Introducción</a></li>
+            <li><a href="model-canvas.html" data-subsection="bmc">Business Model Canvas</a></li>
+            <li><a href="model-network.html" data-subsection="motor-crecimiento">Canales, Network Effect y Motor</a></li>
+            <li><a href="model-customer.html" data-subsection="model-customer">Customer Persona, Segmentación y Curva de valor</a></li>
+            <li><a href="model-lean.html" data-subsection="lean-startup">Lean Startup</a></li>
+            <li><a href="model-crecimiento.html" data-subsection="estrategias-crecimiento">Análisis y Estrategias de crecimiento</a></li>
+            <li><a href="#" data-subsection="empresa">Estructura de empresa</a></li>
+          </ul>
+        </li>
+		
+        <!-- La clave es añadir el mismo data-subsection que pondrás en el data-current-page del body -->
+			<li><div class="menu-item" data-section-toggle="UX"><span class="section-title"><a href="experiencia-usuario-journey.html" data-subsection="uxui">Experiencia de usuario y Journey</a></span></div></li>
+			<li><div class="menu-item" data-section-toggle="incertidumbres"><span class="section-title"><a href="incertidumbres-retos.html" data-subsection="incertidumbres">Incertidumbres y retos</a></span></div></li>
+      </ul>
+	  <div class="sidebar-divider"></div>
+<a href="contacto.html" class="sidebar-cta" aria-label="Escríbenos por el formulario">
+  <i class="fas fa-comments"></i> ¡Escríbenos!
+</a>
+  </nav>
+
+  <main id="content">
+    <div class="content-breadcrumbs">Modelo de Negocio / Lean Startup</div>
+    <h1>Lean Startup</h1>
+    
+    <!-- MAIN SECTION (tema modelo) -->
+    <div class="main-section" id="modelo-negocio">
+      <div class="main-section" id="modelo-lean">
+
+
+        <!-- LEAN CANVAS -->
+        <section class="block">
+          <h2 class="block-title band">Lean Canvas Selbook</h2>
+		  <p>Selbook es un producto de altísima innovación en un océano azul; por tanto, debemos validar con el modelo Lean Startup. El primer paso es el <strong>Lean Canvas</strong>.</p>
+          <figure style="text-align:center;margin:10px 0 0;">
+            <img class="lean-canvas-img" src="assets/img/lean-canvas.png" alt="Lean Canvas Selbook" />
+          </figure>
+        </section>
+
+        <!-- PROBLEMAS -->
+        <section class="block">
+          <h2 class="block-title band">Los Problemas del Cliente</h2>
+
+          <p>Hay varios “problemas” que a cualquier amante de la lectura le han ocurrido alguna vez. Pongamos <strong>nombres</strong> a esos problemas.</p>
+          <ul>
+            <li><strong><code>No-Me-Engancha:</code></strong> Empezar un libro y no engancharle. No termina de gustarle.</li>
+            <li><strong><code>Quiero-Más:</code></strong> Terminar un libro. Le ha encantado, pero… se hace preguntas. Preguntas sobre personajes, sobre tramas o historias que no terminaron de cerrarse…</li>
+            <li><strong><code>Lo-Leería-Otra-Vez,-Pero…</code></strong> Terminar un libro. Ha sido genial… Volverías a leerlo, pero ya sabes lo que ha pasado…</li>
+            <li><strong><code>Prefiero-Verlo:</code></strong> Descripción demasiado larga o escenas muy visuales: apetece ver el pasaje en vídeo, imagen dinámica o cómic.</li>
+            <li><strong><code>Prefiero-Vivirlo:</code></strong> Interrogar a un sospechoso, investigar una escena del crimen o vivir una incursión militar.</li>
+            <li><strong><code>No-tengo-tiempo-para-leer</code></strong> Falta de tiempo: gusta leer, pero cuesta mantener la regularidad.</li>
+          </ul>
+
+          <p>Puede que parte de la magia esté en esas “limitaciones”, pero… ¿de verdad te resistirías a vivirlas si tuvieras la opción? Selbook resuelve cada uno de estos puntos, arrebatando el control absoluto al autor y…</p>
+        </section>
+
+        <!-- SOLUCIONES -->
+        <section class="block">
+          <h2 class="block-title band">Las Soluciones</h2>
+
+          <p>…se los da al <strong>Lector</strong>. La solución de Selbook se resume en una frase:</p>
+          <blockquote>El lector tiene el control. Ya no es esclavo de la voluntad del autor. Es una revolución: ahora decide el lector.</blockquote>
+
+          <!-- Fila 1: tarjeta "No-Me-Engancha" + imagen -->
+          <div class="solutions-lead">
+            <aside class="card info">
+              <div><strong>✅</strong></div>
+              <h3>Solución a <code>“No-Me-Engancha”</code></h3>
+              <p>Si hacemos bien nuestro trabajo, <strong>no ocurrirá</strong>. El sistema está diseñado para enganchar desde antes de la primera palabra: Librería/Comunidad, reseñas, sinopsis y booktrailer, primeras interacciones y Perfil Estático. Ya dentro, conocerás <strong>historias y personajes</strong> y <strong>Sely</strong> irá aprendiendo para ayudarte a <strong>elegir protagonista</strong>. Antes de sentir “no me engancha”, llega el primer <strong>Nudo Subliminal</strong> y la historia empieza a <strong>adaptarse a tus emociones</strong>.</p>
+            </aside>
+
+            <figure class="network-visual">
+              <img src="assets/img/soluciones.png" alt="Mapa visual de soluciones Selbook" />
+            </figure>
+          </div>
+
+          <!-- Resto de tarjetas en 2 columnas (usa rejilla del tema) -->
+          <div class="network-cards">
+            <aside class="card surface">
+              
+              <h3>✅ Solución a <code>“Quiero-Más”</code></h3>
+              <p>“Dar más” con <strong>Ampliaciones y Prestaciones</strong>:</p>
+              <ul>
+                <li><strong>Relatos paralelos</strong> para completar o explorar intra-historias. <em>Ej.: la guerra previa, origen de los Jedi, fundación de Hogwarts…</em></li>
+                <li><strong>Personajes tangenciales</strong>. <em>Ej.: ¿Quién es Han Solo? ¿Cómo Tom Riddle se convierte en Voldemort?</em></li>
+              </ul>
+            </aside>
+
+            <aside class="card surface">
+              
+              <h3>✅ Solución a <code>“Lo-Leería-otra-vez,-pero…”</code></h3>
+              <p>Relectura con <strong>cambios reales</strong>: el mismo Stringbook ofrece rutas distintas (<strong>Nudos</strong>) y perspectivas nuevas (<strong>Dimensiones</strong> al cambiar de protagonista). Repetir camino es prácticamente improbable.</p>
+            </aside>
+
+            <aside class="card surface">
+              
+              <h3>✅ Solución a <code>Prefiero-Verlo</code></h3>
+              <p>Recreación audiovisual a demanda del lector: <strong>vídeo</strong>, <strong>imágenes</strong>, representación gráfica con <strong>BSO</strong> y voz en off, o incluso <strong>cómic</strong>.</p>
+            </aside>
+
+            <aside class="card surface">
+             
+              <h3>✅ Solución a <code>Prefiero-Vivirlo</code></h3>
+              <p><strong>Ready-to-Play</strong> en pasajes elegidos: interrogar, investigar, persecuciones o incursiones. Lectura + interacción para el público “nativo videojuego”.</p>
+            </aside>
+
+            <aside class="card surface">
+              
+              <h3>✅ Solución a <code>No-Tengo-Tiempo-para-Leer</code></h3>
+              <p><strong>Modo podcast</strong> nativo: dramatización sincronizada con tu progreso. Retomas la historia donde la dejaste, corriendo o en el coche.</p>
+            </aside>
+          </div>
+        </section>
+
+        <!-- CICLO DE APRENDIZAJE: EXPERIMENTOS -->
+        <section class="block">
+          <h2 class="block-title band">Ciclo de Aprendizaje Lean Startup: Experimentos</h2>
+          <p>Debemos validar el <strong>Product-Solution-Fit</strong> y el <strong>Product-Market-Fit</strong>. Declaramos <strong>4 hipótesis clave</strong> (dos por fase), con sus MVP y métricas de validación.</p>
+
+          <!-- PSF -->
+          <h3>Fase Product-Solution-Fit</h3>
+          <p><strong>Hipótesis esencial:</strong> ¿Es Selbook una experiencia revolucionaria y somos capaces de implementarla?</p>
+
+          <aside class="card exp-card">
+            <h3>💡 Experimento 1. Hipótesis Feasability: <strong>Somos capaces de recoger y reconocer Emociones de un Lector</strong></h3>
+            <div class="exp-row">
+              <figure><img src="assets/img/experimento-1.png" alt="Experimento 1 — Lectura con BIC" /></figure>
+              <div>
+                <p>Validación indispensable: si el BIC detecta emociones en una lectura normal, podremos analizarlas y gestionarlas desde Selbook.</p>
+                <h4><code>MVP 1: Dispositivo BIC conectado a un PC</code></h4>
+                <p>Lecturas con distintos usuarios, narrativas y géneros. Analizamos la señal del BIC y la cotejamos con el texto leído.</p>
+                <h4><code>Medición y aprendizaje: ¿Nivel de sensibilidad?</code></h4>
+                <p>Si la sensibilidad resulta baja, añadimos <strong>música</strong>, <strong>FX</strong>, <strong>imágenes</strong> y <strong>vídeo</strong> y repetimos.</p>
+              </div>
+            </div>
+          </aside>
+
+          <aside class="card exp-card">
+            <h3>💡 Experimento 2. Hipótesis Feasability: <strong>El Stringbook es una experiencia Innovadora y Revolucionaria</strong></h3>
+            <div class="exp-row">
+              <figure><img src="assets/img/experimento-2.png" alt="Experimento 2 — Stringbook elemental" /></figure>
+              <div>
+                <h4><code>MVP 2: Selbook Elemental en formato Web</code></h4>
+                <p>Stringbook básico con 3 <strong>Nudos Subliminales</strong>, 1 <strong>Inconsciente</strong> y 1 <strong>Consciente</strong>; 1 pasaje audiovisual (vídeo, imágenes, BSO y FX) y rutas programadas con BIC conectado.</p>
+                <h4><code>Medición y aprendizaje: ¿Cómo es la experiencia?</code></h4>
+                <ul>
+                  <li><strong>Feedback real</strong> del grupo de control.</li>
+                  <li><strong>Feedback social</strong>: interacción entre usuarios para medir predisposición a Comunidad.</li>
+                  <li><strong>Feedback del potencial</strong>: valoración tras explicar Ampliaciones/Prestaciones/Comunidad.</li>
+                  <li><strong>Feedback de precio</strong>: posibilidad de reserva.</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+
+          <!-- PMF -->
+          <h3>Fase Product-Market-Fit</h3>
+          <p><strong>Hipótesis esencial:</strong> El mercado es suficientemente grande para lograr el Network Effect y el usuario pagará por Selbook aunque el precio sea alto.</p>
+
+          <aside class="card exp-card">
+            <h3>💡 Experimento 3. Hipótesis Viability: <strong>El Usuario pagará el precio aunque sea alto</strong></h3>
+            <div class="exp-row">
+              <figure><img src="assets/img/experimento-3.png" alt="Experimento 3 — Landing y reservas" /></figure>
+              <div>
+                <h4><code>MVP 3: Landingpage con encuesta y reserva</code></h4>
+                <p>Web detallada con captación en foros/comunidades de libro digital. Encuesta sobre Nudos, Dimensiones, Ampliaciones, Prestaciones y Comunidad.</p>
+                <p>Se ofrece <strong>reserva</strong> del Selbook en preventa.</p>
+                <h4><code>Medición y aprendizaje</code></h4>
+                <p>Qué características son imprescindibles en la primera versión; qué prestaciones reservar; necesidad o no de lanzar Comunidad desde el día 1. Con las reservas, ajustamos <strong>horquilla de precios</strong>.</p>
+              </div>
+            </div>
+          </aside>
+
+          <aside class="card exp-card">
+            <h3>💡 Experimento 4. Hipótesis Desirability: <strong>Hay interés grande y es posible el Network Effect</strong></h3>
+            <div class="exp-row">
+              <figure><img src="assets/img/experimento-4.png" alt="Experimento 4 — Crowdfunding" /></figure>
+              <div>
+                <h4><code>MVP 4: Crowfounding</code></h4>
+                <p>Campaña con publicidad de pago y tres niveles de participación (Pte. de estudio):</p>
+                <ul>
+                  <li><strong>Basic</strong>: &lt;100€ — Descuentos de por vida en Selbook y Stringbooks.</li>
+                  <li><strong>Advance</strong>: 100–2.000€ — Descuento Selbook + 20 Stringbooks Medium Pack.</li>
+                  <li><strong>Premium</strong>: &gt;2.000€ — Selbook gratuito + 30 Stringbooks Full Pack.</li>
+                </ul>
+                <h4><code>Medición y aprendizaje</code></h4>
+                <p>Cuantificamos interés real por inversión, detectamos <strong>Early Adopters</strong> y afinamos perfiles.</p>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- RESUMEN EJECUTIVO -->
+        <section class="block">
+          <h2 class="block-title band">Resumen Ejecutivo</h2>
+          <div class="checklist">
+            <li><strong>Problema → Solución:</strong> seis fricciones clásicas de lectura; Selbook responde con control del lector, rutas, multimedia y Ready-to-Play.</li>
+            <li><strong>PSF:</strong> demostrar detección emocional con BIC y valor percibido del Stringbook elemental (MVP 1–2).</li>
+            <li><strong>PMF:</strong> validar disposición a pagar y tracción inicial vía reservas y crowdfunding (MVP 3–4).</li>
+            <li><strong>Salida esperada:</strong> features mínimas para V1, pricing objetivo y primeras cohortes de early adopters.</li>
+          </div>
+        </section>
+      </div>
+    </div>
+
+
+
+
+
+	<!-- BLOQUE "EN LA SIGUIENTE SECCIÓN..." (ESTRUCTURA HTML CORREGIDA) -->
+	<section class="next-section-wrapper">
+		<div class="next-section-promo">
+			
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="next-section-text">
+				<h2 class="next-section-title">En la siguiente sección...</h2>
+				<h2 class="next-section-main-title">Análisis con Porter y PESTEL 👉🏽</h2>
+				<blockquote>Analizamos el Sector con las 5 Fuerzas de Porter y el Macro-Entorno con un modelo PESTEL. Estudiamos la Matriz de Ansof para evaluar las Estrategias de Crecimiento</blockquote>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<a href="model-crecimiento.html" class="next-section-card">
+				<img src="" alt="Acceso a la sección de Análisis del Sector y Estrategias de Crecimiento">
+				<h3>Análisis del Sector y Estrategias de Crecimiento</h3>
+			</a>
+
+		</div>
+	</section>
+
+
+ <!-- TARJETAS DE ACCESO A OTRAS SECCIONES SIEMPRE DEBE DE ESTAR -->
+	<h3 style="margin-top: 20px; margin-bottom: 20px; padding-top: 20px; border-top: 1px;">Menú de Secciónes principales</h3>
+
+    <section class="cards-wrapper" aria-labelledby="detallada">
+        <div class="cards-head">
+            <h2 id="detallada">Bloques Principales del Estudio:</h2>
+            <p class="intro">Desdes estas tarjetas puedes acceder a otras secciones principales del estudio. Si colocas el cursor encima, podrás ver un listado de los puntos que contiene esa sección. <em>Te recomendamos ir por orden</em>.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card tooltip-parent">
+              <a href="producto-introduccion.html" title="El Producto">
+                <img src="assets/img/portada-producto.webp" alt="Portada El Producto">
+                <div class="card-body">
+                  <div class="card-title">El Producto</div>
+                  <p class="card-desc">Te contamos el detalle en qué consiste el Selbook, cómo funciona, características... Todo lo que necesitas saber de esta Revolución.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Definición Técnica</li>
+                  <li>Perfil Estático y Dinámico</li>
+                  <li>Personalización de la Historia</li>
+                  <li>Generación Multimedia con IA</li>
+                  <li>La Comunidad: Red Social</li>
+                  <li>Responsabilidad Ética de la IA</li>
+                  <li>Ampliaciones y Prestaciones</li>
+                  <li>Otras Aplicaciones</li>
+                  <li>Stringbook y Autores</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="intro-mercado-ingresos.html" title="Mercado, Marketing e Ingresos">
+                <img src="assets/img/portada-mercado-potencial.webp" alt="Portada Mercado, Marketing e Ingresos">
+                <div class="card-body">
+                  <div class="card-title">Mercado, Marketing e Ingresos</div>
+                  <p class="card-desc">Definición del Buyer Persona, Mercado Potencial, comercialización y vías de financiación, marketing y publicidad.</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Buyer Persona y Mercado Potencial</li>
+                  <li>Comercialización y eCommerce</li>
+                  <li>Otras vías de financiación</li>
+                  <li>Marketing y Publicidad</li>
+                </ul>
+              </div>
+            </article>
+			            <article class="card tooltip-parent">
+              <a href="#" title="Estudio de Modelo de Negocio">
+                <img src="assets/img/portada-modelo-negocio.png" alt="Portada Modelo de Negocio">
+                <div class="card-body">
+                  <div class="card-title">Estudio de Modelo de Negocio</div>
+                  <p class="card-desc">Análisis profundo del Modelo Hibrido que propone. BMC, Motor de Crecimiento, Customer Persona, Estrategia de Crecimiento...</p>
+                </div>
+              </a>
+              <div class="tooltip">
+                <h4>Contenido</h4>
+                <ul>
+                  <li>Business Model Canvas</li>
+                  <li>Canales, Network Effect y Motor de Crecimiento</li>
+                  <li>Segmentación, Customer Persona y Curva de Valor</li>
+                  <li>Lean Startup</li>
+                  <li>Análisis del Sector y Estrategias de Crecimiento</li>
+                  <li>Estructura de Empresa</li>
+                </ul>
+              </div>
+            </article>
+			
+            <article class="card tooltip-parent">
+              <a href="experiencia-usuario-journey.html" title="Experiencia de Usuario y Customer Journey">
+                <img src="assets/img/portada-ux-jurney.webp" alt="Portada Experiencia de Usuario y Customer Journey">
+                <div class="card-body">
+                  <div class="card-title">Experiencia de Usuario y Customer Journey</div>
+                  <p class="card-desc">Recorrido detallado desde la captación hasta la re-compra, pasando por el proceso de activación y compras.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="incertidumbres-retos.html" title="Incertidumbres y Retos">
+                <img src="assets/img/portada-incertidumbres-2.webp" alt="Portada Incertidumbres y Retos">
+                <div class="card-body">
+                  <div class="card-title">Incertidumbres y Retos</div>
+                  <p class="card-desc">Planteamos los diferentes retos o dudas que puedan surgir en este proyecto, planteando soluciones.</p>
+                </div>
+              </a>
+            </article>
+            <article class="card tooltip-parent">
+              <a href="contacto.html" title="Conclusiones y Contacto">
+                <img src="assets/img/portada-contacto.jpg" alt="Portada Conclusiones y Contacto (pendiente)">
+                <div class="card-body">
+                  <div class="card-title">Contacto Inversores y Usuarios</div>
+                  <p class="card-desc">Fin del recorrido. ¿Nos ponemos en marcha?</p>
+                </div>
+              </a>
+            </article>
+        </div>
+    </section>
+
+  </main>
+
+ <!-- ===================================================
+     NUEVO FOOTER MODERNO Y CON FORMULARIO
+     =================================================== -->
+<footer id="footer">
+    <div class="footer-grid">
+        <!-- Columna Izquierda: Mensaje y Contacto -->
+        <div class="footer-contact">
+            <h3>¿Hablamos?</h3>
+            <p>Has visto el potencial de una idea que puede cambiar las reglas del juego. Si tienes preguntas, sugerencias, o la visión para unirte a esta revolución, este es el momento de dar el siguiente paso.</p>
+            <ul class="contact-details">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:proyectoselbook@gmail.com">proyectoselbook@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <span>609&nbsp;83&nbsp;69&nbsp;04</span></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jose-ignacio-ros/" target="_blank" rel="noopener noreferrer">Perfil LinkedIn Jose I Ros</a></li>
+            </ul>
+        </div>
+
+        <!-- Columna Derecha: Formulario Tally -->
+        <div class="footer-form">
+            <h3>Contacto Directo</h3>
+            <div class="tally-form-container">
+                <iframe data-tally-src="https://tally.so/embed/npWvkP?alignLeft=1&hideTitle=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contacto"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Parte Inferior del Footer: Créditos y Legal -->
+    <div class="footer-bottom">
+        <div class="footer-credits">
+            ©&nbsp;Todos los derechos reservados. Jose&nbsp;Ignacio&nbsp;Ros&nbsp;Valcárcel.&nbsp;2024<br>
+            Queda prohibida la reproducción total o parcial de este contenido, así como el uso o aplicación de las ideas expuestas sin la autorización expresa del autor.
+        </div>
+        <div class="footer-legal">
+            <p>Protegido con propiedad intelectual Safe&nbsp;Creative</p>
+            <img src="assets/img/safecreative.png" alt="SafeCreative Logo">
+        </div>
+    </div>
+</footer>
+  <!-- ===================================================
+     ESTRUCTURA HTML PARA LA CAJA DE LUZ (LIGHTBOX)
+     Añadir esto una vez por página, antes de </body>
+     =================================================== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-content">
+</div>
+  
+
+
+
+<!-- CONTENEDOR REUTILIZABLE DEL MODAL (una sola vez en el layout, preferible justo antes de </body>) -->
+<div id="sb-modal-root" class="sb-modal" aria-hidden="true">
+  <div class="sb-modal__overlay" data-sb-modal-close="backdrop"></div>
+  <div class="sb-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="sb-modal-title" tabindex="-1">
+    <div class="sb-modal__head">
+      <h3 class="sb-modal__title" id="sb-modal-title">Información relacionada</h3>
+      <button type="button" class="sb-modal__close" aria-label="Cerrar" data-sb-modal-close="button">×</button>
+    </div>
+    <div class="sb-modal__body" id="sb-modal-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/script-modelo.js" defer></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
