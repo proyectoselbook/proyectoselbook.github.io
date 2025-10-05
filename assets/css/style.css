@@ -65,7 +65,7 @@ body[data-theme="modelo"] {
   --section-gradient-start: #011f4b;
   --section-gradient-mid:   #2980b9;
   --section-gradient-end:   #011f4b;
-  --section-accent-color: #3498db;
+  --section-accent-color: #80ccff;
   --section-accent-glow: rgba(52, 152, 219, 0.7);
 }
 
@@ -1082,3 +1082,686 @@ background-color: #333;
 	    padding-top: 2px;
     padding-bottom: 2px;
 }
+
+
+/* =================================================================
+   MODELO DE NEGOCIO · ESTILOS ESTANDARIZADOS (desde intro-modelo.html)
+   Scopeado para no interferir con otros temas/secciones
+   ================================================================= */
+
+/* =========================
+   TEMA: MODELO DE NEGOCIO
+   (variables activas solo con body[data-theme="modelo"])
+   ========================= */
+body[data-theme="modelo"] {
+  --mn-bg: #f3f4f6;          /* gris claro del fondo de la sección */
+  --mn-text: #1f2937;        /* gris muy oscuro para texto */
+  --mn-muted: #4b5563;       /* texto secundario */
+  --mn-accent: #ff7e2f;      /* acento (naranja Selbook) */
+  --mn-accent-weak: rgba(255,126,47,.15);
+  --mn-surface: #ffffff;     /* tarjetas claras */
+  --mn-surface-dark: #14161a;/* tarjetas oscuras de énfasis */
+  --mn-border: #e5e7eb;      /* bordes suaves */
+  --mn-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+/* contenedor principal opcional usado en alguna página inicial */
+body[data-theme="modelo"] .main-section.modelo-main {
+  background: var(--mn-bg);
+  color: var(--mn-text);
+  border-radius: 14px;
+  /*padding: clamp(20px, 3vw, 36px);*/
+  box-shadow: var(--mn-shadow);
+}
+
+/* ===== Cabecera y títulos con banda destacada (scopeado al bloque del modelo) ===== */
+body[data-theme="modelo"] #modelo-negocio .section-header.band {
+  background: linear-gradient(90deg, #fff, #fff0);
+  border: 1px solid var(--mn-border);
+  border-left: 6px solid var(--mn-accent);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+body[data-theme="modelo"] #modelo-negocio .section-header .kicker {
+  margin:.4rem 0 0; color: var(--mn-muted);
+}
+
+/* Nota: esta “banda” existe también como variante local más abajo;
+   aquí mantenemos el color de fondo #4d5a7c tal como venía en la página */
+body[data-theme="modelo"] #modelo-negocio .block-title.band {
+  background: #4d5a7c;
+  border: 1px solid var(--mn-border);
+  border-left: 5px solid var(--mn-accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 0 0 12px 0;
+  font-weight: 800;
+}
+
+/* ===== Layout principal alternativo (si se usa .modelo-grid) ===== */
+body[data-theme="modelo"] #modelo-negocio .modelo-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 280px; /* lateral estrecho */
+  gap: clamp(16px, 2.5vw, 28px);
+}
+body[data-theme="modelo"] #modelo-negocio .modelo-content .block {
+  background: var(--mn-surface);
+  border: 1px solid var(--mn-border);
+  border-radius: 12px;
+  padding: clamp(14px, 2vw, 20px);
+}
+body[data-theme="modelo"] #modelo-negocio .modelo-content .block + .block {
+  margin-top: 14px;
+}
+
+/* ===== Columnas reutilizables (publicidad y suscripciones) ===== */
+body[data-theme="modelo"] #modelo-negocio .cols { display: grid; }
+body[data-theme="modelo"] #modelo-negocio .cols.gap-md { gap: 16px; }
+body[data-theme="modelo"] #modelo-negocio .cols.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+@media (max-width: 900px) {
+  body[data-theme="modelo"] #modelo-negocio .modelo-grid { grid-template-columns: 1fr; }
+  body[data-theme="modelo"] #modelo-negocio .cols.cols-2 { grid-template-columns: 1fr; }
+}
+
+/* ===== Tarjetas internas del modelo (scope para no afectar a .card global) ===== */
+body[data-theme="modelo"] #modelo-negocio .card {
+  border-radius: 12px;
+  border: 1px solid var(--mn-border);
+  box-shadow: var(--mn-shadow);
+  padding: 14px 16px;
+  background: var(--mn-surface);
+}
+body[data-theme="modelo"] #modelo-negocio .card.info {
+  background: linear-gradient(180deg, #fff, #eae8e8);
+  border-left: 4px solid var(--mn-accent);
+}
+body[data-theme="modelo"] #modelo-negocio .card.surface {
+  background: #e9e9e9;
+  margin-bottom: 7px;
+}
+body[data-theme="modelo"] #modelo-negocio .card.note {
+  background: var(--mn-surface-dark);
+  color: #e9edf3;
+  border-color: #1d2127;
+}
+body[data-theme="modelo"] #modelo-negocio .card.note a { color: #9ad0ff; }
+
+/* ===== Lateral de imágenes pequeñas (lightbox-ready) ===== */
+body[data-theme="modelo"] #modelo-negocio .side-media .thumb {
+  background: #fff;
+  border: 1px solid var(--mn-border);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: var(--mn-shadow);
+}
+body[data-theme="modelo"] #modelo-negocio .side-media .thumb + .thumb { margin-top: 14px; }
+body[data-theme="modelo"] #modelo-negocio .side-media img {
+  width: 100%; height: auto; border-radius: 8px;
+}
+body[data-theme="modelo"] #modelo-negocio .side-media figcaption {
+  margin-top: 6px; font-size: .92rem; color: var(--mn-muted);
+}
+body[data-theme="modelo"] #modelo-negocio .lightbox-trigger { cursor: zoom-in; }
+
+/* ===== Listas, texto y enlaces ===== */
+body[data-theme="modelo"] #modelo-negocio .modelo-content p { line-height: 1.6; }
+body[data-theme="modelo"] #modelo-negocio .modelo-content ul { margin: .5rem 0 .9rem 1.1rem; }
+body[data-theme="modelo"] #modelo-negocio a.cta-link,
+body[data-theme="modelo"] #modelo-negocio .sb-note {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .2rem .55rem; border-radius: 999px;
+  background: var(--mn-accent-weak);
+  border: 1px dashed var(--mn-border);
+  text-decoration: none; color: var(--mn-text);
+}
+body[data-theme="modelo"] #modelo-negocio .sb-note .sb-ico { font-size: .95em; }
+
+/* ===== Checklist del resumen ===== */
+body[data-theme="modelo"] #modelo-negocio .checklist {
+  display: grid; gap: .5rem; margin: .6rem 0 0 0;
+}
+body[data-theme="modelo"] #modelo-negocio .checklist li {
+  position: relative; padding-left: 28px;
+}
+body[data-theme="modelo"] #modelo-negocio .checklist li::before {
+  content: "✔"; position: absolute; left: 0; top: 0;
+  width: 20px; height: 20px; display: grid; place-items: center;
+  border-radius: 6px; border: 1px solid var(--mn-border);
+  background: #fff; color: var(--mn-accent);
+}
+
+/* ===== Pequeñas utilidades ===== */
+body[data-theme="modelo"] #modelo-negocio .legend { color: var(--mn-muted); font-size: .95rem; }
+
+
+/* ==============================
+   AJUSTES LOCALES (desde intro-modelo.html)
+   ============================== */
+
+/* 1) Caja blanca con borde + sombra sutil para cada sección */
+body[data-theme="modelo"] #modelo-negocio .block {
+  background: #fff;
+  border: 1px solid #e9ecf1;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);
+  padding: clamp(16px, 2.2vw, 22px);
+  margin: 16px 0;
+}
+body[data-theme="modelo"] #modelo-negocio .block + .block { margin-top: 18px; }
+
+/* 2) H2 dentro de bloques: gris claro y sin subrayado global h2 */
+body[data-theme="modelo"] #modelo-negocio .block .block-title {
+  color: #e1ebfb;                 /* gris claro para el título (tal cual) */
+  border-bottom: none !important; /* anula el borde de main#content h2 global */
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+/* Variante “banda” local (tal como está en la página) */
+body[data-theme="modelo"] #modelo-negocio .block .block-title.band {
+  background: #4b5f83;
+  border: 1px solid #edf0f4;
+  border-left: 5px solid var(--section-accent-color, #3498db);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* 3) Más aire y tamaño ligeramente mayor en texto y listas */
+body[data-theme="modelo"] #modelo-negocio p { 
+  line-height: 1.75; 
+  margin-bottom: 16px; 
+}
+body[data-theme="modelo"] #modelo-negocio > section ul,
+body[data-theme="modelo"] #modelo-negocio .block > ul {
+  margin: 10px 0 16px 1.2rem;
+}
+body[data-theme="modelo"] #modelo-negocio > section ul > li,
+body[data-theme="modelo"] #modelo-negocio .block > ul > li {
+  margin-bottom: 10px; 
+  font-size: 1.05em;
+  line-height: 1.7;
+}
+body[data-theme="modelo"] #modelo-negocio ul ul {
+  margin-top: 6px;
+}
+body[data-theme="modelo"] #modelo-negocio ul ul li {
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+/* Jerarquía H3/H4 */
+body[data-theme="modelo"] #modelo-negocio h3 { 
+  margin: 18px 0 10px; 
+  color: #2f3b48; 
+}
+body[data-theme="modelo"] #modelo-negocio h4 { 
+  margin: 14px 0 8px; 
+  color: #354252;
+}
+
+/* 4) Chips / “Contenidos relacionados” y notas */
+body[data-theme="modelo"] #modelo-negocio .cta-link,
+body[data-theme="modelo"] #modelo-negocio .sb-note {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .36rem .7rem;
+  font-size: 1.02em;
+  border-radius: 999px;
+  margin: .25rem 0 .6rem;
+}
+
+/* 5) Tarjetas (suscripciones/publicidad) */
+body[data-theme="modelo"] #modelo-negocio .card {
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  border: 1px solid #e9ecf1;
+  border-radius: 12px;
+}
+body[data-theme="modelo"] #modelo-negocio .card h4,
+body[data-theme="modelo"] #modelo-negocio .card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+body[data-theme="modelo"] #modelo-negocio .card ul { 
+  margin-left: 1.1rem; 
+}
+body[data-theme="modelo"] #modelo-negocio .card ul > li { 
+  margin-bottom: 9px; 
+  line-height: 1.7; 
+}
+
+/* 6) Checklist del resumen */
+body[data-theme="modelo"] #modelo-negocio .checklist li { 
+  margin-bottom: 8px; 
+}
+
+/* 7) Utilidad: limpiar flotados */
+body[data-theme="modelo"] #modelo-negocio .clear { clear: both; }
+
+
+/* ==========================================================
+   SELBOOK · MODAL REUTILIZABLE (Sección: Modelo de Negocio)
+   Scope: solo cuando el tema activo es "modelo"
+   ========================================================== */
+body[data-theme="modelo"].sb-modal-open { overflow: hidden; }
+
+/* Contenedor raíz del modal */
+body[data-theme="modelo"] .sb-modal {
+  position: fixed;
+  inset: 0;
+  display: none;           /* se muestra vía .is-open */
+  z-index: 1200;           /* por encima de tooltips/lightbox */
+}
+body[data-theme="modelo"] .sb-modal.is-open { display: block; }
+
+/* Capa oscura */
+body[data-theme="modelo"] .sb-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 17, 27, 0.68); /* oscurece pantalla */
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .18s ease-out;
+}
+
+/* Diálogo */
+body[data-theme="modelo"] .sb-modal__dialog {
+  position: relative;
+  margin: 4vh auto;
+  max-width: min(920px, 92vw);
+  min-width: min(340px, 92vw);
+  background: #f3f5f8;                          /* fondo gris claro */
+  border-radius: 16px;                           /* bordes redondeados */
+  border: 1px solid rgba(103, 165, 255, .25);    /* borde leve */
+  box-shadow:
+    0 18px 55px rgba(0,0,0,.25),
+    0 0 0 3px rgba(103,165,255,.10),
+    0 0 28px rgba(80,145,255,.35);               /* glow azul */
+  transform: translateY(12px) scale(.985);
+  opacity: 0;
+  transition: transform .22s ease, opacity .22s ease;
+  color: #1f2937;
+}
+
+/* Header del modal */
+body[data-theme="modelo"] .sb-modal__head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 18px 8px;
+}
+body[data-theme="modelo"] .sb-modal__title {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: 800;
+  color: #2b3a4a;
+}
+
+/* Botón cerrar */
+body[data-theme="modelo"] .sb-modal__close {
+  margin-left: auto;
+  display: inline-grid; place-items: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 20px; line-height: 1;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+}
+body[data-theme="modelo"] .sb-modal__close:hover {
+  background: #eef4ff;
+  box-shadow: 0 0 0 2px rgba(103,165,255,.18) inset;
+  transform: translateY(-1px);
+}
+
+/* Cuerpo con scroll interno si hace falta */
+body[data-theme="modelo"] .sb-modal__body {
+  padding: 6px 18px 18px;
+  max-height: calc(92vh - 60px);
+  overflow: auto;
+}
+
+/* Estado "abierto" (transiciones) */
+body[data-theme="modelo"] .sb-modal.is-open .sb-modal__overlay { opacity: 1; }
+body[data-theme="modelo"] .sb-modal.is-open .sb-modal__dialog {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Tipografía dentro del modal (admite HTML) */
+body[data-theme="modelo"] .sb-modal__body h1,
+body[data-theme="modelo"] .sb-modal__body h2,
+body[data-theme="modelo"] .sb-modal__body h3 {
+  margin: 10px 0 8px;
+  color: #203244;
+}
+body[data-theme="modelo"] .sb-modal__body p { line-height: 1.7; margin: 10px 0; }
+body[data-theme="modelo"] .sb-modal__body ul { margin: 8px 0 12px 1.2rem; }
+body[data-theme="modelo"] .sb-modal__body li { margin-bottom: 6px; }
+body[data-theme="modelo"] .sb-modal__body strong { font-weight: 800; }
+body[data-theme="modelo"] .sb-modal__body code,
+body[data-theme="modelo"] .sb-modal__body kbd {
+  background: #eef2f7; border-radius: 6px; padding: 2px 6px; font-family: ui-monospace, monospace;
+}
+
+/* Plantillas ocultas de contenido (no visibles) */
+body[data-theme="modelo"] .sb-content-template { display: none !important; }
+
+/* Oculta el primer heading dentro del cuerpo del modal (evita el duplicado) */
+body[data-theme="modelo"] .sb-modal__body > h1:first-child,
+body[data-theme="modelo"] .sb-modal__body > h2:first-child,
+body[data-theme="modelo"] .sb-modal__body > h3:first-child {
+  display: none;
+}
+
+/* --- Puntos ad-based compactos --- */
+body[data-theme="modelo"] .sb-modal__body .sb-adpoints {
+  margin: 8px 0 14px 1.1rem;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-adpoints li {
+  margin-bottom: 6px; line-height: 1.55;
+}
+
+/* --- 4 niveles: tarjetas sutiles y aire --- */
+body[data-theme="modelo"] .sb-modal__body .sb-levels {
+  list-style: none; padding: 0; margin: 10px 0 0 0;
+  display: grid; gap: 12px;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level {
+  border: 1px solid rgba(0,0,0,.06);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  position: relative;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level .lv-title {
+  font-weight: 800; margin-bottom: 6px;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level p {
+  margin: 6px 0 8px; line-height: 1.6;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level ul {
+  margin: 0 0 0 1.1rem;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level ul li {
+  margin-bottom: 6px; line-height: 1.55;
+}
+
+/* Acento sutil por nivel (borde-izq + halo muy ligero) */
+body[data-theme="modelo"] .sb-modal__body .sb-level.lv-parque {
+  border-left: 4px solid #5fbf9f;
+  box-shadow: 0 6px 16px rgba(95,191,159,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level.lv-libreria {
+  border-left: 4px solid #6aa8ff;
+  box-shadow: 0 6px 16px rgba(106,168,255,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level.lv-cafeteria {
+  border-left: 4px solid #f2a766;
+  box-shadow: 0 6px 16px rgba(242,167,102,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-level.lv-mesa {
+  border-left: 4px solid #b18cff;
+  box-shadow: 0 6px 16px rgba(177,140,255,.08);
+}
+
+/* --- Lista numerada de las 8 Leyes de Sely (estilo sutil y legible) --- */
+body[data-theme="modelo"] .sb-modal__body .sb-ethics {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  counter-reset: sely;
+  display: grid;
+  gap: 10px;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-ethics > li {
+  counter-increment: sely;
+  position: relative;
+  padding: 10px 12px 10px 44px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  line-height: 1.6;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-ethics > li::before {
+  content: counter(sely);
+  position: absolute;
+  left: 12px; top: 10px;
+  width: 24px; height: 24px;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  background: #eef4ff;
+  color: #2a5bd7;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 0 1px rgba(42,91,215,.15);
+}
+
+/* SUSCRIPCIONES (estilo sutil dentro del modal) */
+body[data-theme="modelo"] .sb-modal__body .sb-subscriptions{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px; margin:8px 0 14px;
+}
+@media (max-width: 820px){
+  body[data-theme="modelo"] .sb-modal__body .sb-subscriptions{ grid-template-columns:1fr; }
+}
+
+body[data-theme="modelo"] .sb-modal__body .sb-subcard{
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,.06);
+  padding:12px 14px;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-subcard .plan-title{
+  font-weight:800; margin-bottom:6px; display:flex; align-items:center; gap:.45rem;
+}
+body[data-theme="modelo"] .sb-modal__body .sb-subcard ul{ margin:0 0 0 1.1rem; }
+body[data-theme="modelo"] .sb-modal__body .sb-subcard ul li{ margin-bottom:6px; line-height:1.6; }
+
+/* Acentos por plan (borde-izq + halo ligero) */
+body[data-theme="modelo"] .sb-modal__body .sb-subcard.plan-basic{
+  border-left:4px solid #6aa8ff; box-shadow:0 6px 16px rgba(106,168,255,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-subcard.plan-premium{
+  border-left:4px solid #ffb04a; box-shadow:0 6px 16px rgba(255,176,74,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-subcard.plan-standard{
+  border-left:4px solid #7cc3a7; box-shadow:0 6px 16px rgba(124,195,167,.08);
+}
+body[data-theme="modelo"] .sb-modal__body .sb-subcard.plan-auth-premium{
+  border-left:4px solid #b18cff; box-shadow:0 6px 16px rgba(177,140,255,.08);
+}
+/* ==========================================================
+   MODELO · BMC: 2 columnas solo para los 4 últimos .block
+   (Key Resources, Key Partners, Cost Structure, Revenue Streams)
+   ========================================================== */
+@media (min-width: 900px) {
+  /* 1) La página BMC usa .modelo-main: la hacemos grid */
+  body[data-theme="modelo"] .modelo-main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px; /* vertical y horizontal */
+  }
+
+  /* 2) Por defecto, todos los bloques ocupan el ancho completo */
+  body[data-theme="modelo"] .modelo-main > section.block {
+    grid-column: 1 / -1;
+  }
+
+  /* 3) Los 4 últimos .block van en 2 columnas */
+  body[data-theme="modelo"] .modelo-main > section.block:nth-last-of-type(-n + 4) {
+    grid-column: auto; /* 1 columna */
+  }
+}
+
+/* En pantallas pequeñas: 1 columna */
+@media (max-width: 899px) {
+  body[data-theme="modelo"] .modelo-main {
+    display: block; /* layout normal */
+  }
+}
+
+/* Key Activities: 2 columnas para cada pareja H4+UL (H2 fuera) */
+@media (min-width: 900px) {
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid {
+    position: relative;
+    display: grid;
+	align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 28px;              /* vertical / horizontal */
+    padding: 4px 0;              /* aire para el divisor */
+  }
+  /* Divisor central sutil */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--mn-border, #e5e7eb);
+    transform: translateX(-0.5px);
+    pointer-events: none;
+  }
+
+  /* Columna izquierda/derecha por parejas (requiere patrón H4 seguido de UL) */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4:nth-of-type(odd),
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4:nth-of-type(odd) + ul {
+    grid-column: 1;
+  }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4:nth-of-type(even),
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4:nth-of-type(even) + ul {
+    grid-column: 2;
+  }
+
+  /* Ritmo y legibilidad */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4 { margin: 8px 0 6px; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid ul { margin: 0 0 12px 1.15rem; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid ul > li { margin-bottom: 6px; line-height: 1.6; }
+}
+
+/* Responsive: 1 columna y sin divisor */
+@media (max-width: 899px) {
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid { display: block; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid::before { display: none; }
+}
+
+/* KEY ACTIVITIES: 2 columnas con items alineados arriba */
+@media (min-width: 900px) {
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px 28px;                 /* vertical / horizontal */
+    padding: 4px 0;
+    align-items: start;             /* <-- alinea ARRIBA las dos columnas */
+  }
+  /* Divisor sutil al centro */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--mn-border, #e5e7eb);
+    transform: translateX(-0.5px);
+    pointer-events: none;
+  }
+
+  /* Cada pareja h4+ul como un item de la grid */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item {
+    break-inside: avoid;
+  }
+  /* Colocación: impares izquierda, pares derecha */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item:nth-of-type(odd)  { grid-column: 1; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item:nth-of-type(even) { grid-column: 2; }
+
+  /* Ritmo y legibilidad */
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item h4 { margin: 8px 0 6px; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item ul { margin: 0 0 12px 1.15rem; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid .ka-item li { margin-bottom: 6px; line-height: 1.6; }
+}
+
+/* Responsive: 1 columna y sin divisor */
+@media (max-width: 899px) {
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid { display: block; }
+  body[data-theme="modelo"] #modelo-negocio .key-activities-grid::before { display: none; }
+}
+
+/* (Importante) Si dejaste el CSS anterior que colocaba h4/ul sin wrapper,
+   neutralízalo para que no interfiera: */
+body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4,
+body[data-theme="modelo"] #modelo-negocio .key-activities-grid h4 + ul {
+  grid-column: auto !important;
+}
+/* =========================
+   MODELO · Network Effect
+   ========================= */
+
+/* 1) Micro-tarjetas en línea */
+body[data-theme="modelo"] #modelo-negocio .microcards{
+  display:flex; flex-wrap:wrap; gap:10px 12px; margin:8px 0 14px;
+}
+body[data-theme="modelo"] #modelo-negocio .microcard{
+  display:inline-flex; align-items:center;
+  padding:.45rem .75rem;
+  background:#fff;
+  border:1px solid var(--mn-border);
+  border-left:4px solid var(--section-accent-color);
+  border-radius:10px;
+  font-weight:800; color:#2f3b48;
+  box-shadow: var(--mn-shadow);
+}
+
+/* 2) Fila 1: Estrategia #1 + imagen a la derecha */
+body[data-theme="modelo"] #modelo-negocio .network-lead-grid{
+  display:grid;
+  grid-template-columns: 1fr minmax(320px, 400px);
+  gap: 16px 20px;
+  align-items: start;
+  margin: 10px 0 14px;
+}
+body[data-theme="modelo"] #modelo-negocio .network-visual{
+  margin:0; padding:0;
+}
+body[data-theme="modelo"] #modelo-negocio .network-visual img{
+  width:100%; height:auto; border-radius:10px;
+  display:block; border:1px solid var(--mn-border);
+  box-shadow: var(--mn-shadow);
+}
+
+/* 3) Resto de cajas en 2 columnas */
+body[data-theme="modelo"] #modelo-negocio .network-cards{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px 18px;
+  align-items:start;
+}
+
+/* Responsive: 1 columna */
+@media (max-width: 980px){
+  body[data-theme="modelo"] #modelo-negocio .network-lead-grid{
+    grid-template-columns: 1fr;
+  }
+  body[data-theme="modelo"] #modelo-negocio .network-cards{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4) Blockquote dentro del tema "modelo" */
+body[data-theme="modelo"] #modelo-negocio .block blockquote{
+  margin:12px 0;
+  padding:10px 12px 10px 14px;
+  border-left:4px solid var(--section-accent-color);
+  background: linear-gradient(180deg,#fff, #b5cbeb);
+  border:1px solid var(--mn-border);
+  border-left-color: var(--section-accent-color);
+  border-radius:10px;
+  color:#2f3b48;
+  font-style: italic;
+  box-shadow: var(--mn-shadow);
+      border-left: 4px solid var(--section-accent-color);
+	  font-size: 1.2em;
+}
+
+
+
+
