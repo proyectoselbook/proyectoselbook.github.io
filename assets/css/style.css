@@ -49,6 +49,7 @@ body, body[data-theme="producto"] {
   --section-gradient-end:   #07700c;
   --section-accent-color: #00ff8c;
   --section-accent-glowa: #0cbb2a;
+	 --section-border-color:   #098518;
 }
 
 /* --- TEMA NARANJA (MARKETING) --- */
@@ -863,7 +864,8 @@ footer {
     linear-gradient(0deg,
       color-mix(in srgb, var(--_accent) 18%, transparent),
       color-mix(in srgb, var(--_accent) 8%, transparent));
-  border-left: 4px solid color-mix(in srgb, var(--_accent) 75%, transparent);
+ border: 1px solid var(--section-border-color);
+  border-left: 4px solid color-mix(in srgb, var(--section-border-color) 75%, transparent);
 
   /* ligero glow con la variable del tema */
   box-shadow: 0 10px 28px color-mix(in srgb, var(--section-accent-glow, rgba(0,0,0,.2)) 40%, transparent);
@@ -1761,6 +1763,7 @@ body[data-theme="modelo"] #modelo-negocio .block blockquote{
       border-left: 4px solid var(--section-accent-color);
 	  font-size: 1.2em;
 }
+
 
 
 
