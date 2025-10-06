@@ -69,6 +69,7 @@ body[data-theme="modelo"] {
   --section-gradient-end:   #011f4b;
   --section-accent-color: #80ccff;
   --section-accent-glow: rgba(52, 152, 219, 0.7);
+	--section-border-color: #0075ad;
 }
 
 /* --- TEMA AMARILLO (EXPERIENCIA DE USUARIO) - Provisional --- */
@@ -1764,6 +1765,7 @@ body[data-theme="modelo"] #modelo-negocio .block blockquote{
       border-left: 4px solid var(--section-accent-color);
 	  font-size: 1.2em;
 }
+
 
 
 
