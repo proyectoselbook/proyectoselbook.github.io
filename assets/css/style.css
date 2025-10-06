@@ -59,6 +59,7 @@ body[data-theme="marketing"] {
   --section-gradient-end:   #331a00;
   --section-accent-color: #f39c12;
   --section-accent-glow: rgba(243, 156, 18, 0.7);
+	--section-border-color: #ff5e00;
 }
 
 /* --- TEMA AZUL (MODELO DE NEGOCIO) --- */
@@ -1763,6 +1764,7 @@ body[data-theme="modelo"] #modelo-negocio .block blockquote{
       border-left: 4px solid var(--section-accent-color);
 	  font-size: 1.2em;
 }
+
 
 
 
