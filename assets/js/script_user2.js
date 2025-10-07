@@ -1000,8 +1000,17 @@ if (inline) inline.style.display = isQ ? 'none' : 'flex';
   }
 
   // Eventos globales
-  nextBtn.addEventListener('click', ()=> goTo(Math.min(current+1, PAGES.length), 'next'));
-  prevBtn.addEventListener('click', ()=> goTo(Math.max(current-1, 1), 'prev'));
+// Overrides de navegación "siguiente" tras la pregunta (pág. 4):
+// desde 5, 6 o 7 siempre saltamos a 8.
+const NEXT_OVERRIDES = { 5: 8, 6: 8, 7: 8 };
+
+function getNextPageId(curr){
+  // Si hay override, úsalo; si no, comportamiento secuencial normal
+  return (curr in NEXT_OVERRIDES) ? NEXT_OVERRIDES[curr] : Math.min(curr + 1, PAGES.length);
+}
+
+nextBtn.addEventListener('click', ()=> goTo(getNextPageId(current), 'next'));
+prevBtn.addEventListener('click', ()=> goTo(Math.max(current-1, 1), 'prev'));
   closeBtn.addEventListener('click', closeModal);
   openIntro.addEventListener('click', openIntroOverlay);
   startBtn.addEventListener('click', ()=>{ closeIntroOverlay(); renderPage(1); });
