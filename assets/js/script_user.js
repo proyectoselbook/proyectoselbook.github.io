@@ -182,8 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Imagina que, al terminar, quieres empezar de nuevo y la historia es la misma, pero... no es igual: vives nuevas escenas, sientes emociones diferentes y vives la historia por rutas y tramas nuevas.
 
-		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
-			`
+		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>`
+		
 		  },
 		  card2: {
 			title: "Elige el protagonista (misma historia, otra vida)",
@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		Es la misma historia, pero <strong>vives distintas escenas, te encuentras con tramas paralelas, hablas con otros personajes...</strong>
 
 		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo... <strong>ves Otra Historia</strong>.
-		
-		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
+		<br><br>
+		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>`
 		  },
 		  card3: {
 			title: "Elige cómo vivirla (audio, vídeo, cómic… y acción)",
@@ -210,8 +210,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Imagina que vuelas y <strong>decides coger los mandos del aeroplano</strong>; que hay un crimen y <strong>decides investigar tú mismo la escena</strong>; que tú mismo interrogas al sospechoso; que conduces el coche en la huida.
 
-		Imagina que te apetece seguir viviendo la historia en un cómic. O que <strong>prefieres un vídeo que recree la escena</strong>. O que te vas a caminar, te pones unos **auriculares** y sigues viviendo la historia en un **podcast**.
-		
+		Imagina que te apetece seguir viviendo la historia en un cómic. O que <strong>prefieres un vídeo que recree la escena</strong>. O que te vas a caminar, te pones unos auriculares y <strong>sigues viviendo la historia en un podcast</strong>.
+		<br><br>
 		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>`
 		  }
         };
