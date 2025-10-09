@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		<strong>Imagina</strong> que puedo leerte la mente, <strong>saber lo que sientes en cada instante</strong>, las emociones que te provoca cada escena o personaje... 
 		Cuando tienes miedo, o cuando te gusta un personaje, o cuando ríes, o cuando lloras...
 
-		E imagina que, con toda esa información, <strong>soy capaz de adaptar la historia en tiempo real</strong>, personalizándola a tus emociones y reacciones. Provocandote nuevas emociones. Creando *Tu* Historia.
+		E imagina que, con toda esa información, <strong>soy capaz de adaptar la historia en tiempo real</strong>, personalizándola a tus emociones y reacciones. Provocandote nuevas emociones. Creando Tu Historia.
 
 		Imagina que, al terminar, quieres empezar de nuevo y la historia es la misma, pero... no es igual: vives nuevas escenas, sientes emociones diferentes y vives la historia por rutas y tramas nuevas.
 
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Es la misma historia, pero <strong>vives distintas escenas, te encuentras con tramas paralelas, hablas con otros personajes...</strong>
 
-		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo... ves Otra Historia</strong>.
+		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo... <strong>ves Otra Historia</strong>.
 		
 		`<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
 		  },
