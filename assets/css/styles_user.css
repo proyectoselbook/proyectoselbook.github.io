@@ -2730,7 +2730,7 @@ section {
 .stat-item { display: flex; justify-content: space-between; align-items: center; color: #00ff8c !important;}
 .card-stats span { color: #00ff8 !important; }
 .progress-bar { background: #555; height: 8px; width: 100px; border-radius: 4px; }
-.progress-bar div { height: 100%; background: var(--sidebar-accent-color); border-radius: 4px; }
+.progress-bar div { height: 100%; background: #00ff8c; border-radius: 4px; }
 
 /* ===== POP FICHA NOVELA: Layout final y estilos modernos (v2) ===== */
 #product-lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85);
