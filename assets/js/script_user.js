@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo... <strong>ves Otra Historia</strong>.
 		
-		`<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
+		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
 		  },
 		  card3: {
 			title: "Elige cómo vivirla (audio, vídeo, cómic… y acción)",
