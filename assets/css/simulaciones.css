@@ -1601,7 +1601,7 @@ p.descr, p.footnote {
   /* altura un poco mayor para que no quede cortado al bajarlas */
   height: 560px; /* antes 500px */
   position: relative;
-  --char-y-offset: 60px; /* controla cuánto bajan (ajústalo a tu gusto) */
+  --char-y-offset: 260px; /* controla cuánto bajan (ajústalo a tu gusto) */
 }
 
 .character-slide {
@@ -1612,5 +1612,6 @@ p.descr, p.footnote {
 @media (max-width: 992px){
   .character-carousel { --char-y-offset: 24px; height: 480px; }
 }
+
 
 
