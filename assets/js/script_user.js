@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Imagina que, al terminar, quieres empezar de nuevo y la historia es la misma, pero... no es igual: vives nuevas escenas, sientes emociones diferentes y vives la historia por rutas y tramas nuevas.
 
-		**Eso es un Selbook.**
+		<span style="color: #00ff00; font-size: 25px;">Eso es un Selbook.</span>
 			`
 		  },
 		  card2: {
