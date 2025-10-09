@@ -175,42 +175,44 @@ document.addEventListener('DOMContentLoaded', function() {
 			title: "Te leo la mente (emociones en tiempo real)",
 			image: "assets/img/leyendo_mente.webp", // cámbiala por tu imagen real
 			description: `
-		Imagina que puedo leerte la mente, saber lo que sientes en cada instante, las emociones que te provoca cada escena o personaje... 
+		<strong>Imagina</strong> que puedo leerte la mente, <strong>saber lo que sientes en cada instante</strong>, las emociones que te provoca cada escena o personaje... 
 		Cuando tienes miedo, o cuando te gusta un personaje, o cuando ríes, o cuando lloras...
 
-		E imagina que, con toda esa información, soy capaz de adaptar la historia en tiempo real, personalizándola a tus emociones y reacciones. Provocandote nuevas emociones. Creando *Tu* Historia.
+		E imagina que, con toda esa información, <strong>soy capaz de adaptar la historia en tiempo real</strong>, personalizándola a tus emociones y reacciones. Provocandote nuevas emociones. Creando *Tu* Historia.
 
 		Imagina que, al terminar, quieres empezar de nuevo y la historia es la misma, pero... no es igual: vives nuevas escenas, sientes emociones diferentes y vives la historia por rutas y tramas nuevas.
 
-		<span style="color: #00ff00; font-size: 25px;">Eso es un Selbook.</span>
+		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
 			`
 		  },
 		  card2: {
 			title: "Elige el protagonista (misma historia, otra vida)",
 			image: "assets/img/eleccion-personajes-2.jpg",
 			description: `
-		Imagina que pudieras elegir el protagonista para recorrer la historia. Que en vez de **Frodo** eliges a **Aragorn**, ¡a Gollum! 
-		Que en vez de **Sherlock Holmes** eliges a **Watson**; en vez de **Clarice Starling**, eliges a **Hannibal Lecter**... 
+		<strong>Imagina que pudieras elegir el protagonista para recorrer la historia</strong>. Que en vez de Frodo eliges a Aragorn, ¡a Gollum! 
+		Que en vez de Sherlock Holmes eliges a Watson; en vez de Clarice Starling, eliges a Hannibal Lecter... 
 		y recorres y vives esa historia desde la perspectiva de ese personaje.
 
-		Es la misma historia, pero vives **distintas escenas**, te encuentras con **tramas paralelas**, hablas con **otros personajes**...
+		Es la misma historia, pero <strong>vives distintas escenas, te encuentras con tramas paralelas, hablas con otros personajes...</strong>
 
-		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo, **es Otra Historia**.
-			`
+		Imagina que, cuando acabas con uno, decides empezar con otro protagonista. Y es la misma historia, pero, amigo mío, insisto: en el fondo... ves Otra Historia</strong>.
+		
+		`<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>
 		  },
 		  card3: {
 			title: "Elige cómo vivirla (audio, vídeo, cómic… y acción)",
 			image: "assets/img/eleccion-jugar.png",
 			description: `
-		Imagina que una **melodía** acompasa tu lectura; sintiendo tu corazón, su ritmo se adapta. 
+		Imagina que una*melodía acompasa tu lectura; <strong>sintiendo tu corazón, su ritmo se adapta</strong>. 
 		Cuando hay tensión, la melodía multiplica esa sensación; cuando hay alegría, la melodía lo acompaña.
 
-		Imagina que hay un grito en un oscuro bosque, hay unos pasos que te persiguen, hay disparos cerca, alguien rompe los cristales de una ventana, el asesino baja la escalera... **y tú lo oyes**. Tu corazón se acelera.
+		Imagina que hay un grito en un oscuro bosque, hay unos pasos que te persiguen, hay disparos cerca, alguien rompe los cristales de una ventana, el asesino baja la escalera... <strong>y tú lo oyes</strong>. Tu corazón se acelera.
 
-		Imagina que vuelas y decides **coger los mandos** del aeroplano; que hay un crimen y decides **investigar** tú mismo la escena; que tú mismo **interrogas** al sospechoso; que **conduces** el coche en la huida.
+		Imagina que vuelas y <strong>decides coger los mandos del aeroplano</strong>; que hay un crimen y <strong>decides investigar tú mismo la escena</strong>; que tú mismo interrogas al sospechoso; que conduces el coche en la huida.
 
-		Imagina que te apetece seguir viviendo la historia en un **cómic**. O que prefieres un **vídeo** que recree la escena. O que te vas a caminar, te pones unos **auriculares** y sigues viviendo la historia en un **podcast**.
-			`
+		Imagina que te apetece seguir viviendo la historia en un cómic. O que <strong>prefieres un vídeo que recree la escena</strong>. O que te vas a caminar, te pones unos **auriculares** y sigues viviendo la historia en un **podcast**.
+		
+		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>`
 		  }
         };
 
