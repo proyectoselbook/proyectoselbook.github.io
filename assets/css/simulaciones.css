@@ -1041,7 +1041,7 @@
 /* --- Contenido y botones --- */
 .tutorial-popover__text { margin: 0; font-size: 0.9rem; line-height: 1.6; }
 .tutorial-popover__footer { margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
-.tutorial-popover__btn-close { background: transparent; border: none; color: #8df989; cursor: pointer; font-weight: 600; }
+.tutorial-popover__btn-close { background: transparent; border: none; color: #313131; cursor: pointer; font-weight: 600; }
 .tutorial-popover__btn-next { background-color: #aeea00; color: #1e293b; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
 
@@ -1594,4 +1594,5 @@ p.descr, p.footnote {
         }
 
         .btn-sim:hover{ filter: brightness(1.05); }
+
 
