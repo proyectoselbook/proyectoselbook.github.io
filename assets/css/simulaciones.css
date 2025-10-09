@@ -87,7 +87,7 @@
 .card-info h4{ margin:0 0 10px; color:#fff; display:flex; align-items:center; gap:8px; }
 .card-info p.description{ font-size:.9em; color:#b0b0b0; line-height:1.6; margin-bottom:15px; }
 .card-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px; }
-.card-tags span{ font-size:.75em; padding:4px 10px; border-radius: 15px; background:#82dd77; }
+.card-tags span{ font-size:.75em; padding:4px 10px; border-radius: 15px; background:#82dd77; color: #2f2d2d; }
 .card-stats{ display:grid; gap:10px; font-size:.9em; }
 .stat-item{ display:flex; justify-content:space-between; align-items:center; color:#00ff8c !important; }
 .progress-bar{ background:#555; height:8px; width:100px; border-radius:4px; }
@@ -1592,4 +1592,5 @@ p.descr, p.footnote {
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
         }
+
         .btn-sim:hover{ filter: brightness(1.05); }
