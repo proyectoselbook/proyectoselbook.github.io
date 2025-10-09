@@ -2642,7 +2642,7 @@ section {
 .card-stats{ display:grid; gap:10px; font-size:.9em; }
 .stat-item{ display:flex; justify-content:space-between; align-items:center; color:#00ff8c !important; }
 .progress-bar{ background:#555; height:8px; width:100px; border-radius:4px; }
-.progress-bar div{ height:100%; border-radius: 4px; }
+.progress-bar div{ height:100%; border-radius: 4px; background:#00ff8c;}
 
 /* NOTA: El CSS del #product-lightbox ya lo pegas con su bloque original. */
 /* ====================================================================
