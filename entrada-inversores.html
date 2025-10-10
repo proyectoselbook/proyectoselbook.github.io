@@ -114,6 +114,35 @@
 }
 .slider-arrow.left { left: 10px }
 .slider-arrow.right { right: 10px }
+	  /* Orden en desktop: texto izquierda, imagen derecha */
+.text-column { order: 1; }
+.image-column { order: 2; }
+
+/* Tamaños ya definidos; aseguramos comportamiento de bloque */
+.image-column {
+  /* Puedes ajustar este ancho visual de la columna en desktop */
+  flex: 0 0 360px;   /* estable y no invade el contenido */
+}
+.image-column img {
+  width: 100%;
+  max-width: 360px;  /* límite para pantallas grandes */
+  height: auto;
+}
+
+/* En móvil apilamos y dejamos ancho completo */
+@media (max-width: 900px) {
+  .text-column, .image-column {
+    order: unset;
+    flex: 1 1 100%;
+  }
+  .image-column {
+    flex-basis: 100%;
+  }
+  .image-column img {
+    max-width: 480px;  /* opcional, centrada si usas text-align:center */
+  }
+}
+
 </style>
 
 </head>
@@ -213,12 +242,13 @@
     <div class="content-breadcrumbs">Inversores&nbsp;/&nbsp;Entrada</div>
     <h1>El origen de Selbook</h1>
     <div class="main-section">
-      <!-- Columna de texto: incluye párrafos, cita destacada y callout -->
-      <div class="text-column">
-	  <!-- Columna de imagen: muestra la diapositiva ilustrativa asociada -->
+		<!-- Columna de imagen: muestra la diapositiva ilustrativa asociada -->
       <div class="image-column" style="float: right; margin: 15px;">
         <img src="assets/img/diapositiva10-selbook.png" alt="Ilustración Selbook">
       </div>
+      <!-- Columna de texto: incluye párrafos, cita destacada y callout -->
+      <div class="text-column">
+	  
         <p>
           En el año&nbsp;2000, mientras soñaba con escribir una novela de ciencia ficción, surgió una pregunta que puso en marcha una revolución creativa:
           <strong>¿cómo sería la literatura del futuro?</strong>
