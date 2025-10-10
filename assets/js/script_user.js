@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		Imagina que vuelas y <strong>decides coger los mandos del aeroplano</strong>; que hay un crimen y <strong>decides investigar tú mismo la escena</strong>; que tú mismo interrogas al sospechoso; que conduces el coche en la huida.
 
-		Imagina que te apetece seguir viviendo la historia en un cómic. O que <strong>prefieres un vídeo que recree la escena</strong>. O que te vas a caminar, te pones unos auriculares y <strong>sigues viviendo la historia en un podcast</strong>.
+		Imagina que te apetece seguir viviendo la historia en un cómic. O que <strong>prefieres un vídeo que recree la escena</strong>. O que te vas a caminar, te pones unos **auriculares** y sigues viviendo la historia en un **podcast**.
 		<br><br>
 		<span style="color: #00ff99; font-size: 25px;">Eso es un Selbook.</span>`
 		  }
@@ -1001,8 +1001,17 @@ if (inline) inline.style.display = isQ ? 'none' : 'flex';
   }
 
   // Eventos globales
-  nextBtn.addEventListener('click', ()=> goTo(Math.min(current+1, PAGES.length), 'next'));
-  prevBtn.addEventListener('click', ()=> goTo(Math.max(current-1, 1), 'prev'));
+// Overrides de navegación "siguiente" tras la pregunta (pág. 4):
+// desde 5, 6 o 7 siempre saltamos a 8.
+const NEXT_OVERRIDES = { 5: 8, 6: 8, 7: 8 };
+
+function getNextPageId(curr){
+  // Si hay override, úsalo; si no, comportamiento secuencial normal
+  return (curr in NEXT_OVERRIDES) ? NEXT_OVERRIDES[curr] : Math.min(curr + 1, PAGES.length);
+}
+
+nextBtn.addEventListener('click', ()=> goTo(getNextPageId(current), 'next'));
+prevBtn.addEventListener('click', ()=> goTo(Math.max(current-1, 1), 'prev'));
   closeBtn.addEventListener('click', closeModal);
   openIntro.addEventListener('click', openIntroOverlay);
   startBtn.addEventListener('click', ()=>{ closeIntroOverlay(); renderPage(1); });
