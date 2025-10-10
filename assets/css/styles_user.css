@@ -2467,7 +2467,7 @@ section {
 .cta-modal__panel{
   /* TAMAÑO 90% de la pantalla */
   width: 90vw;
-  height: 90vh;
+  /* height: 90vh; */
 
   /* layout para header/close arriba + body con scroll */
   display: flex;
