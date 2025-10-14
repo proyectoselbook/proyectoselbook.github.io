@@ -1598,7 +1598,7 @@ p.descr, p.footnote {
  /* PARA BAJAR LOS PERSOBAJES */
 /* Desplaza solo la imagen dentro de cada slide */
 .carousel-container { 
-  --char-img-shift: 60px; /* Ajusta: 0–80px suele ir bien */
+  --char-img-shift: 120px; /* Ajusta: 0–80px suele ir bien */
 }
 
 .character-slide img {
@@ -1621,6 +1621,7 @@ p.descr, p.footnote {
 @media (max-width: 992px){
   .carousel-container { --char-img-shift: 28px; }
 }
+
 
 
 
