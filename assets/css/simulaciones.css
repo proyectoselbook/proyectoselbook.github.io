@@ -1596,23 +1596,33 @@ p.descr, p.footnote {
         .btn-sim:hover{ filter: brightness(1.05); }
 
  /* PARA BAJAR LOS PERSOBAJES */
-/* === Bajar las imágenes del carrusel de personajes === 
-.character-carousel {
-  
-  height: 560px; 
-  position: relative;
-  --char-y-offset: 90px; 
+/* Desplaza solo la imagen dentro de cada slide */
+.carousel-container { 
+  --char-img-shift: 60px; /* Ajusta: 0–80px suele ir bien */
 }
 
-.character-slide {
-  top: var(--char-y-offset);
+.character-slide img {
+  transform: translateY(var(--char-img-shift));
+  will-change: transform;
+  /* Para que no invada los controles, reducimos su altura efectiva */
+  max-height: calc(480px - var(--char-img-shift));
+  object-fit: contain;
+}
+
+/* Opcional: solo desplazar la activa (las prev/next quedan un pelín más altas) */
+/*
+.character-slide.is-active img {
+  transform: translateY(var(--char-img-shift));
+  max-height: calc(480px - var(--char-img-shift));
 }
 */
-/* En móvil, baja menos para dejar aire arriba 
+
+/* En móvil, baja un poco menos */
 @media (max-width: 992px){
-  .character-carousel { --char-y-offset: 24px; height: 480px; }
+  .carousel-container { --char-img-shift: 28px; }
 }
-*/
+
+
 
 
 
