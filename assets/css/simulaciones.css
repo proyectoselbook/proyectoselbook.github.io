@@ -1596,22 +1596,23 @@ p.descr, p.footnote {
         .btn-sim:hover{ filter: brightness(1.05); }
 
  /* PARA BAJAR LOS PERSOBAJES */
-/* === Bajar las imágenes del carrusel de personajes === */
+/* === Bajar las imágenes del carrusel de personajes === 
 .character-carousel {
-  /* altura un poco mayor para que no quede cortado al bajarlas */
-  height: 560px; /* antes 500px */
+  
+  height: 560px; 
   position: relative;
-  --char-y-offset: 90px; /* controla cuánto bajan (ajústalo a tu gusto) */
+  --char-y-offset: 90px; 
 }
 
 .character-slide {
   top: var(--char-y-offset);
 }
-
-/* En móvil, baja menos para dejar aire arriba */
+*/
+/* En móvil, baja menos para dejar aire arriba 
 @media (max-width: 992px){
   .character-carousel { --char-y-offset: 24px; height: 480px; }
 }
+*/
 
 
 
