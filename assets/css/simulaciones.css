@@ -1622,6 +1622,57 @@ p.descr, p.footnote {
   .carousel-container { --char-img-shift: 28px; }
 }
 
+/* === Carrusel de personajes: bajar SOLO las slides e incrementar tamaños === */
+.carousel-container { 
+  --char-y-offset: 70px;     /* cuánto bajan las imágenes */
+  --scale-active: 1.15;      /* tamaño de la activa */
+  --scale-side: 0.85;        /* tamaño de prev/next */
+}
+
+/* 1) Las slides son absolutely-positioned: podemos bajarlas sin mover controles */
+.character-carousel { 
+  /* Mantén tu altura existente (500px) para no desplazar flechas) */
+  /* height: 500px;  ya la tienes definida */
+  overflow: visible;        /* deja que la imagen respire si crece */
+  position: relative;
+}
+.character-slide { top: var(--char-y-offset); }
+
+/* 2) Tamaños: activa más grande, laterales también un poco mayores */
+.character-slide.is-active {
+  transform: translateX(0) translateZ(0) rotateY(0) scale(var(--scale-active));
+  z-index: 10;
+}
+.character-slide.is-prev {
+  transform: translateX(-180px) translateZ(-200px) rotateY(35deg) scale(var(--scale-side));
+}
+.character-slide.is-next {
+  transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(var(--scale-side));
+}
+
+/* 3) Asegurar que la imagen puede crecer sin recortarse por la regla global */
+.character-slide img {
+  max-height: none;     /* anula el 480px actual solo para este bloque final */
+  width: 100%;
+  object-fit: contain;
+}
+
+/* 4) Que el NOMBRE nunca quede tapado: darle aire y capa superior */
+.character-name {
+  margin-top: calc(14px + var(--char-y-offset) * 0.35); /* separa del carrusel */
+  position: relative;
+  z-index: 20;  /* por si acaso alguna imagen lo sobrevuela */
+}
+
+/* Opcional: si la activa “baja” mucho, reduce ligeramente el offset en móvil */
+@media (max-width: 992px) {
+  .carousel-container { 
+    --char-y-offset: 36px;
+    --scale-active: 1.06;
+    --scale-side: 0.9;
+  }
+}
+
 
 
 
