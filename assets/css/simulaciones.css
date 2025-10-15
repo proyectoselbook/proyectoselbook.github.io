@@ -1725,8 +1725,16 @@ p.descr, p.footnote {
 .character-slide.is-next {
   transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.9);
 }
-/* Sube un poco la imagen */
-.carousel-container { --char-y-offset: 20px; }  /* menos que antes = más arriba */
+/* Control de altura de las imágenes del carrusel */
+.carousel-container { --char-y-offset: 40px; }   /* + sube? ↓ baja? -> ver abajo */
+
+.character-carousel { position: relative; overflow: visible; }
+.character-slide { 
+  position: absolute; 
+  top: var(--char-y-offset, 0px);
+}
+
+
 
 
 
