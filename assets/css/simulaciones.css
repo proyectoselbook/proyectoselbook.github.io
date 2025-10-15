@@ -1726,13 +1726,14 @@ p.descr, p.footnote {
   transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.9);
 }
 /* Control de altura de las imágenes del carrusel */
-.carousel-container { --char-y-offset: -10px; }   /* + sube? ↓ baja? -> ver abajo */
+.carousel-container { --char-y-offset: -40px; }   /* + sube? ↓ baja? -> ver abajo */
 
 .character-carousel { position: relative; overflow: visible; }
 .character-slide { 
   position: absolute; 
   top: var(--char-y-offset, 0px);
 }
+
 
 
 
