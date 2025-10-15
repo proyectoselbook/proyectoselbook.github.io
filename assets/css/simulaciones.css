@@ -1673,6 +1673,33 @@ p.descr, p.footnote {
   }
 }
 
+/* === Orden de apilado para que NUNCA tapen los controles === */
+.carousel-container { position: relative; padding-bottom: 90px; } /* deja aire bajo la imagen */
+.character-carousel { overflow: visible; }
+
+.character-slide { z-index: 0; }                 /* base más baja */
+.character-slide.is-prev,
+.character-slide.is-next { z-index: 1; }         /* laterales */
+.character-slide.is-active { z-index: 5; }       /* activa, pero por debajo de controles */
+
+.character-name,
+#btn-empezar-historia,
+.carousel-nav {
+  position: relative;
+  z-index: 30;                                   /* controles SIEMPRE arriba */
+}
+
+/* Tamaños: activa grande y laterales más grandes que antes */
+.character-slide.is-active {
+  transform: translateX(0) translateZ(0) rotateY(0) scale(1.18);
+}
+.character-slide.is-prev {
+  transform: translateX(-180px) translateZ(-200px) rotateY(35deg) scale(0.9);
+}
+.character-slide.is-next {
+  transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.9);
+}
+
 
 
 
