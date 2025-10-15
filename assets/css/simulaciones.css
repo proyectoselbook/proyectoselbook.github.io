@@ -1622,9 +1622,9 @@ p.descr, p.footnote {
   .carousel-container { --char-img-shift: 28px; }
 }
 
-/* === Carrusel de personajes: bajar SOLO las slides e incrementar tamaños === */
+/* === Carrusel de personajes: bajar SOaLO las slides e incrementar tamaños === */
 .carousel-container { 
-  --char-y-offset: 70px;     /* cuánto bajan las imágenes */
+  --char-y-offset: 40px;     /* cuánto bajan las imágenes */
   --scale-active: 1.15;      /* tamaño de la activa */
   --scale-side: 0.85;        /* tamaño de prev/next */
 }
@@ -1725,6 +1725,7 @@ p.descr, p.footnote {
 .character-slide.is-next {
   transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.9);
 }
+
 
 
 
