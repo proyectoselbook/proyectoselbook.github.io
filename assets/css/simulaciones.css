@@ -1725,6 +1725,9 @@ p.descr, p.footnote {
 .character-slide.is-next {
   transform: translateX(180px) translateZ(-200px) rotateY(-35deg) scale(0.9);
 }
+/* Sube un poco la imagen */
+.carousel-container { --char-y-offset: 20px; }  /* menos que antes = más arriba */
+
 
 
 
